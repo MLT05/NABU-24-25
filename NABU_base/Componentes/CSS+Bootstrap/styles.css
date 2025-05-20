@@ -1,0 +1,62 @@
+/*Cores*/
+.main_c {
+  color: #6c9252;
+}
+.main_bgc {
+  background-color: #6c9252;
+}
+.secondary_c {
+  color: #ffbf00;
+}
+.text_c_w {
+  color: #ffffff;
+}
+.text_c_b {
+  color: #000;
+}
+
+.alert_c {
+}
+
+._c {
+}
+._c {
+}
+
+/*links*/
+a:link {
+  text-decoration: none;
+  font-family: sans-serif;
+}
+a:visited {
+  text-decoration: none;
+  font-family: sans-serif;
+}
+a:hover {
+  text-decoration: none;
+  font-family: sans-serif;
+}
+a::after {
+  text-decoration: none;
+  font-family: sans-serif;
+}
+
+.center_imgs {
+  position: relative;
+  margin: auto;
+  padding: auto;
+  align-self: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* user */
+.User_Frame {
+    border-radius: 30rem;
+    width: 100px;
+    height: 100px;
+}
+.user_p {
+    text-align: center;
+    font-family: sans-serif;
+}
