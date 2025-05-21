@@ -1,6 +1,5 @@
-<header class="mainheader cabecalho">
+<header class="cabecalho fixed-top">
     <div>
-        <!-- imagem -->
 
     </div>
 </header>
