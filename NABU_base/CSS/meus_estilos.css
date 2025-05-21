@@ -27,8 +27,8 @@
 }
 
 .cabecalho {
-    height: 10vh;
-    background-image: url('../Imagens/img_cp/header_bg_melhor.png');
+    height: 12vh;
+    background-image: url('../Imagens/img_cp/bgbgbg (1).svg');
     background-repeat: repeat-x;       /* repete na horizontal */
     background-size: auto 100%;        /* altura 100%, largura automática */
     background-position: center;
