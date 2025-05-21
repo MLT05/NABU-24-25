@@ -20,12 +20,26 @@
 }
 .corpo {
 
-    max-width: 768px
+    background-color: #1cabc4;
+
+
 
 }
 
 .cabecalho {
-    max-height: 10%;
-    background-color: black;
+    height: 10vh;
+    background-image: url('../Imagens/img_cp/header_bg.png');
+    background-repeat: repeat-x;       /* repete na horizontal */
+    background-size: auto 100%;        /* altura 100%, largura automática */
+    background-position: center;
+
+
+}
+
+footer {
+
+    height: 10vh;
+    background-color: greenyellow;
+
 }
 
