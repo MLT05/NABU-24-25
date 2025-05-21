@@ -1,0 +1,31 @@
+.verde {
+    color: #5D7D46;
+}
+.verde_bg {
+    background-color: #5D7D46;
+}
+.verde_escuro {
+    color: #004D40;
+}
+
+.verde_escuro_bg {
+    background-color: #004D40;
+}
+.verde_claro {
+    color: #004D40;
+}
+
+.verde_claro_bg {
+    background-color: #004D40;
+}
+.corpo {
+
+    max-width: 768px
+
+}
+
+.cabecalho {
+    max-height: 10%;
+    background-color: black;
+}
+
