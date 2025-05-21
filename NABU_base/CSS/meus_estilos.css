@@ -41,5 +41,18 @@ footer {
     height: 10vh;
 
 
+
+}
+
+.icon_footer {
+
+    width: 12vw;
+
+}
+
+footer a {
+
+    color: white;
+    text-decoration: none;
 }
 
