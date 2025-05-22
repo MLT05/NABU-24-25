@@ -1,4 +1,4 @@
-<header class="cabecalho fixed-top container">
+<header class="cabecalho fixed-top container-fluid">
     <div class="row py-3">
         <div class="col">
             <img src="../Imagens/img_cp/logo_nabu.svg">
