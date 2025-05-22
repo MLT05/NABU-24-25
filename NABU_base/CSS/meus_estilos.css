@@ -56,3 +56,40 @@ footer a {
     text-decoration: none;
 }
 
+.cards_homepage p {
+
+    display: inline;
+
+}
+
+.imagem_card_homepage {
+
+    max-height: 25vh;
+
+    aspect-ratio: 4 / 3;      /* Mantém proporção */
+    width: 100%;              /* Ocupa toda a largura do card */
+    max-width: 400px;         /* Limita tamanho */
+    overflow: hidden;         /* Corta a imagem que passar dos limites */
+    border-radius: 2rem;       /* Cantos arredondados */
+    display: block;           /* Garante que o container se comporte como bloco */
+
+
+
+}
+.img_hp_card {
+
+
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+
+
+
+}
+
+.body_index {
+
+    margin-top: 10vh;
+
+}

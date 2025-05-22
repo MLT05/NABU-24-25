@@ -18,4 +18,4 @@
         <link href="../CSS/styles.css" rel="stylesheet" />
         <link href="../CSS/meus_estilos.css" rel="stylesheet" />
     </head>
-    <body class="corpo">
+    <body class="corpo container">
