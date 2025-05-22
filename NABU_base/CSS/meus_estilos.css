@@ -36,19 +36,8 @@
 
 }
 
-footer {
-
-    height: 10vh;
 
 
-
-}
-
-.icon_footer {
-
-    width: 12vw;
-
-}
 
 footer a {
 
@@ -91,6 +80,37 @@ footer a {
 .body_index {
 
     margin-top: 10vh;
+
+}
+
+.footer-menu {
+    height: 10vh;
+    width: 100vw; /* ou tua cor verde */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centraliza horizontal */
+    justify-content: center; /* centraliza vertical */
+    height: 100%;
+}
+
+.menu-icon {
+    height: 5vh;
+    width: 5vh;
+    margin-bottom: 0.3vh;
+    object-fit: contain;
+    display: inline-block;
+}
+
+
+.menu-label {
+    font-size: 1.5vh;
+    margin: 0;
 
 }
 
