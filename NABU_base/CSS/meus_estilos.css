@@ -35,7 +35,11 @@
 
 
 }
-
+.logo-img,
+.carrinho-img {
+    height: 5vh;
+    width: 5vh;
+}
 
 
 
