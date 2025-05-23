@@ -4,7 +4,7 @@
 <div class="carrossel">
     <img src="../Imagens/produtos/tomates.svg" alt="Tomates Cacho">
     <button class="favorito">
-        ❤️
+        <img src="../Imagens/coracao.svg">
     </button>
 </div>
     <div class="info-produto">
@@ -17,7 +17,7 @@
             <span class="etiqueta">Biológico</span>
         </div>
 
-        <p class="avaliacao">⭐ 4,3 (229)</p>
+        <p class="avaliacao">⭐ 4,3 <span class="avaliacao_numero">(229)</span></p>
 
         <h3 class="h3.produto">Descrição do Produto</h3>
         <p class="descricao">

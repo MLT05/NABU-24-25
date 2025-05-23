@@ -186,7 +186,7 @@ footer a {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #3f8140;
+    background: #AAC0AA;
     border: none;
     border-radius: 50%;
     color: white;
@@ -281,6 +281,7 @@ footer a {
 
 .descricao{
     margin-left: 20px;
+    color: #004D40;
 }
 
 .nome_localizacao {
@@ -290,8 +291,7 @@ footer a {
     padding: 12px;
     font-size: 16px;
     border-radius: 6px;
-    border-color:#AAC0AA;
-    text-align: left;
+    border-color:#004D40;
     margin-bottom: 1rem;
 }
 
@@ -337,4 +337,9 @@ main {
 
 margin-bottom: 13vh;
 
+}
+
+.avaliacao_numero{
+    color: #AAC0AA;
+    margin-bottom: 15px;
 }
