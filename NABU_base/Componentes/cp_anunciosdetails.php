@@ -12,7 +12,7 @@
     <div class="carrossel">
         <img src="../Imagens/produtos/tomates.svg" alt="Tomates Cacho">
         <button class="favorito">
-            ❤️
+           <a>favoritos</a>
         </button>
     </div>
 
