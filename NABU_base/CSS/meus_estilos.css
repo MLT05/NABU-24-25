@@ -12,11 +12,11 @@
     background-color: #004D40;
 }
 .verde_claro {
-    color: #004D40;
+    color: #AAC0AA;
 }
 
 .verde_claro_bg {
-    background-color: #004D40;
+    background-color: #AAC0AA;
 }
 
 .cabecalho {
@@ -342,4 +342,22 @@ margin-bottom: 13vh;
 .avaliacao_numero{
     color: #AAC0AA;
     margin-bottom: 15px;
+}
+
+.avaliacao {
+
+    margin-top: 0.5rem;
+
+}
+
+.etiquetas {
+
+    display: inline-block;
+
+}
+
+.preco {
+    display: inline-block;
+    position: absolute;
+    align-self: end;
 }
