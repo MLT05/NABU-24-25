@@ -5,7 +5,7 @@ include_once ("cp_intro_index.php");
 <main class="body_index">
     <div class="top-buttons">
         <a class="responsive-button active">Para si</a>
-        <a href="" class="responsive-button" >Mapa</a>
+        <a href="../Paginas/mapa.php" class="responsive-button" >Mapa</a>
     </div>
 
 
@@ -13,9 +13,12 @@ include_once ("cp_intro_index.php");
     <div>
         <h1 class="verde_escuro">Recomendações</h1>
     </div>
+
+
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
+                <a href="pagina-destino.php" style="text-decoration: none; color: inherit;">
                 <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
 
                     <!-- Imagem -->
@@ -33,6 +36,7 @@ include_once ("cp_intro_index.php");
                         </div>
                     </div>
                 </div>
+                    </a>
             </div>
             <div class="carousel-item">
                 <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
