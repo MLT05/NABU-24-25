@@ -56,7 +56,7 @@ footer a {
     width: 100%;              /* Ocupa toda a largura do card */
 
     overflow: hidden;         /* Corta a imagem que passar dos limites */
-    border-radius: 2rem;       /* Cantos arredondados */
+    border-radius: 1rem;       /* Cantos arredondados */
     display: block;           /* Garante que o container se comporte como bloco */
 
 
