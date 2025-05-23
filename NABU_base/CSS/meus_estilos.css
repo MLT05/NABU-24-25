@@ -18,10 +18,6 @@
 .verde_claro_bg {
     background-color: #004D40;
 }
-.corpo {
-
-margin-top: 12vh;
-}
 
 .cabecalho {
     height: 12vh;
@@ -80,7 +76,7 @@ footer a {
 
 .body_index {
 
-    margin-top: 10vh;
+    margin-top: 12vh;
 
 }
 
