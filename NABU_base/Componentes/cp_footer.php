@@ -1,4 +1,4 @@
-<footer class="footer-menu fixed-bottom verde_bg">
+<footer class="footer-menu fixed-bottom verde_bg ">
     <div class="d-flex w-100 h-100">
         <a class="menu-item flex-fill text-center text-white text-decoration-none" href="../paginas/index.php">
             <img src="../Imagens/icons/home_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Início" class="menu-icon">
