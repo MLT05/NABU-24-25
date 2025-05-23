@@ -167,6 +167,7 @@ footer a {
     position: relative;
 }
 
+<<<<<<< HEAD
 .carrossel img {
     width: 100%;
     display: flex;
@@ -271,3 +272,32 @@ footer a {
     margin-left: 20px;
 }
 
+=======
+.top-buttons {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem ;
+    justify-content: center;
+}
+
+.responsive-button {
+    flex: 1;
+
+    padding: 0.8rem 0;
+    border-radius: 2rem;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2d2d2d;
+    background-color: #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ✅ Sombra */
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.responsive-button.active {
+    background-color: #004d26;
+    color: white;
+}
+>>>>>>> 8ee9e80efbaebde14ad8eacdec4f70042c2f48d0
