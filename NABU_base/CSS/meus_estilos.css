@@ -160,7 +160,114 @@ footer a {
     margin-bottom: 0.25rem;
 }
 
-#preço\.produto{
+
+
+
+.carrossel {
+    position: relative;
+}
+
+.carrossel img {
+    width: 100%;
+    display: flex;
+}
+
+.favorito {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #3f8140;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+
+.produtor {
+    color: #666;
+    margin: 4px ;
+    margin-left: 20px;
+    color: rgba(0, 77, 64, 0.58);
+}
+
+.preco {
+    font-size: 32px;
+    font-weight: bold;
     color: #004D40;
+    text-align: right;
+}
+.kg{
+    font-size: 22px;
+    font-weight: bold;
+    color: #004D40;
+    text-align: right;
+}
+
+.etiquetas {
+    margin: 10px 20px;
+}
+
+.etiqueta {
+    display: inline-block;
+    background: #d2e5d0;
+    color: #2e6c2e;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+.avaliacao {
+    color: #b48b00;
+    margin-bottom: 15px;
+    margin-left: 20px;
+}
+
+.descricao, .localizacao {
+    font-size: 14px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+}
+
+.comprar {
+    flex: 1;
+    background-color: #115e46;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.contactar {
+    flex: 1;
+    background: white;
+    color: #115e46;
+    border: 2px solid #115e46;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.h3\.produto{
+    color: #004D40;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.descricao{
+    margin-left: 20px;
 }
 
