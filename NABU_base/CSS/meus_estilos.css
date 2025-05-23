@@ -50,11 +50,11 @@ footer a {
 
 .imagem_card_homepage {
 
-    max-height: 25vh;
+    max-height: 20vh;
 
     aspect-ratio: 4 / 3;      /* Mantém proporção */
     width: 100%;              /* Ocupa toda a largura do card */
-    max-width: 400px;         /* Limita tamanho */
+
     overflow: hidden;         /* Corta a imagem que passar dos limites */
     border-radius: 2rem;       /* Cantos arredondados */
     display: block;           /* Garante que o container se comporte como bloco */
@@ -82,7 +82,7 @@ footer a {
 
 .footer-menu {
     height: 10vh;
-    width: 100vw; /* ou tua cor verde */
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -159,3 +159,4 @@ footer a {
     font-size: 0.9rem;
     margin-bottom: 0.25rem;
 }
+
