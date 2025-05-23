@@ -11,13 +11,15 @@
         <h3 class="h3.produto">Tomates - Cacho</h3>
         <p class="produtor">Rosa Silva</p>
         <div class="linha-preco-etiquetas">
-        <p class="preco">2,00€ <span class="kg">/kg</span></p>
+
         <div class="etiquetas">
             <span class="etiqueta">Fruta</span>
             <span class="etiqueta">Biológico</span>
-        </div>
 
-        <p class="avaliacao">⭐ 4,3 <span class="avaliacao_numero">(229)</span></p>
+            <p class="avaliacao">⭐ 4,3 <span class="avaliacao_numero">(229)</span></p>
+        </div>
+            <p class="preco">2,00€ <span class="kg">/kg</span></p>
+
 
         <h3 class="h3.produto">Descrição do Produto</h3>
         <p class="descricao">
