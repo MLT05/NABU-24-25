@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Produto</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="../CSS/meus_estilos.css">
 </head>
 <body>
 <div class="produto-container">
 
     <div class="carrossel">
-        <img src="tomates.jpg" alt="Tomates Cacho">
+        <img src="../Imagens/produtos/tomates.svg" alt="Tomates Cacho">
         <button class="favorito">
             ❤️
         </button>
