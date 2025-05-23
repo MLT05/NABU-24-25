@@ -3,6 +3,9 @@ include_once ("cp_intro_carrinho.php");
 ?>
 
 <main class="body_index">
+    <div>
+
+    </div>
 
     <section class="mb-4">
         <div>
@@ -14,7 +17,7 @@ include_once ("cp_intro_carrinho.php");
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href="pagina-destino.php" style="text-decoration: none; color: inherit;">
+
                         <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
 
                             <!-- Imagem -->
