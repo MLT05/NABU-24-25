@@ -17,9 +17,9 @@
     </div>
 
     <div class="info-produto">
-        <h2>Tomates - Cacho</h2>
-        <p class="produtor">Rosa Silva</p>
-        <p class="preco">2,00€/kg</p>
+        <h2 id="Título_anuncio.produto">Tomates - Cacho</h2>
+        <p id="nome_vendedor_produto.produto" class="produtor">Rosa Silva</p>
+        <p id="preço.produto" class="preco">2,00€/kg</p>
 
         <div class="etiquetas">
             <span class="etiqueta">Fruta</span>
