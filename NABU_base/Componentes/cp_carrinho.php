@@ -3,238 +3,69 @@ include_once ("cp_intro_carrinho.php");
 ?>
 
 <main class="body_index">
-    <div>
-
-    </div>
-
     <section class="mb-4">
         <div>
             <h1 class="verde_escuro">A sua cestinha</h1>
-            <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
+            <p class="verde">Finalize a sua compra</p>
         </div>
 
-
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-
-                        <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
-
-                            <!-- Imagem -->
-                            <div class="imagem_card_homepage">
-                                <img class="img_hp_card" src="../Imagens/produtos/alface.jpg" alt="Alface">
-                            </div>
-
-                            <!-- Texto -->
-                            <div class="p-3">
-                                <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
-                                <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
-                                <hr>
-                                <div class="d-flex justify-content-end">
-                                    <h3 class="verde_escuro fw-semibold mb-0">2,49 €</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+        <!-- Card 1 -->
+        <div class="card mb-3 cards_homepage">
+            <div class="row g-0 align-items-center">
+                <div class="col-4">
+                    <img src="img/tomate.jpg" class="img-fluid imagem_card_homepage rounded-start" alt="Tomates">
                 </div>
-                <div class="carousel-item">
-                    <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
-
-                        <!-- Imagem -->
-                        <div class="imagem_card_homepage">
-                            <img class="img_hp_card" src="../Imagens/produtos/alface.jpg" alt="Alface">
-                        </div>
-
-                        <!-- Texto -->
-                        <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
-                            <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
-                            <hr>
-                            <div class="d-flex justify-content-end">
-                                <h3 class="verde_escuro fw-semibold mb-0">2,49 €</h3>
-                            </div>
-                        </div>
+                <div class="col-7">
+                    <div class="card-body py-2">
+                        <h5 class="card-title verde_escuro mb-0">Tomates - Cacho</h5>
+                        <p class="card-text mb-0"><small class="text-muted">Rosa Silva</small></p>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
-
-                        <!-- Imagem -->
-                        <div class="imagem_card_homepage">
-                            <img class="img_hp_card" src="../Imagens/produtos/alface.jpg" alt="Alface">
-                        </div>
-
-                        <!-- Texto -->
-                        <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
-                            <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
-                            <hr>
-                            <div class="d-flex justify-content-end">
-                                <h3 class="verde_escuro fw-semibold mb-0">2,49 €</h3>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-1 text-end pe-2">
+                    <button class="btn p-0 border-0 bg-transparent text-muted fs-5">&times;</button>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button"  data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
-    </section>
-    <section class="mb-4">
-        <div>
-            <h1 class="verde_escuro">Novidades</h1>
-        </div>
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
 
-                        <!-- Imagem -->
-                        <div class="imagem_card_homepage">
-                            <img class="img_hp_card" src="../Imagens/produtos/alface.jpg" alt="Alface">
-                        </div>
-
-                        <!-- Texto -->
-                        <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
-                            <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
-                            <hr>
-                            <div class="d-flex justify-content-end">
-                                <h3 class="verde_escuro fw-semibold mb-0">2,49 €</h3>
-                            </div>
-                        </div>
+        <!-- Card 2 -->
+        <div class="card mb-3 cards_homepage">
+            <div class="row g-0 align-items-center">
+                <div class="col-4">
+                    <img src="img/tomate.jpg" class="img-fluid imagem_card_homepage rounded-start" alt="Tomates">
+                </div>
+                <div class="col-7">
+                    <div class="card-body py-2">
+                        <h5 class="card-title verde_escuro mb-0">Tomates - Cacho</h5>
+                        <p class="card-text mb-0"><small class="text-muted">Rosa Silva</small></p>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
-
-                        <!-- Imagem -->
-                        <div class="imagem_card_homepage">
-                            <img class="img_hp_card" src="../Imagens/produtos/alface.jpg" alt="Alface">
-                        </div>
-
-                        <!-- Texto -->
-                        <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
-                            <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
-                            <hr>
-                            <div class="d-flex justify-content-end">
-                                <h3 class="verde_escuro fw-semibold mb-0">2,49 €</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
-
-                        <!-- Imagem -->
-                        <div class="imagem_card_homepage">
-                            <img class="img_hp_card" src="../Imagens/produtos/alface.jpg" alt="Alface">
-                        </div>
-
-                        <!-- Texto -->
-                        <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
-                            <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
-                            <hr>
-                            <div class="d-flex justify-content-end">
-                                <h3 class="verde_escuro fw-semibold mb-0">2,49 €</h3>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-1 text-end pe-2">
+                    <button class="btn p-0 border-0 bg-transparent text-muted fs-5">&times;</button>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button"  data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
-    </section>
-    <section class="mb-4">
-        <div>
-            <h1 class="verde_escuro">Os teus favoritos</h1>
-        </div>
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
 
-                        <!-- Imagem -->
-                        <div class="imagem_card_homepage">
-                            <img class="img_hp_card" src="../Imagens/produtos/alface.jpg" alt="Alface">
-                        </div>
-
-                        <!-- Texto -->
-                        <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
-                            <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
-                            <hr>
-                            <div class="d-flex justify-content-end">
-                                <h3 class="verde_escuro fw-semibold mb-0">2,49 €</h3>
-                            </div>
-                        </div>
+        <!-- Card 3 -->
+        <div class="card mb-3 cards_homepage">
+            <div class="row g-0 align-items-center">
+                <div class="col-4">
+                    <img src="img/tomate.jpg" class="img-fluid imagem_card_homepage rounded-start" alt="Tomates">
+                </div>
+                <div class="col-7">
+                    <div class="card-body py-2">
+                        <h5 class="card-title verde_escuro mb-0">Tomates - Cacho</h5>
+                        <p class="card-text mb-0"><small class="text-muted">Rosa Silva</small></p>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
-
-                        <!-- Imagem -->
-                        <div class="imagem_card_homepage">
-                            <img class="img_hp_card" src="../Imagens/produtos/alface.jpg" alt="Alface">
-                        </div>
-
-                        <!-- Texto -->
-                        <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
-                            <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
-                            <hr>
-                            <div class="d-flex justify-content-end">
-                                <h3 class="verde_escuro fw-semibold mb-0">2,49 €</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
-
-                        <!-- Imagem -->
-                        <div class="imagem_card_homepage">
-                            <img class="img_hp_card" src="../Imagens/produtos/alface.jpg" alt="Alface">
-                        </div>
-
-                        <!-- Texto -->
-                        <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
-                            <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
-                            <hr>
-                            <div class="d-flex justify-content-end">
-                                <h3 class="verde_escuro fw-semibold mb-0">2,49 €</h3>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-1 text-end pe-2">
+                    <button class="btn p-0 border-0 bg-transparent text-muted fs-5">&times;</button>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button"  data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+        </div>
+
+        <!-- Botão Finalizar -->
+        <div class="text-center mt-4">
+            <button class="btn_nabu verde_escuro_bg">FINALIZAR COMPRA</button>
         </div>
     </section>
 </main>
-
-
-
