@@ -167,7 +167,6 @@ footer a {
     position: relative;
 }
 
-<<<<<<< HEAD
 .carrossel img {
     width: 100%;
     display: flex;
@@ -272,7 +271,6 @@ footer a {
     margin-left: 20px;
 }
 
-=======
 .top-buttons {
     display: flex;
     gap: 1rem;
@@ -300,4 +298,3 @@ footer a {
     background-color: #004d26;
     color: white;
 }
->>>>>>> 8ee9e80efbaebde14ad8eacdec4f70042c2f48d0
