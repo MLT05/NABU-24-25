@@ -281,6 +281,27 @@ footer a {
     margin-left: 20px;
 }
 
+.nome_localizacao {
+    flex: 6;
+    background-color: #AAC0AA;
+    color: #004D40;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border-color:#AAC0AA;
+    text-align: left;
+}
+
+.nome_localizacao ,p {
+    font-weight: bold;
+}
+
+.botoes-localizacao{
+    display: flex;
+    gap: 10px;
+    margin-bottom: auto;
+}
+
 .top-buttons {
     display: flex;
     gap: 1rem;
