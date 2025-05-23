@@ -4,6 +4,9 @@ include_once ("cp_intro_index.php");
 
 <main class="body_index">
 
+    <div>
+        <h1 class="verde_escuro">Recomendações</h1>
+    </div>
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
