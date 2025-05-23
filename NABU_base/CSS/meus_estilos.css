@@ -290,9 +290,10 @@ footer a {
     border-radius: 6px;
     border-color:#AAC0AA;
     text-align: left;
+    margin-bottom: 1rem;
 }
 
-.nome_localizacao ,p {
+.p, .nome_localizacao {
     font-weight: bold;
 }
 
