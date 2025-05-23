@@ -28,6 +28,16 @@
 
 
 }
+
+
+.jost-custom {
+    font-family: "Jost", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400; /* ou 100, 300, 700, etc. */
+    font-style: normal;
+}
+
+
 .logo-img,
 .carrinho-img {
     height: 5vh;
