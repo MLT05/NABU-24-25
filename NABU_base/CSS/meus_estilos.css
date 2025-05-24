@@ -373,21 +373,23 @@ margin-bottom: 13vh;
 }
 
 .botao_carrinho {
-    flex: 1;
-    padding: 0.8rem 0;
-    border-radius: 2rem;
-    border: none;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #2d2d2d;
-    background-color: #e0e0e0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
-    display: inline-block;
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+    padding: 12px 20px;
     text-align: center;
+    background-color: #004d26;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
 .botao_carrinho.active {
     background-color: #004d26;
     color: white;
 }
+
