@@ -332,25 +332,7 @@ footer a {
     background-color: #004d26;
     color: white;
 }
-.responsive-button.aa {
-    display: block;
-    width: 80%;
-    margin: 20px auto;
-    padding: 12px 20px;
-    text-align: center;
-    background-color: #004d26;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
 
-.responsive-button.aa:hover {
-    background-color: #006837;
-}
 
 
 main {
@@ -388,4 +370,8 @@ margin-bottom: 13vh;
     position: absolute;
     top: 10px;
     right: 10px;
+}
+.botoes_carrinho {
+    display: flex;
+    gap: 40px;
 }
