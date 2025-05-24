@@ -67,9 +67,8 @@ include_once ("cp_intro_carrinho.php");
         </div>
 
         <!-- Botão Finalizar -->
-        <div class="botoes_carrinho">
-            <button class="comprar" onclick="window.location.href='../Paginas/carrinho.php.html'">Finalizar compra</button>
+        <div class="top-buttons">
+            <a class="botao_carrinho active">Finalizar compra</a>
         </div>
-
     </section>
 </main>
