@@ -361,3 +361,8 @@ margin-bottom: 13vh;
     position: absolute;
     align-self: end;
 }
+
+.list-group-item {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
