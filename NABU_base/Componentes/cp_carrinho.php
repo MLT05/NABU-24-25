@@ -36,7 +36,7 @@ include_once ("cp_intro_carrinho.php");
                 </div>
                 <div class="col-7">
                     <div class="card-body py-2">
-                        <h5 class="card-title verde_escuro mb-0">Tomates - Cacho</h5>
+                        <h2 class="verde fw-bold mb-1" >Tomates - Cacho</h2>
                         <p class="card-text mb-0"><small class="text-muted">Rosa Silva</small></p>
                     </div>
                 </div>
@@ -55,7 +55,7 @@ include_once ("cp_intro_carrinho.php");
                 </div>
                 <div class="col-7">
                     <div class="card-body py-2">
-                        <h5 class="card-title verde_escuro mb-0">Tomates - Cacho</h5>
+                        <h2 class="verde fw-bold mb-1" >Tomates - Cacho</h2>
                         <p class="card-text mb-0"><small class="text-muted">Rosa Silva</small></p>
                     </div>
                 </div>
@@ -67,8 +67,9 @@ include_once ("cp_intro_carrinho.php");
         </div>
 
         <!-- Botão Finalizar -->
-        <div class="text-center mt-4">
-            <a href="../Paginas/mapa.php" class="responsive-button" ></a>
+        <div class="top-buttons">
+            <a href="#" class="responsive-button aa">Finalizar compra</a>
         </div>
+
     </section>
 </main>
