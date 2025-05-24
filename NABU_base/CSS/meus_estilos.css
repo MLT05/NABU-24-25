@@ -338,18 +338,14 @@ footer a {
     margin: 20px auto;
     padding: 12px 20px;
     text-align: center;
-    background-color: #004d26;
-    color: white;
+    background-color: #004d26 !important;
+    color: white !important;
     font-weight: bold;
     border: none;
     border-radius: 12px;
     font-size: 16px;
     text-decoration: none;
     transition: background-color 0.3s ease;
-}
-
-.responsive-button.aa:hover {
-    background-color: #006837;
 }
 
 main {
