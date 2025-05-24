@@ -32,7 +32,7 @@ include_once ("cp_intro_carrinho.php");
         <div class="card mb-3 cards_homepage">
             <div class="row g-0 align-items-center">
                 <div class="col-4">
-                    <img src="produtos/tomates.svg"  class="img-fluid imagem_card_homepage rounded-start" alt="Tomates">
+                    <img src="produtos/tomates.svg" class="img-fluid imagem_card_homepage rounded-start" alt="Tomates">
                 </div>
                 <div class="col-7">
                     <div class="card-body py-2">
