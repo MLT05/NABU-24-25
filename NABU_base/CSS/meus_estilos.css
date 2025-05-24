@@ -388,8 +388,6 @@ margin-bottom: 13vh;
     transition: background-color 0.3s ease;
 }
 
-.botao_carrinho active {
-    background-color: #004d26;
-    color: white;
+.botao_carrinho:hover {
+    background-color: #006837;
 }
-
