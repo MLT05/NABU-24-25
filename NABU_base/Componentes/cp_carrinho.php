@@ -17,7 +17,7 @@ include_once ("cp_intro_carrinho.php");
                 </div>
                 <div class="col-7">
                     <div class="card-body py-2">
-                        <h5 class="card-title verde_escuro mb-0">Tomates - Cacho</h5>
+                        <h2 class="verde fw-bold mb-1" >Tomates - Cacho</h2>
                         <p class="card-text mb-0"><small class="text-muted">Rosa Silva</small></p>
                     </div>
                 </div>
