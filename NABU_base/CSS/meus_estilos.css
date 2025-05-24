@@ -372,9 +372,8 @@ margin-bottom: 13vh;
     right: 10px;
 }
 
-botao_carrinho {
+.botao_carrinho {
     flex: 1;
-
     padding: 0.8rem 0;
     border-radius: 2rem;
     border: none;
@@ -382,15 +381,13 @@ botao_carrinho {
     font-weight: 600;
     color: #2d2d2d;
     background-color: #e0e0e0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ✅ Sombra */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-decoration: none;
     display: inline-block;
     text-align: center;
-
 }
 
-
-.botao_carrinho active {
+.botao_carrinho.active {
     background-color: #004d26;
     color: white;
 }
