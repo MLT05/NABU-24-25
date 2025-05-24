@@ -332,14 +332,14 @@ footer a {
     background-color: #004d26;
     color: white;
 }
-.responsive-button.aa {
+.responsive-button_carrinho {
     display: block;
     width: 80%;
     margin: 20px auto;
     padding: 12px 20px;
     text-align: center;
-    background-color: #004d26 !important;
-    color: white !important;
+    background-color: #004d26;
+    color: white;
     font-weight: bold;
     border: none;
     border-radius: 12px;
@@ -347,6 +347,11 @@ footer a {
     text-decoration: none;
     transition: background-color 0.3s ease;
 }
+
+.responsive-buttons_carrinho:hover {
+    background-color: #006837;
+}
+
 
 main {
 
