@@ -18,27 +18,28 @@ include_once ("cp_intro_index.php");
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <a href="pagina-destino.php" style="text-decoration: none; color: inherit;">
+                <a href="../Paginas/produto.php" style="text-decoration: none; color: inherit;">
                 <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
 
                     <!-- Imagem -->
                     <div class="imagem_card_homepage">
-                        <img class="img_hp_card" src="../Imagens/produtos/alface.jpg" alt="Alface">
+                        <img class="img_hp_card" src="../Imagens/produtos/tomates.svg" alt="tomates">
                     </div>
 
                     <!-- Texto -->
                     <div class="p-3">
-                        <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
-                        <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
+                        <h2 class="verde fw-bold mb-1" >Tomates / Cacho</h2>
+                        <p class="text-muted mb-2" style="font-size: 1rem;">Rosa - Quinta da Fonte</p>
                         <hr>
                         <div class="d-flex justify-content-end">
-                            <h3 class="verde_escuro fw-semibold mb-0">2,49 €</h3>
+                            <h3 class="verde_escuro fw-semibold mb-0">2€</h3>
                         </div>
                     </div>
                 </div>
                     </a>
             </div>
             <div class="carousel-item">
+                <a href="../Paginas/produto.php" style="text-decoration: none; color: inherit;">
                 <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
 
                     <!-- Imagem -->
@@ -56,8 +57,10 @@ include_once ("cp_intro_index.php");
                         </div>
                     </div>
                 </div>
+                </a>
             </div>
             <div class="carousel-item">
+                <a href="../Paginas/produto.php" style="text-decoration: none; color: inherit;">
                 <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
 
                     <!-- Imagem -->
@@ -75,6 +78,7 @@ include_once ("cp_intro_index.php");
                         </div>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
         <button class="carousel-control-prev" type="button"  data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -94,6 +98,7 @@ include_once ("cp_intro_index.php");
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
+                    <a href="../Paginas/produto.php" style="text-decoration: none; color: inherit;">
                     <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
 
                         <!-- Imagem -->
@@ -111,8 +116,10 @@ include_once ("cp_intro_index.php");
                             </div>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="carousel-item">
+                    <a href="../Paginas/produto.php" style="text-decoration: none; color: inherit;">
                     <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
 
                         <!-- Imagem -->
@@ -130,8 +137,10 @@ include_once ("cp_intro_index.php");
                             </div>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="carousel-item">
+                    <a href="../Paginas/produto.php" style="text-decoration: none; color: inherit;">
                     <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
 
                         <!-- Imagem -->
@@ -149,6 +158,7 @@ include_once ("cp_intro_index.php");
                             </div>
                         </div>
                     </div>
+                    </a>
                 </div>
             </div>
             <button class="carousel-control-prev" type="button"  data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -168,6 +178,7 @@ include_once ("cp_intro_index.php");
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
+                    <a href="../Paginas/produto.php" style="text-decoration: none; color: inherit;">
                     <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
 
                         <!-- Imagem -->
@@ -185,8 +196,10 @@ include_once ("cp_intro_index.php");
                             </div>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="carousel-item">
+                    <a href="../Paginas/produto.php" style="text-decoration: none; color: inherit;">
                     <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
 
                         <!-- Imagem -->
@@ -204,8 +217,10 @@ include_once ("cp_intro_index.php");
                             </div>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="carousel-item">
+                    <a href="../Paginas/produto.php" style="text-decoration: none; color: inherit;">
                     <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
 
                         <!-- Imagem -->
@@ -223,6 +238,7 @@ include_once ("cp_intro_index.php");
                             </div>
                         </div>
                     </div>
+                    </a>
                 </div>
             </div>
             <button class="carousel-control-prev" type="button"  data-bs-target="#carouselExampleControls" data-bs-slide="prev">

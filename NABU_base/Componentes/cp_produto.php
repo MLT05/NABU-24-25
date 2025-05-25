@@ -18,7 +18,7 @@
 
             <p class="avaliacao">⭐ 4,3 <span class="avaliacao_numero">(229)</span></p>
         </div>
-            <p class="preco">2,00€ <span class="kg">/kg</span></p>
+            <p class="preco">2,00€ </p>
 
 
         <h3 class="h3.produto">Descrição do Produto</h3>
@@ -37,7 +37,7 @@
     </div>
 
         <div class="botoes">
-            <button class="comprar" onclick="window.location.href='../Paginas/carrinho.php.html'">Comprar</button>
+            <button class="comprar" onclick="window.location.href='../Paginas/carrinho.php'">Comprar</button>
             <button class="contactar" onclick="window.location.href='../Paginas/mensagens.php'">Contactar</button>
         </div>
 
