@@ -402,11 +402,6 @@ margin-bottom: 13vh;
     flex-shrink: 0;
 }
 
-.categoria-item:hover {
-    background-color: #dce7db;
-    color: #2c6e49;
-}
-
 .categorias-wrapper {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -425,5 +420,30 @@ margin-bottom: 13vh;
 .input-pesquisa::placeholder {
     color: #004D40;
     opacity: 0.7;
+}
+
+.favorite-circle {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(187, 205, 187, 0.9); /* #BBCDBB com 90% transparência */
+}
+
+.card_pesquisa {
+    background-color: rgba(170, 192, 170, 0.8); /* AAC0AA com 80% de transparência */
+}
+
+/* Aumenta o tamanho da estrela, número e preço */
+.card_pesquisa .bi-star-fill {
+    font-size: 1.1rem;
+}
+
+.card_pesquisa small {
+    font-size: 1rem; /* aumenta texto pequeno */
+}
+
+.linha-card {
+    margin: 0;
+    height: 1px;
+    background-color: #AAC0AA;
 }
  /* fim carlos */
