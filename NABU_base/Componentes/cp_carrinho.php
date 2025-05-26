@@ -10,6 +10,7 @@ include_once ("cp_intro_carrinho.php");
         </div>
 
         <!-- Card 1 -->
+
         <div class="card mb-3 cards_homepage">
             <div class="row g-0 align-items-center">
                 <div class="col-4">
@@ -97,3 +98,5 @@ include_once ("cp_intro_carrinho.php");
 
 
 </main>
+
+

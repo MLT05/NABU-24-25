@@ -432,19 +432,21 @@ margin-bottom: 13vh;
     background-color: rgba(170, 192, 170, 0.8); /* AAC0AA com 80% de transparência */
 }
 
-/* Aumenta o tamanho da estrela, número e preço */
-.card_pesquisa .bi-star-fill {
-    font-size: 1.1rem;
-}
-
-.card_pesquisa small {
-    font-size: 1rem; /* aumenta texto pequeno */
-}
-
 .linha-card {
     margin: 0;
     height: 1px;
     background-color: #AAC0AA;
+}
+
+.imagem_card_pesquisa {
+    max-height: 20vh;
+
+    aspect-ratio: 4 / 3;
+    width: 100%;
+
+    overflow: hidden;
+    border-radius: 1rem;
+    display: block;
 }
  /* fim carlos */
 
