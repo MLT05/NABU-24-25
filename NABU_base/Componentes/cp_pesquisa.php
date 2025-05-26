@@ -50,7 +50,7 @@
                     <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Tomates/kg</h6>
                 </div>
 
-                <hr class="linha-card">
+                <hr class="linha-card verde_escuro">
 
                 <div class="card-body m-2 pt-0 pb-2 px-2">
                     <div class="d-flex justify-content-between align-items-center">
@@ -81,7 +81,7 @@
 
                 <!-- Conteúdo -->
                 <div class="card-body m-2 pt-2 px-2 pb-0">
-                    <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Ovos/dúzia</h6>
+                    <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Ovos/uni</h6>
                 </div>
 
                 <hr class="linha-card">
@@ -91,7 +91,7 @@
                         <small class=" verde_escuro fw-bolder fs-5">
                             <i class="bi bi-star-fill"></i> 5,0
                         </small>
-                        <small class="fw-bolder verde_escuro fs-5">3,27 €</small>
+                        <small class="fw-bolder verde_escuro fs-5">0,20 €</small>
                     </div>
                 </div>
             </div>
