@@ -455,6 +455,7 @@ margin-bottom: 13vh;
 }
 
 .input-quantidade {
+    margin-left: 20px;
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #004D40;

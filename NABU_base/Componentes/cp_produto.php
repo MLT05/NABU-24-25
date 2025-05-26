@@ -13,7 +13,7 @@
 
         <div class="quantidade-wrapper">
             <label for="quantidade">Quantidade:</label>
-            <input type="text" id="quantidade" name="quantidade" class="input-quantidade" placeholder="Ex: 1 kilo, 2 caixas">
+            <input type="text" id="quantidade" name="quantidade" class="input-quantidade" placeholder="Ex: 1 kilo, 1 unidade...">
         </div>
 
         <div class="linha-preco-etiquetas">
