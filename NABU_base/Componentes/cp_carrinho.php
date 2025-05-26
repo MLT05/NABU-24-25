@@ -68,7 +68,32 @@ include_once ("cp_intro_carrinho.php");
 
         <!-- Botão Finalizar -->
         <div class="top-buttons">
-            <a href="#" class="botao_carrinho">Finalizar compra</a>
+            <button type="button" class="btn botao_carrinho" data-bs-toggle="modal" data-bs-target="#pedidoModal">
+                Finalizar Pedido
+            </button>
         </div>
+
     </section>
+
+
+    <!-- Modal Overlay -->
+    <div class="modal fade" id="pedidoModal" tabindex="-1" aria-labelledby="pedidoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content text-center">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title w-100" id="pedidoModalLabel">Pedido realizado com sucesso!</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Aguarde confirmação do vendedor.</p>
+                </div>
+                <div class="modal-footer justify-content-center border-0">
+                    <a href="../Paginas/encomendas.php" class="btn btn-success">Ver Pedido</a>
+                    <a href="../Paginas/carrinho.php" class="btn btn-outline-secondary">Voltar ao Carrinho</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </main>

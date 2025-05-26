@@ -354,8 +354,8 @@ margin-bottom: 13vh;
 }
 
 .list-group-item {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 .icone-x {
     width: 36px;
@@ -430,7 +430,7 @@ margin-bottom: 13vh;
 
 .imagempfp {
 
-    width: 5vh;
-    height: 5vh;
+    width: 18vh;
+    height: 18vh;
 
 }
