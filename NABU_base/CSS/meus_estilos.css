@@ -217,6 +217,9 @@ footer a {
 
 .etiquetas {
     margin: 10px 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .etiqueta {
@@ -228,6 +231,10 @@ footer a {
     margin-right: 5px;
     font-size: 14px;
     font-weight: bold;
+}
+.etiq{
+    width: 50%;
+    box-sizing: border-box;
 }
 
 .avaliacao {
