@@ -331,8 +331,6 @@ footer a {
     color: white;
 }
 
-
-
 main {
 
 margin-bottom: 13vh;
@@ -355,6 +353,11 @@ margin-bottom: 13vh;
     display: inline-block;
     position: absolute;
     align-self: end;
+}
+
+.list-group-item {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
 }
 .icone-x {
     width: 36px;
@@ -385,3 +388,23 @@ margin-bottom: 13vh;
     background-color: #006837;
 }
 
+/* Carlos - Produtos */
+
+.categorias-wrapper {
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.categoria-item {
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.6rem;
+    white-space: nowrap; /* Impede quebra de linha */
+    border-radius: 10px;
+    flex-shrink: 0; /* Evita que encolha e quebre */
+}
+
+.categoria-item:hover {
+    background-color: #dce7db;
+    color: #2c6e49;
+}

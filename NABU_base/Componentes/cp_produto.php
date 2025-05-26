@@ -1,4 +1,6 @@
+
 <main>
+
 <div class="carrossel">
     <img src="../Imagens/produtos/tomates.svg" alt="Tomates Cacho">
     <button class="favorito">
@@ -35,13 +37,9 @@
     </div>
 
         <div class="botoes">
-            <button class="contactar" onclick="window.location.href='../Paginas/carrinho.php.html'">Carrinho</button>
+            <button class="comprar" onclick="window.location.href='../Paginas/carrinho.php.html'">Comprar</button>
             <button class="contactar" onclick="window.location.href='../Paginas/mensagens.php'">Contactar</button>
         </div>
-
-          <div class="botoes">
-        <button class="nome_localizacao" onclick="window.location.href='../Paginas/mensagens.php'">Comprar</button>
-          </div>
 
 
 </div>

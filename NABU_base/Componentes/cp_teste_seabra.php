@@ -1,73 +1,50 @@
 <main class="body_index">
 
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
+<div class="container py-4">
+    <div class="text-center mb-4">
+        <img src="../Imagens/produtos/ovos.jpg" alt="Foto de perfil" class="rounded-circle border border-success" width="100" height="100" style="object-fit: cover;">
+        <h2 class="mt-2 fs-5 text-success">Teresa Oliveira</h2>
+    </div>
 
-                <!-- Imagem -->
-                <div class="imagem_card_homepage">
-                    <img class="img_hp_card" src="../Imagens/produtos/alface.jpg" alt="Alface">
-                </div>
+    <div class="card border-0 shadow-sm ">
+        <div class="list-group  list-group-flush">
 
-                <!-- Texto -->
-                <div class="p-3">
-                    <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
-                    <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
-                    <hr>
-                    <div class="d-flex justify-content-end">
-                        <h3 class="verde_escuro fw-semibold mb-0">2,49 €</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center small verde_claro_bg">
+                <img src="../Imagens/icons/add_circle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" width="20" height="20">
+                Os meus anúncios
+            </a>
 
-                <!-- Imagem -->
-                <div class="imagem_card_homepage">
-                    <img class="img_hp_card" src="../Imagens/produtos/alface.jpg" alt="Alface">
-                </div>
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center small verde_claro_bg">
+                <img src="../Imagens/icons/add_circle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" width="20" height="20">
+                Log-in/ Sign up
+            </a>
 
-                <!-- Texto -->
-                <div class="p-3">
-                    <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
-                    <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
-                    <hr>
-                    <div class="d-flex justify-content-end">
-                        <h3 class="verde_escuro fw-semibold mb-0">2,49 €</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="cards_homepage card-body rounded-4 shadow-sm" style="background-color: #dce7db; position: relative;">
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center small verde_claro_bg">
+                <img src="../Imagens/icons/add_circle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" width="20" height="20">
+                Dados pessoais
+            </a>
 
-                <!-- Imagem -->
-                <div class="imagem_card_homepage">
-                    <img class="img_hp_card" src="../Imagens/produtos/alface.jpg" alt="Alface">
-                </div>
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center small verde_claro_bg">
+                <img src="../Imagens/icons/add_circle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" width="20" height="20">
+                Formas de Pagamento
+            </a>
 
-                <!-- Texto -->
-                <div class="p-3">
-                    <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
-                    <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
-                    <hr>
-                    <div class="d-flex justify-content-end">
-                        <h3 class="verde_escuro fw-semibold mb-0">2,49 €</h3>
-                    </div>
-                </div>
-            </div>
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center small verde_claro_bg">
+                <img src="../Imagens/icons/add_circle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" width="20" height="20">
+                Definições
+            </a>
+
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center small verde_claro_bg">
+                <img src="../Imagens/icons/add_circle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" width="20" height="20">
+                Favoritos
+            </a>
+
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center text-danger small verde_claro_bg">
+                <img src="../Imagens/icons/add_circle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" width="20" height="20">
+                Logout
+            </a>
         </div>
     </div>
-    <button class="carousel-control-prev" type="button"  data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
 </div>
 
 </main>
