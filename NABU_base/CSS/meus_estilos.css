@@ -233,7 +233,7 @@ footer a {
     box-sizing: border-box;
 }
 .etiq .preco {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
     color: #004D40;
     width: fit-content;
@@ -247,12 +247,13 @@ footer a {
 
 .botoes {
     display: flex;
-    gap: 10px;
 }
 
 .comprar {
     flex: 1;
     margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
     background-color: #115e46;
     color: white;
     border: none;
@@ -271,13 +272,25 @@ footer a {
     font-size: 16px;
     border-radius: 6px;
     cursor: pointer;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .h3\.produto{
     color: #004D40;
-    font-weight: bold;
+    font-weight: bolder;
     margin-top: 20px;
     margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+.h2\.produto{
+    color: #004D40;
+    font-weight: bolder;
+ ;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 22px;
 }
 .nome_localizacao {
     flex: 6;
@@ -287,7 +300,9 @@ footer a {
     font-size: 16px;
     border-radius: 6px;
     border-color:#004D40;
-    margin-top: 30px;
+    margin-bottom: 1rem;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .p, .nome_localizacao {
@@ -442,6 +457,7 @@ margin-bottom: 13vh;
     height: 18vh;
 
 }
+/* Mariana - produtos_detalhes */
 
 .input-quantidade {
     margin-left: 20px;
@@ -451,10 +467,11 @@ margin-bottom: 13vh;
     background-color: #f4f4f4;
     color: #004D40;
     font-size: 16px;
-    width: 100%;
-    max-width: 200px;
+    width: calc(100% - 40px); /* 100% menos as margens esquerda e direita */
     outline: none;
+    margin-bottom: 10px;
 }
+
 .quantidade-wrapper label {
     font-weight: bold;
     color: #004D40;
@@ -489,17 +506,25 @@ margin-bottom: 13vh;
 }
 
 .ver-mais-btn {
+    display: block;
+    margin_top: 10px;
+    text-decoration: underline;
     background: none;
-    border: none; /* ou por ex: 1px solid #004D40 se quiseres borda */
+    border: none;
     color: #004D40;
-    font-weight: bold;
-    text-decoration: underline; /* sublinha o texto */
+    font-weight: 700;
     cursor: pointer;
     font-size: 14px;
-    margin-top: 5px;
     padding: 0;
+    margin-bottom: 30px;
 }
 
 
+.linha_de_separação{
+    color: #115e46;
+}
+
+
+/* Mariana - fim */
 
 

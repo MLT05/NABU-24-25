@@ -30,7 +30,7 @@
 
         </div>
 
-        <h3 class="h3.produto">Descrição do Produto</h3>
+        <h2 class="h2.produto">Descrição do Produto</h2>
         <div class="descricao-wrapper">
             <p class="descricao" id="descricao">
                 Tomates frescos, colhidos no próprio dia, diretamente da horta.
@@ -39,13 +39,13 @@
             </p>
             <button id="toggleDescricao" class="ver-mais-btn">Ver mais</button>
         </div>
-    <hr class="linha_de_separação">
+
     <div class="quantidade-wrapper">
-        <h3 class="h3.produto"> Quantidade desejada</h3>
+        <h3 class="h2.produto"> Quantidade desejada</h3>
         <input type="text" id="quantidade" name="quantidade" class="input-quantidade" placeholder="Ex: 1 kilo, 1 unidade...">
-    </div class="linha_de_separação">
-        <hr>
-    <h3 class="h3.produto" >Localização</h3>
+    </div>
+
+    <h3 class="h2.produto" >Localização</h3>
     <div class="botoes-localizacao">
         <button class="nome_localizacao">
             <img src="../Imagens/localizacao_simbolo.svg" alt="Localização" class="icone-localizacao" />
