@@ -37,10 +37,11 @@
     </div>
 
         <div class="botoes">
-            <button class="comprar" onclick="window.location.href='../Paginas/carrinho.php.html'">Comprar</button>
+            <button class="contactar" onclick="window.location.href='../Paginas/carrinho.php.html'">Carrinho</button>
             <button class="contactar" onclick="window.location.href='../Paginas/mensagens.php'">Contactar</button>
         </div>
-
-
+            <div class="botoes">
+                <button class="comprar" onclick="window.location.href='../Paginas/carrinho.php.html'">Comprar</button>
+            </div>
 </div>
 </main>
