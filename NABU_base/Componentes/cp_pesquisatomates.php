@@ -21,8 +21,6 @@
                 <span class="categoria-item fs-6">Ovos e laticínios</span>
                 <span class="categoria-item fs-6">Produtos Apícolas</span>
                 <span class="categoria-item fs-6">Plantas</span>
-                <span class="categoria-item fs-6">Raízes</span>
-                <span class="categoria-item fs-6">Sucos</span>
             </div>
         </div>
 

@@ -23,8 +23,6 @@
             <span class="categoria-item fs-6">Ovos e laticínios</span>
             <span class="categoria-item fs-6">Produtos Apícolas</span>
             <span class="categoria-item fs-6">Plantas</span>
-            <span class="categoria-item fs-6">Raízes</span>
-            <span class="categoria-item fs-6">Sucos</span>
         </div>
     </div>
 
@@ -32,13 +30,14 @@
     <div class="row g-3">
         <!-- Exemplo de cartão -->
         <div class="col-6">
+            <a href="../paginas/produto.php" style="text-decoration: none">
             <div class="card rounded-4 shadow-sm border-0 position-relative card_pesquisa">
 
                 <!-- Ícone de favorito no canto superior direito -->
                 <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
-            <span class="material-symbols-outlined">
-                favorite
-            </span>
+                    <span class="material-symbols-outlined verde_escuro">
+                        favorite
+                    </span>
                 </div>
 
                 <!-- Imagem -->
@@ -61,6 +60,7 @@
                         <small class="fw-bolder verde_escuro fs-5">1,50 €</small>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
         <!-- Repete para os outros produtos -->
@@ -69,9 +69,9 @@
 
                 <!-- Ícone de favorito no canto superior direito -->
                 <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
-            <span class="material-symbols-outlined">
-                favorite
-            </span>
+                    <span class="material-symbols-outlined verde_escuro">
+                        favorite
+                    </span>
                 </div>
 
                 <!-- Imagem -->
@@ -101,9 +101,9 @@
 
                 <!-- Ícone de favorito no canto superior direito -->
                 <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
-            <span class="material-symbols-outlined">
-                favorite
-            </span>
+                    <span class="material-symbols-outlined verde_escuro">
+                        favorite
+                    </span>
                 </div>
 
                 <!-- Imagem -->
@@ -133,9 +133,9 @@
 
                 <!-- Ícone de favorito no canto superior direito -->
                 <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
-            <span class="material-symbols-outlined">
-                favorite
-            </span>
+                    <span class="material-symbols-outlined verde_escuro">
+                        favorite
+                    </span>
                 </div>
 
                 <!-- Imagem -->
