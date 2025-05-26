@@ -23,6 +23,9 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../CSS/meus_estilos.css" rel="stylesheet" />
 
+    <!-- Favicon -->
+    <link rel="icon" href="../LOGO_ICO/favicon-32x32.png" type="image/x-icon">
+
 </head>
 <body class="corpo container">
 <!-- O conteúdo da página vai aqui -->
