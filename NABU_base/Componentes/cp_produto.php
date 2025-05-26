@@ -61,8 +61,6 @@
                 <button class="comprar" onclick="window.location.href='../Paginas/carrinho.php'">Comprar</button>
             </div>
 
-        <p> ver se já está </p>
-
 </main>
 <script>
     const botao = document.getElementById('toggleDescricao');
