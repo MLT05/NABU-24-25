@@ -11,10 +11,6 @@
         <h3 class="h3.produto">Tomates - Cacho</h3>
         <p class="produtor">Rosa Silva</p>
 
-        <div class="quantidade-wrapper">
-            <label for="quantidade">Quantidade:</label>
-            <input type="text" id="quantidade" name="quantidade" class="input-quantidade" placeholder="Ex: 1 kilo, 1 unidade...">
-        </div>
 
         <div class="linha-preco-etiquetas">
 
@@ -35,13 +31,21 @@
         </div>
 
         <h3 class="h3.produto">Descrição do Produto</h3>
-        <p class="descricao">
-            Tomates frescos, colhidos no próprio dia, diretamente da horta.
-            Produzidos de forma natural, sem recurso a agrotóxicos, preservando
-            todo o sabor e qualidade. Ideais para saladas, molhos ou para consumir ao natural.
-        </p>
-    </div>
-        <h3 class="h3.produto" >Localização</h3>
+        <div class="descricao-wrapper">
+            <p class="descricao" id="descricao">
+                Tomates frescos, colhidos no próprio dia, diretamente da horta.
+                Produzidos de forma natural, sem recurso a agrotóxicos, preservando
+                todo o sabor e qualidade. Ideais para saladas, molhos ou para consumir ao natural.
+            </p>
+            <button id="toggleDescricao" class="ver-mais-btn">Ver mais</button>
+        </div>
+    <hr class="linha_de_separação">
+    <div class="quantidade-wrapper">
+        <h3 class="h3.produto"> Quantidade desejada</h3>
+        <input type="text" id="quantidade" name="quantidade" class="input-quantidade" placeholder="Ex: 1 kilo, 1 unidade...">
+    </div class="linha_de_separação">
+        <hr>
+    <h3 class="h3.produto" >Localização</h3>
     <div class="botoes-localizacao">
         <button class="nome_localizacao">
             <img src="../Imagens/localizacao_simbolo.svg" alt="Localização" class="icone-localizacao" />
@@ -58,3 +62,12 @@
             </div>
 
 </main>
+<script>
+    const botao = document.getElementById('toggleDescricao');
+    const descricao = document.getElementById('descricao');
+
+    botao.addEventListener('click', () => {
+        descricao.classList.toggle('expandida');
+        botao.textContent = descricao.classList.contains('expandida') ? 'Ver menos' : 'Ver mais';
+    });
+</script>

@@ -244,11 +244,6 @@ footer a {
     color: #b48b00;
 }
 
-.descricao, .localizacao {
-    font-size: 14px;
-    margin-bottom: 15px;
-    margin-left: 20px;
-}
 
 .botoes {
     display: flex;
@@ -284,12 +279,6 @@ footer a {
     margin-top: 20px;
     margin-left: 20px;
 }
-
-.descricao{
-    margin-left: 20px;
-    color: #004D40;
-}
-
 .nome_localizacao {
     flex: 6;
     background-color: #AAC0AA;
@@ -298,7 +287,7 @@ footer a {
     font-size: 16px;
     border-radius: 6px;
     border-color:#004D40;
-    margin-bottom: 1rem;
+    margin-top: 30px;
 }
 
 .p, .nome_localizacao {
@@ -472,4 +461,45 @@ margin-bottom: 13vh;
     font-size: 16px;
     margin-left: 20px;
 }
+.descricao-wrapper {
+    margin-left: 20px;
+    margin-right: 20px;
+    position: relative;
+}
+
+.descricao-wrapper {
+    margin: 0 20px 15px 20px;
+    position: relative;
+}
+
+.descricao {
+    max-height: 3.6em; /* Mostra ~2 linhas */
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    color: #004D40;
+    font-size: 14px;
+    line-height: 1.2em;
+    margin-bottom: 15px;
+}
+
+
+
+.descricao.expandida {
+    max-height: 1000px; /* Expande */
+}
+
+.ver-mais-btn {
+    background: none;
+    border: none; /* ou por ex: 1px solid #004D40 se quiseres borda */
+    color: #004D40;
+    font-weight: bold;
+    text-decoration: underline; /* sublinha o texto */
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 5px;
+    padding: 0;
+}
+
+
+
 
