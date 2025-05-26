@@ -26,5 +26,4 @@
 </head>
 <body class="corpo container">
 <!-- O conteúdo da página vai aqui -->
-</body>
-</html>
+
