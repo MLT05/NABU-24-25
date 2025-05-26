@@ -14,15 +14,15 @@
 
     <!-- 📁 Categorias com scroll horizontal -->
     <div class="mb-3 overflow-auto categorias-wrapper">
-        <div class="d-flex flex-nowrap gap-2">
+        <div class="d-flex flex-nowrap verde_escuro fw-normal">
             <span class="fw-bold text-decoration-underline categoria-item">Todos</span>
-            <span class="px-2 categoria-item">Vegetais</span>
-            <span class="px-2 categoria-item">Frutas</span>
-            <span class="px-2 categoria-item">Ovos e laticínios</span>
-            <span class="px-2 categoria-item">Produtos Apícolas</span>
-            <span class="px-2 categoria-item">Plantas</span>
-            <span class="px-2 categoria-item">Raízes</span>
-            <span class="px-2 categoria-item">Sucos</span>
+            <span class="categoria-item">Vegetais</span>
+            <span class="categoria-item">Frutas</span>
+            <span class="categoria-item">Ovos e laticínios</span>
+            <span class="categoria-item">Produtos Apícolas</span>
+            <span class="categoria-item">Plantas</span>
+            <span class="categoria-item">Raízes</span>
+            <span class="categoria-item">Sucos</span>
         </div>
     </div>
 

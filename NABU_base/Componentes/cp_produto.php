@@ -37,7 +37,7 @@
     </div>
 
         <div class="botoes">
-            <button class="contactar" onclick="window.location.href='../Paginas/carrinho.php.html'">Carrinho</button>
+            <button class="contactar" onclick="window.location.href='../Paginas/carrinho.php'">Carrinho</button>
             <button class="contactar" onclick="window.location.href='../Paginas/mensagens.php'">Contactar</button>
         </div>
             <div class="botoes">

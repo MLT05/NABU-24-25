@@ -5,7 +5,6 @@ include_once '../Conexao/conexao.php';
 session_start();
 if (!isset($_SESSION['user_id'])) {
     // Redireciona para a página de login se o usuário não estiver autenticado
-    header("Location: ../Paginas/login.php");
     exit();
 } 
 // Obtém o ID do usuário da sessão
