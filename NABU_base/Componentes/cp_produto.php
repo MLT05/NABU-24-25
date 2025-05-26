@@ -12,7 +12,7 @@
         <p class="produtor">Rosa Silva</p>
 
         <div class="quantidade-wrapper">
-            <label for="quantidade" class="quantidade_produto">Quantidade:</label>
+            <label for="quantidade">Quantidade:</label>
             <input type="text" id="quantidade" name="quantidade" class="input-quantidade" placeholder="Ex: 1 kilo, 2 caixas">
         </div>
 
