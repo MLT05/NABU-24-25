@@ -15,7 +15,6 @@
         <div class="etiquetas">
             <div class="etiq">
                 <span class="etiqueta">Fruta</span>
-                <span class="etiqueta">Biológico</span>
 
                 <p class="avaliacao">⭐ 4,9 <span class="avaliacao_numero">(229)</span></p>
             </div>
