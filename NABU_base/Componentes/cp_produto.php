@@ -10,18 +10,30 @@
     <div class="info-produto">
         <h3 class="h3.produto">Tomates - Cacho</h3>
         <p class="produtor">Rosa Silva</p>
+
+        <div class="quantidade-wrapper">
+            <label for="quantidade" class="quantidade_produto">Quantidade:</label>
+            <input type="text" id="quantidade" name="quantidade" class="input-quantidade" placeholder="Ex: 1 kilo, 2 caixas">
+        </div>
+
         <div class="linha-preco-etiquetas">
 
         <div class="etiquetas">
             <div class="etiq">
                 <span class="etiqueta">Fruta</span>
 
+
                 <p class="avaliacao">⭐ 4,9 <span class="avaliacao_numero">(229)</span></p>
             </div>
             <div class="etiq">
                 <p class="preco">1,00€ <span class="kg">/kg</span></p>
             </div>
+
         </div>
+
+
+        </div>
+
         <h3 class="h3.produto">Descrição do Produto</h3>
         <p class="descricao">
             Tomates frescos, colhidos no próprio dia, diretamente da horta.
@@ -44,5 +56,5 @@
             <div class="botoes">
                 <button class="comprar" onclick="window.location.href='../Paginas/carrinho.php'">Comprar</button>
             </div>
-</div>
+
 </main>

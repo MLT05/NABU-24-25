@@ -453,3 +453,20 @@ margin-bottom: 13vh;
     height: 18vh;
 
 }
+
+.input-quantidade {
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #004D40;
+    background-color: #f4f4f4;
+    color: #004D40;
+    font-size: 16px;
+    width: 100%; /* ocupa a largura do contentor */
+    max-width: 200px; /* limita para não ficar gigante em ecrãs grandes */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    outline: none;
+}
+.quantidade_produto{
+    color: #004D40;
+}
