@@ -202,12 +202,7 @@ footer a {
     color: rgba(0, 77, 64, 0.58);
 }
 
-.preco {
-    font-size: 32px;
-    font-weight: bold;
-    color: #004D40;
-    text-align: right;
-}
+
 .kg{
     font-size: 22px;
     font-weight: bold;
@@ -217,7 +212,7 @@ footer a {
 
 .etiquetas {
     margin: 10px 20px;
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
 }
@@ -235,6 +230,13 @@ footer a {
 .etiq{
     width: 50%;
     box-sizing: border-box;
+}
+.etiq .preco {
+    font-size: 32px;
+    font-weight: bold;
+    color: #004D40;
+    width: fit-content;
+    margin-left: auto;
 }
 
 .avaliacao {
@@ -346,19 +348,6 @@ margin-bottom: 13vh;
     color: #AAC0AA;
 }
 
-
-
-.etiquetas {
-
-    display: inline-block;
-
-}
-
-.preco {
-    display: inline-block;
-    position: absolute;
-    align-self: end;
-}
 
 .list-group-item {
     padding-top: 1rem;
