@@ -16,9 +16,9 @@
             <span class="etiqueta">Fruta</span>
             <span class="etiqueta">Biológico</span>
 
-            <p class="avaliacao">⭐ 4,3 <span class="avaliacao_numero">(229)</span></p>
+            <p class="avaliacao">⭐ 4,9 <span class="avaliacao_numero">(229)</span></p>
         </div>
-            <p class="preco">2,00€ <span class="kg">/kg</span></p>
+            <p class="preco">1,00€ <span class="kg">/kg</span></p>
 
 
         <h3 class="h3.produto">Descrição do Produto</h3>

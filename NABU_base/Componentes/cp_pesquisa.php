@@ -43,12 +43,12 @@
 
                 <!-- Imagem -->
                 <div class="imagem_card_pesquisa">
-                    <img src="../Imagens/produtos/tomates.svg" class="card-img-top rounded-4 img_hp_card" alt="Repolho">
+                    <img src="../Imagens/produtos/tomates.svg" class="card-img-top rounded-4 img_hp_card" alt="Tomates">
                 </div>
 
                 <!-- Conteúdo -->
                 <div class="card-body m-2 pt-2 px-2 pb-0">
-                    <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Repolho/pé</h6>
+                    <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Tomates/kg</h6>
                 </div>
 
                 <hr class="linha-card">
@@ -58,7 +58,7 @@
                         <small class=" verde_escuro fw-bolder fs-5">
                             <i class="bi bi-star-fill"></i> 4,9
                         </small>
-                        <small class="fw-bolder verde_escuro fs-5">2,00 €</small>
+                        <small class="fw-bolder verde_escuro fs-5">1,50 €</small>
                     </div>
                 </div>
             </div>
@@ -76,12 +76,12 @@
 
                 <!-- Imagem -->
                 <div class="imagem_card_pesquisa">
-                    <img src="../Imagens/produtos/ovos.jpg" class="card-img-top rounded-4 img_hp_card" alt="Repolho">
+                    <img src="../Imagens/produtos/ovos.jpg" class="card-img-top rounded-4 img_hp_card" alt="Cesta de ovos">
                 </div>
 
                 <!-- Conteúdo -->
                 <div class="card-body m-2 pt-2 px-2 pb-0">
-                    <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Repolho/pé</h6>
+                    <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Ovos/dúzia</h6>
                 </div>
 
                 <hr class="linha-card">
@@ -89,9 +89,9 @@
                 <div class="card-body m-2 pt-0 pb-2 px-2">
                     <div class="d-flex justify-content-between align-items-center">
                         <small class=" verde_escuro fw-bolder fs-5">
-                            <i class="bi bi-star-fill"></i> 4,9
+                            <i class="bi bi-star-fill"></i> 5,0
                         </small>
-                        <small class="fw-bolder verde_escuro fs-5">2,00 €</small>
+                        <small class="fw-bolder verde_escuro fs-5">3,27 €</small>
                     </div>
                 </div>
             </div>
@@ -108,12 +108,12 @@
 
                 <!-- Imagem -->
                 <div class="imagem_card_pesquisa">
-                    <img src="../Imagens/produtos/alface.jpg" class="card-img-top rounded-4 img_hp_card" alt="Repolho">
+                    <img src="../Imagens/produtos/alface.jpg" class="card-img-top rounded-4 img_hp_card" alt="Alface">
                 </div>
 
                 <!-- Conteúdo -->
                 <div class="card-body m-2 pt-2 px-2 pb-0">
-                    <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Repolho/pé</h6>
+                    <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Alface/un</h6>
                 </div>
 
                 <hr class="linha-card">
@@ -121,9 +121,9 @@
                 <div class="card-body m-2 pt-0 pb-2 px-2">
                     <div class="d-flex justify-content-between align-items-center">
                         <small class=" verde_escuro fw-bolder fs-5">
-                            <i class="bi bi-star-fill"></i> 4,9
+                            <i class="bi bi-star-fill"></i> 3,2
                         </small>
-                        <small class="fw-bolder verde_escuro fs-5">2,00 €</small>
+                        <small class="fw-bolder verde_escuro fs-5">5,39 €</small>
                     </div>
                 </div>
             </div>
@@ -140,12 +140,12 @@
 
                 <!-- Imagem -->
                 <div class="imagem_card_pesquisa">
-                    <img src="../Imagens/produtos/laranjas.jpg" class="card-img-top rounded-4 img_hp_card" alt="Repolho">
+                    <img src="../Imagens/produtos/laranjas.jpg" class="card-img-top rounded-4 img_hp_card" alt="Laranjas">
                 </div>
 
                 <!-- Conteúdo -->
                 <div class="card-body m-2 pt-2 px-2 pb-0">
-                    <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Repolho/pé</h6>
+                    <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Laranjas/kg</h6>
                 </div>
 
                 <hr class="linha-card">
@@ -153,7 +153,7 @@
                 <div class="card-body m-2 pt-0 pb-2 px-2">
                     <div class="d-flex justify-content-between align-items-center">
                         <small class=" verde_escuro fw-bolder fs-5">
-                            <i class="bi bi-star-fill"></i> 4,9
+                            <i class="bi bi-star-fill"></i> 4,5
                         </small>
                         <small class="fw-bolder verde_escuro fs-5">2,00 €</small>
                     </div>
