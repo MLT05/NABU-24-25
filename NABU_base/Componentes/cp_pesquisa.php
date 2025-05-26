@@ -5,8 +5,11 @@
 <div class="container mt-3">
 
     <!-- 🔍 Pesquisa -->
-    <div class="mb-2">
-        <input type="text" class="form-control rounded-3" placeholder="🔍︎ Pesquisar...">
+    <div class="mb-2 position-relative">
+        <input type="text" class="form-control rounded-3 input-pesquisa ps-5" placeholder="Pesquisar...">
+        <img src="../Imagens/icons/search_24dp_004D40_FILL0_wght400_GRAD0_opsz24.svg"
+             class="position-absolute top-50 start-0 translate-middle-y ms-3"
+             style="width: 20px; height: 20px;">
     </div>
 
     <!-- 📁 Categorias com scroll horizontal -->
