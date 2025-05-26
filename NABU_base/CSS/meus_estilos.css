@@ -235,8 +235,6 @@ footer a {
 
 .avaliacao {
     color: #b48b00;
-    margin-bottom: 15px;
-    margin-left: 20px;
 }
 
 .descricao, .localizacao {
@@ -252,6 +250,7 @@ footer a {
 
 .comprar {
     flex: 1;
+    margin-top: 20px;
     background-color: #115e46;
     color: white;
     border: none;
@@ -341,14 +340,9 @@ margin-bottom: 13vh;
 
 .avaliacao_numero{
     color: #AAC0AA;
-    margin-bottom: 15px;
 }
 
-.avaliacao {
 
-    margin-top: 0.5rem;
-
-}
 
 .etiquetas {
 
