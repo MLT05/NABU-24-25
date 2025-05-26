@@ -354,8 +354,8 @@ margin-bottom: 13vh;
 }
 
 .list-group-item {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 .icone-x {
     width: 36px;
@@ -447,3 +447,10 @@ margin-bottom: 13vh;
     background-color: #AAC0AA;
 }
  /* fim carlos */
+
+.imagempfp {
+
+    width: 18vh;
+    height: 18vh;
+
+}
