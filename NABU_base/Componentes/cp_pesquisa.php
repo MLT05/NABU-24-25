@@ -57,7 +57,7 @@
                         <small class=" verde_escuro fw-bolder fs-5">
                             <i class="bi bi-star-fill"></i> 4,9
                         </small>
-                        <small class="fw-bolder verde_escuro fs-5">1,50 €</small>
+                        <small class="fw-bolder verde_escuro fs-5">1 €</small>
                     </div>
                 </div>
                 </a>
