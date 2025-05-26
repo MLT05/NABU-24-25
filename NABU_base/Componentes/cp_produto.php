@@ -13,14 +13,16 @@
         <div class="linha-preco-etiquetas">
 
         <div class="etiquetas">
-            <span class="etiqueta">Fruta</span>
-            <span class="etiqueta">Biológico</span>
+            <div class="etiq">
+                <span class="etiqueta">Fruta</span>
+                <span class="etiqueta">Biológico</span>
 
-            <p class="avaliacao">⭐ 4,3 <span class="avaliacao_numero">(229)</span></p>
+                <p class="avaliacao">⭐ 4,9 <span class="avaliacao_numero">(229)</span></p>
+            </div>
+            <div class="etiq">
+                <p class="preco">1,00€ <span class="kg">/kg</span></p>
+            </div>
         </div>
-            <p class="preco">2,00€ <span class="kg">/kg</span></p>
-
-
         <h3 class="h3.produto">Descrição do Produto</h3>
         <p class="descricao">
             Tomates frescos, colhidos no próprio dia, diretamente da horta.

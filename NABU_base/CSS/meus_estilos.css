@@ -202,12 +202,7 @@ footer a {
     color: rgba(0, 77, 64, 0.58);
 }
 
-.preco {
-    font-size: 32px;
-    font-weight: bold;
-    color: #004D40;
-    text-align: right;
-}
+
 .kg{
     font-size: 22px;
     font-weight: bold;
@@ -217,6 +212,9 @@ footer a {
 
 .etiquetas {
     margin: 10px 20px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .etiqueta {
@@ -228,6 +226,17 @@ footer a {
     margin-right: 5px;
     font-size: 14px;
     font-weight: bold;
+}
+.etiq{
+    width: 50%;
+    box-sizing: border-box;
+}
+.etiq .preco {
+    font-size: 32px;
+    font-weight: bold;
+    color: #004D40;
+    width: fit-content;
+    margin-left: auto;
 }
 
 .avaliacao {
@@ -340,19 +349,6 @@ margin-bottom: 13vh;
 }
 
 
-
-.etiquetas {
-
-    display: inline-block;
-
-}
-
-.preco {
-    display: inline-block;
-    position: absolute;
-    align-self: end;
-}
-
 .list-group-item {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -402,11 +398,6 @@ margin-bottom: 13vh;
     flex-shrink: 0;
 }
 
-.categoria-item:hover {
-    background-color: #dce7db;
-    color: #2c6e49;
-}
-
 .categorias-wrapper {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -425,6 +416,33 @@ margin-bottom: 13vh;
 .input-pesquisa::placeholder {
     color: #004D40;
     opacity: 0.7;
+}
+
+.favorite-circle {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(187, 205, 187, 0.9); /* #BBCDBB com 90% transparência */
+}
+
+.card_pesquisa {
+    background-color: rgba(170, 192, 170, 0.8); /* AAC0AA com 80% de transparência */
+}
+
+.linha-card {
+    margin: 0;
+    height: 1px;
+    background-color: #AAC0AA;
+}
+
+.imagem_card_pesquisa {
+    max-height: 20vh;
+
+    aspect-ratio: 4 / 3;
+    width: 100%;
+
+    overflow: hidden;
+    border-radius: 1rem;
+    display: block;
 }
  /* fim carlos */
 
