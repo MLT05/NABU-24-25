@@ -19,6 +19,7 @@
     background-color: #AAC0AA;
 }
 
+
 .cabecalho {
     height: 12vh;
     background-image: url('../Imagens/img_cp/bgbgbg (1).svg');
@@ -62,26 +63,20 @@ footer a {
 
     max-height: 20vh;
 
-    aspect-ratio: 4 / 3;      /* Mantém proporção */
-    width: 100%;              /* Ocupa toda a largura do card */
-
-    overflow: hidden;         /* Corta a imagem que passar dos limites */
-    border-radius: 1rem;       /* Cantos arredondados */
-    display: block;           /* Garante que o container se comporte como bloco */
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 1rem;
+    display: block;
 
 
 
 }
 .img_hp_card {
-
-
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
-
-
-
 }
 
 .body_index {
