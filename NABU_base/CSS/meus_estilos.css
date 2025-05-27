@@ -170,16 +170,13 @@ footer a {
 
 .carrossel {
     width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    max-width: 100%;
     overflow: hidden;
+    position: relative;
 }
 
 .carrossel img {
-    width: 100vw;
+    width: 100%;
     height: auto;
     display: block;
 }
