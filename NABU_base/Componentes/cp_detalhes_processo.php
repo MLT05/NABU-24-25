@@ -2,7 +2,7 @@
     <div class="mt-5">
         <div class="card shadow-lg">
             <div class="card-header verde_claro_bg text-white text-center">
-                <h4 class="verde_escuro">Detalhes do Pedido</h4>
+                <h4 class="verde_escuro fw-bold">Detalhes do Pedido</h4>
             </div>
             <div class="card-body">
 
