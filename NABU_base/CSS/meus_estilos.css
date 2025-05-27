@@ -138,7 +138,6 @@ footer a {
     border: none;
     cursor: pointer;
     font-size: 1.2rem;
-    size: 1.2rem;
 }
 
 .img_user {
@@ -150,7 +149,6 @@ footer a {
     border-radius: 50%;
     border: 2px solid #004D40;
     object-fit: cover;
-    margin-top: 2vh;
 }
 
 .cards_homepage {
@@ -171,13 +169,18 @@ footer a {
 }
 
 .carrossel {
+    width: 100vw;
+    max-width: 100%;
+    overflow: hidden;
     position: relative;
 }
 
 .carrossel img {
     width: 100%;
-    display: flex;
+    height: auto;
+    display: block;
 }
+
 
 .favorito {
     position: absolute;
@@ -226,13 +229,14 @@ footer a {
     margin-right: 5px;
     font-size: 14px;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 .etiq{
     width: 50%;
     box-sizing: border-box;
 }
 .etiq .preco {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
     color: #004D40;
     width: fit-content;
@@ -243,20 +247,16 @@ footer a {
     color: #b48b00;
 }
 
-.descricao, .localizacao {
-    font-size: 14px;
-    margin-bottom: 15px;
-    margin-left: 20px;
-}
 
 .botoes {
     display: flex;
-    gap: 10px;
 }
 
 .comprar {
     flex: 1;
     margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
     background-color: #115e46;
     color: white;
     border: none;
@@ -275,20 +275,26 @@ footer a {
     font-size: 16px;
     border-radius: 6px;
     cursor: pointer;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .h3\.produto{
     color: #004D40;
-    font-weight: bold;
+    font-weight: bolder;
     margin-top: 20px;
     margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 30px;
 }
-
-.descricao{
-    margin-left: 20px;
+.h2\.produto{
     color: #004D40;
+    font-weight: bolder;
+ ;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 22px;
 }
-
 .nome_localizacao {
     flex: 6;
     background-color: #AAC0AA;
@@ -298,6 +304,8 @@ footer a {
     border-radius: 6px;
     border-color:#004D40;
     margin-bottom: 1rem;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .p, .nome_localizacao {
@@ -452,3 +460,72 @@ margin-bottom: 13vh;
     height: 18vh;
 
 }
+/* Mariana - produtos_detalhes */
+
+.input-quantidade {
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #004D40;
+    background-color: #f4f4f4;
+    color: #004D40;
+    font-size: 16px;
+    width: calc(100% - 40px); /* 100% menos as margens esquerda e direita */
+    outline: none;
+    margin-bottom: 10px;
+}
+
+.quantidade-wrapper label {
+    font-weight: bold;
+    color: #004D40;
+    font-size: 16px;
+    margin-left: 20px;
+}
+.descricao-wrapper {
+    margin-left: 20px;
+    margin-right: 20px;
+    position: relative;
+}
+
+.descricao-wrapper {
+    margin: 0 20px 15px 20px;
+    position: relative;
+}
+
+.descricao {
+    max-height: 3.6em; /* Mostra ~2 linhas */
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    color: #004D40;
+    font-size: 14px;
+    line-height: 1.2em;
+    margin-bottom: 15px;
+}
+
+
+
+.descricao.expandida {
+    max-height: 1000px; /* Expande */
+}
+
+.ver-mais-btn {
+    display: block;
+    margin-top: 10px;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    color: #004D40;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+
+.linha_de_separação{
+    color: #115e46;
+}
+/* Mariana - fim aqui*/
+
+
