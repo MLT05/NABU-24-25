@@ -169,12 +169,16 @@ footer a {
 }
 
 .carrossel {
+    width: 100vw; /* ocupa 100% da largura do ecrã */
     position: relative;
+    overflow: hidden;
+    margin: 0 auto; /* centra se estiver em contexto diferente */
 }
 
 .carrossel img {
-    width: 100%;
-    display: flex;
+    width: 100vw; /* igual à largura da viewport */
+    height: auto;
+    display: block;
 }
 
 .favorito {
