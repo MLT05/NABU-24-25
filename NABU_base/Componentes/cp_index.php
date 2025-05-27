@@ -11,7 +11,7 @@ include_once ("cp_intro_index.php");
 
     <section class="mb-4">
     <div>
-        <h1 class="verde_escuro">Recomendações</h1>
+        <h1 class="verde_escuro fw-bold">Recomendações</h1>
     </div>
 
 
@@ -93,7 +93,7 @@ include_once ("cp_intro_index.php");
     </section>
     <section class="mb-4">
         <div>
-            <h1 class="verde_escuro">Novidades</h1>
+            <h1 class="verde_escuro fw-bold">Novidades</h1>
         </div>
         <div id="carouselnovidades" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -173,7 +173,7 @@ include_once ("cp_intro_index.php");
     </section>
     <section class="mb-4">
         <div>
-            <h1 class="verde_escuro">Os teus favoritos</h1>
+            <h1 class="verde_escuro fw-bold">Os teus favoritos</h1>
         </div>
         <div id="carouselfavoritos" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
