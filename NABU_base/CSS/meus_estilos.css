@@ -169,11 +169,11 @@ footer a {
 }
 
 .carrossel {
-    width: 100vw;           /* ocupa toda a largura do ecrã */
+    width: 100vw;
     position: relative;
-    left: 50%;              /* desloca para o centro do ecrã */
+    left: 50%;
     right: 50%;
-    margin-left: -50vw;     /* anula margens exteriores */
+    margin-left: -50vw;
     margin-right: -50vw;
     overflow: hidden;
 }
