@@ -1,8 +1,6 @@
 <div class="carrossel">
     <img src="../Imagens/produtos/tomates.svg" alt="Tomates Cacho">
-    <button class="favorito">
-        <img src="../Imagens/coracao.svg">
-    </button>
+
 </div>
 <main>
     <div class="info-produto">
