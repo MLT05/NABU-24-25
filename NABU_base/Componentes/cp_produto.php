@@ -1,12 +1,8 @@
-
-<main>
-
 <div class="carrossel">
     <img src="../Imagens/produtos/tomates.svg" alt="Tomates Cacho">
-    <button class="favorito">
-        <img src="../Imagens/coracao.svg">
-    </button>
+
 </div>
+<main>
     <div class="info-produto">
         <h3 class="h3.produto">Tomates - Cacho</h3>
         <p class="produtor">Rosa Silva</p>
@@ -17,8 +13,6 @@
         <div class="etiquetas">
             <div class="etiq">
                 <span class="etiqueta">Fruta</span>
-
-
                 <p class="avaliacao">⭐ 4,9 <span class="avaliacao_numero">(229)</span></p>
             </div>
             <div class="etiq">

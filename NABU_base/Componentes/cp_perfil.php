@@ -9,37 +9,37 @@
         <div class="card border-0 shadow-sm ">
             <div class="list-group  list-group-flush">
 
-                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
+                <a href="#" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
                     <img src="../Imagens/icons/slide_library_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
                     Os meus anúncios
                 </a>
 
-                <a href="../Paginas/encomendas.php" class="list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
+                <a href="../Paginas/encomendas.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
                     <img src="../Imagens/icons/orders_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
                     Encomendas
                 </a>
 
-                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
+                <a href="#" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
                     <img src="../Imagens/icons/tune_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
                     Dados pessoais
                 </a>
 
-                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
+                <a href="#" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
                     <img src="../Imagens/icons/account_balance_wallet_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
                     Formas de Pagamento
                 </a>
 
-                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
+                <a href="#" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
                     <img src="../Imagens/icons/settings_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3">
                     Definições
                 </a>
 
-                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
+                <a href="" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
                     <img src="../Imagens/icons/favorite_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
                     Favoritos
                 </a>
 
-                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center text-danger verde_claro_bg">
+                <a href="#" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center text-danger verde_claro_bg">
                     <img src="../Imagens/icons/logout_24dp_DC4C64_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
                     Logout
                 </a>

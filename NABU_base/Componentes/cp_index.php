@@ -28,7 +28,7 @@ include_once ("cp_intro_index.php");
 
                     <!-- Texto -->
                     <div class="p-3">
-                        <h2 class="verde fw-bold mb-1" >Tomates / Cacho</h2>
+                        <h2 class="verde_escuro fw-bold mb-1" >Tomates / Cacho</h2>
                         <p class="text-muted mb-2" style="font-size: 1rem;">Rosa - Quinta da Fonte</p>
                         <hr>
                         <div class="d-flex justify-content-end">
@@ -49,7 +49,7 @@ include_once ("cp_intro_index.php");
 
                     <!-- Texto -->
                     <div class="p-3">
-                        <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
+                        <h2 class="verde_escuro fw-bold mb-1" >Alface/kg</h2>
                         <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
                         <hr>
                         <div class="d-flex justify-content-end">
@@ -70,7 +70,7 @@ include_once ("cp_intro_index.php");
 
                     <!-- Texto -->
                     <div class="p-3">
-                        <h2 class="verde fw-bold mb-1" >Ovos /unidade</h2>
+                        <h2 class="verde_escuro fw-bold mb-1" >Ovos /unidade</h2>
                         <p class="text-muted mb-2" style="font-size: 1rem;">quim roscas - rua do zeca estacionamento Nr84</p>
                         <hr>
                         <div class="d-flex justify-content-end">
@@ -108,8 +108,8 @@ include_once ("cp_intro_index.php");
 
                         <!-- Texto -->
                         <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >laranjas /kg</h2>
-                            <p class="text-muted mb-2" style="font-size: 1rem;">rui pinto - quinta da pega</p>
+                            <h2 class="verde_escuro fw-bold mb-1" >Laranjas /kg</h2>
+                            <p class="text-muted mb-2" style="font-size: 1rem;">Rui pinto - quinta da pega</p>
                             <hr>
                             <div class="d-flex justify-content-end">
                                 <h3 class="verde_escuro fw-semibold mb-0">2,10 €</h3>
@@ -129,7 +129,7 @@ include_once ("cp_intro_index.php");
 
                         <!-- Texto -->
                         <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
+                            <h2 class="verde_escuro fw-bold mb-1" >Alface/kg</h2>
                             <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
                             <hr>
                             <div class="d-flex justify-content-end">
@@ -150,8 +150,8 @@ include_once ("cp_intro_index.php");
 
                         <!-- Texto -->
                         <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >ovos /unidade</h2>
-                            <p class="text-muted mb-2" style="font-size: 1rem;">rafael freitas - Quinta paiva</p>
+                            <h2 class="verde_escuro fw-bold mb-1" >Ovos /unidade</h2>
+                            <p class="text-muted mb-2" style="font-size: 1rem;">Rafael freitas - Quinta paiva</p>
                             <hr>
                             <div class="d-flex justify-content-end">
                                 <h3 class="verde_escuro fw-semibold mb-0">0,25€</h3>
@@ -188,8 +188,8 @@ include_once ("cp_intro_index.php");
 
                         <!-- Texto -->
                         <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >tomates/kg</h2>
-                            <p class="text-muted mb-2" style="font-size: 1rem;">gil fazenda - Quinta tio manel</p>
+                            <h2 class="verde_escuro fw-bold mb-1" >Tomates/kg</h2>
+                            <p class="text-muted mb-2" style="font-size: 1rem;"Gil fazenda - Quinta tio manel</p>
                             <hr>
                             <div class="d-flex justify-content-end">
                                 <h3 class="verde_escuro fw-semibold mb-0">1,79 €</h3>
@@ -209,7 +209,7 @@ include_once ("cp_intro_index.php");
 
                         <!-- Texto -->
                         <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >Alface/kg</h2>
+                            <h2 class="verde_escuro fw-bold mb-1" >Alface/kg</h2>
                             <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
                             <hr>
                             <div class="d-flex justify-content-end">
@@ -230,7 +230,7 @@ include_once ("cp_intro_index.php");
 
                         <!-- Texto -->
                         <div class="p-3">
-                            <h2 class="verde fw-bold mb-1" >laranjas/kg</h2>
+                            <h2 class="verde_escuro fw-bold mb-1" >Laranjas/kg</h2>
                             <p class="text-muted mb-2" style="font-size: 1rem;">Alfredo Rocha - Quinta Coelho</p>
                             <hr>
                             <div class="d-flex justify-content-end">

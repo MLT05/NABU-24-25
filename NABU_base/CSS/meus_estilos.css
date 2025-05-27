@@ -169,13 +169,18 @@ footer a {
 }
 
 .carrossel {
+    width: 100vw;
+    max-width: 100%;
+    overflow: hidden;
     position: relative;
 }
 
 .carrossel img {
     width: 100%;
-    display: flex;
+    height: auto;
+    display: block;
 }
+
 
 .favorito {
     position: absolute;
