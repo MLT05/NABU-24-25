@@ -12,7 +12,6 @@
                  style="width: 20px; height: 20px;">
         </div>
 
-        <!-- 📁 Categorias com scroll horizontal -->
         <div class="mt-3 mb-2 overflow-auto categorias-wrapper">
             <div class="d-flex flex-nowrap verde_escuro fw-normal">
                 <span class="categoria-item fs-6">Todos</span>
@@ -45,7 +44,7 @@
 
                     <!-- Conteúdo -->
                     <div class="card-body m-2 pt-2 px-2 pb-0">
-                        <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">tomates/kg</h6>
+                        <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Tomates/kg</h6>
                     </div>
 
                     <hr class="linha-card">
@@ -79,7 +78,7 @@
 
                     <!-- Conteúdo -->
                     <div class="card-body m-2 pt-2 px-2 pb-0">
-                        <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">tomates/kg</h6>
+                        <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Tomates/kg</h6>
                     </div>
 
                     <hr class="linha-card">
@@ -111,7 +110,7 @@
 
                     <!-- Conteúdo -->
                     <div class="card-body m-2 pt-2 px-2 pb-0">
-                        <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">tomates/Kg</h6>
+                        <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Tomates/Kg</h6>
                     </div>
 
                     <hr class="linha-card">
@@ -143,7 +142,7 @@
 
                     <!-- Conteúdo -->
                     <div class="card-body m-2 pt-2 px-2 pb-0">
-                        <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">tomates/Kg</h6>
+                        <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Tomates/Kg</h6>
                     </div>
 
                     <hr class="linha-card">
