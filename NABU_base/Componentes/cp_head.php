@@ -28,6 +28,6 @@
     <link rel="icon" href="../LOGO_ICO/favicon-32x32.png" type="image/x-icon">
 
 </head>
-<body class="corpo container">
+<body class="corpo container <?php echo basename($_SERVER['PHP_SELF'], ".php"); ?>">
 <!-- O conteúdo da página vai aqui -->
 

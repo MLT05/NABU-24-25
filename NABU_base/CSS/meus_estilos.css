@@ -44,6 +44,12 @@
     width: 5vh;
 }
 
+.mensagens {
+
+    background-image: url("../Imagens/app/msgsimg.png");
+
+}
+
 
 
 footer a {
@@ -529,3 +535,11 @@ margin-bottom: 13vh;
 /* Mariana - fim aqui*/
 
 
+.material-symbols-filled {
+    font-family: 'Material Symbols Outlined';
+    font-variation-settings:
+            'FILL' 1,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+}
