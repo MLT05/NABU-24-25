@@ -29,7 +29,7 @@
                     Formas de Pagamento
                 </a>
 
-                <a href="#" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
+                <a href="../Paginas/definicoes.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
                     <img src="../Imagens/icons/settings_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3">
                     Definições
                 </a>
