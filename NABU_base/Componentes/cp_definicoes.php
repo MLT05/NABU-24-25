@@ -10,27 +10,25 @@
 
             <a href="#"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-                <img src="../Imagens/icons/slide_library_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone"
-                    class="me-3">
+             
                 Detalhes do Perfil
             </a>
 
             <a href="../Paginas/encomendas.php"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-                <img src="../Imagens/icons/orders_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3">
+             
                 Definições da Conta
             </a>
 
             <a href="#"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-                <img src="../Imagens/icons/tune_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3">
+                
                 Pagamentos
             </a>
 
             <a href="#"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-                <img src="../Imagens/icons/account_balance_wallet_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
-                    alt="Ícone" class="me-3">
+              
                 Segurança
             </a>
 
@@ -44,20 +42,19 @@
 
             <a href="#"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-                <img src="../Imagens/icons/slide_library_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone"
-                    class="me-3">
+               
                 Notificações
             </a>
 
             <a href="../Paginas/encomendas.php"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-                <img src="../Imagens/icons/orders_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3">
+               
                 Detalhes do Perfil
             </a>
 
             <a href="#"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-                <img src="../Imagens/icons/tune_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3">
+                
                 Detalhes da Conta
             </a>
 
@@ -72,8 +69,7 @@
 
             <a href="#"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-                <img src="../Imagens/icons/slide_library_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone"
-                    class="me-3">
+               
                 Idioma da Aplicação
                 <br>
                 <hr>
@@ -92,11 +88,15 @@
 
             <a href="#"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-                <img src="../Imagens/icons/slide_library_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone"
-                    class="me-3">
-                Mudar tema Claro/Escuro
+                
+                Mudar tema Claro/Escuro 
             </a>
-
+            <div class="form-check form-switch verde_claro_bg">
+                <span> &ThinSpace;</span>
+                <form action="">
+                <input class="form-check-input" type="radio" id="flexSwitchCheckDefault">
+                <label class="form-check       -label verde_escuro" for="flexSwitchCheckDefault">Ativar tema escuro</label>   
+            </form>
         </div>
     </div>
     </div>
@@ -109,8 +109,7 @@
 
             <a href="#"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-                <img src="../Imagens/icons/slide_library_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone"
-                    class="me-3">
+               
                 Definições de Privacidade
             </a>
 
