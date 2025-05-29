@@ -523,4 +523,33 @@ margin-bottom: 13vh;
 }
 /* Mariana - fim aqui*/
 
+/* Carlos - Venda */
 
+.upload-box {
+    border: 2px dashed #004D40;
+    border-radius: 12px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #004D40;
+    cursor: pointer;
+}
+
+.upload-box:hover {
+    background-color: #e9f5f0;
+}
+
+.btn-publicar {
+    background-color: #004D40;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-descartar {
+    border: 2px solid #004D40;
+    color: #004D40;
+    font-weight: bold;
+}
+
+/* Fim Carlos Venda */
