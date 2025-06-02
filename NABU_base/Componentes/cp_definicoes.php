@@ -14,7 +14,7 @@
                 Detalhes do Perfil
             </a>
 
-            <a href="../Paginas/encomendas.php"
+            <a href="#"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
 
                 Definições da Conta
