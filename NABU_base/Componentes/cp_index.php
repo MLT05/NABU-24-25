@@ -5,7 +5,7 @@ include_once ("cp_intro_index.php");
 <div id="overlay">
     <div style="text-align: center;">
         <img src="../Imagens/icons/LOGOTIPO.svg" alt="Logotipo" style="max-width: 150px;">
-        <h1 style="margin-top: 1rem; font-size: 2rem; color: #2c2c2c;">NABU</h1>
+        <h1 style="margin-top: 1rem; font-size: 2rem; color: #f4f4f4;">NABU</h1>
     </div>
 </div>
 
