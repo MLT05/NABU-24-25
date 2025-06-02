@@ -261,20 +261,18 @@ include_once ("cp_intro_index.php");
 
 
 <script>
-    // Espera que a página carregue
     window.addEventListener("DOMContentLoaded", function () {
         const overlay = document.getElementById('overlay');
 
-        // Aguarda 3 segundos, depois inicia o desaparecimento
         setTimeout(() => {
             overlay.style.transition = 'opacity 0.5s ease';
             overlay.style.opacity = '0';
 
-            // Depois do fade-out, remove o overlay do layout
+
             setTimeout(() => {
                 overlay.style.display = 'none';
             }, 500); // tempo de transição
-        }, 3000); // tempo até iniciar o desaparecimento (3 segundos)
+        }, 2000);
     });
 </script>
 
