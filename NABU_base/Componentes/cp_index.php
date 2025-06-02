@@ -2,6 +2,11 @@
 include_once ("cp_intro_index.php");
 ?>
 
+<div id="overlay" onclick="hideOverlay()">
+    <img src="../Imagens/icons/LOGOTIPO.svg" alt="Logotipo">
+</div>
+
+
 <main class="body_index">
     <div class="top-buttons">
         <a class="responsive-button active">Para si</a>
@@ -29,7 +34,7 @@ include_once ("cp_intro_index.php");
                     <!-- Texto -->
                     <div class="p-3">
                         <h2 class="verde_escuro fw-bold mb-1" >Tomates / Cacho</h2>
-                        <p class="text-muted mb-2" style="font-size: 1rem;">Rosa - Quinta da Fonte</p>
+                        <p class="text-muted mb-2" style="font-size: 1rem;">Rosa Célia - Quinta da Fonte</p>
                         <hr>
                         <div class="d-flex justify-content-end">
                             <h3 class="verde_escuro fw-semibold mb-0">2€</h3>
@@ -71,7 +76,7 @@ include_once ("cp_intro_index.php");
                     <!-- Texto -->
                     <div class="p-3">
                         <h2 class="verde_escuro fw-bold mb-1" >Ovos /unidade</h2>
-                        <p class="text-muted mb-2" style="font-size: 1rem;">quim roscas - rua do zeca estacionamento Nr84</p>
+                        <p class="text-muted mb-2" style="font-size: 1rem;">Quim Roscas - Rua do Zeca, estacionamento Nr84</p>
                         <hr>
                         <div class="d-flex justify-content-end">
                             <h3 class="verde_escuro fw-semibold mb-0">0,20 €</h3>
@@ -109,7 +114,7 @@ include_once ("cp_intro_index.php");
                         <!-- Texto -->
                         <div class="p-3">
                             <h2 class="verde_escuro fw-bold mb-1" >Laranjas /kg</h2>
-                            <p class="text-muted mb-2" style="font-size: 1rem;">Rui pinto - quinta da pega</p>
+                            <p class="text-muted mb-2" style="font-size: 1rem;">Rui pinto - Quinta da Pega</p>
                             <hr>
                             <div class="d-flex justify-content-end">
                                 <h3 class="verde_escuro fw-semibold mb-0">2,10 €</h3>
@@ -151,7 +156,7 @@ include_once ("cp_intro_index.php");
                         <!-- Texto -->
                         <div class="p-3">
                             <h2 class="verde_escuro fw-bold mb-1" >Ovos /unidade</h2>
-                            <p class="text-muted mb-2" style="font-size: 1rem;">Rafael freitas - Quinta paiva</p>
+                            <p class="text-muted mb-2" style="font-size: 1rem;">Rafael freitas - Quinta Paiva</p>
                             <hr>
                             <div class="d-flex justify-content-end">
                                 <h3 class="verde_escuro fw-semibold mb-0">0,25€</h3>
@@ -252,4 +257,13 @@ include_once ("cp_intro_index.php");
         </div>
     </section>
 </main>
+
+
+<script>
+    function hideOverlay() {
+        const overlay = document.getElementById('overlay');
+        overlay.style.opacity = '0';
+        setTimeout(() => overlay.style.display = 'none', 500);
+    }
+</script>
 
