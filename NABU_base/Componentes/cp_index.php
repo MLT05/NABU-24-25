@@ -272,7 +272,7 @@ include_once ("cp_intro_index.php");
             setTimeout(() => {
                 overlay.style.display = 'none';
             }, 500); // tempo de transição
-        }, 2000);
+        }, 1000);
     });
 </script>
 
