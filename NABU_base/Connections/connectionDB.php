@@ -10,8 +10,8 @@ function new_db_connections(){
         $dbname = "nabu_base";
     } else {
         $hostname = 'labmm.clients.ua.pt';
-        $username = "deca_25_18";
-        $password = "sUpdS875";
+        $username = "deca_25_BDTSS_45";
+        $password = "il3LPR7I";
         $dbname = "nabu_base";
     }
 #top_indian_movies_
