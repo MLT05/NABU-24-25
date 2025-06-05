@@ -1,7 +1,7 @@
 /*Ligação à base de dados*/
 <?php
 function new_db_connections(){
-    $env = "localhost";
+    $env = "web";
     // Variables for the database connection
     if ($env == "localhost") {
         $hostname = 'localhost';
