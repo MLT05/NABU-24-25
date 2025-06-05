@@ -1,0 +1,69 @@
+Options -Indexes
+# Disable directory listing
+
+ServerSignature Off
+# Disable server signature
+
+
+# Disable access to .htaccess files
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Disable access to .git directory
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    # Redirect all requests to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+    # Block access to .git directory
+    RewriteRule ^\.git - [F,L]
+    # Block access to .env file
+    RewriteRule ^\.env - [F,L]
+    # Block access to .htaccess file
+    RewriteRule ^\.htaccess - [F,L]
+    # Block access to .DS_Store files
+    RewriteRule ^\.DS_Store - [F,L]
+    # Block access to .svn directories
+    RewriteRule ^\.svn - [F,L]
+
+    # Block access to .gitignore files
+    RewriteRule ^\.gitignore - [F,L]
+    # Block access to .idea directories
+    RewriteRule ^\.idea - [F,L]
+    # Block access to .vscode directories
+    RewriteRule ^\.vscode - [F,L]
+    # Block access to .env.example files
+    RewriteRule ^\.env.example - [F,L]
+    # Block access to .env.local files
+    RewriteRule ^\.env.local - [F,L]
+    # Block access to .env.development files
+    RewriteRule ^\.env.development - [F,L]
+    # Block access to .env.production files
+    RewriteRule ^\.env.production - [F,L]
+    # Block access to .env.testing files
+    RewriteRule ^\.env.testing - [F,L]
+    # Block access to .env.staging files
+    RewriteRule ^\.env.staging - [F,L]
+    # Block access to .env.sample files
+    RewriteRule ^\.env.sample - [F,L]
+    # Block access to .env.example.local files
+    RewriteRule ^\.env.example.local - [F,L]
+    # Block access to .env.example.development files
+    RewriteRule ^\.env.example.development - [F,L]
+    # Block access to .env.example.production files
+    RewriteRule ^\.env.example.production - [F,L]
+    # Block access to .env.example.testing files
+    RewriteRule ^\.env.example.testing - [F,L]
+    # Block access to .env.example.staging files
+    RewriteRule ^\.env.example.staging - [F,L]
+    # Block access to .env.example.sample files
+    RewriteRule ^\.env.example.sample - [F,L]
+    # Block access to .env.example.local files
+    RewriteRule ^\.env.example.local - [F,L]
+RewriteRule off - [F,L]
+</IfModule>
+

@@ -10,7 +10,7 @@
         <div class="card border-0 shadow-sm ">
             <div class="list-group  list-group-flush">
 
-                <a href="#" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
+                <a href="..\mudar_perfil.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
                     <img src="../Imagens/icons/slide_library_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
                     Alterar Imagem de Perfil
                 </a>
