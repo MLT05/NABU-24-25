@@ -1,7 +1,7 @@
 /*Ligação à base de dados*/
 <?php
 function new_db_connections(){
-    $env = "localhost";
+    $env = "web";
     // Variables for the database connection
     if ($env == "localhost") {
         $hostname = 'localhost';
@@ -10,9 +10,9 @@ function new_db_connections(){
         $dbname = "nabu_base";
     } else {
         $hostname = 'labmm.clients.ua.pt';
-        $username = "deca_25_18";
-        $password = "sUpdS875";
-        $dbname = "nabu_base";
+        $username = "deca_25_BDTSS_45";
+        $password = "il3LPR7I";
+        $dbname = "deca_25_bdtss_45";
     }
 #top_indian_movies_
     // Makes the connection
