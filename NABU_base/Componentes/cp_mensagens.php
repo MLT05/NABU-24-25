@@ -1,6 +1,8 @@
+<main class="body_index" id="mainmsg">
+
+<p>
+    ola msgs
+</p>
 
 
-<div class="top-buttons">
-        <a class="responsive-button active">Para si</a>
-        <a href="../Paginas/mapa.php" class="responsive-button" >Mapa</a>
-    </div>
+</main>
