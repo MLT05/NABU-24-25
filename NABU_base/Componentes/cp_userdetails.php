@@ -15,7 +15,7 @@
                     Alterar Imagem de Perfil
                 </a>
 
-                <a href="../Paginas/encomendas.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
+                <a href="#" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
                     <img src="../Imagens/icons/orders_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
                     Mudar Nome
                 </a>

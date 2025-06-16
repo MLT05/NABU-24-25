@@ -8,16 +8,10 @@
     <div class="card border-0 shadow-sm ">
         <div class="list-group  list-group-flush">
 
-            <a href="#"
+            <a href="../Paginas/perfil_details.php"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
 
-                Detalhes do Perfil
-            </a>
-
-            <a href="#"
-                class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-
-                Definições da Conta
+                Detalhes do Perfil e da Conta
             </a>
 
             <a href="#"
