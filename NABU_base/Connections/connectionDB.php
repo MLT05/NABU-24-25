@@ -1,6 +1,6 @@
 /*Ligação à base de dados*/
 <?php
-function new_db_connections(){
+function new_db_connection(){
     $env = "web";
     // Variables for the database connection
     if ($env == "localhost") {
@@ -14,7 +14,7 @@ function new_db_connections(){
         $password = "u9TMIWx8";
         $dbname = "deca_25_bdtss_45";
     }
-#top_indian_movies_
+
     // Makes the connection
     $local_link = mysqli_connect($hostname, $username, $password, $dbname);
 
