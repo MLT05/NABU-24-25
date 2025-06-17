@@ -22,12 +22,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../CSS/meus_estilos.css?v=1.3" rel="stylesheet" />
+    <link href="../CSS/meus_estilos.css?v=1.4" rel="stylesheet" />
 
     <!-- Favicon -->
     <link rel="icon" href="../LOGO_ICO/favicon-32x32.png" type="image/x-icon">
 
 </head>
-<body class="corpo container <?php echo basename($_SERVER['PHP_SELF'], ".php"); ?>">
+<?php
+    $bodyClass = isset($bodyClass) ? $bodyClass : 'container';
+?>
+<body class="corpo <?= $bodyClass ?> <?php echo basename($_SERVER['PHP_SELF'], ".php"); ?>">
 <!-- O conteúdo da página vai aqui -->
 
