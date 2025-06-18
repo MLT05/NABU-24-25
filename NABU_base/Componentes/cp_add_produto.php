@@ -35,8 +35,7 @@
                     $link = new_db_connection();
 
                     $stmt = mysqli_stmt_init($link);
-                    $query = "SELECT id_categoria, nome_categoria FROM categorias ORDER BY nome_categoria ASC";
-
+                    $query = "SELECT id_categoria, nome_categoria FROM categorias WHERE id_categoria >= 0 ORDER BY nome_categoria ASC";
                     if (mysqli_stmt_prepare($stmt, $query)) {
                         if (mysqli_stmt_execute($stmt)) {
                             mysqli_stmt_bind_result($stmt, $id_categoria, $nome_categoria);
