@@ -10,7 +10,7 @@ if (isset($_POST['pesquisa'])) {
 
     ?>
 
-    <main class="body_index">
+    <main class="body_indx">
         <div class="mt-3">
 
             <?php require_once '../Componentes/cp_intro_pesquisa.php'; ?>
