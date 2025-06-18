@@ -2,15 +2,8 @@
 require_once '../Connections/connection.php';
 $link = new_db_connection();
 
-// Verifica se o utilizador está autenticado e é role 1
-//if (!isset($_SESSION['user']) || $_SESSION['role'] != 1) {
- //   header("Location: ../Paginas/produto.php");
-  //  exit;}
-//$ref_user = $_SESSION['user']; // <-- Certifique-se de que isso é o ID do utilizador (número)
-
-
+// Dados do formulário
 $ref_user =1;
-// Recolha de dados do formulário
 $nome_produto = $_POST['titulo'];
 $descricao = $_POST['descricao'];
 $preco = floatval(str_replace(',', '.', $_POST['preco']));
@@ -24,26 +17,52 @@ $telefone_contato = $_POST['telefone'];
 $data_insercao = date("Y-m-d H:i:s");
 $capa = "default.png";
 
-// Inserção na base de dados
-$query = "INSERT INTO anuncios (nome_produto, descricao, preco, ref_categoria, ref_user, localizacao, capa, data_insercao,ref_medida) 
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-$stmt = mysqli_prepare($link, $query);
-
-if ($stmt) {
-    mysqli_stmt_bind_param(
-        $stmt,
-        "ssdisssss",
-        $nome_produto, $descricao, $preco, $ref_categoria, $ref_user, $localizacao, $capa, $data_insercao, $ref_medida);
-
-    if (mysqli_stmt_execute($stmt)) {
-        echo "Anúncio inserido com sucesso!";
-    } else {
-        echo "Erro ao inserir anúncio: " . mysqli_stmt_error($stmt);
+// Função para validar morada usando Nominatim OpenStreetMap
+function validarMoradaOSM($morada) {
+    $url = 'https://nominatim.openstreetmap.org/search?format=json&q=' . urlencode($morada);
+    $opts = [
+        "http" => [
+            "header" => "User-Agent: MinhaAppDeTeste/1.0\r\n"
+        ]
+    ];
+    $context = stream_context_create($opts);
+    $response = file_get_contents($url, false, $context);
+    if ($response === false) {
+        return false;
     }
+    $data = json_decode($response, true);
+    return (is_array($data) && count($data) > 0);
+}
 
-    mysqli_stmt_close($stmt);
+$erro = false;
+
+if (!validarMoradaOSM($localizacao)) {
+    $erro = "Morada inválida. Por favor, introduza uma morada real.";
+}
+
+if (!$erro) {
+    $query = "INSERT INTO anuncios (nome_produto, descricao, preco, ref_categoria, ref_user, localizacao, capa, data_insercao, ref_medida) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($link, $query);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param(
+            $stmt,
+            "ssdisssss",
+            $nome_produto, $descricao, $preco, $ref_categoria, $ref_user, $localizacao, $capa, $data_insercao, $ref_medida);
+
+        if (mysqli_stmt_execute($stmt)) {
+            echo "Anúncio inserido com sucesso!";
+        } else {
+            echo "Erro ao inserir anúncio: " . mysqli_stmt_error($stmt);
+        }
+
+        mysqli_stmt_close($stmt);
+    } else {
+        echo "Erro na preparação da query: " . mysqli_error($link);
+    }
 } else {
-    echo "Erro na preparação da query: " . mysqli_error($link);
+    echo "<p style='color:red;'>$erro</p>";
 }
 
 mysqli_close($link);

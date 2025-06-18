@@ -129,16 +129,16 @@ if (!isset($_SESSION['id_user'])) {
                 <!-- Descrição -->
                 <div class="mb-3">
                     <label for="descricao" class="form-label fw-semibold verde_escuro">Descrição*</label>
-                    <textarea class="form-control bg-success bg-opacity-25" id="descricao" name="descricao" rows="3" required minlength="40"></textarea>
-                    <small class="form-text verde_escuro opacity-75">Introduz pelo menos 40 caracteres</small>
+                    <textarea class="form-control bg-success bg-opacity-25" id="descricao" name="descricao" rows="3" required minlength="1"></textarea>
                 </div>
 
                 <!-- Localização -->
+                <label for="descricao" class="form-label fw-semibold verde_escuro">Localização*</label>
                 <div class="mb-3 d-flex align-items-center">
-                <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
+                    <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
                     <i class="bi bi-geo-alt-fill verde_escuro"></i>
                 </span>
-                    <input type="text" class="form-control bg-success bg-opacity-25" id="localizacao" name="localizacao" placeholder="Localização" required>
+                    <input type="text" class="form-control  bg-success bg-opacity-25" id="localizacao" name="localizacao" placeholder="Localização" required>
                 </div>
 
                 <!-- Contactos -->
@@ -174,3 +174,5 @@ if (!isset($_SESSION['id_user'])) {
     <?php
 }
 ?>
+
+
