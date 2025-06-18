@@ -1,5 +1,5 @@
 <?php
-require_once '../Connections/connectionDB.php';
+require_once '../Connections/connection.php';
 
 if (isset($_POST["nome"], $_POST["email"], $_POST["contacto"], $_POST["login"], $_POST["password"])) {
     $nome = htmlspecialchars(trim($_POST['nome']));

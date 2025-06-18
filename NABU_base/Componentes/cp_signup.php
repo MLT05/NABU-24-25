@@ -31,3 +31,8 @@
             <button type="submit" class="btn btn-success rounded-pill w-100 fw-bold">Criar Conta</button>
         </form>
     </div>
+</main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+    </html>

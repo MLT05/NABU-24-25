@@ -18,7 +18,12 @@
 .verde_claro_bg {
     background-color: #AAC0AA;
 }
-
+.cinza {
+    color: #D9D9D9;
+}
+.cinza_bg {
+    background-color: #D9D9D9;
+}
 
 .cabecalho {
     height: 12vh;
@@ -88,8 +93,11 @@ footer a {
 .body_index {
 
     margin-top: 12vh;
+    margin-bottom: 13vh;
 
 }
+
+
 
 .footer-menu {
     height: 10vh;
@@ -347,11 +355,6 @@ footer a {
     color: white;
 }
 
-main {
-
-margin-bottom: 13vh;
-
-}
 
 .avaliacao_numero{
     color: #AAC0AA;
