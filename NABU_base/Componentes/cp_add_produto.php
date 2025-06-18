@@ -1,3 +1,36 @@
+
+<?php
+session_start();
+require_once '../Connections/connection.php';
+
+if (!isset($_SESSION['id_user'])) {
+    // HTML e CSS mensagem sem login efetuado
+
+} else {
+
+
+    $id_user = $_SESSION['id_user'];
+
+    $link = new_db_connection();
+    $stmt = mysqli_stmt_init($link);
+
+    $query = "SELECT nome, login, email, contacto FROM users WHERE id_user = ?";
+
+
+    $capa = "defaultpfp.png"; // imagem padrão caso não tenha capa
+
+    if (mysqli_stmt_prepare($stmt, $query)) {
+        mysqli_stmt_bind_param($stmt, 'i', $id_user);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $nome_db, $login, $email, $contacto);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+    }
+
+
+    mysqli_close($link);
+
+?>
 <main class="body_index">
     <form method="post" enctype="multipart/form-data" action="../scripts/sc_add_produto.php">
         <div>
@@ -16,8 +49,7 @@
             <!-- Título -->
             <div class="mb-3">
                 <label for="titulo" class="form-label verde_escuro fw-semibold">Título do Anúncio*</label>
-                <input type="text" class="form-control bg-success bg-opacity-25" id="titulo" name="titulo" required minlength="16">
-                <small class="form-text verde_escuro opacity-75">Introduz pelo menos 16 caracteres</small>
+                <input type="text" class="form-control bg-success bg-opacity-25" id="titulo" name="titulo" required minlength="1">
             </div>
 
             <!-- Preço -->
@@ -26,24 +58,44 @@
                 <input type="number" step="0.01" min="0" class="form-control bg-success bg-opacity-25" id="preco" name="preco" required>
             </div>
 
+            <!-- Medidas -->
+            <div class="mb-3">
+                <label for="medida" class="form-label fw-semibold verde_escuro">Medidas*</label>
+                <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="medida" name="medida" required>
+                    <?php
+                    $link = new_db_connection();
+                    $stmt = mysqli_stmt_init($link);
+                    $query = "SELECT id_medida, abreviatura FROM medidas";
+                    if (mysqli_stmt_prepare($stmt, $query)) {
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_bind_result($stmt, $id_medida, $abreviatura);
+                        while (mysqli_stmt_fetch($stmt)) {
+                            echo '<option value="' . $id_medida . '">' . htmlspecialchars($abreviatura) . '</option>';
+                        }
+                        mysqli_stmt_close($stmt);
+                    }
+                    mysqli_close($link);
+                    ?>
+                </select>
+            </div>
+
             <!-- Categoria -->
             <div class="mb-3">
-                <label for="categoria" class="form-label fw-semibold verde_escuro">Categorias*</label>
+                <label for="categoria" class="form-label fw-semibold verde_escuro">Categoria*</label>
                 <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="categoria" name="categoria" required>
                     <?php
-                    require_once '../Connections/connection.php';
                     $link = new_db_connection();
-
                     $stmt = mysqli_stmt_init($link);
-                    $query = "SELECT id_categoria, nome_categoria FROM categorias WHERE id_categoria >= 0 ORDER BY nome_categoria ASC";
+                    $query = "SELECT id_categoria, nome_categoria FROM categorias";
                     if (mysqli_stmt_prepare($stmt, $query)) {
-                        if (mysqli_stmt_execute($stmt)) {
-                            mysqli_stmt_bind_result($stmt, $id_categoria, $nome_categoria);
-                            while (mysqli_stmt_fetch($stmt)) {
-                                echo '<option value="' . $id_categoria . '">' . htmlspecialchars($nome_categoria) . '</option>';
-                            }
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_bind_result($stmt, $id_categoria, $nome_categoria);
+                        while (mysqli_stmt_fetch($stmt)) {
+                            echo '<option value="' . $id_categoria . '">' . htmlspecialchars($nome_categoria) . '</option>';
                         }
+                        mysqli_stmt_close($stmt);
                     }
+                    mysqli_close($link);
                     ?>
                 </select>
             </div>
@@ -69,19 +121,19 @@
             <!-- Nome -->
             <div class="mb-3">
                 <label for="nome" class="form-label fw-bold verde_escuro">Nome*</label>
-                <input type="text" class="form-control bg-success bg-opacity-25" id="nome" name="nome" required>
+                <input type="text" value="<?php  echo htmlspecialchars($nome_db) ?>" class="form-control bg-success bg-opacity-25" id="nome" name="nome" required>
             </div>
 
             <!-- Email -->
             <div class="mb-3">
                 <label for="email" class="form-label fw-bold verde_escuro">Email*</label>
-                <input type="email" class="form-control bg-success bg-opacity-25" id="email" name="email" required>
+                <input type="email" value="<?php  echo htmlspecialchars($email) ?>" class="form-control bg-success bg-opacity-25" id="email" name="email" required>
             </div>
 
             <!-- Contacto Telefónico -->
             <div class="mb-4">
                 <label for="telefone" class="form-label fw-bold verde_escuro">Contacto telefónico*</label>
-                <input type="tel" class="form-control bg-success bg-opacity-25" id="telefone" name="telefone" required>
+                <input type="tel" value="<?php  echo htmlspecialchars($contacto) ?>" class="form-control bg-success bg-opacity-25" id="telefone" name="telefone" required>
             </div>
 
             <!-- Botões -->
@@ -92,3 +144,7 @@
         </div>
     </form>
 </main>
+
+<?php
+}
+?>

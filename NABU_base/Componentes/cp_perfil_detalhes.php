@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../connections/connection.php';
+require_once '../Connections/connection.php';
 
 if (!isset($_SESSION['id_user'])) {
     // Se não estiver logado, redireciona pro login
