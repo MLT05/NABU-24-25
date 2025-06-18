@@ -30,16 +30,7 @@ $stmt = mysqli_prepare($link, $query);
 if ($stmt) {
     mysqli_stmt_bind_param(
         $stmt,
-        "ssdissss",
-        $nome_produto,
-        $descricao,
-        $preco,
-        $ref_categoria,
-        $ref_user,
-        $localizacao,
-        $capa,
-        $data_insercao
-    );
+        "ssdissss", $nome_produto, $descricao, $preco, $ref_categoria, $ref_user, $localizacao, $capa, $data_insercao);
 
     if (mysqli_stmt_execute($stmt)) {
         header("Location: ../Paginas/perfil.php");
