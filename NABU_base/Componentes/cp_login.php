@@ -41,17 +41,34 @@
         <!-- Formulário -->
         <form action="../scripts/sc_login.php" method="post" class="needs-validation" novalidate>
             <div class="mb-3">
-                <input type="text" class="form-control rounded-pill cinza_bg border-0 ps-3 py-2" name="login" placeholder="Login" required>
+                <input type="text" class="form-control rounded cinza_bg border-0 ps-3 py-2" name="login" placeholder="Login" required>
             </div>
-            <div class="mb-4">
-                <input type="password" class="form-control rounded-pill cinza_bg border-0 ps-3 py-2" name="password" placeholder="Palavra-passe" required>
+            <div class="mb-4 position-relative">
+                <input id="password" type="password" class="form-control rounded cinza_bg border-0 ps-3 py-2" name="password" placeholder="Palavra-passe" required>
+                <button type="button" id="togglePassword" aria-label="Mostrar/ocultar senha"
+                        class="verde d-flex align-items-center justify-content-center"
+                        style="position: absolute; top: 0; bottom: 0; right: 1rem; border: none; background: transparent; font-size: 1.4rem; cursor: pointer;">
+                    <span class="material-icons" id="iconPassword">visibility</span>
+                </button>
             </div>
-            <button type="submit" class="btn verde_bg rounded-pill w-100 fw-bold text-white py-3 fs-5 mt-5">ENTRAR</button>
+            <button type="submit" class="btn verde_bg rounded w-100 fw-bold text-white py-3 fs-5 mt-5">ENTRAR</button>
 
         </form>
     </div>
 </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+    const iconPassword = document.querySelector('#iconPassword');
+
+    togglePassword.addEventListener('click', () => {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        iconPassword.textContent = type === 'password' ? 'visibility' : 'visibility_off';
+    });
+</script>
+
 
     </body>
     </html>
