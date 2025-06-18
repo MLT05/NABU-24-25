@@ -23,7 +23,7 @@ if (isset($_POST['pesquisa'])) {
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_bind_result($stmt, $nome, $preco, $id_anuncio);
 
-                    while (mysqli_stmt_fetch($stmt)) {
+                    while (mysqli_stmt_-fetch($stmt)) {
                         ?>
                         <div class="col-6">
                             <a href="../Paginas/produto.php?id=<?= $id_anuncio ?>" style="text-decoration: none">
