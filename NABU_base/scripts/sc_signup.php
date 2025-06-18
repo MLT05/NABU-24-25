@@ -74,7 +74,7 @@ if (
         mysqli_stmt_bind_param($stmt, 'sssss', $nome, $email, $contacto, $login, $password_hash);
 
         if (mysqli_stmt_execute($stmt)) {
-            header("Location: ../Paginas/login.php");
+            header("Location: ../Paginas/login.php?id_sucesso=1");
             exit();
         } else {
             header("Location: ../Paginas/signup.php?id_erro=3"); // erro interno ao inserir

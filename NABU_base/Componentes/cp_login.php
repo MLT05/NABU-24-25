@@ -16,6 +16,13 @@
         <h1 class="text-center tituloLS fw-bold mb-4">LOGIN</h1>
 
         <?php
+
+        if (isset($_GET['id_sucesso']) && $_GET['id_sucesso'] == 1) {
+            echo '<div class="alert alert-success text-center fw-semibold" role="alert">
+            Registo efetuado com sucesso! Pode agora iniciar sessão.
+          </div>';
+        }
+
         if (isset($_GET['id_erro'])) {
             $mensagem_erro = '';
 
@@ -57,7 +64,7 @@
         </form>
     </div>
 </main>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     const togglePassword = document.querySelector('#togglePassword');
     const password = document.querySelector('#password');
