@@ -124,8 +124,8 @@
             Se tiver dúvidas ou preocupações relacionadas com esta política ou com o tratamento dos seus dados,
             contacte-nos:
             <br>
-            <li class="li_priv">📧 [inserir e-mail de privacidade]</li>
+            <li class="li_priv">📧 nabu@nabu.pt</li>
             <li class="li_priv">📍 Câmara Municipal da Lousã – Praça Sá Carneiro, 3200-909 Lousã</li>
-            <li class="li_priv">📞 [inserir número de contacto]</li>
+            <li class="li_priv">📞 239 990 370</li>
         </p>
     </main>
