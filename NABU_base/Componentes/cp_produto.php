@@ -1,31 +1,25 @@
-<div class="carrossel">
-    <img src="../Imagens/produtos/tomates.svg" alt="Tomates Cacho">
+<div class="w-100">
+    <img src="../Imagens/produtos/tomates.svg" alt="Tomates Cacho" class="img-fluid w-100">
 
 </div>
-<main>
-    <div class="info-produto">
-        <h3 class="h3.produto">Tomates - Cacho</h3>
-        <p class="produtor">Rosa Silva</p>
+<main class="container">
+    <div class="mx-2">
+        <h3 class="verde_escuro fw-bold my-3 fs-1">Tomates - Cacho</h3>
+        <p class=" verde">Rosa Silva</p>
 
-
-        <div class="linha-preco-etiquetas">
-
-        <div class="etiquetas">
-            <div class="etiq">
-                <span class="etiqueta">Fruta</span>
-                <p class="avaliacao">⭐ 4,9 <span class="avaliacao_numero">(229)</span></p>
+        <div>
+            <div class="row">
+                <div class="col-6">
+                    <span class="etiqueta">Fruta</span>
+                    <p class="text-warning">⭐ 4,9 <span class="verde_claro">(229)</span></p>
+                </div>
+                <div class="col-6 text-end">
+                    <p class="fs-2 fw-bold verde_escuro">1,00€ <span>/kg</span></p>
+                </div>
             </div>
-            <div class="etiq">
-                <p class="preco">1,00€ <span class="kg">/kg</span></p>
-            </div>
-
         </div>
-
-
-        </div>
-
-        <h2 class="h2.produto">Descrição do Produto</h2>
-        <div class="descricao-wrapper">
+        <h2 class="verde_escuro fw-bold my-3 fs-4">Descrição do Produto</h2>
+        <div>
             <p class="descricao" id="descricao">
                 Tomates frescos, colhidos no próprio dia, diretamente da horta.
                 Produzidos de forma natural, sem recurso a agrotóxicos, preservando
@@ -34,27 +28,27 @@
             <button id="toggleDescricao" class="ver-mais-btn">Ver mais</button>
         </div>
 
-    <div class="quantidade-wrapper">
-        <h3 class="h2.produto"> Quantidade desejada</h3>
-        <input type="text" id="quantidade" name="quantidade" class="input-quantidade" placeholder="Ex: 1 kilo, 1 unidade...">
+    <div>
+        <h3 class="verde_escuro fw-bold my-3 fs-4"> Quantidade desejada</h3>
+        <input type="number" id="quantidade" name="quantidade" class="input-quantidade rounded-3 p-3" placeholder="Ex: 1 kilo, 1 unidade...">
     </div>
 
-    <h3 class="h2.produto" >Localização</h3>
-    <div class="botoes-localizacao">
-        <button class="nome_localizacao">
+    <h3 class="verde_escuro fw-bold my-3 fs-4">Localização</h3>
+    <div class="d-flex">
+        <button class="nome_localizacao rounded fs-5 p-3 verde_escuro">
             <img src="../Imagens/localizacao_simbolo.svg" alt="Localização" class="icone-localizacao" />
             Quinta da fonte - Lousã
         </button>
     </div>
 
-        <div class="botoes">
-            <button class="contactar" onclick="window.location.href='../Paginas/carrinho.php'">Carrinho</button>
-            <button class="contactar" onclick="window.location.href='../Paginas/mensagens.php'">Contactar</button>
+        <div class="d-flex">
+            <button class="contactar me-1 fs-6 p-2 bg-white rounded" onclick="window.location.href='../Paginas/carrinho.php'">Carrinho</button>
+            <button class="contactar ms-1 fs-6 p-2 bg-white rounded" onclick="window.location.href='../Paginas/mensagens.php'">Contactar</button>
         </div>
-            <div class="botoes">
-                <button class="comprar" onclick="window.location.href='../Paginas/carrinho.php'">Comprar</button>
-            </div>
-
+        <div class="d-flex">
+            <button class="comprar p-3 fs-6 rounded" onclick="window.location.href='../Paginas/carrinho.php'">Comprar</button>
+        </div>
+    </div>
 </main>
 <script>
     const botao = document.getElementById('toggleDescricao');
