@@ -22,7 +22,7 @@
                 mysqli_stmt_bind_param($stmt, "i", $id);
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_bind_result($stmt, $id_produto, $produto, $id_encomenda, $encomenda, $pagamentos_forma, $quantidade, $data_pedido, $data_aprovada, $estado, $vendedor_nome, $vendedor_email, $comprador_nome, $comprador_email, $estado_aprovacaoo, $categoria);
-                echo $id;
+                echo $id;}
                 while (mysqli_stmt_fetch($stmt)) {
 
                     echo "<div class= 'alert alert-success' role='alert'>
@@ -33,7 +33,8 @@
             <div class="card - body">
                 <div class="row mb - 4">
                     <!-- Coluna da imagem -->
-                    <div class="col - sm - 4 text - center mb - 3 mb - sm - 0">
+                    <div class="col - sm - 4 text - center mb - 3 mb - sm - 0"> ";
+                    echo"
                         <img src=" ./Imagens / produtos / $id_produto" alt="Imagem do Produto" class="img - fluid rounded shadow - sm">
                     </div>
                     <!-- Coluna de informações do produto -->
@@ -48,7 +49,9 @@
                             <span class="badge bg - warning text - dark"> <?= $estado! ?></span>
                         </p>
                     </div>
-                </div>
+                </div>";
+
+                    echo "
                 <div class="row">
                     <div class="col - sm - 6">
                         <h1 class="verde_escuro fw - bold mb - 4">Vendedor</h1>
