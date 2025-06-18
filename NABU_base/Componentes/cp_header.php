@@ -1,3 +1,10 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
+
 <header class="cabecalho fixed-top container-fluid">
     <div class="row py-3 align-items-center justify-content-between">
         <a href="../Paginas/index.php" class="col-auto">

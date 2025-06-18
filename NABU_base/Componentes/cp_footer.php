@@ -1,8 +1,4 @@
-<?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-?>
+
 
 
 <footer class="footer-menu fixed-bottom verde_bg ">

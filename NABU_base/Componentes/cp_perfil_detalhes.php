@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once '../Connections/connection.php';
 
 if (!isset($_SESSION['id_user'])) {
