@@ -16,7 +16,7 @@
                 mysqli_stmt_bind_param($stmt, "i", $id);
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_bind_result($stmt, $id_produto, $produto, $id_encomenda, $encomenda, $pagamentos_forma, $quantidade, $data_pedido, $data_aprovada, $estado, $vendedor_nome, $vendedor_email, $comprador_nome, $comprador_email, $estado_aprovacaoo, $categoria);
-                echo $id;
+                echo $id;}
                 while (mysqli_stmt_fetch($stmt)) {
 
                     echo "
@@ -67,5 +67,5 @@
             </div>
         </div>
     </div>
-'?>
+';}?>
 </main>

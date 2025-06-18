@@ -40,13 +40,13 @@ if (!isset($_SESSION['id_user'])) {
 
 <main class="body_index">
 
-    <form method="post" enctype="multipart/form-data" action="../scripts/sc_editar_perfil.php">
+
 
     <div class="text-center mb-4">
-        <img src="../Imagens/pfp/<?php echo htmlspecialchars($capa); ?>" alt="Foto de perfil" class="rounded-circle border border-success imagempfp" style="object-fit: cover;">
+        <img src="../uploads/pfp/<?php echo htmlspecialchars($capa); ?>" alt="Foto de perfil" class="rounded-circle border border-success imagempfp" style="object-fit: cover;">
         <form action="../scripts/sc_update_pfp.php" method="post" enctype="multipart/form-data" class="mt-4 text-center">
             <div class="mb-3">
-                <label for="pfp" class="form-label fw-semibold">Alterar imagem de perfil</label>
+                <label for="pfp" class="form-label fw-semibold">Alterar imagem de perfil (Max 10MB)</label>
                 <input type="file" name="pfp" id="pfp" class="form-control" accept="image/*" required>
             </div>
             <button type="submit" class="btn verde fw-bold">Guardar</button>
@@ -73,7 +73,7 @@ if (!isset($_SESSION['id_user'])) {
         ?>
 
         <h3 class="mb-3 verde_escuro" >Dados pessoais:</h3>
-
+    <form method="post"  action="../scripts/sc_editar_perfil.php">
         <?php
         if (isset($_GET['msg'])) {
             $tipo = 'danger';
@@ -116,7 +116,7 @@ if (!isset($_SESSION['id_user'])) {
         <button type="submit" class="btn verde_bg rounded w-75 fw-bold text-white py-2 fs-5 mt-3 mb-3 d-block mx-auto">Atualizar Dados</button>
     </form>
 
-    <form method="post" enctype="multipart/form-data" action="../scripts/sc_alterar_login.php">
+    <form method="post"  action="../scripts/sc_alterar_login.php">
     <h3 class="mb-3 verde_escuro" >Login e palavra-passe:</h3>
         <?php
         if (isset($_GET['msg2'])) {
