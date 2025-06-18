@@ -13,21 +13,13 @@ if (isset($_POST['pesquisa'])) {
 
             <?php require_once '../Componentes/cp_intro_pesquisa.php'; ?>
 
-            <div class="mt-3 mb-2 overflow-auto categorias-wrapper">
-                <div class="d-flex flex-nowrap verde_escuro fw-normal">
-                    <span class="categoria-item fs-6">Todos</span>
-                    <span class="categoria-item fs-6">Vegetais</span>
-                    <span class="categoria-item fs-6">Frutas</span>
-                    <span class="categoria-item fs-6">Ovos e laticínios</span>
-                    <span class="categoria-item fs-6">Produtos Apícolas</span>
-                    <span class="categoria-item fs-6">Plantas</span>
-                </div>
-            </div>
+            <?php require_once '../Componentes/cp_intro_categorias.php'; ?>
 
 
             <div class="row g-3">
+
                 <?php
-                $stmt = mysqli_stmt_init($link);
+
                 $query = "SELECT nome_produto, preco, id_anuncio FROM anuncios WHERE nome_produto LIKE CONCAT('%', ?, '%')";
 
                 if (mysqli_stmt_prepare($stmt, $query)) {
