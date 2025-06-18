@@ -1,6 +1,12 @@
 <?php
 session_start();
 require_once '../Connections/connection.php';
+require_once '../Functions/function_favorito.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_favorito'])) {
+    $mensagem_favorito = toggle_favorito_post();
+}
+
 
 if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
     echo "produto not found";
@@ -40,7 +46,9 @@ mysqli_close($link);
 
 
 <div class="w-100">
-    <img src="../Imagens/produtos/<?= htmlspecialchars($capa) ?>" alt="<?= htmlspecialchars($nome_produto) ?>" class="img-fluid w-100" />
+    <!-- <img src="../Imagens/produtos/<?= htmlspecialchars($capa) ?>" alt="<?= htmlspecialchars($nome_produto) ?>" class="img-fluid w-100" /> -->
+    NABU-24-25/NABU_base/
+    <img src="../Imagens/produtos/alface.jpg" alt="<?= htmlspecialchars($nome_produto) ?>" class="img-fluid w-100" />
 </div>
 
 <main class="container">
@@ -53,6 +61,15 @@ mysqli_close($link);
                 <div class="col-6">
                     <span class="etiqueta"><?= htmlspecialchars($nome_categoria) ?></span>
                     <p class="text-warning">⭐ 4,9 <span class="verde_claro">(229)</span></p>
+                    <form method="post" action="" style="display:inline;">
+                        <input type="hidden" name="id_anuncio_favorito" value="<?= htmlspecialchars($id_anuncio) ?>">
+                        <button type="submit" name="toggle_favorito" style="border: none; background: none; cursor: pointer;">
+                            ❤️ <!-- ou ícone -->
+                        </button>
+                        <?php if (isset($mensagem_favorito)): ?>
+                            <div class="alert alert-info"><?= $mensagem_favorito ?></div>
+                        <?php endif; ?>
+                    </form>
                 </div>
                 <div class="col-6 text-end">
                     <p class="fs-2 fw-bold verde_escuro"><?= number_format($preco, 2, ',', '.') ?>€ <span>/<?= htmlspecialchars($medida_abr) ?></span></p>

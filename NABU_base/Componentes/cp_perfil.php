@@ -84,7 +84,7 @@ mysqli_close($link);
                     Definições
                 </a>
                 <?php if (isset($_SESSION['id_user'])) { ?>
-                <a href="" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
+                <a href="../Paginas/favoritos.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
                     <img src="../Imagens/icons/favorite_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
                     Favoritos
                 </a>
