@@ -11,7 +11,7 @@
             mysqli_stmt_bind_result($stmt_categorias, $id_categoria, $nome_categoria);
 
             while (mysqli_stmt_fetch($stmt_categorias)) {
-                echo '<a href="cp_pesquisacategoria.php?id_categoria=' . $id_categoria . '" class="categoria-item fs-6 text-decoration-none me-3 verde_escuro">'
+                echo '<a href="../cp_pesquisacategoria.php?id_categoria=' . $id_categoria . '" class="categoria-item fs-6 text-decoration-none me-3 verde_escuro">'
                     . htmlspecialchars($nome_categoria) . '</a>';
             }
 
