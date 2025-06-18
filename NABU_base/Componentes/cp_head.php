@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../CSS/meus_estilos.css?v=1.4" rel="stylesheet" />
+    <link href="../CSS/meus_estilos.css?v=1.5" rel="stylesheet" />
 
     <!-- Favicon -->
     <link rel="icon" href="../LOGO_ICO/favicon-32x32.png" type="image/x-icon">

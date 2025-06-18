@@ -26,8 +26,8 @@ mysqli_stmt_execute($stmt);
 mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $capa, $nome_categoria);
 ?>
 
-<section class="sec-favoritos py-5">
-    <div class="container px-lg-5">
+<section class="sec-favoritos body_index">
+    <div class="px-lg-5">
         <h1 class="mb-4 text-center verde_escuro">Meus Favoritos</h1>
         <div class="row g-3">
             <?php
@@ -44,7 +44,9 @@ mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $capa, $nome_
                                 </span>
                             </div>
                             <div class="imagem_card_pesquisa">
-                                <img src="../Imagens/produtos/<?= htmlspecialchars($capa) ?>" class="card-img-top rounded-4 img_hp_card" alt="<?= htmlspecialchars($nome_produto) ?>">
+                                <!--<img src="../Imagens/produtos/<?= htmlspecialchars($capa) ?>" class="card-img-top rounded-4 img_hp_card" alt="<?= htmlspecialchars($nome_produto) ?>">-->
+                                <img src="../Imagens/produtos/alface.jpg" alt="<?= htmlspecialchars($nome_produto) ?>" class="img-fluid w-100" />
+
                             </div>
                             <div class="card-body m-2 pt-2 px-2 pb-0">
                                 <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">
