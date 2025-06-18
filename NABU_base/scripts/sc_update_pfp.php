@@ -1,109 +1,141 @@
 <?php
 session_start();
-require_once '../Connections/connection.php';
+require_once '../connections/connection.php';
 
 if (!isset($_SESSION['id_user'])) {
     header("Location: ../Paginas/login.php");
-    exit();
+    exit;
 }
 
-$id_user = $_SESSION['id_user'];
+function redimensionarECortarImagem($arquivo_origem, $arquivo_destino, $largura_desejada, $altura_desejada) {
+    list($largura_orig, $altura_orig, $tipo) = getimagesize($arquivo_origem);
 
-// Redimensiona imagem
-function redimensionarImagem($sourcePath, $destPath, $largura = 200, $altura = 200) {
-    list($origWidth, $origHeight, $type) = getimagesize($sourcePath);
-
-    switch ($type) {
+    switch ($tipo) {
         case IMAGETYPE_JPEG:
-            $image = imagecreatefromjpeg($sourcePath);
+            $img_orig = imagecreatefromjpeg($arquivo_origem);
             break;
         case IMAGETYPE_PNG:
-            $image = imagecreatefrompng($sourcePath);
+            $img_orig = imagecreatefrompng($arquivo_origem);
             break;
         case IMAGETYPE_GIF:
-            $image = imagecreatefromgif($sourcePath);
+            $img_orig = imagecreatefromgif($arquivo_origem);
             break;
         default:
-            return false;
+            return false; // formato não suportado
     }
 
-    $resized = imagecreatetruecolor($largura, $altura);
+    $proporcao_orig = $largura_orig / $altura_orig;
+    $proporcao_desejada = $largura_desejada / $altura_desejada;
 
-    if ($type == IMAGETYPE_PNG || $type == IMAGETYPE_GIF) {
-        imagecolortransparent($resized, imagecolorallocatealpha($resized, 0, 0, 0, 127));
-        imagealphablending($resized, false);
-        imagesavealpha($resized, true);
+    if ($proporcao_orig > $proporcao_desejada) {
+        $nova_altura = $altura_desejada;
+        $nova_largura = (int)($altura_desejada * $proporcao_orig);
+    } else {
+        $nova_largura = $largura_desejada;
+        $nova_altura = (int)($largura_desejada / $proporcao_orig);
     }
 
-    imagecopyresampled($resized, $image, 0, 0, 0, 0, $largura, $altura, $origWidth, $origHeight);
+    $img_redimensionada = imagecreatetruecolor($nova_largura, $nova_altura);
 
-    switch ($type) {
+    if ($tipo == IMAGETYPE_PNG || $tipo == IMAGETYPE_GIF) {
+        imagecolortransparent($img_redimensionada, imagecolorallocatealpha($img_redimensionada, 0, 0, 0, 127));
+        imagealphablending($img_redimensionada, false);
+        imagesavealpha($img_redimensionada, true);
+    }
+
+    imagecopyresampled($img_redimensionada, $img_orig, 0, 0, 0, 0, $nova_largura, $nova_altura, $largura_orig, $altura_orig);
+
+    $x_corte = ($nova_largura - $largura_desejada) / 2;
+    $y_corte = ($nova_altura - $altura_desejada) / 2;
+
+    $img_final = imagecreatetruecolor($largura_desejada, $altura_desejada);
+
+    if ($tipo == IMAGETYPE_PNG || $tipo == IMAGETYPE_GIF) {
+        imagecolortransparent($img_final, imagecolorallocatealpha($img_final, 0, 0, 0, 127));
+        imagealphablending($img_final, false);
+        imagesavealpha($img_final, true);
+    }
+
+    imagecopy($img_final, $img_redimensionada, 0, 0, $x_corte, $y_corte, $largura_desejada, $altura_desejada);
+
+    switch ($tipo) {
         case IMAGETYPE_JPEG:
-            imagejpeg($resized, $destPath);
+            imagejpeg($img_final, $arquivo_destino, 90);
             break;
         case IMAGETYPE_PNG:
-            imagepng($resized, $destPath);
+            imagepng($img_final, $arquivo_destino);
             break;
         case IMAGETYPE_GIF:
-            imagegif($resized, $destPath);
+            imagegif($img_final, $arquivo_destino);
             break;
     }
 
-    imagedestroy($image);
-    imagedestroy($resized);
+    imagedestroy($img_orig);
+    imagedestroy($img_redimensionada);
+    imagedestroy($img_final);
+
     return true;
 }
 
-if (isset($_FILES['pfp']) && $_FILES['pfp']['error'] === UPLOAD_ERR_OK) {
-    $fileTmpPath = $_FILES['pfp']['tmp_name'];
-    $fileName = $_FILES['pfp']['name'];
-    $fileSize = $_FILES['pfp']['size'];
-    $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-    $allowedExts = array('jpg', 'jpeg', 'png', 'gif');
+// Processo do upload
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['pfp']) && $_FILES['pfp']['error'] === UPLOAD_ERR_OK) {
+    $id_user = $_SESSION['id_user'];
 
-    if (!in_array($fileExt, $allowedExts)) {
-        header("Location: ../Paginas/perfil_details.php?id_erro=2");
-        exit();
+    $arquivo_tmp = $_FILES['pfp']['tmp_name'];
+    $nome_arquivo = $_FILES['pfp']['name'];
+    $tamanho_arquivo = $_FILES['pfp']['size'];
+    $tipo_arquivo = $_FILES['pfp']['type'];
+
+    // Extensões permitidas
+    $ext_permitidas = array('jpg', 'jpeg', 'png', 'gif');
+    $ext_arquivo = strtolower(pathinfo($nome_arquivo, PATHINFO_EXTENSION));
+
+    // Verificar extensão
+    if (!in_array($ext_arquivo, $ext_permitidas)) {
+        header("Location: ../Paginas/perfil.php?id_erro=2");
+        exit;
     }
 
-    if ($fileSize > 5 * 1024 * 1024) {
-        header("Location: ../Paginas/perfil_details.php?id_erro=3");
-        exit();
+    // Verificar tamanho (máx 5MB)
+    if ($tamanho_arquivo > 5 * 1024 * 1024) {
+        header("Location: ../Paginas/perfil.php?id_erro=3");
+        exit;
     }
 
-    $newFileName = 'pfp_' . $id_user . '.' . $fileExt;
-    $uploadDir = '../uploads/pfp/';
-    $destPath = $uploadDir . $newFileName;
+    $novo_nome = 'pfp_user_'.$id_user.'.'.$ext_arquivo;
+    $destino = '../uploads/pfp/' . $novo_nome;
 
-    if (!file_exists($uploadDir)) {
-        mkdir($uploadDir, 0755, true);
+    // Redimensionar e cortar a imagem
+    if (!redimensionarECortarImagem($arquivo_tmp, $destino, 200, 200)) {
+        header("Location: ../Paginas/perfil.php?id_erro=5");
+        exit;
     }
 
-    if (redimensionarImagem($fileTmpPath, $destPath)) {
-        $link = new_db_connection();
-        $stmt = mysqli_stmt_init($link);
+    // Atualizar BD
+    $link = new_db_connection();
+    $stmt = mysqli_stmt_init($link);
+    $query = "UPDATE users SET pfp = ? WHERE id_user = ?";
 
-        $relativePath = 'uploads/pfp/' . $newFileName;
-
-        $query = "UPDATE users SET pfp = ? WHERE id_user = ?";
-        if (mysqli_stmt_prepare($stmt, $query)) {
-            mysqli_stmt_bind_param($stmt, 'si', $relativePath, $id_user);
-            if (mysqli_stmt_execute($stmt)) {
-                header("Location: ../Paginas/perfil_details.php?success=1");
-                exit();
-            } else {
-                header("Location: ../Paginas/perfil_details.php?id_erro=4");
-                exit();
-            }
+    if (mysqli_stmt_prepare($stmt, $query)) {
+        mysqli_stmt_bind_param($stmt, 'si', $novo_nome, $id_user);
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_close($stmt);
+            mysqli_close($link);
+            header("Location: ../Paginas/perfil.php?success=1");
+            exit;
+        } else {
+            mysqli_stmt_close($stmt);
+            mysqli_close($link);
+            header("Location: ../Paginas/perfil.php?id_erro=4");
+            exit;
         }
-        mysqli_stmt_close($stmt);
-        mysqli_close($link);
     } else {
-        header("Location: ../Paginas/perfil_details.php?id_erro=5");
-        exit();
+        mysqli_close($link);
+        header("Location: ../Paginas/perfil.php?id_erro=4");
+        exit;
     }
+
 } else {
-    header("Location: ../Paginas/perfil_details.php?id_erro=1");
-    exit();
+    header("Location: ../Paginas/perfil.php?id_erro=1");
+    exit;
 }
-?>
