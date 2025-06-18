@@ -76,9 +76,9 @@ $link = new_db_connection();
                 </div>
                 <?php
             }
-            mysqli_stmt_close($stmt);
+
         }
-        mysqli_close($link);
+
         ?>
     </div>
 

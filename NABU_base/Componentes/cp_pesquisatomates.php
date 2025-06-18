@@ -5,6 +5,8 @@ if (isset($_POST['pesquisa'])) {
     // Conexão à base de dados
     require_once '../Connections/connection.php';
     $link = new_db_connection();
+    $stmt = mysqli_stmt_init($link);
+
 
     ?>
 
@@ -23,7 +25,7 @@ if (isset($_POST['pesquisa'])) {
                 $query = "SELECT nome_produto, preco, id_anuncio FROM anuncios WHERE nome_produto LIKE CONCAT('%', ?, '%')";
 
                 if (mysqli_stmt_prepare($stmt, $query)) {
-                    mysqli_stmt_bind_param($stmt, "s", $pesquisa);
+                    mysqli_stmt_bind_param($stmt, "s", $pesquisa );
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_bind_result($stmt, $nome, $preco, $id_anuncio);
 
@@ -57,9 +59,7 @@ if (isset($_POST['pesquisa'])) {
                         </div>
                         <?php
                     }
-                    mysqli_stmt_close($stmt);
                 }
-                mysqli_close($link);
                 ?>
             </div>
         </div>
