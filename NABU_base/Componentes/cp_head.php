@@ -10,6 +10,7 @@
 
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
     <!-- Google fonts-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
@@ -22,12 +23,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../CSS/meus_estilos.css?v=1.2" rel="stylesheet" />
+    <link href="../CSS/meus_estilos.css?v=1.4" rel="stylesheet" />
 
     <!-- Favicon -->
     <link rel="icon" href="../LOGO_ICO/favicon-32x32.png" type="image/x-icon">
 
 </head>
-<body class="corpo container">
+<?php
+    $bodyClass = isset($bodyClass) ? $bodyClass : 'container';
+?>
+<body class="corpo <?= $bodyClass ?> <?php echo basename($_SERVER['PHP_SELF'], ".php"); ?>">
 <!-- O conteúdo da página vai aqui -->
 

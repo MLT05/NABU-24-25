@@ -20,7 +20,7 @@
                         <!-- Texto -->
                         <div class="col-6 d-flex align-items-center">
                             <div class="card-body p-2">
-                                <h4 class="card-title mb-1 verde_escuro pb-2">tomates /kg</h4>
+                                <h4 class="card-title fw-bold mb-1 verde_escuro pb-2">Tomates /kg</h4>
                                 <h5 class="card-text mb-0"><small class="text-muted">Estado: em espera</small></h5>
                             </div>
                         </div>
