@@ -5,27 +5,21 @@ if (isset($_POST['pesquisa'])) {
     // Conexão à base de dados
     require_once '../Connections/connection.php';
     $link = new_db_connection();
-    $stmt = mysqli_stmt_init($link);
-
-
     ?>
 
     <main class="body_index">
         <div class="mt-3">
 
             <?php require_once '../Componentes/cp_intro_pesquisa.php'; ?>
-
             <?php require_once '../Componentes/cp_intro_categorias.php'; ?>
 
-
             <div class="row g-3">
-
                 <?php
-
                 $query = "SELECT nome_produto, preco, id_anuncio FROM anuncios WHERE nome_produto LIKE CONCAT('%', ?, '%')";
 
+                $stmt = mysqli_stmt_init($link);
                 if (mysqli_stmt_prepare($stmt, $query)) {
-                    mysqli_stmt_bind_param($stmt, "s", $pesquisa );
+                    mysqli_stmt_bind_param($stmt, "s", $pesquisa);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_bind_result($stmt, $nome, $preco, $id_anuncio);
 
@@ -59,7 +53,12 @@ if (isset($_POST['pesquisa'])) {
                         </div>
                         <?php
                     }
+                    mysqli_stmt_close($stmt);
+                } else {
+                    echo "<p>Erro na pesquisa.</p>";
                 }
+
+                mysqli_close($link);
                 ?>
             </div>
         </div>
