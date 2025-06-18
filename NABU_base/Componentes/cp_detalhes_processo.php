@@ -7,7 +7,7 @@
 
             <?php
              //Ligação á base de dados
-            include_once '.\Connections\connectionDB.php';
+            include_once '.\Connections\connection.php';
             if (isset($_GET['id'])) {
                     $id = $_GET['id'];
                     $link = new_db_connections(); $stmt = mysqli_stmt_init($link);

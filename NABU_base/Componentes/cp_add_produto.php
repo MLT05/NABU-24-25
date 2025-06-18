@@ -1,6 +1,6 @@
 <main class="body_index">
 
-    <form method="post" enctype="multipart/form-data" action="../scripts/sc_cp_venda.php">
+    <form method="post" enctype="multipart/form-data" action="../scripts/sc_add_produto.php">
         <div>
             <h5 class="fw-bold fs-3 verde_escuro mb-0">Criar novo anúncio</h5>
             <p class="verde_escuro">Insere todos os detalhes sobre o teu produto</p>
@@ -32,7 +32,7 @@
                 <label for="categoria" class="form-label fw-semibold verde_escuro">Categorias*</label>
                 <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="categoria" name="categoria" required>
                     <?php
-                    require_once '../Connections/connectionDB.php';
+                    require_once '../Connections/connection.php';
                     $link = new_db_connection();
 
                     $stmt = mysqli_stmt_init($link);
@@ -78,3 +78,20 @@
             <div class="mb-3">
                 <label for="email" class="form-label fw-bold verde_escuro">Email*</label>
                 <input type="email" class="form-control bg-success bg-opacity-25"
+            </div>
+
+            <!-- Contacto Telefónico -->
+            <div class="mb-4">
+                <label for="telefone" class="form-label fw-bold verde_escuro">Contacto telefónico*</label>
+                <input type="tel" class="form-control bg-success bg-opacity-25" id="telefone" name="telefone" required>
+            </div>
+
+            <!-- Botões -->
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-publicar w-100 me-2">Publicar</button>
+                <button type="reset" class="btn btn-descartar w-100 ms-2">Descartar</button>
+            </div>
+        </div>
+    </form>
+
+</main
