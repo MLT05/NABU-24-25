@@ -1,9 +1,9 @@
 <m?php require_once "..\Componentes\cp_head.php" ; ?>
 
-    <main class"body-index">
+    <main class="body_index">
         <h2 class=\"text-center\">Política de Privacidade da NABU</h2>
 
-        ><p>
+        <p>
 
             Última atualização: 18/06/2025
 
@@ -20,12 +20,14 @@
             Contactos:
 
             Câmara Municipal da Lousã
-            📍 Praça Sá Carneiro, 3200-909 Lousã
-            📧 [inserir e-mail de contacto de privacidade]
-            📞 [inserir número de telefone]
-        </p>
+            <li class="li_priv">📍 Praça Sá Carneiro, 3200-909 Lousã</li>
+            <li class="li_priv"> 📧 geral@cm-lousa.pt </li>
+            <li class="li_priv">📞 239 990 370</li>
 
+        </p>
+        <br>
         <h3>2. Que Dados Pessoais Recolhemos </h3>
+        <br>
         <p>
             Podemos recolher e tratar os seguintes dados pessoais dos utilizadores:
 
@@ -39,8 +41,9 @@
 
             Cookies e tecnologias semelhantes (ver ponto 6).
         </p>
-
+        <br>
         <h3>3. Finalidades e Fundamentos Legais do Tratamento</h3>
+        <br>
         Os dados recolhidos são tratados para as seguintes finalidades:
         <p>
             Finalidade Fundamento jurídico
@@ -51,6 +54,7 @@
             Melhoria da experiência na plataforma Interesse legítimo
             Segurança e prevenção de fraude Interesse legítimo
         </p>
+        <br>
         <h3>4. Conservação dos Dados</h3>
         <br>
         <p>
@@ -58,7 +62,7 @@
             para as quais foram recolhidos, ou pelo período exigido por lei. Após esse prazo, os dados serão eliminados
             ou anonimizados.
         </p>
-
+        <br>
         <h3>5. Partilha de Dados Pessoais</h3>
         <br>
         Os seus dados poderão ser partilhados com:
@@ -71,14 +75,14 @@
         Autoridades competentes, quando exigido por lei ou ordem judicial.
 
         Os dados nunca serão vendidos ou partilhados com terceiros para fins comerciais.
-
+        <br>
         <h3>6. Cookies e Tecnologias Semelhantes</h3>
         <br>
         Utilizamos cookies para melhorar a navegação, analisar o desempenho da aplicação e personalizar
         funcionalidades. Pode configurar o seu navegador para recusar ou gerir cookies.
 
         Para mais informações, consulte a nossa Política de Cookies [hiperligação, se aplicável].
-
+        <br>
         <h3>7. Os Seus Direitos ao Abrigo do RGPD </h3>
         <br>
         Nos termos do RGPD, tem os seguintes direitos enquanto titular dos dados:
@@ -101,26 +105,27 @@
 
         Para exercer qualquer destes direitos, entre em contacto connosco através do e-mail [inserir e-mail de
         privacidade].
-
+        <br>
         <h3> 8. Segurança dos Dados</h3>
         <br>
         Adotámos medidas técnicas e organizativas adequadas para garantir a segurança, confidencialidade e
         integridade dos dados pessoais, prevenindo acessos não autorizados, divulgação, perda ou destruição
         acidental.
-
+        <br>
         <h3>9. Alterações a Esta Política de Privacidade</h3>
         <br>
         Reservamo-nos o direito de atualizar esta Política de Privacidade sempre que necessário. Qualquer alteração
         será comunicada através da plataforma ou por e-mail. A versão atualizada estará sempre disponível na
         aplicação.
-
+        <br>
         <h3>10. Contactos para Questões de Privacidade</h3>
+        <br>
         <p>
             Se tiver dúvidas ou preocupações relacionadas com esta política ou com o tratamento dos seus dados,
             contacte-nos:
             <br>
-            📧 [inserir e-mail de privacidade]
-            📍 Câmara Municipal da Lousã – Praça Sá Carneiro, 3200-909 Lousã
-            📞 [inserir número de contacto]
+            <li class="li_priv">📧 [inserir e-mail de privacidade]</li>
+            <li class="li_priv">📍 Câmara Municipal da Lousã – Praça Sá Carneiro, 3200-909 Lousã</li>
+            <li class="li_priv">📞 [inserir número de contacto]</li>
         </p>
     </main>
