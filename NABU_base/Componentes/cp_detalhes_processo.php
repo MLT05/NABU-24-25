@@ -12,7 +12,7 @@
                     $id = $_GET['id'];
                     $link = new_db_connections(); $stmt = mysqli_stmt_init($link);
 
-    $query = "SELECT produtos.produtos,  , url_trailer, url_imdb FROM filmes INNER JOIN generos ON generos.id_generos = filmes.ref_generos WHERE id_filmes = ?";
+    $query = "SELECT id_produtos.produtos,  , url_trailer, url_imdb FROM produtos INNER JOIN generos ON generos.id_generos = filmes.ref_generos WHERE id_filmes = ?";
             } else {
                 // Se não houver ID, redireciona para a página de erro ou lista
                 header("Location: error_page.php");
