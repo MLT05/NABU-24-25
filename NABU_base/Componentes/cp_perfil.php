@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once '../connections/connection.php';
 
 if (!isset($_SESSION['id_user'])) {
@@ -43,7 +43,7 @@ mysqli_close($link);
 <main class="body_index">
 
     <div class="text-center mb-4">
-        <img src="../Imagens/pfp/<?php echo htmlspecialchars($capa); ?>" alt="Foto de perfil" class="rounded-circle border border-success imagempfp" style="object-fit: cover;">
+        <img src="../uploads/pfp/<?php echo htmlspecialchars($capa); ?>" alt="Foto de perfil" class="rounded-circle border border-success imagempfp" style="object-fit: cover;">
         <h2 class="mt-2 verde_escuro"><?php echo htmlspecialchars($nome); ?></h2>
     </div>
 

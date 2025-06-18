@@ -97,6 +97,9 @@ footer a {
 
 }
 
+.mb-13 {
+    margin-bottom: 13vh;
+}
 
 
 .footer-menu {
@@ -427,6 +430,20 @@ footer a {
     margin: 0;
     height: 1px;
     background-color: #AAC0AA;
+}
+
+.caixa-imagem {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* ou 4 / 3, 1 / 1, etc */
+    overflow: hidden;
+    margin-top: 8vh;
+}
+
+.caixa-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .imagem_card_pesquisa {

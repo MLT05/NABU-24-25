@@ -45,13 +45,13 @@ mysqli_close($link);
 ?>
 
 
-<div class="w-100">
+<div class="w-100 caixa-imagem">
     <!-- <img src="../Imagens/produtos/<?= htmlspecialchars($capa) ?>" alt="<?= htmlspecialchars($nome_produto) ?>" class="img-fluid w-100" /> -->
-    NABU-24-25/NABU_base/
-    <img src="../Imagens/produtos/alface.jpg" alt="<?= htmlspecialchars($nome_produto) ?>" class="img-fluid w-100" />
+    <img src="../Imagens/produtos/alface.jpg" alt="<?= htmlspecialchars($nome_produto) ?>" class="w-100"
+         style="max-height: 100vh; object-fit: cover;" />
 </div>
 
-<main class="container">
+<main class="container mb-13">
     <div class="mx-2">
         <h3 class="verde_escuro fw-bold my-3 fs-1"><?= htmlspecialchars($nome_produto) ?></h3>
         <p class="verde"><?= htmlspecialchars($nome_user) ?></p>
@@ -66,9 +66,6 @@ mysqli_close($link);
                         <button type="submit" name="toggle_favorito" style="border: none; background: none; cursor: pointer;">
                             ❤️ <!-- ou ícone -->
                         </button>
-                        <?php if (isset($mensagem_favorito)): ?>
-                            <div class="alert alert-info"><?= $mensagem_favorito ?></div>
-                        <?php endif; ?>
                     </form>
                 </div>
                 <div class="col-6 text-end">
