@@ -9,7 +9,7 @@ if (!$link) {
 
 // Verifica se o utilizador está autenticado e tem role = 1
 if (!isset($_SESSION['user']) || $_SESSION["role"] != 1) {
-    header("Location: ../Paginas/login.php");
+    header("Location: ../Paginas/produto.php");
     exit;
 }
 
