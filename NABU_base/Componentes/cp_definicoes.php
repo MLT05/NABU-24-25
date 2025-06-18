@@ -103,7 +103,7 @@
     <div class="card border-0 shadow-sm ">
         <div class="list-group  list-group-flush">
 
-            <a href="#"
+            <a href="../Paginas/privacidade_def.php"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
 
                 Definições de Privacidade
