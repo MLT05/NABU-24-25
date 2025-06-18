@@ -51,7 +51,8 @@
                     <span class="material-icons" id="iconPassword">visibility</span>
                 </button>
             </div>
-            <button type="submit" class="btn verde_bg rounded w-100 fw-bold text-white py-3 fs-5 mt-5">ENTRAR</button>
+            <p class="text-center">Ainda não tem conta? <a href="../Paginas/signup.php">Registar</a></p>
+            <button type="submit" class="btn verde_bg rounded w-75 fw-bold text-white py-2 fs-5 mt-5 d-block mx-auto">ENTRAR</button>
 
         </form>
     </div>

@@ -58,7 +58,8 @@
             <div class="mb-4">
                 <input type="password" class="form-control rounded cinza_bg border-0 ps-3 py-2" name="password" placeholder="Palavra-passe" required>
             </div>
-            <button type="submit" class="btn verde_bg rounded w-100 fw-bold text-white py-3 fs-5 mt-5">CRIAR CONTA</button>
+            <p class="text-center">já tem conta? <a href="../Paginas/login.php">Entrar</a></p>
+            <button type="submit" class="btn verde_bg rounded w-75 fw-bold text-white py-2 fs-5 mt-5 d-block mx-auto">CRIAR CONTA</button>
         </form>
     </div>
 </main>
