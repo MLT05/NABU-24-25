@@ -44,21 +44,21 @@
         <!-- Formulário -->
         <form action="../scripts/sc_signup.php" method="post" class="needs-validation" novalidate>
             <div class="mb-3">
-                <input type="text" class="form-control rounded-pill cinza_bg border-0 ps-3 py-2" name="nome" placeholder="Nome" required>
+                <input type="text" class="form-control rounded cinza_bg border-0 ps-3 py-2" name="nome" placeholder="Nome" required>
             </div>
             <div class="mb-3">
-                <input type="email" class="form-control rounded-pill cinza_bg border-0 ps-3 py-2" name="email" placeholder="E-mail" required>
+                <input type="email" class="form-control rounded cinza_bg border-0 ps-3 py-2" name="email" placeholder="E-mail" required>
             </div>
             <div class="mb-3">
-                <input type="number" class="form-control rounded-pill cinza_bg border-0 ps-3 py-2" name="contacto" placeholder="Contacto" required>
+                <input type="number" class="form-control rounded cinza_bg border-0 ps-3 py-2" name="contacto" placeholder="Contacto" required>
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control rounded-pill cinza_bg border-0 ps-3 py-2" name="login" placeholder="Login" required>
+                <input type="text" class="form-control rounded cinza_bg border-0 ps-3 py-2" name="login" placeholder="Login" required>
             </div>
             <div class="mb-4">
-                <input type="password" class="form-control rounded-pill cinza_bg border-0 ps-3 py-2" name="password" placeholder="Palavra-passe" required>
+                <input type="password" class="form-control rounded cinza_bg border-0 ps-3 py-2" name="password" placeholder="Palavra-passe" required>
             </div>
-            <button type="submit" class="btn verde_bg rounded-pill w-100 fw-bold text-white py-3 fs-5 mt-5">CRIAR CONTA</button>
+            <button type="submit" class="btn verde_bg rounded w-100 fw-bold text-white py-3 fs-5 mt-5">CRIAR CONTA</button>
         </form>
     </div>
 </main>
