@@ -24,7 +24,7 @@
 
 
             if (isset($_SESSION['id_user'])) {
-                require_once '../connections/connection.php';
+                require_once '../Connections/connection.php';
                 $link = new_db_connection();
                 $stmt = mysqli_stmt_init($link);
                 $query = "SELECT pfp FROM users WHERE id_user = ?";
