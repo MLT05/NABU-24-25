@@ -78,3 +78,4 @@
             <div class="mb-3">
                 <label for="email" class="form-label fw-bold verde_escuro">Email*</label>
                 <input type="email" class="form-control bg-success bg-opacity-25"
+            </div>
