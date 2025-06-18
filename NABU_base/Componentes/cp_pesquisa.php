@@ -66,7 +66,7 @@ $link = new_db_connection();
                             <div class="card-body m-2 pt-0 pb-2 px-2">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <small class="verde_escuro fw-bolder fs-5">
-                                        <i class="bi bi-star-fill"></i> <?php echo number_format($avaliacao, 1); ?>
+                                        <i class="bi bi-star-fill"></i>
                                     </small>
                                     <small class="fw-bolder verde_escuro fs-5"><?php echo number_format($preco, 2); ?> €</small>
                                 </div>
