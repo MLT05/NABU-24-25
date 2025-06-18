@@ -1,5 +1,4 @@
 <main class="body_index">
-
     <form method="post" enctype="multipart/form-data" action="../scripts/sc_add_produto.php">
         <div>
             <h5 class="fw-bold fs-3 verde_escuro mb-0">Criar novo anúncio</h5>
@@ -36,8 +35,7 @@
                     $link = new_db_connection();
 
                     $stmt = mysqli_stmt_init($link);
-                    $query = "SELECT id_categoria, nome_categoria FROM categorias ORDER BY nome_categoria ASC";
-
+                    $query = "SELECT id_categoria, nome_categoria FROM categorias WHERE id_categoria >= 0 ORDER BY nome_categoria ASC";
                     if (mysqli_stmt_prepare($stmt, $query)) {
                         if (mysqli_stmt_execute($stmt)) {
                             mysqli_stmt_bind_result($stmt, $id_categoria, $nome_categoria);
@@ -77,5 +75,20 @@
             <!-- Email -->
             <div class="mb-3">
                 <label for="email" class="form-label fw-bold verde_escuro">Email*</label>
-                <input type="email" class="form-control bg-success bg-opacity-25"
+                <input type="email" class="form-control bg-success bg-opacity-25" id="email" name="email" required>
             </div>
+
+            <!-- Contacto Telefónico -->
+            <div class="mb-4">
+                <label for="telefone" class="form-label fw-bold verde_escuro">Contacto telefónico*</label>
+                <input type="tel" class="form-control bg-success bg-opacity-25" id="telefone" name="telefone" required>
+            </div>
+
+            <!-- Botões -->
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-publicar w-100 me-2">Publicar</button>
+                <button type="reset" class="btn btn-descartar w-100 ms-2">Descartar</button>
+            </div>
+        </div>
+    </form>
+</main>

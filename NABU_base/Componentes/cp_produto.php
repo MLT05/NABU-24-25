@@ -1,45 +1,83 @@
-<div class="w-100">
-    <img src="../Imagens/produtos/tomates.svg" alt="Tomates Cacho" class="img-fluid w-100">
+<?php
+session_start();
+require_once '../Connections/connection.php';
 
+if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
+    echo "produto not found";
+}
+
+$id_anuncio = (int)$_GET['id'];
+$link = new_db_connection();
+
+$stmt = mysqli_stmt_init($link);
+
+$query = "SELECT a.nome_produto, a.descricao, a.preco, c.nome_categoria, u.nome, a.localizacao, a.capa, a.data_insercao, m.descricao AS medida_desc, m.abreviatura 
+          FROM anuncios a
+          INNER JOIN categorias c ON a.ref_categoria = c.id_categoria
+          INNER JOIN users u ON a.ref_user = u.id_user
+          INNER JOIN medidas m ON a.ref_medida = m.id_medida
+          WHERE a.id_anuncio = ?";
+
+if (!mysqli_stmt_prepare($stmt, $query)) {
+    echo "Erro na preparação da query.";
+    exit;
+}
+
+mysqli_stmt_bind_param($stmt, "i", $id_anuncio);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $nome_produto, $descricao, $preco, $nome_categoria, $nome_user, $localizacao, $capa, $data_insercao, $medida_desc, $medida_abr);
+$existe = mysqli_stmt_fetch($stmt);
+
+if (!$existe) {
+    mysqli_stmt_close($stmt);
+    mysqli_close($link);
+    echo "<p>Produto não encontrado.</p>";
+    exit;
+}
+mysqli_stmt_close($stmt);
+mysqli_close($link);
+?>
+
+
+<div class="w-100">
+    <img src="../Imagens/produtos/<?= htmlspecialchars($capa) ?>" alt="<?= htmlspecialchars($nome_produto) ?>" class="img-fluid w-100" />
 </div>
+
 <main class="container">
     <div class="mx-2">
-        <h3 class="verde_escuro fw-bold my-3 fs-1">Tomates - Cacho</h3>
-        <p class=" verde">Rosa Silva</p>
+        <h3 class="verde_escuro fw-bold my-3 fs-1"><?= htmlspecialchars($nome_produto) ?></h3>
+        <p class="verde"><?= htmlspecialchars($nome_user) ?></p>
 
         <div>
             <div class="row">
                 <div class="col-6">
-                    <span class="etiqueta">Fruta</span>
+                    <span class="etiqueta"><?= htmlspecialchars($nome_categoria) ?></span>
                     <p class="text-warning">⭐ 4,9 <span class="verde_claro">(229)</span></p>
                 </div>
                 <div class="col-6 text-end">
-                    <p class="fs-2 fw-bold verde_escuro">1,00€ <span>/kg</span></p>
+                    <p class="fs-2 fw-bold verde_escuro"><?= number_format($preco, 2, ',', '.') ?>€ <span>/<?= htmlspecialchars($medida_abr) ?></span></p>
                 </div>
             </div>
         </div>
+
         <h2 class="verde_escuro fw-bold my-3 fs-4">Descrição do Produto</h2>
         <div>
-            <p class="descricao" id="descricao">
-                Tomates frescos, colhidos no próprio dia, diretamente da horta.
-                Produzidos de forma natural, sem recurso a agrotóxicos, preservando
-                todo o sabor e qualidade. Ideais para saladas, molhos ou para consumir ao natural.
-            </p>
+            <p class="descricao" id="descricao"><?= nl2br(htmlspecialchars($descricao)) ?></p>
             <button id="toggleDescricao" class="ver-mais-btn">Ver mais</button>
         </div>
 
-    <div>
-        <h3 class="verde_escuro fw-bold my-3 fs-4"> Quantidade desejada</h3>
-        <input type="number" id="quantidade" name="quantidade" class="input-quantidade rounded-3 p-3" placeholder="Ex: 1 kilo, 1 unidade...">
-    </div>
+        <div>
+            <h3 class="verde_escuro fw-bold my-3 fs-4">Quantidade desejada</h3>
+            <input type="number" id="quantidade" name="quantidade" class="input-quantidade rounded-3 p-3" placeholder="Ex: 1 kilo, 1 unidade..." min="1" />
+        </div>
 
-    <h3 class="verde_escuro fw-bold my-3 fs-4">Localização</h3>
-    <div class="d-flex">
-        <button class="nome_localizacao rounded fs-5 p-3 verde_escuro">
-            <img src="../Imagens/localizacao_simbolo.svg" alt="Localização" class="icone-localizacao" />
-            Quinta da fonte - Lousã
-        </button>
-    </div>
+        <h3 class="verde_escuro fw-bold my-3 fs-4">Localização</h3>
+        <div class="d-flex">
+            <button class="nome_localizacao rounded fs-5 p-3 verde_escuro">
+                <img src="../Imagens/localizacao_simbolo.svg" alt="Localização" class="icone-localizacao" />
+                <?= htmlspecialchars($localizacao) ?>
+            </button>
+        </div>
 
         <div class="d-flex">
             <button class="contactar me-1 fs-6 p-2 bg-white rounded" onclick="window.location.href='../Paginas/carrinho.php'">Carrinho</button>
@@ -50,6 +88,7 @@
         </div>
     </div>
 </main>
+
 <script>
     const botao = document.getElementById('toggleDescricao');
     const descricao = document.getElementById('descricao');
@@ -59,3 +98,4 @@
         botao.textContent = descricao.classList.contains('expandida') ? 'Ver menos' : 'Ver mais';
     });
 </script>
+
