@@ -570,3 +570,7 @@ footer a {
 .tituloLS {
     font-size: xx-large;
 }
+
+.li_priv{
+    list-style-type: none;
+}

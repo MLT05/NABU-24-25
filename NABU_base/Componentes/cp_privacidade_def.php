@@ -1,74 +1,131 @@
-<div class="container p-2">
-    <h2 class=\"text-center\">Política de Privacidade</h2>
-    <p>Esta página contém informações sobre como a NABU coleta, usa e protege suas informações pessoais.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ornare massa purus, a tempus magna dignissim a.
-        Sed molestie vel odio ac suscipit. Sed pharetra purus nec elit elementum, ac laoreet tellus sagittis. Fusce
-        nulla ligula, tristique eget feugiat feugiat, elementum ut metus. Proin convallis tortor enim, ut ultrices nisi
-        fermentum non. Sed sollicitudin aliquam lacus eget dictum. Morbi a gravida nunc. Duis turpis dui, accumsan non
-        lorem sit amet, gravida vehicula nisi.</p>
+<m?php require_once "..\Componentes\cp_head.php" ; ?>
 
-    <p>Vestibulum vulputate hendrerit purus, suscipit tempor felis facilisis ut. Donec condimentum turpis ac eros
-        vulputate hendrerit. Mauris rhoncus, neque vel fermentum finibus, dolor metus sollicitudin tortor, eu mollis
-        metus massa sit amet ligula. Nulla turpis metus, ullamcorper ut erat facilisis, hendrerit ultricies libero.
-        Aliquam vitae bibendum arcu. Mauris varius dolor id consequat ullamcorper. Orci varius natoque penatibus et
-        magnis dis parturient montes, nascetur ridiculus mus. Vestibulum imperdiet posuere nibh. Donec at aliquet
-        sapien, in consequat nulla. Quisque ut mauris maximus, ultrices nulla eget, consequat ex. Proin feugiat libero
-        tellus, eu mattis urna accumsan vitae. Donec dolor erat, facilisis non lacus id, tristique auctor justo. Aenean
-        vel rutrum nisi.</p>
+    <main class="body_index">
+        <h2 class=\"text-center\">Política de Privacidade da NABU</h2>
 
-    <p>Aenean ut rhoncus diam. In sit amet efficitur nibh. Nullam rutrum est cursus, vestibulum massa et, pharetra
-        magna. Donec eleifend tempus dolor, vel congue libero aliquam nec. Vivamus efficitur nisi sed magna volutpat,
-        sit amet tempus purus iaculis. Morbi dapibus elit diam, ac pretium tortor dapibus a. Nullam dictum dolor orci,
-        vel iaculis sem gravida eget. Suspendisse imperdiet vitae erat et accumsan. Ut laoreet accumsan elit, id aliquam
-        purus gravida ultrices.</p>
+        <p>
 
-    <p>Aliquam quis orci nec neque lobortis dignissim nec ac orci. Aliquam nulla sapien, placerat eu convallis ut,
-        aliquam et velit. Maecenas eu accumsan velit, sit amet iaculis mauris. Pellentesque vehicula dolor id
-        sollicitudin facilisis. Ut fringilla pretium dui, vulputate molestie velit consequat sit amet. Curabitur eget
-        elementum nulla. Suspendisse nibh neque, molestie eu placerat rutrum, faucibus commodo dolor. Duis non nulla
-        orci.</p>
+            Última atualização: 18/06/2025
 
-    <p>Curabitur maximus in ante ac vulputate. Nullam id neque nec dolor efficitur feugiat. Aenean tincidunt risus
-        dictum, pulvinar elit eu, lacinia nunc. Vivamus elementum, nulla at dictum ullamcorper, neque nulla venenatis
-        purus, sed bibendum ligula tellus sit amet orci. Morbi ultricies neque at lacus molestie suscipit. Donec
-        imperdiet laoreet urna non mattis. Nullam ut ex at neque aliquet gravida. Suspendisse et eros purus. Mauris a
-        eros eget turpis ultrices sagittis. Sed elementum dignissim felis, eu egestas quam. Integer sollicitudin urna ac
-        urna commodo maximus. Donec vehicula ultrices mi, vitae auctor ipsum. Class aptent taciti sociosqu ad litora
-        torquent per conubia nostra, per inceptos himenaeos. Ut viverra orci sem. Maecenas commodo metus eros, vitae
-        posuere velit porttitor non.</p>
+            A NABU valoriza a sua privacidade e compromete-se a proteger os seus dados pessoais, em conformidade com o
+            Regulamento (UE) 2016/679 do Parlamento Europeu e do Conselho, de 27 de abril de 2016 (Regulamento Geral
+            sobre a Proteção de Dados – RGPD). Esta Política de Privacidade explica como recolhemos, utilizamos,
+            partilhamos e protegemos os seus dados quando utiliza a nossa aplicação web de comércio agrícola.
 
-    <p>Proin venenatis fringilla leo sed dignissim. Nam imperdiet velit ex, vel pellentesque purus rutrum vitae.
-        Praesent viverra nisi ut purus maximus congue. Vivamus in purus quis libero consequat porttitor eget aliquam
-        nisi. Sed feugiat dapibus suscipit. Etiam ultrices odio at nibh iaculis, id posuere augue mollis. Etiam sodales
-        viverra tincidunt. Integer facilisis nulla vel libero blandit, sit amet auctor felis fermentum. Curabitur at
-        eleifend eros. Vivamus scelerisque metus ut euismod mattis. Sed euismod tincidunt tellus, aliquet euismod lacus
-        pretium at. Cras ultrices quam nisi. Nulla elit purus, consequat semper magna vitae, rutrum cursus metus.
-        Curabitur arcu justo, consequat non risus ac, porttitor blandit urna. Pellentesque et neque eu quam maximus
-        pretium et et nisi. Fusce eget sollicitudin tellus.</p>
+        <h3>1. Responsável pelo Tratamento dos Dados</h3>
+        <p>
+            A NABU é uma plataforma gerida em parceria com a Câmara Municipal da Lousã, que atua como responsável pelo
+            tratamento dos dados, nos termos do artigo 4.º, n.º 7 do RGPD.
 
-    <p>Duis accumsan augue id magna hendrerit, vitae ultricies ligula faucibus. Duis interdum, tortor lacinia tristique
-        euismod, magna tortor mattis nisl, eget pellentesque nisi turpis quis turpis. Phasellus sit amet imperdiet
-        tortor. Nullam rutrum suscipit nibh. Quisque mollis nisi in augue vehicula vulputate. Nunc dapibus pretium
-        vestibulum. Quisque sagittis ex in odio fermentum facilisis. Nulla facilisi. Vivamus dictum ac dui ut volutpat.
-        Ut ultrices nisl magna, et commodo enim vulputate in. Nulla ac metus nulla. Maecenas placerat vel tellus sed
-        commodo.</p>
+            Contactos:
 
-    <p>In lorem neque, dapibus sed vestibulum sit amet, congue in odio. Etiam tristique tempus orci, eleifend efficitur
-        purus facilisis et. Vivamus maximus eleifend augue vitae consequat. Pellentesque vel ex justo. Aenean
-        scelerisque nibh dictum, finibus orci a, convallis metus. Morbi efficitur bibendum placerat. Aliquam vulputate
-        sit amet urna ut consequat. Praesent nec quam a tortor aliquet iaculis vitae eu augue. Proin vel tempus nulla.
-        Fusce non porta lectus. In ut egestas dui. Quisque eleifend enim et consectetur efficitur. Phasellus varius
-        pretium tortor, et posuere libero lacinia sit amet.</p>
+            Câmara Municipal da Lousã
+            <li class="li_priv">📍 Praça Sá Carneiro, 3200-909 Lousã</li>
+            <li class="li_priv"> 📧 geral@cm-lousa.pt </li>
+            <li class="li_priv">📞 239 990 370</li>
 
-    <p>Pellentesque fringilla lacus tincidunt efficitur laoreet. Mauris lobortis nisl vel massa malesuada semper. Proin
-        pulvinar metus at mollis dignissim. Fusce ac finibus nunc. Nullam magna mauris, auctor eget commodo a, imperdiet
-        in purus. Vivamus vulputate ipsum non elit scelerisque, quis tincidunt lectus mattis. Nullam tempor varius
-        justo, sed tincidunt quam volutpat mattis. Aenean a bibendum justo. Ut sem ex, laoreet vel maximus quis,
-        pulvinar in diam. Ut quis tincidunt velit, non varius nisl. Cras a tincidunt risus. Suspendisse sed erat neque.
-        Nullam varius mattis magna ac efficitur.</p>
+        </p>
+        <br>
+        <h3>2. Que Dados Pessoais Recolhemos </h3>
+        <br>
+        <p>
+            Podemos recolher e tratar os seguintes dados pessoais dos utilizadores:
 
-    <p>Mauris quis lorem tempus, sollicitudin purus non, convallis urna. Ut eu ante sit amet erat pretium sagittis nec a
-        tellus. Nam vel laoreet dui, eget efficitur libero. Nam efficitur, quam at vehicula faucibus, nibh lectus
-        facilisis ligula, et suscipit mi dui ut sem. Mauris ac est ut velit tristique interdum pretium et massa. Fusce
-        dolor odio, commodo id vehicula a, sodales sollicitudin erat. Cras sed pellentesque tellus, id finibus lorem</p>
-</div>
+            Dados de registo: nome completo, endereço de e-mail, palavra-passe, contacto telefónico, morada, NIF (se
+            necessário para fins fiscais);
+
+            Dados de utilização: histórico de encomendas, produtos adicionados, mensagens trocadas com outros
+            utilizadores;
+
+            Dados técnicos: endereço IP, tipo de navegador, dispositivo utilizado, data e hora de acesso;
+
+            Cookies e tecnologias semelhantes (ver ponto 6).
+        </p>
+        <br>
+        <h3>3. Finalidades e Fundamentos Legais do Tratamento</h3>
+        <br>
+        Os dados recolhidos são tratados para as seguintes finalidades:
+        <p>
+            Finalidade Fundamento jurídico
+            Gestão da conta de utilizador Execução de contrato (Art. 6.º, n.º 1, al. b) do RGPD)
+            Processamento de encomendas Execução de contrato
+            Comunicação com utilizadores Interesse legítimo e/ou execução contratual
+            Cumprimento de obrigações legais e fiscais Obrigação legal (Art. 6.º, n.º 1, al. c))
+            Melhoria da experiência na plataforma Interesse legítimo
+            Segurança e prevenção de fraude Interesse legítimo
+        </p>
+        <br>
+        <h3>4. Conservação dos Dados</h3>
+        <br>
+        <p>
+            Os seus dados pessoais serão conservados apenas durante o período necessário para cumprir as finalidades
+            para as quais foram recolhidos, ou pelo período exigido por lei. Após esse prazo, os dados serão eliminados
+            ou anonimizados.
+        </p>
+        <br>
+        <h3>5. Partilha de Dados Pessoais</h3>
+        <br>
+        Os seus dados poderão ser partilhados com:
+
+        Câmara Municipal da Lousã, enquanto co-gestora da plataforma;
+
+        Fornecedores de serviços tecnológicos (por exemplo, servidores, serviços de segurança ou envio de
+        notificações), sujeitos a acordos de confidencialidade e proteção de dados;
+
+        Autoridades competentes, quando exigido por lei ou ordem judicial.
+
+        Os dados nunca serão vendidos ou partilhados com terceiros para fins comerciais.
+        <br>
+        <h3>6. Cookies e Tecnologias Semelhantes</h3>
+        <br>
+        Utilizamos cookies para melhorar a navegação, analisar o desempenho da aplicação e personalizar
+        funcionalidades. Pode configurar o seu navegador para recusar ou gerir cookies.
+
+        Para mais informações, consulte a nossa Política de Cookies [hiperligação, se aplicável].
+        <br>
+        <h3>7. Os Seus Direitos ao Abrigo do RGPD </h3>
+        <br>
+        Nos termos do RGPD, tem os seguintes direitos enquanto titular dos dados:
+
+        Direito de acesso aos dados que lhe dizem respeito;
+
+        Direito de retificação de dados inexatos ou incompletos;
+
+        Direito ao apagamento ("direito a ser esquecido");
+
+        Direito à limitação do tratamento, em certas circunstâncias;
+
+        Direito de oposição ao tratamento com base em interesses legítimos;
+
+        Direito à portabilidade dos dados, quando aplicável;
+
+        Direito de retirar o consentimento a qualquer momento, quando o tratamento for baseado em consentimento;
+
+        Direito de apresentar reclamação à Comissão Nacional de Proteção de Dados (CNPD).
+
+        Para exercer qualquer destes direitos, entre em contacto connosco através do e-mail [inserir e-mail de
+        privacidade].
+        <br>
+        <h3> 8. Segurança dos Dados</h3>
+        <br>
+        Adotámos medidas técnicas e organizativas adequadas para garantir a segurança, confidencialidade e
+        integridade dos dados pessoais, prevenindo acessos não autorizados, divulgação, perda ou destruição
+        acidental.
+        <br>
+        <h3>9. Alterações a Esta Política de Privacidade</h3>
+        <br>
+        Reservamo-nos o direito de atualizar esta Política de Privacidade sempre que necessário. Qualquer alteração
+        será comunicada através da plataforma ou por e-mail. A versão atualizada estará sempre disponível na
+        aplicação.
+        <br>
+        <h3>10. Contactos para Questões de Privacidade</h3>
+        <br>
+        <p>
+            Se tiver dúvidas ou preocupações relacionadas com esta política ou com o tratamento dos seus dados,
+            contacte-nos:
+            <br>
+            <li class="li_priv">📧 nabu@nabu.pt</li>
+            <li class="li_priv">📍 Câmara Municipal da Lousã – Praça Sá Carneiro, 3200-909 Lousã</li>
+            <li class="li_priv">📞 239 990 370</li>
+        </p>
+    </main>
