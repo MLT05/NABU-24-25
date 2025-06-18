@@ -1,6 +1,6 @@
 <main class="body_index">
 
-    <form method="post" enctype="multipart/form-data" action="../scripts/sc_cp_venda.php">
+    <form method="post" enctype="multipart/form-data" action="../scripts/sc_add_produto.php"  class="was-validated">
         <div>
 
             <h5 class="fw-bold fs-3 verde_escuro mb-0">Criar novo anúncio</h5>
