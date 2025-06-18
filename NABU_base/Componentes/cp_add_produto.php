@@ -1,8 +1,6 @@
 <main class="body_index">
-
-    <form method="post" enctype="multipart/form-data" action="../scripts/sc_cp_venda.php">
+    <form method="post" enctype="multipart/form-data" action="../scripts/sc_add_produto.php">
         <div>
-
             <h5 class="fw-bold fs-3 verde_escuro mb-0">Criar novo anúncio</h5>
             <p class="verde_escuro">Insere todos os detalhes sobre o teu produto</p>
 
@@ -33,12 +31,11 @@
                 <label for="categoria" class="form-label fw-semibold verde_escuro">Categorias*</label>
                 <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="categoria" name="categoria" required>
                     <?php
-                    require_once '../Connections/connectionDB.php';
+                    require_once '../Connections/connection.php';
                     $link = new_db_connection();
 
                     $stmt = mysqli_stmt_init($link);
-                    $query = "SELECT id_categoria, nome_categoria FROM categorias ORDER BY nome_categoria ASC";
-
+                    $query = "SELECT id_categoria, nome_categoria FROM categorias WHERE id_categoria >= 0 ORDER BY nome_categoria ASC";
                     if (mysqli_stmt_prepare($stmt, $query)) {
                         if (mysqli_stmt_execute($stmt)) {
                             mysqli_stmt_bind_result($stmt, $id_categoria, $nome_categoria);
@@ -59,8 +56,10 @@
             </div>
 
             <!-- Localização -->
-            <div class="mb-3 mt-3 input-group input-group-lg">
-                <span class="input-group-text bg-success bg-opacity-25 border-0"><i class="bi bi-geo-alt-fill verde_escuro"></i></span>
+            <div class="mb-3 d-flex align-items-center">
+                <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
+                    <i class="bi bi-geo-alt-fill verde_escuro"></i>
+                </span>
                 <input type="text" class="form-control bg-success bg-opacity-25" id="localizacao" name="localizacao" placeholder="Localização" required>
             </div>
 
@@ -90,7 +89,6 @@
                 <button type="submit" class="btn btn-publicar w-100 me-2">Publicar</button>
                 <button type="reset" class="btn btn-descartar w-100 ms-2">Descartar</button>
             </div>
-
         </div>
     </form>
 </main>
