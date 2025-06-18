@@ -1,5 +1,4 @@
 <main class="body_index">
-
     <form method="post" enctype="multipart/form-data" action="../scripts/sc_add_produto.php">
         <div>
             <h5 class="fw-bold fs-3 verde_escuro mb-0">Criar novo anúncio</h5>
@@ -77,7 +76,7 @@
             <!-- Email -->
             <div class="mb-3">
                 <label for="email" class="form-label fw-bold verde_escuro">Email*</label>
-                <input type="email" class="form-control bg-success bg-opacity-25"
+                <input type="email" class="form-control bg-success bg-opacity-25" id="email" name="email" required>
             </div>
 
             <!-- Contacto Telefónico -->
@@ -93,5 +92,4 @@
             </div>
         </div>
     </form>
-
-</main
+</main>
