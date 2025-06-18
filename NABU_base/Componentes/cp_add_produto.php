@@ -79,3 +79,19 @@
                 <label for="email" class="form-label fw-bold verde_escuro">Email*</label>
                 <input type="email" class="form-control bg-success bg-opacity-25"
             </div>
+
+            <!-- Contacto Telefónico -->
+            <div class="mb-4">
+                <label for="telefone" class="form-label fw-bold verde_escuro">Contacto telefónico*</label>
+                <input type="tel" class="form-control bg-success bg-opacity-25" id="telefone" name="telefone" required>
+            </div>
+
+            <!-- Botões -->
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-publicar w-100 me-2">Publicar</button>
+                <button type="reset" class="btn btn-descartar w-100 ms-2">Descartar</button>
+            </div>
+        </div>
+    </form>
+
+</main
