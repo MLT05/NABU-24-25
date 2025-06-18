@@ -4,18 +4,19 @@ require_once '../Connections/connection.php';
 $link = new_db_connection();
 
 // Verifica se o utilizador está autenticado e é role 1
-if (!isset($_SESSION['user']) || $_SESSION['role'] != 1) {
-    header("Location: ../Paginas/produto.php");
-    exit;
-}
+//if (!isset($_SESSION['user']) || $_SESSION['role'] != 1) {
+ //   header("Location: ../Paginas/produto.php");
+  //  exit;}
+//$ref_user = $_SESSION['user']; // <-- Certifique-se de que isso é o ID do utilizador (número)
 
-$ref_user = $_SESSION['user']; // <-- Certifique-se de que isso é o ID do utilizador (número)
 
+$ref_user =1;
 // Recolha de dados do formulário
 $nome_produto = $_POST['titulo'];
 $descricao = $_POST['descricao'];
 $preco = floatval(str_replace(',', '.', $_POST['preco']));
 $ref_categoria = (int) $_POST['categoria'];
+$ref_medida = (int) $_POST['medida'];
 
 $localizacao = $_POST['localizacao'];
 $nome_contato = $_POST['nome'];
@@ -25,16 +26,15 @@ $data_insercao = date("Y-m-d H:i:s");
 $capa = "default.png";
 
 // Inserção na base de dados
-$query = "INSERT INTO anuncios (nome_produto, descricao, preco, ref_categoria, ref_user, localizacao, capa, data_insercao) 
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+$query = "INSERT INTO anuncios (nome_produto, descricao, preco, ref_categoria, ref_user, localizacao, capa, data_insercao,ref_medida) 
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = mysqli_prepare($link, $query);
 
 if ($stmt) {
     mysqli_stmt_bind_param(
         $stmt,
-        "ssdissss",
-        $nome_produto, $descricao, $preco, $ref_categoria, $ref_user, $localizacao, $capa, $data_insercao
-    );
+        "ssdisssss",
+        $nome_produto, $descricao, $preco, $ref_categoria, $ref_user, $localizacao, $capa, $data_insercao, $ref_medida);
 
     if (mysqli_stmt_execute($stmt)) {
         echo "Anúncio inserido com sucesso!";
