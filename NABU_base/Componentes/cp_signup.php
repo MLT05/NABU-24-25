@@ -55,8 +55,13 @@
             <div class="mb-3">
                 <input type="text" class="form-control rounded cinza_bg border-0 ps-3 py-2" name="login" placeholder="Login" required>
             </div>
-            <div class="mb-4">
-                <input type="password" class="form-control rounded cinza_bg border-0 ps-3 py-2" name="password" placeholder="Palavra-passe" required>
+            <div class="mb-4 position-relative">
+                <input type="password" id="password2" class="form-control rounded cinza_bg border-0 ps-3 py-2" name="password" placeholder="Palavra-passe" required>
+                <button type="button" id="togglePassword" aria-label="Mostrar/ocultar senha"
+                        class="verde d-flex align-items-center justify-content-center"
+                        style="position: absolute; top: 50%; transform: translateY(-50%); right: 1rem; border: none; background: transparent; font-size: 1.4rem; cursor: pointer;">
+                    <span class="material-icons" id="iconPassword">visibility</span>
+                </button>
             </div>
             <p class="text-center">já tem conta? <a href="../Paginas/login.php">Entrar</a></p>
             <button type="submit" class="btn verde_bg rounded w-75 fw-bold text-white py-2 fs-5 mt-5 d-block mx-auto">CRIAR CONTA</button>
@@ -65,3 +70,14 @@
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password2');
+    const iconPassword = document.querySelector('#iconPassword');
+
+    togglePassword.addEventListener('click', () => {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        iconPassword.textContent = type === 'password' ? 'visibility' : 'visibility_off';
+    });
+</script>

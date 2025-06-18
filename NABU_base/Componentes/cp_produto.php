@@ -1,6 +1,12 @@
 <?php
 session_start();
 require_once '../Connections/connection.php';
+require_once '../Functions/function_favorito.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_favorito'])) {
+    $mensagem_favorito = toggle_favorito_post();
+}
+
 
 if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
     echo "produto not found";
@@ -39,11 +45,13 @@ mysqli_close($link);
 ?>
 
 
-<div class="w-100">
-    <img src="../Imagens/produtos/<?= htmlspecialchars($capa) ?>" alt="<?= htmlspecialchars($nome_produto) ?>" class="img-fluid w-100" />
+<div class="w-100 caixa-imagem">
+    <!-- <img src="../Imagens/produtos/<?= htmlspecialchars($capa) ?>" alt="<?= htmlspecialchars($nome_produto) ?>" class="img-fluid w-100" /> -->
+    <img src="../Imagens/produtos/alface.jpg" alt="<?= htmlspecialchars($nome_produto) ?>" class="w-100"
+         style="max-height: 100vh; object-fit: cover;" />
 </div>
 
-<main class="container">
+<main class="container mb-13">
     <div class="mx-2">
         <h3 class="verde_escuro fw-bold my-3 fs-1"><?= htmlspecialchars($nome_produto) ?></h3>
         <p class="verde"><?= htmlspecialchars($nome_user) ?></p>
@@ -53,6 +61,12 @@ mysqli_close($link);
                 <div class="col-6">
                     <span class="etiqueta"><?= htmlspecialchars($nome_categoria) ?></span>
                     <p class="text-warning">⭐ 4,9 <span class="verde_claro">(229)</span></p>
+                    <form method="post" action="" style="display:inline;">
+                        <input type="hidden" name="id_anuncio_favorito" value="<?= htmlspecialchars($id_anuncio) ?>">
+                        <button type="submit" name="toggle_favorito" style="border: none; background: none; cursor: pointer;">
+                            ❤️ <!-- ou ícone -->
+                        </button>
+                    </form>
                 </div>
                 <div class="col-6 text-end">
                     <p class="fs-2 fw-bold verde_escuro"><?= number_format($preco, 2, ',', '.') ?>€ <span>/<?= htmlspecialchars($medida_abr) ?></span></p>
