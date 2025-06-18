@@ -1,4 +1,3 @@
-/*Ligação à base de dados*/
 <?php
 function new_db_connection(){
     $env = "web";
