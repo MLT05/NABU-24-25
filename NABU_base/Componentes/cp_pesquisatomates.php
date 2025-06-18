@@ -11,7 +11,7 @@ if (isset($_POST['pesquisa'])) {
         <div class="mt-3">
 
             <?php require_once '../Componentes/cp_intro_pesquisa.php'; ?>
-            <?php require_once '../Componentes/cp_intro_categorias.php'; ?>
+
 
             <div class="row g-3">
                 <?php

@@ -13,19 +13,10 @@ $link = new_db_connection();
     <!-- 🔍 Pesquisa -->
     <?php
     require_once '../Componentes/cp_intro_pesquisa.php';
+    require_once '../Componentes/cp_intro_categorias.php';
     ?>
 
-    <!-- 📁 Categorias com scroll horizontal -->
-    <div class="mt-3 mb-2 overflow-auto categorias-wrapper">
-        <div class="d-flex flex-nowrap verde_escuro fw-normal">
-            <span class="fw-bold text-decoration-underline categoria-item fs-6">Todos</span>
-            <span class="categoria-item fs-6">Vegetais</span>
-            <span class="categoria-item fs-6">Frutas</span>
-            <span class="categoria-item fs-6">Ovos e laticínios</span>
-            <span class="categoria-item fs-6">Produtos Apícolas</span>
-            <span class="categoria-item fs-6">Plantas</span>
-        </div>
-    </div>
+
 
     <!-- 🧺 Produtos -->
     <div class="row g-3">
