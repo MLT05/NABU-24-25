@@ -1,4 +1,4 @@
-<?php 
+<?php
 echo " div class=\"container
     py-2\">
         <h2 class=\"text-center\">Política de Privacidade</h2>
@@ -23,4 +23,4 @@ Pellentesque fringilla lacus tincidunt efficitur laoreet. Mauris lobortis nisl v
 
 Mauris quis lorem tempus, sollicitudin purus non, convallis urna. Ut eu ante sit amet erat pretium sagittis nec a tellus. Nam vel laoreet dui, eget efficitur libero. Nam efficitur, quam at vehicula faucibus, nibh lectus facilisis ligula, et suscipit mi dui ut sem. Mauris ac est ut velit tristique interdum pretium et massa. Fusce dolor odio, commodo id vehicula a, sodales sollicitudin erat. Cras sed pellentesque tellus, id finibus lorem</p>
         </div>
-";?>
+"; ?>
