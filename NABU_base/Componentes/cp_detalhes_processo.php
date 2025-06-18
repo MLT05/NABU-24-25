@@ -71,11 +71,9 @@
             </div>
         </div>
     </div>";
-        }
-            else {
+}
                     echo ("Error description:") . mysqli_error($link);
                 }
                 mysqli_stmt_close($stmt);
                 mysqli_close($link);
             ?>
-</main>
