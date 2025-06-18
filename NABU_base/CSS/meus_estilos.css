@@ -264,28 +264,17 @@ footer a {
 .comprar {
     flex: 1;
     margin-top: 15px;
-    margin-left: 20px;
-    margin-right: 20px;
     background-color: #115e46;
     color: white;
     border: none;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 6px;
     cursor: pointer;
 }
 
 .contactar {
     flex: 1;
-    background: white;
     color: #115e46;
     border: 2px solid #115e46;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-left: 20px;
-    margin-right: 20px;
+
 }
 
 .h3\.produto{
@@ -299,7 +288,6 @@ footer a {
 .h2\.produto{
     color: #004D40;
     font-weight: bolder;
- ;
     margin-left: 20px;
     margin-bottom: 20px;
     font-size: 22px;
@@ -308,13 +296,8 @@ footer a {
     flex: 6;
     background-color: #AAC0AA;
     color: #004D40;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 6px;
     border-color:#004D40;
-    margin-bottom: 1rem;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-bottom: 1rem;;
 }
 
 .p, .nome_localizacao {
@@ -467,16 +450,11 @@ footer a {
 /* Mariana - produtos_detalhes */
 
 .input-quantidade {
-    margin-left: 20px;
-    padding: 10px;
-    border-radius: 8px;
     border: 1px solid #004D40;
     background-color: #f4f4f4;
     color: #004D40;
-    font-size: 16px;
-    width: calc(100% - 40px); /* 100% menos as margens esquerda e direita */
+    width: calc(100%); /* 100% menos as margens esquerda e direita */
     outline: none;
-    margin-bottom: 10px;
 }
 
 .quantidade-wrapper label {
