@@ -97,4 +97,3 @@ if (isset($_GET['id_categoria'])) {
     echo "<p class='text-danger'>ID de categoria inválido ou não fornecido.</p>";
 }
 ?>
-cai
