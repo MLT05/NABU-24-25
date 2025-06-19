@@ -23,7 +23,9 @@ $link = new_db_connection();
         <?php
         // Código PHP para ir buscar os produtos à base de dados
         $stmt = mysqli_stmt_init($link);
-        $query = "SELECT id_anuncio, nome_produto, preco, abreviatura , capa FROM anuncios INNER JOIN medidas ON anuncios.ref_medida = medidas.id_medida FROM anuncios ";
+        $query = "SELECT id_anuncio, nome_produto, preco, abreviatura , capa
+                    FROM anuncios
+                    INNER JOIN medidas ON anuncios.ref_medida = medidas.id_medida ";
 
         if (mysqli_stmt_prepare($stmt, $query)) {
             mysqli_stmt_execute($stmt);
