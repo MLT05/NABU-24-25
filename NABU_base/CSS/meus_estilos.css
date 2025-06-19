@@ -99,6 +99,7 @@ footer a {
   align-items: center; /* centraliza horizontal */
   justify-content: center; /* centraliza vertical */
   height: 100%;
+  position: relative;
 }
 
 .menu-icon {
