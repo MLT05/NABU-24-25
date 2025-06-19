@@ -166,20 +166,20 @@ if (!isset($_SESSION['id_user'])) {
 </script>
 
 <script>
-        const previewImage = (event) => {
-            const files =event.target.files;
-            if(files.length > 0) {
-                const imageUrl = URL.createObjectURL(files[0]);
-                const imageElement = document.getElementById("preview-selected-image")
-                imageElement.src =imageUrl
-            }
+    const previewImage = (event) => {
+        const files =event.target.files;
+        if(files.length > 0) {
+            const imageUrl = URL.createObjectURL(files[0]);
+            const imageElement = document.getElementById("preview-selected-image")
+            imageElement.src =imageUrl
         }
-                <div class="upload-box mb-3">
-                    <label for="imagens" class="w-100 text-center">
-                        <i class="bi bi-upload fs-2 d-block"></i>
-                        Adicionar imagens
-                        <input type="file" id="imagens" name="imagens[]" multiple hidden>
-                    </label>
-                </div>
+    }
+    <div class="upload-box mb-3">
+        <label for="imagens" class="w-100 text-center">
+            <i class="bi bi-upload fs-2 d-block"></i>
+            Adicionar imagens
+            <input type="file" id="imagens" name="imagens[]" multiple hidden>
+        </label>
+    </div>
 
 </script>

@@ -46,6 +46,8 @@ if (!is_dir($upload_dir)) {
     mkdir($upload_dir, 0755, true);
 }
 
+
+
 if (isset($_FILES['pfp']) && $_FILES['pfp']['error'] === UPLOAD_ERR_OK) {
     $file_tmp = $_FILES['pfp']['tmp_name'];
     $file_name = basename($_FILES['pfp']['name']);
