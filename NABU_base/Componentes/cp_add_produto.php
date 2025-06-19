@@ -1,6 +1,6 @@
 <?php
 require_once '../Connections/connection.php';
-session_start(); // garantir que a sessão está ativa
+
 
 if (!isset($_SESSION['id_user'])) {
     ?>
@@ -78,7 +78,7 @@ if (!isset($_SESSION['id_user'])) {
 
                 <!-- Medidas -->
                 <div class="mb-3">
-                    <label for="medida" class="form-label fw-semibold verde_escuro">Medidas*</label>
+                    <label for="medida" class="form-label fw-semibold verde_escuro">Unidade de medida*</label>
                     <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="medida" name="medida" required>
                         <?php
                         $link = new_db_connection();
