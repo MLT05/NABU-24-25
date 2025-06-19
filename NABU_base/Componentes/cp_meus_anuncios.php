@@ -43,7 +43,7 @@ $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
                         <a href="../paginas/produto.php?id=<?php echo htmlspecialchars($id_anuncio); ?>" style="text-decoration: none">
                         <!-- Imagem -->
                         <div class="imagem_card_pesquisa">
-                            <img src="../uploads/capas/default-image.jpg" class="card-img-top rounded-4 img_hp_card" alt="Tomates">
+                            <img src="../uploads/capas/<?php echo htmlspecialchars($capa); ?>" class="card-img-top rounded-4 img_hp_card" alt="Tomates">
                         </div>
 
                         <!-- Conteúdo -->
