@@ -157,9 +157,19 @@ if ($stmt) {
     );
 
     if (mysqli_stmt_execute($stmt)) {
-        echo "Anúncio inserido com sucesso!";
+        $novo_id = mysqli_insert_id($link); // <- Este é o ID do novo anúncio
+
+        $_SESSION['mensagem_sistema'] = "Anúncio criado com sucesso!";
+        $_SESSION['tipo_mensagem'] = "sucesso";
+
+        header("Location: ../Paginas/produto.php?id=" . $novo_id); // <- Redireciona com ID
+        exit();
     } else {
-        echo "Erro ao inserir anúncio: " . mysqli_stmt_error($stmt);
+        $_SESSION['mensagem_sistema'] = "Erro ao inserir anúncio: " . mysqli_stmt_error($stmt);
+        $_SESSION['tipo_mensagem'] = "erro";
+
+        header("Location: ../Paginas/produto.php"); // opcionalmente, redireciona para outra página
+        exit();
     }
 
     mysqli_stmt_close($stmt);
