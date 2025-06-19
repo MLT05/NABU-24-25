@@ -9,7 +9,7 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
     // continue o processamento...
 } else {
     // ID não existe ou é nulo/vazio
-    header("Location: meus_anuncios.php");
+    header("Location: meus_anuncios");
 }
 
 $link = new_db_connection();
@@ -40,6 +40,7 @@ if (mysqli_stmt_prepare($stmt_user, $query_user)) {
     die("Erro na query do utilizador: " . mysqli_error($link));
 }
 ?>
+
 
 <main class="body_index">
     <form method="post" enctype="multipart/form-data" action="../scripts/sc_editar_produto.php" class="needs-validation" novalidate>
