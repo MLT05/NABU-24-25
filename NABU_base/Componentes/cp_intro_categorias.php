@@ -8,10 +8,10 @@
 
         if (mysqli_stmt_prepare($stmt_categorias, $query)) {
             mysqli_stmt_execute($stmt_categorias);
-            mysqli_stmt_bind_result($stmt_categorias, $id_categoria, $nome_categoria);
+            mysqli_stmt_bind_result($stmt_categorias, $id_categoria2, $nome_categoria);
 
             while (mysqli_stmt_fetch($stmt_categorias)) {
-                echo '<a href="../Paginas/pesquisa_categorias.php?id_categoria=' . $id_categoria . '" class="categoria-item fs-6 text-decoration-none me-3 verde_escuro">'
+                echo '<a href="../Paginas/pesquisa_categorias.php?id_categoria=' . $id_categoria2 . '" class="categoria-item fs-6 text-decoration-none me-3 verde_escuro">'
                     . htmlspecialchars($nome_categoria) . '</a>';
             }
 
