@@ -41,6 +41,7 @@ if (mysqli_stmt_prepare($stmt_user, $query_user)) {
 }
 ?>
 
+
 <main class="body_index">
     <form method="post" enctype="multipart/form-data" action="../scripts/sc_editar_produto.php" class="needs-validation" novalidate>
         <!-- Aqui mudou o name para id_anuncio, que é o correto -->
