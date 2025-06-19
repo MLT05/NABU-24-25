@@ -9,7 +9,7 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
     // continue o processamento...
 } else {
     // ID não existe ou é nulo/vazio
-    header("Location: meus_anuncios.php");
+    header("Location: meus_anuncios");
 }
 
 $link = new_db_connection();
