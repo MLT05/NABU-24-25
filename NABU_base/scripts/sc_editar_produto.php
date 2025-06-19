@@ -52,7 +52,7 @@ if ($id_anuncio && $titulo && $preco !== null && $medida && $categoria && $descr
             mysqli_stmt_close($stmt_user);
 
             // Redirecionar para página ou mostrar sucesso
-           header("Location: ../paginas/meus_anuncios.php");
+           header("Location: ../paginas/meus_anuncios");
             echo "Anuncio editado com sucesso";
             //exit();
         } else {
