@@ -18,6 +18,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
     $first = true;
     while (mysqli_stmt_fetch($stmt)) {
         ?>
+            <section>
         <!-- Item 1 -->
         <div class="carousel-item <?= $first ? 'active' : '' ?>">
             <a href="../Paginas/produto.php" class="text-decoration-none text-dark">
@@ -47,7 +48,6 @@ if (mysqli_stmt_prepare($stmt, $query)) {
 
 
 </div>
-
 <!-- Controles -->
 <button class="carousel-control-prev" type="button" data-bs-target="#carouselrecomendacoes" data-bs-slide="prev">
     <span class="carousel-control-prev-icon"></span>
