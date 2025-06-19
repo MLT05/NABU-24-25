@@ -1,40 +1,44 @@
 <?php
+session_start();
 require_once '../Connections/connection.php';
 
 if (!isset($_SESSION['login']) || $_SESSION["role"] != 1) {
-    header("Location: ../Paginas/login.php");
+    header("Location: ../../login.php");
     exit;
 }
 
-// Recolher dados do formulário
 $id_produto = $_POST['id_produto'];
 $titulo = $_POST['titulo'];
 $descricao = $_POST['descricao'];
 $preco = $_POST['preco'];
+$ref_categoria = $_POST['categoria'];
+$ref_medida = $_POST['medida'];
 $localizacao = $_POST['localizacao'];
-$categoria = $_POST['categoria'];
-$medida = $_POST['medida'];
 
-// Dados de contacto
 $nome = $_POST['nome'];
 $email = $_POST['email'];
 $telefone = $_POST['telefone'];
 
 $link = new_db_connection();
 
-// Atualizar os dados do produto (assumindo que a tabela se chama 'filmes' — altera para 'produtos' se necessário)
-$query = "UPDATE anucios 
-          SET nome_produto = ?, descricao = ?, preco = ?, localizacao = ?, ref_categoria = ?, ref_medida = ?, nome_contacto = ?, email_contacto = ?, telefone_contacto = ?
-          WHERE id_filmes = ?";
+$query = "UPDATE produtos SET nome_produto = ?, descricao = ?, preco = ?, ref_categoria = ?, ref_medida = ?, localizacao = ? WHERE id_produto = ?";
 
 $stmt = mysqli_prepare($link, $query);
-
-mysqli_stmt_bind_param($stmt, "ssdsiisssi", $titulo, $descricao, $preco, $localizacao, $categoria, $medida, $nome, $email, $telefone, $id_produto);
+mysqli_stmt_bind_param($stmt, "ssdissi", $titulo, $descricao, $preco, $ref_categoria, $ref_medida, $localizacao, $id_produto);
 
 if (mysqli_stmt_execute($stmt)) {
-    header("Location: ../../produto.php");
+    // Atualizar dados do utilizador associado
+    $query_user = "UPDATE users SET nome = ?, email = ?, contacto = ? WHERE id_user = (SELECT ref_user FROM produtos WHERE id_produto = ?)";
+    $stmt_user = mysqli_prepare($link, $query_user);
+    mysqli_stmt_bind_param($stmt_user, "sssi", $nome, $email, $telefone, $id_produto);
+    mysqli_stmt_execute($stmt_user);
+    mysqli_stmt_close($stmt_user);
+
+    header("Location: ../../produtos.php");
     exit;
 } else {
     echo "Erro ao atualizar produto: " . mysqli_error($link);
 }
-?>
+
+mysqli_stmt_close($stmt);
+mysqli_close($link);
