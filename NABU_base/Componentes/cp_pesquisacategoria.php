@@ -30,7 +30,14 @@ if (isset($_GET['id_categoria'])) {
                     if (mysqli_stmt_num_rows($stmt) > 0) {
                         mysqli_stmt_bind_result($stmt, $nome , $preco, $id_anuncio);
                         while (mysqli_stmt_fetch($stmt)) {
+
                             ?>
+                            <pre>
+ID: <?= $id_anuncio ?>
+Nome: <?= htmlspecialchars($nome) ?>
+Preço: <?= number_format($preco, 2) ?>
+Categoria: <?= $id_categoria ?>
+</pre>
                             <div class="col-6">
                                 <a href="../Paginas/produto.php?id=<?= $id_anuncio ?>" style="text-decoration: none">
                                     <div class="card rounded-4 shadow-sm border-0 position-relative card_pesquisa">
