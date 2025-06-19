@@ -19,8 +19,8 @@ if (isset($_GET['id_categoria'])) {
                 $query = "SELECT anuncios.nome_produto, anuncios.preco, anuncios.id_anuncio 
                           FROM anuncios 
                           INNER JOIN categorias 
-                          ON anuncios.ref_categorias = id_categorias 
-                          WHERE id_categorias = ?";
+                          ON anuncios.ref_categoria = categorias.id_categorias 
+                          WHERE categorias.id_categorias = ?";
 
                 if (mysqli_stmt_prepare($stmt, $query)) {
                     mysqli_stmt_bind_param($stmt, "i", $id_categoria);
