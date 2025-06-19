@@ -574,3 +574,28 @@ footer a {
 .li_priv{
     list-style-type: none;
 }
+
+.card-meusanuncios{
+
+    height: 30vh;
+
+}
+
+.preview-container {
+    aspect-ratio: 4 / 3;
+    max-width: 100%;
+    width: 100%;
+    max-width: 600px;
+    background-color: #f8f9fa; /* Bootstrap light background */
+}
+
+.preview-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.placeholder-text {
+    font-size: 1rem;
+}
+

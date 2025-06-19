@@ -1,23 +1,20 @@
 <?php
 require_once '../Connections/connection.php';
-?>
 
-<!-- Incluir Bootstrap CSS e JS (coloca isto no <head> ou no topo da página se ainda não tens) -->
-<?php
 
 if (!isset($_SESSION['id_user'])) {
     ?>
-    <!-- Modal inicial oculto (fade), sem show e sem display:block -->
+    <!-- Modal de login obrigatório -->
     <div class="modal fade show" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-modal="true" role="dialog" style="display: block;">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-none"> <!-- Remove borda e sombra -->
-                <div class="modal-header border-0"> <!-- Remove a linha de separação -->
-                    <h5 class="modal-title" id="loginModalLabel">⚠ Login necessário</h5>
+            <div class="modal-content border-0 shadow-none">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="loginModalLabel">Login necessário</h5>
                 </div>
                 <div class="modal-body text-center">
                     <p>Para criar um anúncio é necessário ter login.</p>
                 </div>
-                <div class="modal-footer border-0"> <!-- Remove a linha de separação -->
+                <div class="modal-footer border-0">
                     <a href="../Paginas/login.php" class="btn btn-success verde_escuro_bg">Fazer Login</a>
                     <a href="../Paginas/index.php" class="btn btn-secondary">Fechar</a>
                 </div>
@@ -25,27 +22,13 @@ if (!isset($_SESSION['id_user'])) {
         </div>
     </div>
 
-
-
-    <script>
-        // Abrir modal automaticamente após a página carregar
-        document.addEventListener('DOMContentLoaded', function () {
-            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-            loginModal.show();
-        });
-    </script>
-
     <?php
 } else {
-
     $id_user = $_SESSION['id_user'];
 
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
-
     $query = "SELECT nome, login, email, contacto FROM users WHERE id_user = ?";
-
-    $capa = "defaultpfp.png"; // imagem padrão caso não tenha capa
 
     if (mysqli_stmt_prepare($stmt, $query)) {
         mysqli_stmt_bind_param($stmt, 'i', $id_user);
@@ -57,6 +40,7 @@ if (!isset($_SESSION['id_user'])) {
 
     mysqli_close($link);
     ?>
+
     <main class="body_index">
         <form method="post" enctype="multipart/form-data" action="../scripts/sc_add_produto.php">
             <div>
@@ -64,12 +48,15 @@ if (!isset($_SESSION['id_user'])) {
                 <p class="verde_escuro">Insere todos os detalhes sobre o teu produto</p>
 
                 <!-- Upload Imagem -->
-                <div class="upload-box mb-3">
-                    <label for="imagens" class="w-100 text-center">
-                        <i class="bi bi-upload fs-2 d-block"></i>
-                        Adicionar imagens
-                        <input type="file" id="imagens" name="imagens[]" multiple hidden>
-                    </label>
+                <label for="titulo" class="form-label verde_escuro fw-semibold">Imagem*</label>
+                <div class="text-center mb-4">
+                <form action="../scripts/sc_upload_capa.php" method="post" enctype="multipart/form-data" class="mt-4 text-center">
+                    <div class="mb-3">
+
+                        <input type="file" name="pfp" id="pfp" class="form-control mt-3" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn verde fw-bold">Guardar</button>
+                </form>
                 </div>
 
                 <!-- Título -->
@@ -129,15 +116,15 @@ if (!isset($_SESSION['id_user'])) {
                 <!-- Descrição -->
                 <div class="mb-3">
                     <label for="descricao" class="form-label fw-semibold verde_escuro">Descrição*</label>
-                    <textarea class="form-control bg-success bg-opacity-25" id="descricao" name="descricao" rows="3" required minlength="40"></textarea>
-                    <small class="form-text verde_escuro opacity-75">Introduz pelo menos 40 caracteres</small>
+                    <textarea class="form-control bg-success bg-opacity-25" id="descricao" name="descricao" rows="3" required></textarea>
                 </div>
 
                 <!-- Localização -->
+                <label for="localizacao" class="form-label fw-semibold verde_escuro">Localização*</label>
                 <div class="mb-3 d-flex align-items-center">
-                <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
-                    <i class="bi bi-geo-alt-fill verde_escuro"></i>
-                </span>
+                    <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
+                        <i class="bi bi-geo-alt-fill verde_escuro"></i>
+                    </span>
                     <input type="text" class="form-control bg-success bg-opacity-25" id="localizacao" name="localizacao" placeholder="Localização" required>
                 </div>
 
@@ -147,20 +134,23 @@ if (!isset($_SESSION['id_user'])) {
                 <!-- Nome -->
                 <div class="mb-3">
                     <label for="nome" class="form-label fw-bold verde_escuro">Nome*</label>
-                    <input type="text" value="<?php  echo htmlspecialchars($nome_db) ?>" class="form-control bg-success bg-opacity-25" id="nome" name="nome" required>
+                    <input type="text" value="<?= htmlspecialchars($nome_db) ?>" class="form-control bg-success bg-opacity-25" id="nome" name="nome" required>
                 </div>
 
                 <!-- Email -->
                 <div class="mb-3">
                     <label for="email" class="form-label fw-bold verde_escuro">Email*</label>
-                    <input type="email" value="<?php  echo htmlspecialchars($email) ?>" class="form-control bg-success bg-opacity-25" id="email" name="email" required>
+                    <input type="email" value="<?= htmlspecialchars($email) ?>" class="form-control bg-success bg-opacity-25" id="email" name="email" required>
                 </div>
 
                 <!-- Contacto Telefónico -->
                 <div class="mb-4">
                     <label for="telefone" class="form-label fw-bold verde_escuro">Contacto telefónico*</label>
-                    <input type="tel" value="<?php  echo htmlspecialchars($contacto) ?>" class="form-control bg-success bg-opacity-25" id="telefone" name="telefone" required>
+                    <input type="tel" value="<?= htmlspecialchars($contacto) ?>" class="form-control bg-success bg-opacity-25" id="telefone" name="telefone" required>
                 </div>
+
+                <!-- ID do utilizador (campo oculto) -->
+                <input type="hidden" name="id_user" value="<?= htmlspecialchars($id_user) ?>">
 
                 <!-- Botões -->
                 <div class="d-flex justify-content-between">
@@ -170,7 +160,35 @@ if (!isset($_SESSION['id_user'])) {
             </div>
         </form>
     </main>
-
     <?php
 }
 ?>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        var loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {
+        backdrop: 'static',
+        keyboard: false
+    });
+        loginModal.show();
+    });
+</script>
+
+<script>
+        const previewImage = (event) => {
+            const files =event.target.files;
+            if(files.length > 0) {
+                const imageUrl = URL.createObjectURL(files[0]);
+                const imageElement = document.getElementById("preview-selected-image")
+                imageElement.src =imageUrl
+            }
+        }
+                <div class="upload-box mb-3">
+                    <label for="imagens" class="w-100 text-center">
+                        <i class="bi bi-upload fs-2 d-block"></i>
+                        Adicionar imagens
+                        <input type="file" id="imagens" name="imagens[]" multiple hidden>
+                    </label>
+                </div>
+
+</script>
