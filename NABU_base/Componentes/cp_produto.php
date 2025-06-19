@@ -34,6 +34,12 @@ mysqli_stmt_execute($stmt);
 mysqli_stmt_bind_result($stmt, $nome_produto, $descricao, $preco, $nome_categoria, $nome_user, $localizacao, $capa, $data_insercao, $medida_desc, $medida_abr);
 $existe = mysqli_stmt_fetch($stmt);
 
+if($medida_abr == "UN") {
+    $min_medida = 1;
+} else {
+    $min_medida = 0.05;
+}
+
 if (!$existe) {
     mysqli_stmt_close($stmt);
     mysqli_close($link);
@@ -82,7 +88,7 @@ mysqli_close($link);
 
         <div>
             <h3 class="verde_escuro fw-bold my-3 fs-4">Quantidade desejada</h3>
-            <input type="number" id="quantidade" name="quantidade" class="input-quantidade rounded-3 p-3" placeholder="Ex: 1 kilo, 1 unidade..." min="1" />
+            <input type="number" id="quantidade" name="quantidade" class="input-quantidade rounded-3 p-3" placeholder="Ex: 1 kilo, 1 unidade..." min="<?= htmlspecialchars($min_medida) ?>" required />
         </div>
 
         <h3 class="verde_escuro fw-bold my-3 fs-4">Localização</h3>
@@ -94,13 +100,71 @@ mysqli_close($link);
         </div>
 
         <div class="d-flex">
-            <button class="contactar me-1 fs-6 p-2 bg-white rounded" onclick="window.location.href='../Paginas/carrinho.php'">Carrinho</button>
+            <button id="open-cart-modal" class="contactar me-1 fs-6 p-2 bg-white rounded">Adicionar ao carrinho</button>
             <button class="contactar ms-1 fs-6 p-2 bg-white rounded" onclick="window.location.href='../Paginas/mensagens.php'">Contactar</button>
         </div>
         <div class="d-flex">
             <button class="comprar p-3 fs-6 rounded" onclick="window.location.href='../Paginas/carrinho.php'">Comprar</button>
         </div>
     </div>
+
+    <!-- Modal Bootstrap -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Produto Adicionado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    Produto adicionado ao carrinho com sucesso!
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <a href="../Paginas/carrinho.php" class="btn btn-success">Ver Carrinho</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continuar a Comprar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para produto já no carrinho -->
+    <div class="modal fade" id="alreadyInCartModal" tabindex="-1" aria-labelledby="alreadyInCartLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alreadyInCartLabel">Produto Já no Carrinho</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    Este produto já está no seu carrinho.
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <a href="../Paginas/carrinho.php" class="btn btn-primary">Ver Carrinho</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continuar Comprando</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Quantidade Inválida -->
+    <div class="modal fade" id="quantidadeInvalidaModal" tabindex="-1" aria-labelledby="quantidadeInvalidaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quantidadeInvalidaModalLabel">Quantidade Inválida</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    Por favor, insira uma quantidade válida.
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </main>
 
 <script>
@@ -111,5 +175,54 @@ mysqli_close($link);
         descricao.classList.toggle('expandida');
         botao.textContent = descricao.classList.contains('expandida') ? 'Ver menos' : 'Ver mais';
     });
+
+    document.getElementById('open-cart-modal').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const quantidadeInput = document.getElementById('quantidade');
+        const quantidade = parseFloat(quantidadeInput.value);
+        const id_anuncio = <?= $id_anuncio ?>;
+
+        if (!quantidade || quantidade <= 0) {
+            const quantidadeInvalidaModal = new bootstrap.Modal(document.getElementById('quantidadeInvalidaModal'));
+            quantidadeInvalidaModal.show();
+            return;
+        }
+
+        fetch('../Scripts/adicionar_ao_carrinho.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `id_anuncio=${encodeURIComponent(id_anuncio)}&quantidade=${encodeURIComponent(quantidade)}`
+        })
+            .then(response => {
+                if (response.status === 401) {
+                    // Não autenticado - redirecionar para login
+                    window.location.href = '../Paginas/login.php';
+                    throw new Error('Redirecionando para login...');
+                }
+                return response.text();
+            })
+            .then(data => {
+                data = data.trim();
+
+                if (data === 'ok') {
+                    const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
+                    cartModal.show();
+                } else if (data === 'produto_existente') {
+                    const alreadyModal = new bootstrap.Modal(document.getElementById('alreadyInCartModal'));
+                    alreadyModal.show();
+                } else {
+                    alert("Erro: " + data);
+                }
+            })
+            .catch(error => {
+                if (error.message !== 'Redirecionando para login...') {
+                    alert("Erro inesperado: " + error);
+                }
+            });
+    });
 </script>
+
 

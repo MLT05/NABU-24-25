@@ -1,4 +1,4 @@
-const toggle = document.getElementById("theme-toggle");
+const toggle = document.getElementByClass("theme-toggle");
 
 // Verificar o tema salvo ao carregar
 const savedTheme = localStorage.getItem("theme");
