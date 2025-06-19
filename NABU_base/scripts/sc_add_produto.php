@@ -34,7 +34,11 @@ function validarMoradaOSM($morada) {
 
 // Verifica localização
 if (!validarMoradaOSM($localizacao)) {
-    die("<p style='color:red;'>Morada inválida. Por favor, introduza uma morada real.</p>");
+    echo "<script>
+        alert('Morada inválida. Por favor, introduza uma morada real.');
+        window.location.href = '../Paginas/add_produto.php';
+    </script>";
+    exit();
 }
 
 // Upload da imagem
