@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../Connections/connection.php';
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 1) {
@@ -10,127 +11,135 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     header("Location: produtos.php");
     exit;
 }
-$id_user = $_GET['id'];
+
+$id_produto = $_GET['id'];
 $link = new_db_connection();
 
+// Buscar dados do produto
 $stmt = mysqli_stmt_init($link);
 $query = "SELECT nome_produto, descricao, preco, ref_categoria, ref_user, localizacao, capa, data_insercao, ref_medida FROM filmes WHERE id_filmes = ?";
 mysqli_stmt_prepare($stmt, $query);
-mysqli_stmt_bind_param($stmt, "i", $id);
+mysqli_stmt_bind_param($stmt, "i", $id_produto);
 mysqli_stmt_execute($stmt);
 mysqli_stmt_bind_result($stmt, $nome_produto, $descricao, $preco, $ref_categoria, $ref_user, $localizacao, $capa, $data_insercao, $ref_medida);
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
+
+// Buscar dados do utilizador
+$stmt_user = mysqli_stmt_init($link);
+$query_user = "SELECT nome, email, contacto FROM users WHERE id_user = ?";
+mysqli_stmt_prepare($stmt_user, $query_user);
+mysqli_stmt_bind_param($stmt_user, "i", $ref_user);
+mysqli_stmt_execute($stmt_user);
+mysqli_stmt_bind_result($stmt_user, $nome_db, $email, $contacto);
+mysqli_stmt_fetch($stmt_user);
+mysqli_stmt_close($stmt_user);
 ?>
- <main class="body_index">
-        <form method="post" enctype="multipart/form-data" action="../scripts/sc_editar_produto.php">
-            <div>
-                <h5 class="fw-bold fs-3 verde_escuro mb-0">Editar anúncio</h5>
-                <p class="verde_escuro">Altere os detalhes sobre o teu produto</p>
 
-                <!-- Upload Imagem -->
-                <div class="upload-box mb-3">
-                    <label for="imagens" class="w-100 text-center">
-                        <i class="bi bi-upload fs-2 d-block"></i>
-                        Adicionar imagens
-                        <input type="file" id="imagens" name="imagens[]" multiple hidden>
-                    </label>
-                </div>
+<main class="body_index">
+    <form method="post" enctype="multipart/form-data" action="../scripts/sc_editar_produto.php">
+        <input type="hidden" name="id_produto" value="<?= htmlspecialchars($id_produto) ?>">
 
-                <!-- Título -->
-                <div class="mb-3">
-                    <label for="titulo" class="form-label verde_escuro fw-semibold">Título do Anúncio*</label>
-                    <input type="text" class="form-control bg-success bg-opacity-25" id="titulo" name="titulo" required minlength="1">
-                </div>
+        <h5 class="fw-bold fs-3 verde_escuro mb-0">Editar anúncio</h5>
+        <p class="verde_escuro">Altere os detalhes sobre o teu produto</p>
 
-                <!-- Preço -->
-                <div class="mb-3">
-                    <label for="preco" class="form-label fw-semibold verde_escuro">Preço*</label>
-                    <input type="number" step="0.01" min="0" class="form-control bg-success bg-opacity-25" id="preco" name="preco" required>
-                </div>
+        <!-- Upload Imagem -->
+        <div class="upload-box mb-3">
+            <label for="imagens" class="w-100 text-center">
+                <i class="bi bi-upload fs-2 d-block"></i>
+                Adicionar novas imagens
+                <input type="file" id="imagens" name="imagens[]" multiple hidden>
+            </label>
+        </div>
 
-                <!-- Medidas -->
-                <div class="mb-3">
-                    <label for="medida" class="form-label fw-semibold verde_escuro">Medidas*</label>
-                    <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="medida" name="medida" required>
-                        <?php
-                        $link = new_db_connection();
-                        $stmt = mysqli_stmt_init($link);
-                        $query = "SELECT id_medida, abreviatura FROM medidas";
-                        if (mysqli_stmt_prepare($stmt, $query)) {
-                            mysqli_stmt_execute($stmt);
-                            mysqli_stmt_bind_result($stmt, $id_medida, $abreviatura);
-                            while (mysqli_stmt_fetch($stmt)) {
-                                echo '<option value="' . $id_medida . '">' . htmlspecialchars($abreviatura) . '</option>';
-                            }
-                            mysqli_stmt_close($stmt);
-                        }
-                        mysqli_close($link);
-                        ?>
-                    </select>
-                </div>
+        <!-- Título -->
+        <div class="mb-3">
+            <label for="titulo" class="form-label verde_escuro fw-semibold">Título do Anúncio*</label>
+            <input type="text" value="<?= htmlspecialchars($nome_produto) ?>" class="form-control bg-success bg-opacity-25" id="titulo" name="titulo" required minlength="1">
+        </div>
 
-                <!-- Categoria -->
-                <div class="mb-3">
-                    <label for="categoria" class="form-label fw-semibold verde_escuro">Categoria*</label>
-                    <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="categoria" name="categoria" required>
-                        <?php
-                        $link = new_db_connection();
-                        $stmt = mysqli_stmt_init($link);
-                        $query = "SELECT id_categoria, nome_categoria FROM categorias";
-                        if (mysqli_stmt_prepare($stmt, $query)) {
-                            mysqli_stmt_execute($stmt);
-                            mysqli_stmt_bind_result($stmt, $id_categoria, $nome_categoria);
-                            while (mysqli_stmt_fetch($stmt)) {
-                                echo '<option value="' . $id_categoria . '">' . htmlspecialchars($nome_categoria) . '</option>';
-                            }
-                            mysqli_stmt_close($stmt);
-                        }
-                        mysqli_close($link);
-                        ?>
-                    </select>
-                </div>
+        <!-- Preço -->
+        <div class="mb-3">
+            <label for="preco" class="form-label verde_escuro fw-semibold">Preço*</label>
+            <input type="number" value="<?= htmlspecialchars($preco) ?>" step="0.01" min="0" class="form-control bg-success bg-opacity-25" id="preco" name="preco" required>
+        </div>
 
-                <!-- Descrição -->
-                <div class="mb-3">
-                    <label for="descricao" class="form-label fw-semibold verde_escuro">Descrição*</label>
-                    <textarea class="form-control bg-success bg-opacity-25" id="descricao" name="descricao" rows="3" required minlength="1"></textarea>
-                </div>
+        <!-- Medidas -->
+        <div class="mb-3">
+            <label for="medida" class="form-label fw-semibold verde_escuro">Medidas*</label>
+            <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="medida" name="medida" required>
+                <?php
+                $stmt = mysqli_stmt_init($link);
+                $query = "SELECT id_medida, abreviatura FROM medidas";
+                if (mysqli_stmt_prepare($stmt, $query)) {
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_bind_result($stmt, $id_medida, $abreviatura);
+                    while (mysqli_stmt_fetch($stmt)) {
+                        $selected = ($id_medida == $ref_medida) ? "selected" : "";
+                        echo "<option value='$id_medida' $selected>" . htmlspecialchars($abreviatura) . "</option>";
+                    }
+                    mysqli_stmt_close($stmt);
+                }
+                ?>
+            </select>
+        </div>
 
-                <!-- Localização -->
-                <label for="descricao" class="form-label fw-semibold verde_escuro">Localização*</label>
-                <div class="mb-3 d-flex align-items-center">
-                    <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
-                    <i class="bi bi-geo-alt-fill verde_escuro"></i>
-                </span>
-                    <input type="text" class="form-control  bg-success bg-opacity-25" id="localizacao" name="localizacao" placeholder="Localização" required>
-                </div>
+        <!-- Categoria -->
+        <div class="mb-3">
+            <label for="categoria" class="form-label fw-semibold verde_escuro">Categoria*</label>
+            <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="categoria" name="categoria" required>
+                <?php
+                $stmt = mysqli_stmt_init($link);
+                $query = "SELECT id_categoria, nome_categoria FROM categorias";
+                if (mysqli_stmt_prepare($stmt, $query)) {
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_bind_result($stmt, $id_categoria, $nome_categoria);
+                    while (mysqli_stmt_fetch($stmt)) {
+                        $selected = ($id_categoria == $ref_categoria) ? "selected" : "";
+                        echo "<option value='$id_categoria' $selected>" . htmlspecialchars($nome_categoria) . "</option>";
+                    }
+                    mysqli_stmt_close($stmt);
+                }
+                ?>
+            </select>
+        </div>
 
-                <!-- Contactos -->
-                <h6 class="fw-bold mt-4 verde_escuro fs-4">Contactos</h6>
+        <!-- Descrição -->
+        <div class="mb-3">
+            <label for="descricao" class="form-label fw-semibold verde_escuro">Descrição*</label>
+            <textarea class="form-control bg-success bg-opacity-25" id="descricao" name="descricao" rows="3" required><?= htmlspecialchars($descricao) ?></textarea>
+        </div>
 
-                <!-- Nome -->
-                <div class="mb-3">
-                    <label for="nome" class="form-label fw-bold verde_escuro">Nome*</label>
-                    <input type="text" value="<?php  echo htmlspecialchars($nome_db) ?>" class="form-control bg-success bg-opacity-25" id="nome" name="nome" required>
-                </div>
+        <!-- Localização -->
+        <label for="localizacao" class="form-label fw-semibold verde_escuro">Localização*</label>
+        <div class="mb-3 d-flex align-items-center">
+            <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
+                <i class="bi bi-geo-alt-fill verde_escuro"></i>
+            </span>
+            <input type="text" class="form-control bg-success bg-opacity-25" id="localizacao" name="localizacao" value="<?= htmlspecialchars($localizacao) ?>" required>
+        </div>
 
-                <!-- Email -->
-                <div class="mb-3">
-                    <label for="email" class="form-label fw-bold verde_escuro">Email*</label>
-                    <input type="email" value="<?php  echo htmlspecialchars($email) ?>" class="form-control bg-success bg-opacity-25" id="email" name="email" required>
-                </div>
+        <!-- Contactos -->
+        <h6 class="fw-bold mt-4 verde_escuro fs-4">Contactos</h6>
 
-                <!-- Contacto Telefónico -->
-                <div class="mb-4">
-                    <label for="telefone" class="form-label fw-bold verde_escuro">Contacto telefónico*</label>
-                    <input type="tel" value="<?php  echo htmlspecialchars($contacto) ?>" class="form-control bg-success bg-opacity-25" id="telefone" name="telefone" required>
-                </div>
+        <div class="mb-3">
+            <label for="nome" class="form-label fw-bold verde_escuro">Nome*</label>
+            <input type="text" value="<?= htmlspecialchars($nome_db) ?>" class="form-control bg-success bg-opacity-25" id="nome" name="nome" required>
+        </div>
 
-                <!-- Botões -->
-                <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-publicar w-100 me-2">Publicar</button>
-                    <button type="reset" class="btn btn-descartar w-100 ms-2">Descartar</button>
-                </div>
-            </div>
-        </form>
+        <div class="mb-3">
+            <label for="email" class="form-label fw-bold verde_escuro">Email*</label>
+            <input type="email" value="<?= htmlspecialchars($email) ?>" class="form-control bg-success bg-opacity-25" id="email" name="email" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="telefone" class="form-label fw-bold verde_escuro">Contacto telefónico*</label>
+            <input type="tel" value="<?= htmlspecialchars($contacto) ?>" class="form-control bg-success bg-opacity-25" id="telefone" name="telefone" required>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-publicar w-100 me-2">Guardar Alterações</button>
+            <a href="../Paginas/produto.php" class="btn btn-descartar w-100 ms-2">Cancelar</a>
+        </div>
+    </form>
+</main>
