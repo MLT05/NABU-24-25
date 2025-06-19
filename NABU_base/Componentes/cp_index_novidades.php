@@ -4,7 +4,7 @@
 
     <!-- RECOMENDAÇÕES -->
     <section class="mb-5">
-        <div id="carouselrecomendacoes" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselnovidades" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
 
                 <?php
@@ -58,11 +58,11 @@
             </div>
 
             <!-- Controles -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselrecomendacoes" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselnovidades" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
                 <span class="visually-hidden">Anterior</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselrecomendacoes" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselnovidades" data-bs-slide="next">
                 <span class="carousel-control-next-icon"></span>
                 <span class="visually-hidden">Seguinte</span>
             </button>
