@@ -146,7 +146,7 @@ if (mysqli_stmt_prepare($stmt_user, $query_user)) {
 
         <!-- Botões -->
         <div class="d-flex justify-content-between">
-            <button type="submit" class="btn btn-publicar w-100 me-2">Publicar</button>
+            <button type="submit" class="btn btn-publicar w-100 me-2">Editar</button>
             <button type="reset" class="btn btn-descartar w-100 ms-2">Descartar</button>
         </div>
     </form>
