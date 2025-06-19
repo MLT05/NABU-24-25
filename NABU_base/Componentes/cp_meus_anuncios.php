@@ -52,16 +52,19 @@ $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
                         </div>
 
                         <hr class="linha-card verde_escuro">
-
+                </a>
                         <div class="card-body m-2 pt-0 pb-2 px-2">
                             <div class="d-flex justify-content-between align-items-center">
-                                <small class=" verde_escuro fw-bolder fs-5">
-
-            </small>
+                                <form action="../Paginas/editar_produto.php" method="POST" class="d-inline">
+                                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($id_anuncio); ?>">
+                                    <button type="submit" class="btn verde_escuro_bg rounded-circle d-flex align-items-center justify-content-center p-0" style="width: 40px; height: 40px;">
+                                        <span class="material-icons text-white">edit</span>
+                                    </button>
+                                </form>
                                 <small class="fw-bolder verde_escuro fs-5"><?php echo htmlspecialchars($preco); ?> € /<?php echo htmlspecialchars($medida); ?></small>
                             </div>
                         </div>
-                </a>
+
             </div>
         </div>
 
