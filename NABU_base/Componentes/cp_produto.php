@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once '../Connections/connection.php';
 require_once '../Functions/function_favorito.php';
 
