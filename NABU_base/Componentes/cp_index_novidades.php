@@ -4,6 +4,7 @@
 
     <!-- RECOMENDAÇÕES -->
     <section class="mb-5">
+        <h1 class="verde_escuro">Novidades</h1>
         <div id="carouselnovidades" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
 

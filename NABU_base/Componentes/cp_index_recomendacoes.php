@@ -4,6 +4,7 @@
 
                     <!-- RECOMENDAÇÕES -->
                     <section class="mb-5">
+                        <h1 class="verde_escuro">Recomendações</h1>
                         <div id="carouselrecomendacoes" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
 

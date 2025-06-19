@@ -10,17 +10,7 @@
     </div>
 
 
-    <!-- RECOMENDAÇÕES -->
-    <section class="mb-5">
 
-        <?php require_once("cp_index_recomendacoes.php"); ?>
-    </section>
-
-    <!-- NOVIDADES -->
-    <section class="mb-5">
-
-        <?php require_once("cp_index_novidades.php"); ?>
-    </section>
 
     <!-- FAVORITOS -->
     <section class="mb-5">
