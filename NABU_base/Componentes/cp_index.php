@@ -12,13 +12,13 @@
 
     <!-- RECOMENDAÇÕES -->
     <section class="mb-5">
-        <h1 class="verde_escuro">Recomendações</h1>
+
         <?php require_once("cp_index_recomendacoes.php"); ?>
     </section>
 
     <!-- NOVIDADES -->
     <section class="mb-5">
-        <h1 class="verde_escuro">Novidades</h1>
+
         <?php require_once("cp_index_novidades.php"); ?>
     </section>
 
