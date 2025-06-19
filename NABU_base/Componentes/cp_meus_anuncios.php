@@ -43,7 +43,7 @@ $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
 
                         <!-- Imagem -->
                         <div class="imagem_card_pesquisa">
-                            <img src="../uploads/anuncios/default-image.jpg" class="card-img-top rounded-4 img_hp_card" alt="Tomates">
+                            <img src="../uploads/capas/default-image.jpg" class="card-img-top rounded-4 img_hp_card" alt="Tomates">
                         </div>
 
                         <!-- Conteúdo -->
