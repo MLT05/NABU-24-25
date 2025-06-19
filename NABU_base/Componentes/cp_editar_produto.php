@@ -2,7 +2,16 @@
 
 require_once '../Connections/connection.php';
 
-$id_anuncio = 18;  // Pode ser fixo, mas idealmente vem de $_POST ou $_GET
+
+if (isset($_POST['id']) && !empty($_POST['id'])) {
+    // O ID existe e não é nulo ou vazio
+    $id_anuncio = $_POST['id'];
+    // continue o processamento...
+} else {
+    // ID não existe ou é nulo/vazio
+    header("Location: meus_anuncios.php");
+}
+
 $link = new_db_connection();
 
 // Buscar dados do produto/anúncio

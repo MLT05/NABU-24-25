@@ -62,7 +62,7 @@ $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
                                         <span class="material-icons text-white">edit</span>
                                     </button>
                                 </form>
-                                <small class="fw-bolder verde_escuro fs-5"><?php echo htmlspecialchars($preco); ?> € /<?php echo htmlspecialchars($medida); ?></small>
+                                <small class="fw-bolder verde_escuro fs-5"><?php echo htmlspecialchars($preco); ?>€/<?php echo htmlspecialchars($medida); ?></small>
                             </div>
                         </div>
 
