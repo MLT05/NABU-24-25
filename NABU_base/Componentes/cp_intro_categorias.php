@@ -12,7 +12,7 @@
 
             while (mysqli_stmt_fetch($stmt_categorias)) {
                 echo '<a href="../Paginas/pesquisa_categorias.php?id_categoria=' . $id_categoria2 . '" class="categoria-item fs-6 text-decoration-none me-3 verde_escuro">'
-                    . htmlspecialchars($id_categoria2) . '</a>';
+                    . htmlspecialchars($nome_categoria) . '</a>';
             }
 
             mysqli_stmt_close($stmt_categorias);
