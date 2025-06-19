@@ -1,6 +1,6 @@
 <?php
 
-require onde
+
 require_once '../Connections/connection.php';
 $link = new_db_connection();
 
