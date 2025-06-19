@@ -36,6 +36,8 @@ if (!isset($_SESSION['id_user'])) {
         mysqli_stmt_close($stmt);
     }
 
+    adicionar_notificacao($_SESSION['id_user'], "Bem-vindo! Esta é uma notificação de exemplo.");
+    ;
 mysqli_close($link);
 }
 ?>
