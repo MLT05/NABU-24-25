@@ -15,7 +15,7 @@ if (isset($_POST['pesquisa'])) {
 
             <div class="row g-3">
                 <?php
-                $query = "SELECT nome_produto, preco, id_anuncio FROM anuncios WHERE nome_produto LIKE CONCAT('%', ?, '%')";
+                $query = "SELECT nome_produto, preco, id_anuncio FROM capas WHERE nome_produto LIKE CONCAT('%', ?, '%')";
 
                 $stmt = mysqli_stmt_init($link);
                 if (mysqli_stmt_prepare($stmt, $query)) {

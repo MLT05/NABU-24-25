@@ -42,7 +42,7 @@ if (!validarMoradaOSM($localizacao)) {
 }
 
 if (!$erro) {
-    $query = "INSERT INTO anuncios (nome_produto, descricao, preco, ref_categoria, ref_user, localizacao, capa, data_insercao, ref_medida) 
+    $query = "INSERT INTO capas (nome_produto, descricao, preco, ref_categoria, ref_user, localizacao, capa, data_insercao, ref_medida) 
               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($link, $query);
 

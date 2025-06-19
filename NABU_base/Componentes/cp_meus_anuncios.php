@@ -16,7 +16,7 @@ if (!isset($_SESSION['id_user'])) {
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
 
-    $query = "SELECT id_anuncio, nome_produto, preco, abreviatura , capa FROM anuncios INNER JOIN medidas ON ref_medida = id_medida WHERE ref_user = ?";
+    $query = "SELECT id_anuncio, nome_produto, preco, abreviatura , capa FROM capas INNER JOIN medidas ON ref_medida = id_medida WHERE ref_user = ?";
 
 $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
 ?>
@@ -43,7 +43,7 @@ $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
 
                         <!-- Imagem -->
                         <div class="imagem_card_pesquisa">
-                            <img src="../uploads/anuncios/default-image.jpg" class="card-img-top rounded-4 img_hp_card" alt="Tomates">
+                            <img src="../uploads/capas/default-image.jpg" class="card-img-top rounded-4 img_hp_card" alt="Tomates">
                         </div>
 
                         <!-- Conteúdo -->

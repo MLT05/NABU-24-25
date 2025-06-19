@@ -13,7 +13,7 @@ $link = new_db_connection();
 $query = "
     SELECT a.id_anuncio, a.nome_produto, a.preco, a.capa, c.nome_categoria
     FROM favoritos f
-    INNER JOIN anuncios a ON f.anuncios_id_anuncio = a.id_anuncio
+    INNER JOIN capas a ON f.anuncios_id_anuncio = a.id_anuncio
     LEFT JOIN categorias c ON a.ref_categoria = c.id_categoria
     WHERE f.users_id_user = ?
     ORDER BY f.data_insercao DESC

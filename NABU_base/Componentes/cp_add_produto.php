@@ -21,15 +21,7 @@ if (!isset($_SESSION['id_user'])) {
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {
-                backdrop: 'static',
-                keyboard: false
-            });
-            loginModal.show();
-        });
-    </script>
+
     <?php
 } else {
     $id_user = $_SESSION['id_user'];
@@ -56,13 +48,19 @@ if (!isset($_SESSION['id_user'])) {
                 <p class="verde_escuro">Insere todos os detalhes sobre o teu produto</p>
 
                 <!-- Upload Imagem -->
-                <div class="upload-box mb-3">
-                    <label for="imagens" class="w-100 text-center">
+                <div class="upload-box  mb-3" >
+                    <div class="image-preview-container">
+                    <div class="preview">
+                        <img id="preview-selected-image">
+                    </div>
+                    </div>
+                <label for="imagens" class="w-100 text-center">
                         <i class="bi bi-upload fs-2 d-block"></i>
                         Adicionar imagens
-                        <input type="file" id="imagens" name="imagens[]" multiple hidden>
+                        <input type="file" id="file_upload" accept="image/*" >
                     </label>
                 </div>
+
 
                 <!-- Título -->
                 <div class="mb-3">
@@ -168,3 +166,26 @@ if (!isset($_SESSION['id_user'])) {
     <?php
 }
 ?>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        var loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {
+        backdrop: 'static',
+        keyboard: false
+    });
+        loginModal.show();
+    });
+</script>
+
+<script>
+        const previewImage = (event) => {
+            const files =event.target.files;
+            if(files.length > 0) {
+                const imageUrl = URL.createObjectURL(files[0]);
+                const imageElement = document.getElementById("preview-selected-image")
+                imageElement.src =imageUrl
+            }
+        }
+
+
+</script>
