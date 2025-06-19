@@ -2,14 +2,19 @@
 require_once '../Connections/connection.php';
 $link = new_db_connection();
 
+// Verificar se o utilizador está autenticado
+if (!isset($_SESSION['id_user'])) {
+    die("Erro: Utilizador não autenticado.");
+}
+
+$ref_user = $_SESSION['id_user']; // ID de quem está a vender
+
 // Dados do formulário
-$ref_user =1;
 $nome_produto = $_POST['titulo'];
 $descricao = $_POST['descricao'];
 $preco = floatval(str_replace(',', '.', $_POST['preco']));
 $ref_categoria = (int) $_POST['categoria'];
 $ref_medida = (int) $_POST['medida'];
-
 $localizacao = $_POST['localizacao'];
 $nome_contato = $_POST['nome'];
 $email_contato = $_POST['email'];
@@ -17,14 +22,10 @@ $telefone_contato = $_POST['telefone'];
 $data_insercao = date("Y-m-d H:i:s");
 $capa = "default.png";
 
-// Função para validar morada usando Nominatim OpenStreetMap
+// Função para validar morada usando Nominatim
 function validarMoradaOSM($morada) {
     $url = 'https://nominatim.openstreetmap.org/search?format=json&q=' . urlencode($morada);
-    $opts = [
-        "http" => [
-            "header" => "User-Agent: MinhaAppDeTeste/1.0\r\n"
-        ]
-    ];
+    $opts = ["http" => ["header" => "User-Agent: MinhaApp/1.0\r\n"]];
     $context = stream_context_create($opts);
     $response = file_get_contents($url, false, $context);
     if ($response === false) {
@@ -49,7 +50,8 @@ if (!$erro) {
         mysqli_stmt_bind_param(
             $stmt,
             "ssdisssss",
-            $nome_produto, $descricao, $preco, $ref_categoria, $ref_user, $localizacao, $capa, $data_insercao, $ref_medida);
+            $nome_produto, $descricao, $preco, $ref_categoria, $ref_user, $localizacao, $capa, $data_insercao, $ref_medida
+        );
 
         if (mysqli_stmt_execute($stmt)) {
             echo "Anúncio inserido com sucesso!";
