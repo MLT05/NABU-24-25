@@ -8,7 +8,7 @@ if (isset($_GET['id_categoria'])) {
     $stmt = mysqli_stmt_init($link);
 
     // Query simples com filtro por ref_categoria
-    $query= "SELECT nome_produto, preco, id_anuncio FROM capas  INNER JOIN categorias ON capas.ref_categorias = categorias.id_categorias WHERE categorias.id_categorias= ?";
+    $query= "SELECT nome_produto, preco, id_anuncio FROM anuncios  INNER JOIN categorias ON anuncios.ref_categorias = categorias.id_categorias WHERE categorias.id_categorias= ?";
 
     ?>
     <main class="body_index">

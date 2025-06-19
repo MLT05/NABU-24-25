@@ -16,7 +16,7 @@ if (!isset($_SESSION['id_user'])) {
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
 
-    $query = "SELECT id_anuncio, nome_produto, preco, abreviatura , capa FROM capas INNER JOIN medidas ON ref_medida = id_medida WHERE ref_user = ?";
+    $query = "SELECT id_anuncio, nome_produto, preco, abreviatura , capa FROM anuncios INNER JOIN medidas ON ref_medida = id_medida WHERE ref_user = ?";
 
 $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
 ?>

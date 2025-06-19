@@ -18,7 +18,7 @@ $link = new_db_connection();
 $stmt = mysqli_stmt_init($link);
 
 $query = "SELECT a.nome_produto, a.descricao, a.preco, c.nome_categoria, u.nome, a.localizacao, a.capa, a.data_insercao, m.descricao AS medida_desc, m.abreviatura 
-          FROM capas a
+          FROM anuncios a
           INNER JOIN categorias c ON a.ref_categoria = c.id_categoria
           INNER JOIN users u ON a.ref_user = u.id_user
           INNER JOIN medidas m ON a.ref_medida = m.id_medida

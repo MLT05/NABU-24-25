@@ -23,7 +23,7 @@ $link = new_db_connection();
         <?php
         // Código PHP para ir buscar os produtos à base de dados
         $stmt = mysqli_stmt_init($link);
-        $query = "SELECT capas.nome_produto, capas.preco, capas.id_anuncio FROM capas ";
+        $query = "SELECT anuncios.nome_produto, anuncios.preco, anuncios.id_anuncio FROM anuncios ";
 
         if (mysqli_stmt_prepare($stmt, $query)) {
             mysqli_stmt_execute($stmt);
