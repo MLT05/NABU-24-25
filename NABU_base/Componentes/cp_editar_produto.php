@@ -52,15 +52,11 @@ if (mysqli_stmt_prepare($stmt_user, $query_user)) {
         <!-- Resto do formulário continua igual -->
 
         <!-- Upload Imagem -->
-        <label for="titulo" class="form-label verde_escuro fw-semibold">Imagem*</label>
+        <label for="pfp" class="form-label verde_escuro fw-semibold">Imagem*</label>
         <div class="text-center mb-4">
-            <form action="../scripts/sc_upload_capa.php" method="post" enctype="multipart/form-data" class="mt-4 text-center">
-                <div class="mb-3">
-
-                    <input value="<?= htmlspecialchars($capa) ?>"type="file" name="pfp" id="pfp" class="form-control mt-3" accept="image/*" required>
-                </div>
-                <button type="submit" class="btn verde fw-bold">Guardar</button>
-            </form>
+            <div class="mb-3">
+                <input type="file" name="pfp" id="pfp" class="form-control mt-3" accept="image/*">
+            </div>
         </div>
 
         <!-- Título -->
