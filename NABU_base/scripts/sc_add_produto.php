@@ -46,6 +46,17 @@ if (!is_dir($upload_dir)) {
     mkdir($upload_dir, 0755, true);
 }
 
+$id_anuncio = (int) $_POST['id_anuncio']; // Deves passar este campo escondido no form
+
+// Buscar imagem antiga
+$query_capa = "SELECT capa FROM anuncios WHERE id_anuncio = ? AND ref_user = ?";
+$stmt_capa = mysqli_prepare($link, $query_capa);
+mysqli_stmt_bind_param($stmt_capa, "ii", $id_anuncio, $ref_user);
+mysqli_stmt_execute($stmt_capa);
+mysqli_stmt_bind_result($stmt_capa, $capa_atual);
+mysqli_stmt_fetch($stmt_capa);
+mysqli_stmt_close($stmt_capa);
+
 if (isset($_FILES['pfp']) && $_FILES['pfp']['error'] === UPLOAD_ERR_OK) {
     $file_tmp = $_FILES['pfp']['tmp_name'];
     $file_name = basename($_FILES['pfp']['name']);

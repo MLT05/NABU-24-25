@@ -18,13 +18,13 @@ if (isset($_POST['pesquisa'])) {
 
             <div class="row g-3">
                 <?php
-                $query = "SELECT nome_produto, preco, id_anuncio FROM anuncios WHERE nome_produto LIKE CONCAT('%', ?, '%')";
+                $query = "SELECT nome_produto, preco, id_anuncio, capa FROM anuncios WHERE nome_produto LIKE CONCAT('%', ?, '%')";
 
                 $stmt = mysqli_stmt_init($link);
                 if (mysqli_stmt_prepare($stmt, $query)) {
                     mysqli_stmt_bind_param($stmt, "s", $pesquisa);
                     mysqli_stmt_execute($stmt);
-                    mysqli_stmt_bind_result($stmt, $nome, $preco, $id_anuncio);
+                    mysqli_stmt_bind_result($stmt, $nome, $preco, $id_anuncio, $capa);
 
                     while (mysqli_stmt_fetch($stmt)) {
                         ?>
@@ -36,7 +36,7 @@ if (isset($_POST['pesquisa'])) {
                                     </div>
 
                                     <div class="imagem_card_pesquisa">
-                                        <img src="../Imagens/produtos/default.jpg" class="card-img-top rounded-4 img_hp_card" alt="<?= htmlspecialchars($nome) ?>">
+                                        <img src="../Imagens/produtos/<?php echo htmlspecialchars($capa); ?>" class="card-img-top rounded-4 img_hp_card" alt="<?= htmlspecialchars($nome) ?>">
                                     </div>
 
                                     <div class="card-body m-2 pt-2 px-2 pb-0">
