@@ -1,11 +1,17 @@
 
                 <main class="body_index">
 
+                    <!-- Botões topo -->
+                    <div class="top-buttons mb-4 d-flex gap-2">
+                        <a class="responsive-button active">Para si</a>
+                        <a href="../Paginas/mapa.php" class="responsive-button">Mapa</a>
+                    </div>
 
                     <!-- RECOMENDAÇÕES -->
                     <section class="mb-5">
                         <h1 class="verde_escuro">Recomendações</h1>
-
+                        <div id="carouselrecomendacoes" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
 
                                 <?php
 
