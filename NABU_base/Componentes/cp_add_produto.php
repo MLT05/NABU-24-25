@@ -48,8 +48,16 @@ if (!isset($_SESSION['id_user'])) {
                 <p class="verde_escuro">Insere todos os detalhes sobre o teu produto</p>
 
                 <!-- Upload Imagem -->
+                <label for="titulo" class="form-label verde_escuro fw-semibold">Imagem*</label>
+                <div class="text-center mb-4">
+                <form action="../scripts/sc_upload_capa.php" method="post" enctype="multipart/form-data" class="mt-4 text-center">
+                    <div class="mb-3">
 
-
+                        <input type="file" name="pfp" id="pfp" class="form-control mt-3" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn verde fw-bold">Guardar</button>
+                </form>
+                </div>
 
                 <!-- Título -->
                 <div class="mb-3">
