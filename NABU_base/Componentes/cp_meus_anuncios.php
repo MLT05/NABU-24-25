@@ -43,7 +43,7 @@ $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
                         <a href="../paginas/produto.php?id=<?php echo htmlspecialchars($id_anuncio); ?>" style="text-decoration: none">
                         <!-- Imagem -->
                         <div class="imagem_card_pesquisa">
-                            <img src="../uploads/capas/default-image.jpg" class="card-img-top rounded-4 img_hp_card" alt="Tomates">
+                            <img src="../uploads/capas/<?php echo htmlspecialchars($capa); ?>" class="card-img-top rounded-4 img_hp_card" alt="Tomates">
                         </div>
 
                         <!-- Conteúdo -->
@@ -58,11 +58,11 @@ $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
                             <div class="d-flex justify-content-between align-items-center">
                                 <form action="../Paginas/editar_produto.php" method="POST" class="d-inline">
                                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($id_anuncio); ?>">
-                                    <button type="submit" class="btn verde_escuro_bg rounded-circle d-flex align-items-center justify-content-center p-0" style="width: 40px; height: 40px;">
+                                    <button type="submit" class="btn verde_escuro_bg rounded-circle d-flex align-items-center justify-content-center p-0" style="width: 2.8rem; height: 2.8rem;">
                                         <span class="material-icons text-white">edit</span>
                                     </button>
                                 </form>
-                                <small class="fw-bolder verde_escuro fs-5"><?php echo htmlspecialchars($preco); ?> € /<?php echo htmlspecialchars($medida); ?></small>
+                                <small class="fw-bolder verde_escuro fs-5"><?php echo htmlspecialchars($preco); ?>€/<?php echo htmlspecialchars($medida); ?></small>
                             </div>
                         </div>
 

@@ -39,7 +39,7 @@ $link = new_db_connection();
                             <a href="../Paginas/produto.php?id=<?= $id_anuncio ?>" style="text-decoration: none">
                                 <!-- Imagem -->
                                 <div class="imagem_card_pesquisa">
-                                    <img src="../uploads/capas/default-image.jpg" class="card-img-top rounded-4 img_hp_card" alt="<?= htmlspecialchars($nome_produto) ?>">
+                                    <img src="../uploads/capas/<?php echo htmlspecialchars($capa); ?>" class="card-img-top rounded-4 img_hp_card" alt="<?= htmlspecialchars($nome_produto) ?>">
                                 </div>
 
                                 <!-- Título -->

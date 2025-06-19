@@ -2,7 +2,16 @@
 
 require_once '../Connections/connection.php';
 
-$id_anuncio = 18;  // Pode ser fixo, mas idealmente vem de $_POST ou $_GET
+
+if (isset($_POST['id']) && !empty($_POST['id'])) {
+    // O ID existe e não é nulo ou vazio
+    $id_anuncio = $_POST['id'];
+    // continue o processamento...
+} else {
+    // ID não existe ou é nulo/vazio
+    header("Location: meus_anuncios");
+}
+
 $link = new_db_connection();
 
 // Buscar dados do produto/anúncio
@@ -20,17 +29,18 @@ if (mysqli_stmt_prepare($stmt, $query)) {
 
 // Buscar dados do utilizador
 $stmt_user = mysqli_stmt_init($link);
-$query_user = "SELECT nome, email, contacto FROM users WHERE id_user = ?";
+$query_user = "SELECT nome,pfp, email, contacto FROM users WHERE id_user = ?";
 if (mysqli_stmt_prepare($stmt_user, $query_user)) {
     mysqli_stmt_bind_param($stmt_user, "i", $ref_user);
     mysqli_stmt_execute($stmt_user);
-    mysqli_stmt_bind_result($stmt_user, $nome_db, $email, $contacto);
+    mysqli_stmt_bind_result($stmt_user, $nome_db, $pfp, $email, $contacto);
     mysqli_stmt_fetch($stmt_user);
     mysqli_stmt_close($stmt_user);
 } else {
     die("Erro na query do utilizador: " . mysqli_error($link));
 }
 ?>
+
 
 <main class="body_index">
     <form method="post" enctype="multipart/form-data" action="../scripts/sc_editar_produto.php" class="needs-validation" novalidate>
@@ -40,18 +50,17 @@ if (mysqli_stmt_prepare($stmt_user, $query_user)) {
         <h5 class="fw-bold fs-3 verde_escuro mb-0">Editar anúncio</h5>
         <p class="verde_escuro">Altere os detalhes sobre o teu produto</p>
 
-        <!-- Resto do formulário continua igual -->
-
         <!-- Upload Imagem -->
-        <label for="titulo" class="form-label verde_escuro fw-semibold">Imagem*</label>
-        <div class="text-center mb-4">
-            <form action="../scripts/sc_upload_capa.php" method="post" enctype="multipart/form-data" class="mt-4 text-center">
-                <div class="mb-3">
 
-                    <input value="<?= htmlspecialchars($capa) ?>"type="file" name="pfp" id="pfp" class="form-control mt-3" accept="image/*" required>
-                </div>
-                <button type="submit" class="btn verde fw-bold">Guardar</button>
-            </form>
+        <label for="pfp" class="form-label verde_escuro fw-semibold">Imagem*</label>
+<div>
+    <img s src="../uploads/capas/<?= htmlspecialchars($capa)?>" class="w-100" style="max-height: 100vh; object-fit: cover;" >
+</div>
+
+        <div class="text-center mb-4">
+            <div class="mb-3">
+                <input type="file"  name="pfp" id="pfp" class="form-control mt-3" accept="image/*">
+            </div>
         </div>
 
         <!-- Título -->

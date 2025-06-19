@@ -48,21 +48,15 @@ if (!isset($_SESSION['id_user'])) {
                 <p class="verde_escuro">Insere todos os detalhes sobre o teu produto</p>
 
                 <!-- Upload Imagem -->
-                <label for="titulo" class="form-label verde_escuro fw-semibold">Imagem*</label>
+                <label for="pfp" class="form-label verde_escuro fw-semibold">Imagem*</label>
                 <div class="text-center mb-4">
-                <form action="../scripts/sc_upload_capa.php" method="post" enctype="multipart/form-data" class="mt-4 text-center">
-                    <div class="mb-3">
-
-                        <input type="file" name="pfp" id="pfp" class="form-control mt-3" accept="image/*" required>
-                    </div>
-                    <button type="submit" class="btn verde fw-bold">Guardar</button>
-                </form>
+                    <input type="file" name="pfp" id="pfp" class="form-control mt-3" accept="image/*" required>
                 </div>
 
                 <!-- Título -->
                 <div class="mb-3">
                     <label for="titulo" class="form-label verde_escuro fw-semibold">Título do Anúncio*</label>
-                    <input type="text" class="form-control bg-success bg-opacity-25" id="titulo" name="titulo" required minlength="1">
+                    <input type="text" class="form-control bg-success bg-opacity-25" id="titulo" name="titulo" required>
                 </div>
 
                 <!-- Preço -->
@@ -71,9 +65,9 @@ if (!isset($_SESSION['id_user'])) {
                     <input type="number" step="0.01" min="0" class="form-control bg-success bg-opacity-25" id="preco" name="preco" required>
                 </div>
 
-                <!-- Medidas -->
+                <!-- Medida -->
                 <div class="mb-3">
-                    <label for="medida" class="form-label fw-semibold verde_escuro">Medidas*</label>
+                    <label for="medida" class="form-label fw-semibold verde_escuro">Unidade de medida*</label>
                     <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="medida" name="medida" required>
                         <?php
                         $link = new_db_connection();
@@ -120,11 +114,10 @@ if (!isset($_SESSION['id_user'])) {
                 </div>
 
                 <!-- Localização -->
-                <label for="localizacao" class="form-label fw-semibold verde_escuro">Localização*</label>
                 <div class="mb-3 d-flex align-items-center">
-                    <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
-                        <i class="bi bi-geo-alt-fill verde_escuro"></i>
-                    </span>
+                <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
+                    <i class="bi bi-geo-alt-fill verde_escuro"></i>
+                </span>
                     <input type="text" class="form-control bg-success bg-opacity-25" id="localizacao" name="localizacao" placeholder="Localização" required>
                 </div>
 
@@ -149,9 +142,6 @@ if (!isset($_SESSION['id_user'])) {
                     <input type="tel" value="<?= htmlspecialchars($contacto) ?>" class="form-control bg-success bg-opacity-25" id="telefone" name="telefone" required>
                 </div>
 
-                <!-- ID do utilizador (campo oculto) -->
-                <input type="hidden" name="id_user" value="<?= htmlspecialchars($id_user) ?>">
-
                 <!-- Botões -->
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-publicar w-100 me-2">Publicar</button>
@@ -160,6 +150,7 @@ if (!isset($_SESSION['id_user'])) {
             </div>
         </form>
     </main>
+
     <?php
 }
 ?>
@@ -175,20 +166,20 @@ if (!isset($_SESSION['id_user'])) {
 </script>
 
 <script>
-        const previewImage = (event) => {
-            const files =event.target.files;
-            if(files.length > 0) {
-                const imageUrl = URL.createObjectURL(files[0]);
-                const imageElement = document.getElementById("preview-selected-image")
-                imageElement.src =imageUrl
-            }
+    const previewImage = (event) => {
+        const files =event.target.files;
+        if(files.length > 0) {
+            const imageUrl = URL.createObjectURL(files[0]);
+            const imageElement = document.getElementById("preview-selected-image")
+            imageElement.src =imageUrl
         }
-                <div class="upload-box mb-3">
-                    <label for="imagens" class="w-100 text-center">
-                        <i class="bi bi-upload fs-2 d-block"></i>
-                        Adicionar imagens
-                        <input type="file" id="imagens" name="imagens[]" multiple hidden>
-                    </label>
-                </div>
+    }
+    <div class="upload-box mb-3">
+        <label for="imagens" class="w-100 text-center">
+            <i class="bi bi-upload fs-2 d-block"></i>
+            Adicionar imagens
+            <input type="file" id="imagens" name="imagens[]" multiple hidden>
+        </label>
+    </div>
 
 </script>
