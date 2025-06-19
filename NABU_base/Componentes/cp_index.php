@@ -1,4 +1,4 @@
-<?php include_once("cp_intro_index.php"); ?>
+<?php require_once("cp_intro_index.php"); ?>
 <main class="body_index">
 
     <!-- RECOMENDAÇÕES -->
