@@ -63,7 +63,7 @@
                     <span class="material-icons" id="iconPassword">visibility</span>
                 </button>
             </div>
-            <p class="text-center">já tem conta? <a href="../Paginas/login.php">Entrar</a></p>
+            <p class="text-center">Já tem conta? <a href="../Paginas/login.php">Entrar</a></p>
             <button type="submit" class="btn verde_bg rounded w-75 fw-bold text-white py-2 fs-5 mt-5 d-block mx-auto">CRIAR CONTA</button>
         </form>
     </div>

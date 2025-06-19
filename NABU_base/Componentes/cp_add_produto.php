@@ -183,6 +183,12 @@ if (!isset($_SESSION['id_user'])) {
                 imageElement.src =imageUrl
             }
         }
-
+                <div class="upload-box mb-3">
+                    <label for="imagens" class="w-100 text-center">
+                        <i class="bi bi-upload fs-2 d-block"></i>
+                        Adicionar imagens
+                        <input type="file" id="imagens" name="imagens[]" multiple hidden>
+                    </label>
+                </div>
 
 </script>
