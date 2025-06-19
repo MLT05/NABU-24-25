@@ -88,10 +88,9 @@
             <div class="form-check form-switch verde_claro_bg">
                 <br>
                 <form action="post">
-                    <input class="form-check-input" type="radio" id="flexSwitchCheckDefault">
-                    <label class="form-check       -label verde_escuro" for="flexSwitchCheckDefault">Ativar tema
-                        escuro</label>
-                    <br>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider"></span>
                 </form>
             </div>
         </div>
