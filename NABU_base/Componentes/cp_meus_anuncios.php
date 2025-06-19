@@ -1,48 +1,86 @@
+
 <main class="body_index">
+<?php
 
-<div class="container py-4">
-    <div class="row g-3 justify-content-center">
+require_once '../Connections/connection.php';
 
-        <!-- Card 1 -->
-        <div class="col-6">
-            <div class="card h-100">
-                <img src="https://via.placeholder.com/300x150?text=Mel" class="card-img-top" alt="Mel Regional">
-                <div class="card-body p-2 d-flex flex-column justify-content-between">
-                    <div>
-                        <h6 class="card-title mb-1">Mel regional</h6>
-                        <div class="d-flex justify-content-between small text-muted align-items-center">
-                <span>
-                  <span class="material-icons" style="font-size: 16px;">star</span> 4,9
-                </span>
-                            <span>2,00 €</span>
+if (!isset($_SESSION['id_user'])) {
+    // Se não estiver logado, redireciona pro login
+    header("../Paginas/login.php");
+
+} else {
+
+
+    $id_user = $_SESSION['id_user'];
+
+    $link = new_db_connection();
+    $stmt = mysqli_stmt_init($link);
+
+    $query = "SELECT id_anuncio, nome_produto, preco, abreviatura , capa FROM anuncios INNER JOIN medidas ON ref_medida = id_medida WHERE ref_user = ?";
+
+$capa = "default-image.jpg"; // imagem padrão caso não tenha capa
+?>
+    <section class="mb-5">
+        <h1 class="verde_escuro">Meus anúncios:</h1>
+        <div class="row g-3">
+
+<?php
+
+
+    if (mysqli_stmt_prepare($stmt, $query)) {
+        mysqli_stmt_bind_param($stmt, 'i', $id_user);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $medida, $capa);
+
+        while(mysqli_stmt_fetch($stmt)) { ?>
+
+            <div class="col-6">
+                <a href="../paginas/produto.php" style="text-decoration: none">
+                    <div class="card rounded-4 shadow-sm border-0 position-relative card_pesquisa">
+
+
+
+
+                        <!-- Imagem -->
+                        <div class="imagem_card_pesquisa">
+                            <img src="../uploads/anuncios/default-image.jpg" class="card-img-top rounded-4 img_hp_card" alt="Tomates">
                         </div>
-                    </div>
-                    <div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <button class="btn btn-outline-success btn-sm">
-                                <span class="material-icons">edit</span>
-                            </button>
-                            <button class="btn btn-outline-danger btn-sm">
-                                <span class="material-icons">delete</span>
-                            </button>
+
+                        <!-- Conteúdo -->
+                        <div class="card-body m-2 pt-2 px-2 pb-0">
+                            <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3"><?php echo htmlspecialchars($nome_produto); ?></h6>
                         </div>
-                        <p class="text-end small text-muted mt-2 mb-0">15/06/2025</p>
-                    </div>
-                </div>
+
+                        <hr class="linha-card verde_escuro">
+
+                        <div class="card-body m-2 pt-0 pb-2 px-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class=" verde_escuro fw-bolder fs-5">
+                                    <?php echo htmlspecialchars($medida); ?>
+            </small>
+                                <small class="fw-bolder verde_escuro fs-5"><?php echo htmlspecialchars($preco); ?> €</small>
+                            </div>
+                        </div>
+                </a>
             </div>
         </div>
 
-        <!-- Card 2: Nova publicação -->
-        <div class="col-6">
-            <div class="card card-meusanuncios text-center bg-success text-white h-100" >
-                <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                    <span class="material-icons display-4 mb-1">add</span>
-                    <p class="mb-0">Nova publicação</p>
-                </div>
-            </div>
+            <?php
+        }
+
+
+
+        mysqli_stmt_close($stmt);
+    }
+
+
+    mysqli_close($link);
+}
+?>
+
+
         </div>
 
-    </div>
-</div>
+    </section>
 
 </main>
