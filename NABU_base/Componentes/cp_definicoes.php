@@ -82,16 +82,17 @@
 
             <a href="#"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-
                 Mudar tema Claro/Escuro
             </a>
             <div class="form-check form-switch verde_claro_bg">
                 <br>
                 <form action="post">
-                    <label class="switch">
-                        <input type="checkbox" id="theme-toggle">
-                        <span class="slider"></span>
+                    <label class="theme-toggle">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
                 </form>
+
             </div>
         </div>
     </div>
