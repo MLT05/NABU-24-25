@@ -4,14 +4,18 @@
     <!-- RECOMENDAÇÕES -->
     <section class="mb-5">
         <h1 class="verde_escuro">Recomendações</h1>
-        <?php include_once("cp_recomendacoes.php"); ?>
+        <?php require_once("cp_index_recomendacoes.php"); ?>
     </section>
 
     <!-- NOVIDADES -->
     <section class="mb-5">
         <h1 class="verde_escuro">Novidades</h1>
-        <?php include_once("cp_novidades.php"); ?>
+        <?php require_once("cp_index_novidades.php"); ?>
     </section>
+
+
+
+
 
     <!-- FAVORITOS -->
     <section class="mb-5">
