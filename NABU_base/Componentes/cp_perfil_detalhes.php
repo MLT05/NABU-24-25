@@ -44,7 +44,7 @@ if (!isset($_SESSION['id_user'])) {
 
     <div class="text-center mb-4">
         <img src="../uploads/pfp/<?php echo htmlspecialchars($capa); ?>" alt="Foto de perfil" class="rounded-circle border border-success imagempfp" style="object-fit: cover;">
-        <form action="../scripts/sc_update_pfp.php" method="post" enctype="multipart/form-data" class="mt-4 text-center">
+        <form action="../scripts/sc_upload_capa.php" method="post" enctype="multipart/form-data" class="mt-4 text-center">
             <div class="mb-3">
                 <label for="pfp" class="form-label fw-semibold">Alterar imagem de perfil (Max 10MB)</label>
                 <input type="file" name="pfp" id="pfp" class="form-control" accept="image/*" required>

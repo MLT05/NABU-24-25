@@ -48,18 +48,7 @@ if (!isset($_SESSION['id_user'])) {
                 <p class="verde_escuro">Insere todos os detalhes sobre o teu produto</p>
 
                 <!-- Upload Imagem -->
-                <div class="upload-box  mb-3" >
-                    <div class="image-preview-container">
-                    <div class="preview">
-                        <img id="preview-selected-image">
-                    </div>
-                    </div>
-                <label for="imagens" class="w-100 text-center">
-                        <i class="bi bi-upload fs-2 d-block"></i>
-                        Adicionar imagens
-                        <input type="file" id="file_upload" accept="image/*" >
-                    </label>
-                </div>
+
 
 
                 <!-- Título -->
