@@ -1,17 +1,18 @@
 <?php
+require_once '../Connections/connection.php';
+$link = new_db_connection();
+$stmt = mysqli_stmt_init($link);
 if (isset($_GET['id_categoria'])) {
     $id_categoria = $_GET['id_categoria'];
 
-    // Conexão à base de dados
-    require_once '../Connections/connection.php';
-    $link = new_db_connection();
-    $stmt = mysqli_stmt_init($link);
     ?>
     <main class="body_index">
         <div class="mt-3">
             <?php
             require_once '../Componentes/cp_intro_pesquisa.php';
             require_once '../Componentes/cp_intro_categorias.php';
+
+
             ?>
 
             <div class="row g-3">
@@ -27,17 +28,13 @@ if (isset($_GET['id_categoria'])) {
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
 
+
                     if (mysqli_stmt_num_rows($stmt) > 0) {
                         mysqli_stmt_bind_result($stmt, $nome , $preco, $id_anuncio);
                         while (mysqli_stmt_fetch($stmt)) {
 
                             ?>
-                            <pre>
-ID: <?= $id_anuncio ?>
-Nome: <?= htmlspecialchars($nome) ?>
-Preço: <?= number_format($preco, 2) ?>
-Categoria: <?= $id_categoria ?>
-</pre>
+
                             <div class="col-6">
                                 <a href="../Paginas/produto.php?id=<?= $id_anuncio ?>" style="text-decoration: none">
                                     <div class="card rounded-4 shadow-sm border-0 position-relative card_pesquisa">
@@ -81,3 +78,4 @@ Categoria: <?= $id_categoria ?>
     echo "<p class='text-danger'>ID de categoria inválido ou não fornecido.</p>";
 }
 ?>
+cai
