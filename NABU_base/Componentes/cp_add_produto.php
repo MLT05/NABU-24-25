@@ -12,7 +12,7 @@ if (!isset($_SESSION['id_user'])) {
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow-none"> <!-- Remove borda e sombra -->
                 <div class="modal-header border-0"> <!-- Remove a linha de separação -->
-                    <h5 class="modal-title" id="loginModalLabel">⚠ Login necessário</h5>
+                    <h5 class="modal-title" id="loginModalLabel"> Login necessário</h5>
                 </div>
                 <div class="modal-body text-center">
                     <p>Para criar um anúncio é necessário ter login.</p>
@@ -26,14 +26,17 @@ if (!isset($_SESSION['id_user'])) {
     </div>
 
 
-
     <script>
-        // Abrir modal automaticamente após a página carregar
         document.addEventListener('DOMContentLoaded', function () {
-            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {
+                backdrop: 'static', // Impede fechar ao clicar fora do modal
+                keyboard: false     // Impede fechar ao pressionar Esc
+            });
             loginModal.show();
         });
     </script>
+
+
 
     <?php
 } else {
