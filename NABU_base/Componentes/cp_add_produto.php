@@ -1,6 +1,5 @@
 <?php
 require_once '../Connections/connection.php';
-session_start(); // garantir que a sessão está ativa
 
 if (!isset($_SESSION['id_user'])) {
     ?>
