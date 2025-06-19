@@ -58,7 +58,7 @@ $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
                             <div class="d-flex justify-content-between align-items-center">
                                 <form action="../Paginas/editar_produto.php" method="POST" class="d-inline">
                                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($id_anuncio); ?>">
-                                    <button type="submit" class="btn verde_escuro_bg rounded-circle d-flex align-items-center justify-content-center p-0" style="width: 40px; height: 40px;">
+                                    <button type="submit" class="btn verde_escuro_bg rounded-circle d-flex align-items-center justify-content-center p-0" style="width: 2.8rem; height: 2.8rem;">
                                         <span class="material-icons text-white">edit</span>
                                     </button>
                                 </form>

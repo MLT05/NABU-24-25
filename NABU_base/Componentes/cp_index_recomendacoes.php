@@ -18,18 +18,19 @@ if (mysqli_stmt_prepare($stmt, $query)) {
     $first = true;
     while (mysqli_stmt_fetch($stmt)) {
         ?>
+        <!-- Item 1 -->
         <div class="carousel-item <?= $first ? 'active' : '' ?>">
-            <a href="../Paginas/produto.php?id=<?= $id_anuncio ?>" class="text-decoration-none text-dark">
+            <a href="../Paginas/produto.php" class="text-decoration-none text-dark">
                 <div class="cards_homepage card-body rounded-4 shadow-sm bg-light-green">
                     <div class="imagem_card_homepage">
-                        <img class="img_hp_card" src="../uploads/capas/<?= htmlspecialchars($capa) ?: 'default-image.jpg' ?>" alt="<?= htmlspecialchars($nome_produto) ?>">
+                        <img class="img_hp_card" src="../Imagens/produtos/tomates.svg" alt="Tomates">
                     </div>
                     <div class="p-3">
-                        <h2 class="verde_escuro fw-bold mb-1"><?= htmlspecialchars($nome_produto) ?></h2>
-                        <p class="text-muted mb-2">Recomendado para si</p>
+                        <h2 class="verde_escuro fw-bold mb-1"><?php echo htmlspecialchars($nome_produto); ?></h2>
+                        <p class="text-muted mb-2">Rosa - Quinta da Fonte</p>
                         <hr>
                         <div class="d-flex justify-content-end">
-                            <h3 class="verde_escuro fw-semibold mb-0"><?= number_format($preco, 2) ?> € / <?= $medida ?></h3>
+                            <h3 class="verde_escuro fw-semibold mb-0">2€</h3>
                         </div>
                     </div>
                 </div>
@@ -41,4 +42,20 @@ if (mysqli_stmt_prepare($stmt, $query)) {
     mysqli_stmt_close($stmt);
 }
 ?>
-<?php
+
+
+
+
+</div>
+
+<!-- Controles -->
+<button class="carousel-control-prev" type="button" data-bs-target="#carouselrecomendacoes" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+    <span class="visually-hidden">Anterior</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carouselrecomendacoes" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+    <span class="visually-hidden">Seguinte</span>
+</button>
+</div>
+</section>
