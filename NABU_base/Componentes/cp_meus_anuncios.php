@@ -35,12 +35,12 @@ $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
         while(mysqli_stmt_fetch($stmt)) { ?>
 
             <div class="col-6">
-                <a href="../paginas/produto.php" style="text-decoration: none">
+
                     <div class="card rounded-4 shadow-sm border-0 position-relative card_pesquisa">
 
 
 
-
+                        <a href="../paginas/produto.php?id=<?php echo htmlspecialchars($id_anuncio); ?>" style="text-decoration: none">
                         <!-- Imagem -->
                         <div class="imagem_card_pesquisa">
                             <img src="../uploads/capas/default-image.jpg" class="card-img-top rounded-4 img_hp_card" alt="Tomates">
@@ -50,9 +50,10 @@ $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
                         <div class="card-body m-2 pt-2 px-2 pb-0">
                             <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3 text-truncate"><?php echo htmlspecialchars($nome_produto); ?></h6>
                         </div>
+                        </a>
 
                         <hr class="linha-card verde_escuro">
-                </a>
+
                         <div class="card-body m-2 pt-0 pb-2 px-2">
                             <div class="d-flex justify-content-between align-items-center">
                                 <form action="../Paginas/editar_produto.php" method="POST" class="d-inline">
