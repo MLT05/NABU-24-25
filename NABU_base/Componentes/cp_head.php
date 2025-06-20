@@ -23,6 +23,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;300;400;500;700;800;900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=notifications" />
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../CSS/meus_estilos.css?v=1.5" rel="stylesheet" />
