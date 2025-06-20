@@ -116,6 +116,8 @@ if (!isset($_SESSION['id_user'])) {
         <button type="submit" class="btn verde_bg rounded w-75 fw-bold text-white py-2 fs-5 mt-3 mb-3 d-block mx-auto">Atualizar Dados</button>
     </form>
 
+    
+
     <form method="post"  action="../scripts/sc_alterar_login.php">
     <h3 class="mb-3 verde_escuro" >Login e palavra-passe:</h3>
         <?php
@@ -181,3 +183,6 @@ if (!isset($_SESSION['id_user'])) {
         iconPassword.textContent = type === 'password' ? 'visibility' : 'visibility_off';
     });
 </script>
+
+</main>
+

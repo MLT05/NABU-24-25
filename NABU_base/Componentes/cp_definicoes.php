@@ -20,12 +20,6 @@
                 Pagamentos
             </a>
 
-            <a href="#"
-                class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-
-                Segurança
-            </a>
-
         </div>
     </div>
     </div>
@@ -52,10 +46,29 @@
             <a href="#"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
 
-                Idioma da Aplicação
+                
                 <br>
                 <hr>
-                Português (PT)
+
+                <div class="mb-3">
+                    <label for="idioma" class="form-label fw-semibold verde_escuro">Idioma da Aplicação*</label>
+                    <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="idioma" name="idioma" required>
+                        <?php
+                        $link = new_db_connection();
+                        $stmt = mysqli_stmt_init($link);
+                        $query = "SELECT id_idioma.idiomas, idioma.idiomas FROM idiomas";
+                        if (mysqli_stmt_prepare($stmt, $query)) {
+                            mysqli_stmt_execute($stmt);
+                            mysqli_stmt_bind_result($stmt, $id_idioma, $idioma);
+                            while (mysqli_stmt_fetch($stmt)) {
+                                echo '<option value="' . $id_idioma . '">' . htmlspecialchars($idioma) . '</option>';
+                            }
+                            mysqli_stmt_close($stmt);
+                        }
+                        mysqli_close($link);
+                        ?>
+                    </select>
+                </div>
             </a>
 
         </div>
