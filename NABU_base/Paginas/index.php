@@ -2,9 +2,9 @@
 
 <?php include_once "../Componentes/cp_header.php" ?>
 
-<?php include_once "../Componentes/cp_index.php" ?>
 <?php include_once "../Componentes/cp_index_recomendacoes.php" ?>
 <?php include_once "../Componentes/cp_index_novidades.php" ?>
+<?php include_once "../Componentes/cp_index.php" ?>
 
 
 
