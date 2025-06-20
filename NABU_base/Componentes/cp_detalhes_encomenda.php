@@ -40,9 +40,20 @@ $nome = $email = $contacto = '';
 
 $link = new_db_connection();
 $stmt = mysqli_stmt_init($link);
-$query = "SELECT nome, email, contacto FROM users WHERE id_user = ?";
-
+$query = "SELECT nome_produto, descricao, preco, ref_categoria, ref_user, localizacao, capa, data_insercao, ref_medida FROM anuncios WHERE id_anuncio = ?";
 if (mysqli_stmt_prepare($stmt, $query)) {
+    mysqli_stmt_bind_param($stmt, "i", $id_anuncio);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $titulo, $descricao, $preco, $ref_categoria, $ref_user, $localizacao, $capa, $data_insercao, $ref_medida);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
+} else {
+    die("Erro na query do produto: " . mysqli_error($link));
+}
+$stmt = mysqli_stmt_init($link);
+$query_user = "SELECT nome, email, contacto FROM users WHERE id_user = ?";
+
+if (mysqli_stmt_prepare($stmt, $query_user)) {
     mysqli_stmt_bind_param($stmt, "i", $id_user);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_bind_result($stmt, $nome, $email, $contacto);
@@ -164,26 +175,25 @@ mysqli_close($link);
                     </div>
 
                     <!-- Contactos -->
-                    <h6 class="fw-bold mt-4 verde_escuro fs-4">Contactos</h6>
+                    <h6 class="fw-bold mt-4 verde_escuro fs-4">Contactos do vendedor</h6>
 
                     <!-- Nome -->
                     <div class="mb-3">
-                        <label for="nome" class="form-label fw-bold verde_escuro">Nome*</label>
-                        <input type="text" class="form-control bg-success bg-opacity-25" id="nome" name="nome" required value="<?= htmlspecialchars($nome) ?>">
+                        <label class="form-label fw-bold verde_escuro">Nome*</label>
+                        <p><?= htmlspecialchars($nome) ?></p>
                     </div>
 
                     <!-- Email -->
                     <div class="mb-3">
-                        <label for="email" class="form-label fw-bold verde_escuro">Email*</label>
-                        <input type="email" class="form-control bg-success bg-opacity-25" id="email" name="email" required value="<?= htmlspecialchars($email) ?>">
+                        <label class="form-label fw-bold verde_escuro">Email*</label>
+                        <p><?= htmlspecialchars($email) ?></p>
                     </div>
 
                     <!-- Contacto -->
                     <div class="mb-4">
-                        <label for="contacto" class="form-label fw-bold verde_escuro">Contacto telefónico*</label>
-                        <input type="tel" class="form-control bg-success bg-opacity-25" id="contacto" name="contacto" required value="<?= htmlspecialchars($contacto) ?>">
+                        <label class="form-label fw-bold verde_escuro">Contacto telefónico*</label>
+                        <p><?= htmlspecialchars($contacto) ?></p>
                     </div>
-
 
             </form>
 
