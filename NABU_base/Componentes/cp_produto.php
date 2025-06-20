@@ -101,7 +101,7 @@ unset($_SESSION['tipo_mensagem']);
         <h2 class="verde_escuro fw-bold my-3 fs-4">Descrição do Produto</h2>
         <div>
             <p class="descricao" id="descricao"><?= nl2br(htmlspecialchars($descricao)) ?></p>
-            <button id="toggleDescricao" class="ver-mais-btn">Ver mais</button>
+            <button id="toggleDescricao" class="ver-mais-btn d-none">Ver mais</button>
         </div>
 
         <?php if ($id_user != $_SESSION['id_user']): ?>
@@ -135,14 +135,14 @@ unset($_SESSION['tipo_mensagem']);
                     <?= htmlspecialchars($localizacao) ?>
                 </button>
             </div>
-            <div class="d-flex">
-                <form method="POST" action="cp_editar_produto.php" style="display:inline;">
+            <div class="d-flex gap-2 mt-3">
+                <form method="POST" action="cp_editar_produto.php" class="w-100">
                     <input type="hidden" name="id_anuncio" value="<?= htmlspecialchars($id_anuncio) ?>">
-                    <button type="submit" class="comprar p-3 fs-6 rounded me-1">Editar anúncio</button>
+                    <button type="submit" class="btn btn-success w-100 py-3 fs-6 rounded">Editar anúncio</button>
                 </form>
-                <form method="POST" action="../scripts/sc_eliminar_anuncio.php" onsubmit="return confirm('Tens a certeza que queres eliminar este anúncio?')" style="display:inline;">
+                <form method="POST" action="../scripts/sc_eliminar_anuncio.php" onsubmit="return confirm('Tens a certeza que queres eliminar este anúncio?')" class="w-100">
                     <input type="hidden" name="id_anuncio" value="<?= htmlspecialchars($id_anuncio) ?>">
-                    <button type="submit" class="eliminar p-3 fs-6 rounded ms-1">Eliminar anúncio</button>
+                    <button type="submit" class="btn btn-danger w-100 py-3 fs-6 rounded">Eliminar anúncio</button>
                 </form>
             </div>
         <?php endif; ?>
@@ -211,6 +211,15 @@ unset($_SESSION['tipo_mensagem']);
 <script>
     const botao = document.getElementById('toggleDescricao');
     const descricao = document.getElementById('descricao');
+
+    // Mostrar o botão só se o conteúdo estiver cortado
+    window.addEventListener('DOMContentLoaded', () => {
+        const isOverflowing = descricao.scrollHeight > descricao.clientHeight;
+
+        if (isOverflowing) {
+            botao.classList.remove('d-none');
+        }
+    });
 
     botao.addEventListener('click', () => {
         descricao.classList.toggle('expandida');
