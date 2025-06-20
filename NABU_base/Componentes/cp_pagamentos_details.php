@@ -11,19 +11,19 @@
             <?php
             echo '
 
-            <a href="../Paginas/perfil_details.php"
+            <a href="../Paginas/add_pagamento.php"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
 
                 Adicione metéodos de pagamento
             </a>
 
-            <a href=".\cp_pagamentos_details.php"
+            <a href=".\cp_pagamentos_hist.php"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
 
                 Histórico de Pagamentos
             </a>
 
-            <a href="#"
+            <a href=".\cp_remove_pagamento.php"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
 
                 Apagar metéodos de pagamento
