@@ -67,10 +67,7 @@ if (!isset($_SESSION['id_user'])) {
                     Dados pessoais
                 </a>
 
-                <a href="#" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-                    <img src="../Imagens/icons/account_balance_wallet_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
-                    Formas de Pagamento
-                </a>
+
             <?php } ?>
 
             <a href="../Paginas/definicoes.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">

@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="NABU">
+  <component name="PublishConfigData" serverName="labmm">
     <serverData>
-      <paths name="BDTSS">
+      <paths name="labmm">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="NABU">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="NABU-24-25" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="deca_25_BDTSS_45" />
           </mappings>
         </serverdata>
       </paths>
