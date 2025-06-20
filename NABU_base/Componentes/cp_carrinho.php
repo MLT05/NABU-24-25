@@ -25,7 +25,23 @@ include_once ("cp_intro_carrinho.php");
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
 
-    $query = "SELECT anuncios.id_anuncio, anuncios.nome_produto, medidas.abreviatura , anuncios.capa, carrinho.quantidade, carrinho.valor  FROM anuncios INNER JOIN medidas ON ref_medida = id_medida INNER JOIN carrinho ON anuncios_id_anuncio = id_anuncio WHERE carrinho.ref_user = ?";
+        $query = "
+SELECT 
+    anuncios.id_anuncio, 
+    anuncios.nome_produto, 
+    medidas.abreviatura, 
+    anuncios.capa, 
+    carrinho.quantidade, 
+    carrinho.valor,
+    users.nome AS nome_vendedor
+FROM anuncios 
+INNER JOIN medidas ON anuncios.ref_medida = medidas.id_medida 
+INNER JOIN carrinho ON carrinho.anuncios_id_anuncio = anuncios.id_anuncio 
+INNER JOIN users ON users.id_user = anuncios.ref_user
+WHERE carrinho.ref_user = ?
+";
+
+
 
     $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
     ?>
@@ -38,9 +54,13 @@ include_once ("cp_intro_carrinho.php");
         if (mysqli_stmt_prepare($stmt, $query)) {
             mysqli_stmt_bind_param($stmt, 'i', $id_user);
             mysqli_stmt_execute($stmt);
-            mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $medida, $capa , $quantidade, $valor);
+            mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $medida, $capa , $quantidade, $valor, $nome_vendedor);
 
-            while(mysqli_stmt_fetch($stmt)) { ?>
+
+            while(mysqli_stmt_fetch($stmt)) {
+
+
+                ?>
 
         <!-- Card 1 -->
 
@@ -58,7 +78,7 @@ include_once ("cp_intro_carrinho.php");
                 <div class="col-7 d-flex align-items-center">
                     <div class="card-body py-2">
                         <h2 class="verde_escuro fw-bold mb-1"><?php echo htmlspecialchars($nome_produto); ?></h2>
-                        <p class="card-text verde mb-0"><small>vendedor</small></p>
+                        <p class="card-text verde mb-0"><small><?php echo htmlspecialchars($nome_vendedor); ?></small></p>
                     </div>
                 </div>
 
