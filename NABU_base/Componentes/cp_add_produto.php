@@ -1,6 +1,6 @@
 <?php
-require_once '../Connections/connection.php';
 
+require_once '../Connections/connection.php';
 
 if (!isset($_SESSION['id_user'])) {
     ?>
@@ -22,18 +22,30 @@ if (!isset($_SESSION['id_user'])) {
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            loginModal.show();
+        });
+    </script>
     <?php
 } else {
     $id_user = $_SESSION['id_user'];
 
+    // Obter dados do utilizador autenticado
+    $nome = $email = $contacto = '';
+
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
-    $query = "SELECT nome, login, email, contacto FROM users WHERE id_user = ?";
+    $query = "SELECT nome, email, contacto FROM users WHERE id_user = ?";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
-        mysqli_stmt_bind_param($stmt, 'i', $id_user);
+        mysqli_stmt_bind_param($stmt, "i", $id_user);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $nome_db, $login, $email, $contacto);
+        mysqli_stmt_bind_result($stmt, $nome, $email, $contacto);
         mysqli_stmt_fetch($stmt);
         mysqli_stmt_close($stmt);
     }
@@ -115,9 +127,9 @@ if (!isset($_SESSION['id_user'])) {
 
                 <!-- Localização -->
                 <div class="mb-3 d-flex align-items-center">
-                <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
-                    <i class="bi bi-geo-alt-fill verde_escuro"></i>
-                </span>
+                    <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
+                        <i class="bi bi-geo-alt-fill verde_escuro"></i>
+                    </span>
                     <input type="text" class="form-control bg-success bg-opacity-25" id="localizacao" name="localizacao" placeholder="Localização" required>
                 </div>
 
@@ -127,19 +139,19 @@ if (!isset($_SESSION['id_user'])) {
                 <!-- Nome -->
                 <div class="mb-3">
                     <label for="nome" class="form-label fw-bold verde_escuro">Nome*</label>
-                    <input type="text" value="<?= htmlspecialchars($nome_db) ?>" class="form-control bg-success bg-opacity-25" id="nome" name="nome" required>
+                    <input type="text" class="form-control bg-success bg-opacity-25" id="nome" name="nome" required value="<?= htmlspecialchars($nome) ?>">
                 </div>
 
                 <!-- Email -->
                 <div class="mb-3">
                     <label for="email" class="form-label fw-bold verde_escuro">Email*</label>
-                    <input type="email" value="<?= htmlspecialchars($email) ?>" class="form-control bg-success bg-opacity-25" id="email" name="email" required>
+                    <input type="email" class="form-control bg-success bg-opacity-25" id="email" name="email" required value="<?= htmlspecialchars($email) ?>">
                 </div>
 
-                <!-- Contacto Telefónico -->
+                <!-- Contacto -->
                 <div class="mb-4">
-                    <label for="telefone" class="form-label fw-bold verde_escuro">Contacto telefónico*</label>
-                    <input type="tel" value="<?= htmlspecialchars($contacto) ?>" class="form-control bg-success bg-opacity-25" id="telefone" name="telefone" required>
+                    <label for="contacto" class="form-label fw-bold verde_escuro">Contacto telefónico*</label>
+                    <input type="tel" class="form-control bg-success bg-opacity-25" id="contacto" name="contacto" required value="<?= htmlspecialchars($contacto) ?>">
                 </div>
 
                 <!-- Botões -->
@@ -151,35 +163,17 @@ if (!isset($_SESSION['id_user'])) {
         </form>
     </main>
 
+    <script>
+        const previewImage = (event) => {
+            const files = event.target.files;
+            if (files.length > 0) {
+                const imageUrl = URL.createObjectURL(files[0]);
+                const imageElement = document.getElementById("preview-selected-image");
+                imageElement.src = imageUrl;
+            }
+        };
+    </script>
+
     <?php
 }
 ?>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        var loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {
-        backdrop: 'static',
-        keyboard: false
-    });
-        loginModal.show();
-    });
-</script>
-
-<script>
-    const previewImage = (event) => {
-        const files =event.target.files;
-        if(files.length > 0) {
-            const imageUrl = URL.createObjectURL(files[0]);
-            const imageElement = document.getElementById("preview-selected-image")
-            imageElement.src =imageUrl
-        }
-    }
-    <div class="upload-box mb-3">
-        <label for="imagens" class="w-100 text-center">
-            <i class="bi bi-upload fs-2 d-block"></i>
-            Adicionar imagens
-            <input type="file" id="imagens" name="imagens[]" multiple hidden>
-        </label>
-    </div>
-
-</script>
