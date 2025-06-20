@@ -154,10 +154,16 @@ if (mysqli_stmt_prepare($stmt_user, $query_user)) {
         <input type="hidden" name="id_user" value="<?= htmlspecialchars($ref_user) ?>">
 
         <!-- Botões -->
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between mb-3">
             <button type="submit" class="btn btn-publicar w-100 me-2">Editar</button>
-            <button type="reset" class="btn btn-descartar w-100 ms-2">Descartar</button>
+            <button type="reset" class="btn btn-descartar w-100 ms-2">Reset</button>
         </div>
+
+
+    </form>
+    <form method="post" action="../scripts/sc_eliminar_anuncio.php" onsubmit="return confirm('Tens a certeza que queres eliminar este anúncio?');" class="w-100  ">
+        <input type="hidden" name="id_anuncio" value="<?= htmlspecialchars($id_anuncio) ?>">
+        <button type="submit" class="btn btn-danger w-100">Eliminar anúncio</button>
     </form>
 </main>
 
