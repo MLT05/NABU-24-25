@@ -1,5 +1,5 @@
 <?php
-
+header('Content-Type: application/json');
 // We need the function!
 require_once '../Connections/connection.php';
 
