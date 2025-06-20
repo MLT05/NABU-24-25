@@ -20,12 +20,6 @@
                 Pagamentos
             </a>
 
-            <a href="../Paginas/seguranca.php"
-                class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-
-                Segurança
-            </a>
-
         </div>
     </div>
     </div>
