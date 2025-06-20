@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ref_user = $_SESSION['id_user'];
     $id_anuncio = $_POST['id_anuncio'] ?? null;
     $quantidade = $_POST['quantidade'] ?? null;
-    $preco = $_POST['preco'] ?? null;
+
 
 
     if (!$id_anuncio || !$quantidade || $quantidade <= 0) {
@@ -47,9 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Buscar o preço atual do produto
 
 
-    $query = "INSERT INTO carrinho (quantidade, ref_user, anuncios_id_anuncio, preco) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO carrinho (quantidade, ref_user, anuncios_id_anuncio) VALUES (?, ?, ?)";
     if (mysqli_stmt_prepare($stmt, $query)) {
-        mysqli_stmt_bind_param($stmt, "diid", $quantidade, $ref_user, $id_anuncio, $preco);
+        mysqli_stmt_bind_param($stmt, "diid", $quantidade, $ref_user, $id_anuncio,);
         if (mysqli_stmt_execute($stmt)) {
             echo "ok";
         } else {
