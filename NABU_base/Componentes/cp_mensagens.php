@@ -92,5 +92,5 @@ $result_users = mysqli_stmt_get_result($stmt_users);
 <!-- Bootstrap Bundle com Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Script de chat -->
-<script src="scripts/sc_chat.js"></script>
+<script src="scripts/chat.js"></script>
 
