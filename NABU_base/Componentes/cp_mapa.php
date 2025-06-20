@@ -16,7 +16,7 @@
         lng = position.coords.longitude;
         lat = position.coords.latitude;
 
-        mapboxgl.accessToken = 'pk.eyJ1IjoiY2FybG9zc2FudG9zLXVhIiwiYSI6ImNtYzBld3BpMTAxMzAybHNiZzZ4N2dnZGsifQ.4Bygpadn95ne2kXU_-3IDA';
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWFyaWFsZW9ub3JmcmlhcyIsImEiOiJjbWM1MnJ3eTgwN3U3Mm1zOXdweDJzenY4In0.no4s5Sct2PZJSJBqtKnpnA';
         const map = new mapboxgl.Map({
             container: 'map', // container ID
             center: [lng, lat], // starting position [lng, lat]. Note that lat must be set between -90 and 90
