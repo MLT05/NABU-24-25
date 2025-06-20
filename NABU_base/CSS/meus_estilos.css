@@ -557,7 +557,6 @@ footer a {
   list-style-type: none;
 }
 
-
 .card-meusanuncios {
   height: 30vh;
 }
@@ -580,62 +579,21 @@ footer a {
   font-size: 1rem;
 }
 
-
 /* Tema escuro */
 body.dark {
-  background-color: #121212;
+  background-color: #004d40;
   color: #f1f1f1;
+  .input-pesquisa {
+    background-color: rgba(170, 192, 170, 0.59);
+    color: #f1f1f1;
+  }
 }
 
-/* Switch */
-.switch {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-.switch input {
-  display: none;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  background-color: #ccc;
-  border-radius: 34px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: 0.4s;
-}
-
-.slider:before {
-  content: "";
-  position: absolute;
-  height: 26px;
-  width: 26px;
-  background-color: white;
-  border-radius: 50%;
-  left: 4px;
-  bottom: 4px;
-  transition: 0.4s;
-}
-
-/* Quando o input está ativo */
-input:checked + .slider {
-  background-color: #06440b;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
 /* The switch - the box around the slider */
 .switch {
-  position: absolute;
+  padding: auto;
+  margin: auto;
+  position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
@@ -643,6 +601,8 @@ input:checked + .slider:before {
 
 /* Hide default HTML checkbox */
 .switch input {
+  padding: 0;
+  margin: auto;
   opacity: 0;
   width: 0;
   height: 0;
@@ -650,7 +610,8 @@ input:checked + .slider:before {
 
 /* The slider */
 .slider {
-  display: block;
+  padding: 0;
+  margin: auto;
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -663,6 +624,8 @@ input:checked + .slider:before {
 }
 
 .slider:before {
+  padding: auto;
+  margin: auto;
   position: absolute;
   content: "";
   height: 26px;
@@ -675,14 +638,21 @@ input:checked + .slider:before {
 }
 
 input:checked + .slider {
-  background-color: #06440b;
+  padding: auto;
+  margin: auto;
+  background-color: #5d7d46;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #06440b;
+  padding: auto;
+  margin: auto;
+  size: 26px;
+  box-shadow: 0 0 1px #5d7d46;
 }
 
 input:checked + .slider:before {
+  padding: auto;
+  margin: auto;
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
@@ -690,9 +660,13 @@ input:checked + .slider:before {
 
 /* Rounded sliders */
 .slider.round {
+  padding: auto;
+  margin: auto;
   border-radius: 34px;
 }
 
 .slider.round:before {
+  padding: auto;
+  margin: auto;
   border-radius: 50%;
 }

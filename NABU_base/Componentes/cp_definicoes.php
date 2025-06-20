@@ -39,19 +39,7 @@
 
                 Notificações
             </a>
-
-            <a href="../Paginas/encomendas.php"
-                class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-
-                Detalhes do Perfil
-            </a>
-
-            <a href="#"
-                class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-
-                Detalhes da Conta
-            </a>
-
+           
         </div>
     </div>
     </div>
@@ -91,6 +79,7 @@
                         <input type="checkbox">
                         <span class="slider round"></span>
                     </label>
+
                 </form>
 
             </div>

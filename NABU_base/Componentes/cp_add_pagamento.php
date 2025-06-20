@@ -5,7 +5,8 @@ require_once '../Connections/connection.php';
 if (!isset($_SESSION['id_user'])) {
     ?>
     <!-- Modal de login obrigatório -->
-    <div class="modal fade show" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-modal="true" role="dialog" style="display: block;">
+    <div class="modal fade show" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-modal="true"
+        role="dialog" style="display: block;">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow-none">
                 <div class="modal-header border-0">
@@ -28,12 +29,12 @@ if (!isset($_SESSION['id_user'])) {
 
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
-    $query = "SELECT nome, login, email, contacto FROM users WHERE id_user = ?";
+    $query = "SELECT nome, login, email, contacto, data_pagamento, metodo_pagamento, valor FROM users,pagamentos WHERE id_user AND id_pagamento = ?";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
         mysqli_stmt_bind_param($stmt, 'i', $id_user);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $nome_db, $login, $email, $contacto);
+        mysqli_stmt_bind_result($stmt, $nome_db, $login, $email, $contacto, $data_pagamento, $metodo_pagamento, $valor);
         mysqli_stmt_fetch($stmt);
         mysqli_stmt_close($stmt);
     }
@@ -44,31 +45,32 @@ if (!isset($_SESSION['id_user'])) {
     <main class="body_index">
         <form method="post" enctype="multipart/form-data" action="../scripts/sc_add_produto.php">
             <div>
-                <h5 class="fw-bold fs-3 verde_escuro mb-0">Criar novo anúncio</h5>
-                <p class="verde_escuro">Insere todos os detalhes sobre o teu produto</p>
+                <h5 class="fw-bold fs-3 verde_escuro mb-0">Criar metéodo de pagamento</h5>
+                <p class="verde_escuro">Insere todos os teus dados</p>
 
-                <!-- Upload Imagem -->
-                <label for="pfp" class="form-label verde_escuro fw-semibold">Imagem*</label>
-                <div class="text-center mb-4">
-                    <input type="file" name="pfp" id="pfp" class="form-control mt-3" accept="image/*" required>
-                </div>
 
-                <!-- Título -->
+                <!-- Nome -->
                 <div class="mb-3">
-                    <label for="titulo" class="form-label verde_escuro fw-semibold">Título do Anúncio*</label>
+                    <label for="titulo" class="form-label verde_escuro fw-semibold">Nome do Cartão*</label>
                     <input type="text" class="form-control bg-success bg-opacity-25" id="titulo" name="titulo" required>
                 </div>
 
-                <!-- Preço -->
+
+                <!-- Forma de Pagamento -->
                 <div class="mb-3">
-                    <label for="preco" class="form-label fw-semibold verde_escuro">Preço*</label>
-                    <input type="number" step="0.01" min="0" class="form-control bg-success bg-opacity-25" id="preco" name="preco" required>
+                    <label for="metodo_pagamento">Método de Pagamento:</label>
+                    <select id="metodo_pagamento" name="metodo_pagamento" required>
+                        <option value="cartao">Cartão de Crédito</option>
+                        <option value="boleto">MB Way</option>
+                        <option value="transferencia">Transferência Bancária</option>
+                    </select><br><br>
                 </div>
 
                 <!-- Medida -->
                 <div class="mb-3">
                     <label for="medida" class="form-label fw-semibold verde_escuro">Unidade de medida*</label>
-                    <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="medida" name="medida" required>
+                    <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="medida" name="medida"
+                        required>
                         <?php
                         $link = new_db_connection();
                         $stmt = mysqli_stmt_init($link);
@@ -77,7 +79,7 @@ if (!isset($_SESSION['id_user'])) {
                             mysqli_stmt_execute($stmt);
                             mysqli_stmt_bind_result($stmt, $id_medida, $abreviatura);
                             while (mysqli_stmt_fetch($stmt)) {
-                                echo '<option value="' . $id_medida . '">' . htmlspecialchars($abreviatura) . '</option>';
+                                echo '<option value="' . $user . '">' . htmlspecialchars($abreviatura) . '</option>';
                             }
                             mysqli_stmt_close($stmt);
                         }
@@ -86,19 +88,20 @@ if (!isset($_SESSION['id_user'])) {
                     </select>
                 </div>
 
-                <!-- Categoria -->
+                <!--Confirma o user -->
                 <div class="mb-3">
                     <label for="categoria" class="form-label fw-semibold verde_escuro">Categoria*</label>
-                    <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="categoria" name="categoria" required>
+                    <select class="form-select bg-success bg-opacity-25 fw-light verde_escuro" id="categoria"
+                        name="categoria" required>
                         <?php
                         $link = new_db_connection();
                         $stmt = mysqli_stmt_init($link);
-                        $query = "SELECT id_categoria, nome_categoria FROM categorias";
+                        $query = "SELECT id_user, user FROM users";
                         if (mysqli_stmt_prepare($stmt, $query)) {
                             mysqli_stmt_execute($stmt);
-                            mysqli_stmt_bind_result($stmt, $id_categoria, $nome_categoria);
+                            mysqli_stmt_bind_result($stmt, $id_user, $userd);
                             while (mysqli_stmt_fetch($stmt)) {
-                                echo '<option value="' . $id_categoria . '">' . htmlspecialchars($nome_categoria) . '</option>';
+                                echo '<option value="' . $id_user . '">' . htmlspecialchars($users) . '</option>';
                             }
                             mysqli_stmt_close($stmt);
                         }
@@ -110,15 +113,17 @@ if (!isset($_SESSION['id_user'])) {
                 <!-- Descrição -->
                 <div class="mb-3">
                     <label for="descricao" class="form-label fw-semibold verde_escuro">Descrição*</label>
-                    <textarea class="form-control bg-success bg-opacity-25" id="descricao" name="descricao" rows="3" required></textarea>
+                    <textarea class="form-control bg-success bg-opacity-25" id="descricao" name="descricao" rows="3"
+                        required></textarea>
                 </div>
 
                 <!-- Localização -->
                 <div class="mb-3 d-flex align-items-center">
-                <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
-                    <i class="bi bi-geo-alt-fill verde_escuro"></i>
-                </span>
-                    <input type="text" class="form-control bg-success bg-opacity-25" id="localizacao" name="localizacao" placeholder="Localização" required>
+                    <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
+                        <i class="bi bi-geo-alt-fill verde_escuro"></i>
+                    </span>
+                    <input type="text" class="form-control bg-success bg-opacity-25" id="localizacao" name="localizacao"
+                        placeholder="Localização" required>
                 </div>
 
                 <!-- Contactos -->
@@ -127,19 +132,22 @@ if (!isset($_SESSION['id_user'])) {
                 <!-- Nome -->
                 <div class="mb-3">
                     <label for="nome" class="form-label fw-bold verde_escuro">Nome*</label>
-                    <input type="text" value="<?= htmlspecialchars($nome_db) ?>" class="form-control bg-success bg-opacity-25" id="nome" name="nome" required>
+                    <input type="text" value="<?= htmlspecialchars($nome_db) ?>"
+                        class="form-control bg-success bg-opacity-25" id="nome" name="nome" required>
                 </div>
 
                 <!-- Email -->
                 <div class="mb-3">
                     <label for="email" class="form-label fw-bold verde_escuro">Email*</label>
-                    <input type="email" value="<?= htmlspecialchars($email) ?>" class="form-control bg-success bg-opacity-25" id="email" name="email" required>
+                    <input type="email" value="<?= htmlspecialchars($email) ?>"
+                        class="form-control bg-success bg-opacity-25" id="email" name="email" required>
                 </div>
 
                 <!-- Contacto Telefónico -->
                 <div class="mb-4">
                     <label for="telefone" class="form-label fw-bold verde_escuro">Contacto telefónico*</label>
-                    <input type="tel" value="<?= htmlspecialchars($contacto) ?>" class="form-control bg-success bg-opacity-25" id="telefone" name="telefone" required>
+                    <input type="tel" value="<?= htmlspecialchars($contacto) ?>"
+                        class="form-control bg-success bg-opacity-25" id="telefone" name="telefone" required>
                 </div>
 
                 <!-- Botões -->
@@ -155,23 +163,23 @@ if (!isset($_SESSION['id_user'])) {
 }
 ?>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
         var loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {
-        backdrop: 'static',
-        keyboard: false
-    });
+            backdrop: 'static',
+            keyboard: false
+        });
         loginModal.show();
     });
 </script>
 
 <script>
     const previewImage = (event) => {
-        const files =event.target.files;
-        if(files.length > 0) {
+        const files = event.target.files;
+        if (files.length > 0) {
             const imageUrl = URL.createObjectURL(files[0]);
             const imageElement = document.getElementById("preview-selected-image")
-            imageElement.src =imageUrl
+            imageElement.src = imageUrl
         }
     }
     <div class="upload-box mb-3">
