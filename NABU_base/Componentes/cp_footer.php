@@ -84,10 +84,11 @@
         toast.style.zIndex = "9999";
 
         toast.innerHTML = `
-        <div class="d-flex">
-            <div class="toast-body"><strong>${title}</strong><br>${body}</div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" onclick="this.parentElement.parentElement.remove()"></button>
-        </div>`;
+            <div class="d-flex">
+                <div class="toast-body"><strong>${title}</strong><br>${body}</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" onclick="this.parentElement.parentElement.remove()"></button>
+            </div>
+        `;
 
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 5000);
