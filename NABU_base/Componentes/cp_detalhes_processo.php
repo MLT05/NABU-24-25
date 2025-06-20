@@ -27,15 +27,15 @@
 
                     echo "<div class= 'alert alert-success' role='alert'>
                 <h4 class='alert-heading'> Detalhes do Pedido     </h4>
-                <p>Pedido ID:  <?= $id_encomendas ?> </p>
+                <p>Pedido ID:  <?= {$id_encomendas} ?> </p>
                 <hr>
-                <p class='mb-0'>Produto: <?= $produto ?> </p>
-            <div class="card - body">
+                <p class='mb-0'>Produto: <?= {$produto} ?> </p>
+            <div class="card-body">
                 <div class="row mb - 4">
                     <!-- Coluna da imagem -->
-                    <div class="col - sm - 4 text - center mb - 3 mb - sm - 0"> ";
+                    <div class="col-sm-4 text-center mb-3 mb-sm-0"> ";
                     echo"
-                        <img src=" ./Imagens / produtos / $id_produto" alt="Imagem do Produto" class="img - fluid rounded shadow - sm">
+                        <img src=" ./Imagens / produtos /  {$id_produto} " alt="Imagem do Produto" class="img - fluid rounded shadow - sm">
                     </div>
                     <!-- Coluna de informações do produto -->
             <div class="col - sm - 8">

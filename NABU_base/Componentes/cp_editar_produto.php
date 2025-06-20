@@ -29,11 +29,11 @@ if (mysqli_stmt_prepare($stmt, $query)) {
 
 // Buscar dados do utilizador
 $stmt_user = mysqli_stmt_init($link);
-$query_user = "SELECT nome,pfp, email, contacto FROM users WHERE id_user = ?";
+$query_user = "SELECT nome, email, contacto FROM users WHERE id_user = ?";
 if (mysqli_stmt_prepare($stmt_user, $query_user)) {
     mysqli_stmt_bind_param($stmt_user, "i", $ref_user);
     mysqli_stmt_execute($stmt_user);
-    mysqli_stmt_bind_result($stmt_user, $nome_db, $pfp, $email, $contacto);
+    mysqli_stmt_bind_result($stmt_user, $nome_db, $email, $contacto);
     mysqli_stmt_fetch($stmt_user);
     mysqli_stmt_close($stmt_user);
 } else {
@@ -59,7 +59,7 @@ if (mysqli_stmt_prepare($stmt_user, $query_user)) {
 
         <div class="text-center mb-4">
             <div class="mb-3">
-                <input type="file"  name="pfp" id="pfp" class="form-control mt-3" accept="image/*">
+                <input type="file" name="capa" id="capa" class="form-control mt-3" accept="image/*">
             </div>
         </div>
 
