@@ -1,72 +1,101 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+header('Content-Type: application/json');
+
 require_once '../Connections/connection.php';
 session_start();
 
 $link = new_db_connection();
 
-// Verificar se o utilizador está autenticado
 if (!isset($_SESSION['id_user'])) {
-    die("Erro: Utilizador não autenticado.");
+    http_response_code(401);
+    echo json_encode(["success" => false, "mensagem" => "Utilizador não autenticado."]);
+    exit;
 }
 
 $ref_comprador = $_SESSION['id_user'];
-
-// Obter dados do formulário
-$ref_anuncio = (int) $_POST['id_anuncio'];
-$quantidade = (int) $_POST['quantidade'];
 $data_encomenda = date("Y-m-d H:i:s");
-$ref_estado = 1; // Ex: 1 = "Pendente"
+$ref_estado = 1;
 
-// Buscar o preço unitário do anúncio
-$query_preco = "SELECT preco FROM anuncios WHERE id_anuncio = ?";
-$stmt_preco = mysqli_prepare($link, $query_preco);
-mysqli_stmt_bind_param($stmt_preco, "i", $ref_anuncio);
-mysqli_stmt_execute($stmt_preco);
-mysqli_stmt_bind_result($stmt_preco, $preco_unitario);
+// 1. Buscar itens do carrinho e guardar em array
+$query_carrinho = "
+SELECT 
+    carrinho.anuncios_id_anuncio, 
+    carrinho.quantidade,
+    anuncios.preco,
+    anuncios.ref_medida
+FROM carrinho 
+INNER JOIN anuncios ON carrinho.anuncios_id_anuncio = anuncios.id_anuncio
+WHERE carrinho.ref_user = ?
+";
 
-if (mysqli_stmt_fetch($stmt_preco)) {
-    $preço = $preco_unitario * $quantidade;
-    mysqli_stmt_close($stmt_preco);
+$stmt = mysqli_prepare($link, $query_carrinho);
+mysqli_stmt_bind_param($stmt, "i", $ref_comprador);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $id_anuncio, $quantidade, $preco_unitario, $ref_medida);
 
-    // Inserir encomenda
-    $query = "INSERT INTO encomendas (data_encomenda, ref_comprador, ref_anuncio, quantidade, preço, ref_estado) 
-              VALUES (?, ?, ?, ?, ?, ?)";
+$itens_carrinho = [];
 
-    $stmt = mysqli_prepare($link, $query);
-    if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "siiidi",
+while (mysqli_stmt_fetch($stmt)) {
+    $itens_carrinho[] = [
+        "id_anuncio" => $id_anuncio,
+        "quantidade" => $quantidade,
+        "preco_unitario" => $preco_unitario,
+        "ref_medida" => $ref_medida
+    ];
+}
+mysqli_stmt_close($stmt); // <- ESSENCIAL
+
+// 2. Inserir cada encomenda
+$encomendas_criadas = 0;
+
+foreach ($itens_carrinho as $item) {
+    $preco_total = $item['quantidade'] * $item['preco_unitario'];
+
+    $insert_query = "
+    INSERT INTO encomendas (data_encomenda, ref_comprador, ref_anuncio, quantidade, preco, ref_medida, ref_estado) 
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+    ";
+    $insert_stmt = mysqli_prepare($link, $insert_query);
+
+    if ($insert_stmt) {
+        mysqli_stmt_bind_param($insert_stmt, "siiddii",
             $data_encomenda,
             $ref_comprador,
-            $ref_anuncio,
-            $quantidade,
-            $preço,
+            $item['id_anuncio'],
+            $item['quantidade'],
+            $preco_total,
+            $ref_medida,
             $ref_estado
         );
 
-        if (mysqli_stmt_execute($stmt)) {
-            $_SESSION['mensagem_sistema'] = "Encomenda criada com sucesso!";
-            $_SESSION['tipo_mensagem'] = "sucesso";
+        if (mysqli_stmt_execute($insert_stmt)) {
+            $encomendas_criadas++;
         } else {
-            $_SESSION['mensagem_sistema'] = "Erro ao criar encomenda: " . mysqli_stmt_error($stmt);
-            $_SESSION['tipo_mensagem'] = "erro";
+            echo json_encode(["success" => false, "mensagem" => "Erro ao inserir: " . mysqli_stmt_error($insert_stmt)]);
+            exit;
         }
 
-        mysqli_stmt_close($stmt);
+        mysqli_stmt_close($insert_stmt);
     } else {
-        $_SESSION['mensagem_sistema'] = "Erro na preparação da query: " . mysqli_error($link);
-        $_SESSION['tipo_mensagem'] = "erro";
+        echo json_encode(["success" => false, "mensagem" => "Erro na preparação da query: " . mysqli_error($link)]);
+        exit;
     }
+}
 
-    header("Location: ../Paginas/encomendas.php"); // redireciona para página apropriada
-    exit();
-
-} else {
-    $_SESSION['mensagem_sistema'] = "Anúncio não encontrado.";
-    $_SESSION['tipo_mensagem'] = "erro";
-    header("Location: ../Paginas/encomendas.php");
-    exit();
+// 3. Apagar carrinho
+if ($encomendas_criadas > 0) {
+    $delete_stmt = mysqli_prepare($link, "DELETE FROM carrinho WHERE ref_user = ?");
+    mysqli_stmt_bind_param($delete_stmt, "i", $ref_comprador);
+    mysqli_stmt_execute($delete_stmt);
+    mysqli_stmt_close($delete_stmt);
 }
 
 mysqli_close($link);
-?>
 
+echo json_encode([
+    "success" => true,
+    "mensagem" => "$encomendas_criadas encomenda(s) criada(s) com sucesso."
+]);

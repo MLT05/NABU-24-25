@@ -135,9 +135,9 @@ WHERE carrinho.ref_user = ?
 
         <!-- Botão Finalizar -->
         <div class="top-buttons">
-            <button type="button" class="btn botao_carrinho" data-bs-toggle="modal" data-bs-target="#pedidoModal">
-                Finalizar Pedido
-            </button>
+                <button type="button" class="btn botao_carrinho">
+                    Finalizar Pedido
+                </button>
         </div>
         <?php endif; ?>
     </section>
@@ -154,8 +154,8 @@ WHERE carrinho.ref_user = ?
                     <p>Aguarde confirmação do vendedor.</p>
                 </div>
                 <div class="modal-footer justify-content-center border-0">
-                    <a href="../Paginas/encomendas.php" class="btn btn-success">Ver Pedido</a>
-                    <a href="../Paginas/carrinho.php" class="btn btn-outline-secondary">Voltar ao Carrinho</a>
+                    <a href="../Paginas/encomendas.php" class="btn btn-success">Ver Pedidos</a>
+                    <a href="../Paginas/index.php" class="btn btn-outline-secondary">Continuar a comprar</a>
                 </div>
             </div>
         </div>
@@ -165,6 +165,31 @@ WHERE carrinho.ref_user = ?
 
 </main>
 <script>
+    document.querySelector(".botao_carrinho")?.addEventListener("click", function () {
+        fetch("../scripts/sc_add_encomenda.php", {
+            method: "POST"
+        })
+            .then(async res => {
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    // Só entra aqui se o servidor respondeu com 200 e sucesso
+                    const modal = new bootstrap.Modal(document.getElementById('pedidoModal'));
+                    modal.show();
+
+                    // Limpar interface
+                    document.querySelectorAll(".cards_homepage").forEach(card => card.remove());
+                    document.querySelector(".d-flex.justify-content-end")?.remove();
+                    document.querySelector(".top-buttons")?.remove();
+                } else {
+                    alert("Erro: " + (data.mensagem || "Erro desconhecido."));
+                }
+            })
+            .catch(err => {
+                alert("Erro de rede ao finalizar o pedido.");
+                console.error(err);
+            });
+    });
+
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".btn-remover").forEach(function (btn) {
             btn.addEventListener("click", function () {
