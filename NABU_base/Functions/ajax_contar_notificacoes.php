@@ -1,6 +1,7 @@
 <?php
-require_once '../Connections/connection.php';
+session_start(); // <- Isto é obrigatório para usar $_SESSION
 
+require_once '../Connections/connection.php';
 
 header('Content-Type: application/json');
 
@@ -22,5 +23,3 @@ mysqli_stmt_close($stmt);
 mysqli_close($link);
 
 echo json_encode(['status' => 'sucesso', 'quantidade' => $count]);
-
-echo "yuppie";
