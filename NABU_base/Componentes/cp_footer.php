@@ -54,7 +54,7 @@
                 echo '<img src="../Imagens/icons/person_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Perfil" class="menu-icon">';
             }
             ?>
-                <span id="noti-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <span id="noti-badge-footer" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     0
                 </span>
             </div>
@@ -103,23 +103,27 @@
         fetch('../Functions/ajax_buscar_notificacoes.php')
             .then(r => r.json())
             .then(notificacoes => {
-                // Obter da sessão os IDs já mostrados
                 let mostradas = sessionStorage.getItem('notificacoesMostradas');
                 mostradas = mostradas ? JSON.parse(mostradas) : [];
 
+                let novas = 0;
+
                 notificacoes.forEach(n => {
                     if (!mostradas.includes(n.id_notificacao)) {
-                        // Mostrar notificação e guardar o ID
                         showNotification("Nova Notificação", n.conteudo);
                         mostradas.push(n.id_notificacao);
+                        novas++;
                     }
                 });
 
-                // Guardar de volta no sessionStorage
                 sessionStorage.setItem('notificacoesMostradas', JSON.stringify(mostradas));
+
+                // Atualizar badge com o total no servidor, mesmo que novas = 0
+                atualizarBadgeServidor();
             })
             .catch(console.error);
     }
+
 
     // Atualizar o badge das notificações não lidas
     function atualizarBadge() {
@@ -127,28 +131,55 @@
             .then(r => r.json())
             .then(data => {
                 if (data.status === 'sucesso') {
-                    const badge = document.getElementById('noti-badge');
-                    if (badge) {
-                        badge.textContent = data.quantidade;
-                        if (data.quantidade > 0) {
-                            badge.classList.remove('d-none');
-                        } else {
-                            badge.classList.add('d-none');
+                    const badgeFooter = document.getElementById('noti-badge-footer');
+                    const badgePerfil = document.getElementById('noti-badge-perfil');
+
+                    [badgeFooter, badgePerfil].forEach(badge => {
+                        if (badge) {
+                            badge.textContent = data.quantidade;
+                            if (data.quantidade > 0) {
+                                badge.classList.remove('d-none');
+                            } else {
+                                badge.classList.add('d-none');
+                            }
                         }
-                    }
+                    });
                 }
             })
             .catch(e => console.error("Erro ao buscar badge:", e));
     }
+    function atualizarBadgeServidor() {
+        fetch('../Functions/ajax_contar_notificacoes.php')
+            .then(r => r.json())
+            .then(data => {
+                if (data.status === 'sucesso') {
+                    atualizarBadgesValor(data.quantidade);
+                }
+            })
+            .catch(e => console.error("Erro ao contar notificações:", e));
+    }
+    function atualizarBadgesValor(quantidade) {
+        const badgeFooter = document.getElementById('noti-badge-footer');
+        const badgePerfil = document.getElementById('noti-badge-perfil');
+
+        [badgeFooter, badgePerfil].forEach(badge => {
+            if (badge) {
+                badge.textContent = quantidade;
+                if (quantidade > 0) {
+                    badge.classList.remove('d-none');
+                } else {
+                    badge.classList.add('d-none');
+                }
+            }
+        });
+    }
+
+
 
     // Executar buscar notificações e atualizar badge imediatamente e depois a cada 15s
     document.addEventListener('DOMContentLoaded', () => {
-        buscarNotificacoes();
-        atualizarBadge();
-        setInterval(() => {
-            buscarNotificacoes();
-            atualizarBadge();
-        }, 15000);
+        buscarNotificacoes(); // mostra novas e atualiza badge com todas
+        setInterval(buscarNotificacoes, 15000); // repetir de 15 em 15 seg.
     });
 </script>
 
