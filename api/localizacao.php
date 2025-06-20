@@ -10,21 +10,21 @@ $link = new_db_connection();
 $stmt = mysqli_stmt_init($link);
 
 // Mostrar localização do produto
-$query = "SELECT id_localizao, descricao, longitude, latitude FROM localizacao";
+$query = "SELECT id_localizao, descricao, latitude, longitude FROM localizacao";
 
 mysqli_stmt_prepare($stmt, $query);
 
 /* execute the prepared statement */
 mysqli_stmt_execute($stmt);
 
-mysqli_stmt_bind_result($stmt, $id_localizacao, $descricao, $longitude, $latitude);
+mysqli_stmt_bind_result($stmt, $id_localizacao, $descricao, $latitude, $longitude);
 $response = array();
 while (mysqli_stmt_fetch($stmt)) {
     $location = array(
         "id" => $id_localizacao,
         "description" => $descricao,
-        "lng" => $longitude,
-        "lat" => $latitude,
+        "lng" => $latitude,
+        "lat" => $longitude,
     );
     $response[] = $location;
 }
