@@ -3,7 +3,26 @@
 <?php
 
 require_once '../Connections/connection.php';
+if (isset($_GET['msg'])) {
+    switch ($_GET['msg']) {
+        case 'anuncio_eliminado':
+            echo "<div class='alert alert-success'>✅ Anúncio eliminado com sucesso.</div>";
+            break;
+        // Podes adicionar mais mensagens aqui no futuro
+    }
+}
 
+if (isset($_GET['erro'])) {
+    switch ($_GET['erro']) {
+        case 'nao_foi_possivel_eliminar':
+            echo "<div class='alert alert-danger'>❌ Não foi possível eliminar o anúncio. Tenta novamente.</div>";
+            break;
+        case 'dados_invalidos':
+            echo "<div class='alert alert-warning'>⚠️ Ação inválida ou dados em falta.</div>";
+            break;
+        // Outros erros futuros podem ir aqui
+    }
+}
 if (!isset($_SESSION['id_user'])) {
     // Se não estiver logado, redireciona pro login
     header("../Paginas/login.php");

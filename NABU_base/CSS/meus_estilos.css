@@ -257,6 +257,15 @@ footer a {
   cursor: pointer;
 }
 
+.eliminar {
+  flex: 1;
+  margin-top: 15px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
 .contactar {
   flex: 1;
   color: #115e46;

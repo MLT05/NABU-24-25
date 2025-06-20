@@ -17,7 +17,7 @@ $link = new_db_connection();
 
 $stmt = mysqli_stmt_init($link);
 
-$query = "SELECT a.nome_produto, a.descricao, a.preco, c.nome_categoria, u.nome, a.localizacao, a.capa, a.data_insercao, m.descricao AS medida_desc, m.abreviatura 
+$query = "SELECT a.nome_produto, a.descricao, a.preco, c.nome_categoria, u.nome, u.id_user, a.localizacao, a.capa, a.data_insercao, m.descricao AS medida_desc, m.abreviatura 
           FROM anuncios a
           INNER JOIN categorias c ON a.ref_categoria = c.id_categoria
           INNER JOIN users u ON a.ref_user = u.id_user
@@ -31,7 +31,9 @@ if (!mysqli_stmt_prepare($stmt, $query)) {
 
 mysqli_stmt_bind_param($stmt, "i", $id_anuncio);
 mysqli_stmt_execute($stmt);
-mysqli_stmt_bind_result($stmt, $nome_produto, $descricao, $preco, $nome_categoria, $nome_user, $localizacao, $capa, $data_insercao, $medida_desc, $medida_abr);
+
+// Atualiza bind_result incluindo o novo campo u.id_user
+mysqli_stmt_bind_result($stmt, $nome_produto, $descricao, $preco, $nome_categoria, $nome_user, $id_user, $localizacao, $capa, $data_insercao, $medida_desc, $medida_abr);
 $existe = mysqli_stmt_fetch($stmt);
 
 if($medida_abr == "UN") {
@@ -43,7 +45,8 @@ if($medida_abr == "UN") {
 if (!$existe) {
     mysqli_stmt_close($stmt);
     mysqli_close($link);
-    echo "<p>Produto não encontrado.</p>";
+    echo "<p class='body_index text-center'>Produto não encontrado.</p>";
+    include_once "cp_footer.php";
     exit;
 }
 mysqli_stmt_close($stmt);
@@ -101,27 +104,50 @@ unset($_SESSION['tipo_mensagem']);
             <button id="toggleDescricao" class="ver-mais-btn">Ver mais</button>
         </div>
 
-        <div>
-            <h3 class="verde_escuro fw-bold my-3 fs-4">Quantidade desejada</h3>
-            <input type="number" id="quantidade" name="quantidade" class="input-quantidade rounded-3 p-3" placeholder="Ex: 1 kilo, 1 unidade..." min="<?= htmlspecialchars($min_medida) ?>" required />
-        </div>
+        <?php if ($id_user != $_SESSION['id_user']): ?>
+            <div>
+                <div>
+                    <h3 class="verde_escuro fw-bold my-3 fs-4">Quantidade desejada</h3>
+                    <input type="number" id="quantidade" name="quantidade" class="input-quantidade rounded-3 p-3" placeholder="Ex: 1 kilo, 1 unidade..." min="<?= htmlspecialchars($min_medida) ?>" required />
+                </div>
 
-        <h3 class="verde_escuro fw-bold my-3 fs-4">Localização</h3>
-        <div class="d-flex">
-            <button class="nome_localizacao rounded fs-5 p-3 verde_escuro">
-                <img src="../Imagens/localizacao_simbolo.svg" alt="Localização" class="icone-localizacao" />
-                <?= htmlspecialchars($localizacao) ?>
-            </button>
-        </div>
+                <h3 class="verde_escuro fw-bold my-3 fs-4">Localização</h3>
+                <div class="d-flex">
+                    <button class="nome_localizacao rounded fs-5 p-3 verde_escuro">
+                        <img src="../Imagens/localizacao_simbolo.svg" alt="Localização" class="icone-localizacao" />
+                        <?= htmlspecialchars($localizacao) ?>
+                    </button>
+                </div>
 
-        <div class="d-flex">
-            <button id="open-cart-modal" class="contactar me-1 fs-6 p-2 bg-white rounded">Adicionar ao carrinho</button>
-            <button class="contactar ms-1 fs-6 p-2 bg-white rounded" onclick="window.location.href='../Paginas/mensagens.php'">Contactar</button>
-        </div>
-        <div class="d-flex">
-            <button class="comprar p-3 fs-6 rounded" onclick="window.location.href='../Paginas/carrinho.php'">Comprar</button>
-        </div>
+                <div class="d-flex">
+                    <button id="open-cart-modal" class="contactar me-1 fs-6 p-2 bg-white rounded">Adicionar ao carrinho</button>
+                    <button class="contactar ms-1 fs-6 p-2 bg-white rounded" onclick="window.location.href='../Paginas/mensagens.php'">Contactar</button>
+                </div>
+                <div class="d-flex">
+                    <button class="comprar p-3 fs-6 rounded" onclick="window.location.href='../Paginas/carrinho.php'">Comprar</button>
+                </div>
+            </div>
+        <?php else: ?>
+            <h3 class="verde_escuro fw-bold my-3 fs-4">Localização</h3>
+            <div class="d-flex">
+                <button class="nome_localizacao rounded fs-5 p-3 verde_escuro">
+                    <img src="../Imagens/localizacao_simbolo.svg" alt="Localização" class="icone-localizacao" />
+                    <?= htmlspecialchars($localizacao) ?>
+                </button>
+            </div>
+            <div class="d-flex">
+                <form method="POST" action="cp_editar_produto.php" style="display:inline;">
+                    <input type="hidden" name="id_anuncio" value="<?= htmlspecialchars($id_anuncio) ?>">
+                    <button type="submit" class="comprar p-3 fs-6 rounded me-1">Editar anúncio</button>
+                </form>
+                <form method="POST" action="../scripts/sc_eliminar_anuncio.php" onsubmit="return confirm('Tens a certeza que queres eliminar este anúncio?')" style="display:inline;">
+                    <input type="hidden" name="id_anuncio" value="<?= htmlspecialchars($id_anuncio) ?>">
+                    <button type="submit" class="eliminar p-3 fs-6 rounded ms-1">Eliminar anúncio</button>
+                </form>
+            </div>
+        <?php endif; ?>
     </div>
+
 
     <!-- Modal Bootstrap -->
     <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
