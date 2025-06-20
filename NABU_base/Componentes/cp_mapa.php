@@ -34,6 +34,11 @@
                 const marker = new mapboxgl.Marker({})
                     .setLngLat([data[i]["lng"], data[i]["lat"]])
                     .addTo(map);
+                // Cria um popup com nome e preço
+                const popup = new mapboxgl.Popup().setHTML(`
+            <strong>${anuncio.nome}</strong><br>
+            Preço: €${anuncio.preco}
+        `);
             }
             // add comments
         }).catch(function (error) {
