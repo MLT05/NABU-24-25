@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $query = "INSERT INTO carrinho (quantidade, ref_user, anuncios_id_anuncio) VALUES (?, ?, ?)";
     if (mysqli_stmt_prepare($stmt, $query)) {
-        mysqli_stmt_bind_param($stmt, "diid", $quantidade, $ref_user, $id_anuncio,);
+        mysqli_stmt_bind_param($stmt, "dii", $quantidade, $ref_user, $id_anuncio);
         if (mysqli_stmt_execute($stmt)) {
             echo "ok";
         } else {
