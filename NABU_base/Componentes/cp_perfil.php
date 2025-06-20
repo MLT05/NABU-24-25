@@ -80,7 +80,11 @@ if (!isset($_SESSION['id_user'])) {
 
             <?php if (isset($_SESSION['id_user'])): ?>
                 <a href="../Paginas/notificacoes.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg position-relative">
-                    <img src="../Imagens/icons/notifications_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Notificações" class="me-3">
+                    <div class="me-3 text-dark">
+                        <span class="material-symbols-outlined">
+                            notifications
+                        </span>
+                    </div>
                     Notificações
                     <span id="noti-badge-perfil" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         0
