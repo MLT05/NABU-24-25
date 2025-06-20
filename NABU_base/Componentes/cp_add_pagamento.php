@@ -117,15 +117,6 @@ if (!isset($_SESSION['id_user'])) {
                         required></textarea>
                 </div>
 
-                <!-- Localização -->
-                <div class="mb-3 d-flex align-items-center">
-                    <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
-                        <i class="bi bi-geo-alt-fill verde_escuro"></i>
-                    </span>
-                    <input type="text" class="form-control bg-success bg-opacity-25" id="localizacao" name="localizacao"
-                        placeholder="Localização" required>
-                </div>
-
                 <!-- Contactos -->
                 <h6 class="fw-bold mt-4 verde_escuro fs-4">Contactos</h6>
 
@@ -152,7 +143,7 @@ if (!isset($_SESSION['id_user'])) {
 
                 <!-- Botões -->
                 <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-publicar w-100 me-2">Publicar</button>
+                    <button type="submit" class="btn btn-publicar w-100 me-2">Confirmar</button>
                     <button type="reset" class="btn btn-descartar w-100 ms-2">Descartar</button>
                 </div>
             </div>
@@ -173,21 +164,3 @@ if (!isset($_SESSION['id_user'])) {
     });
 </script>
 
-<script>
-    const previewImage = (event) => {
-        const files = event.target.files;
-        if (files.length > 0) {
-            const imageUrl = URL.createObjectURL(files[0]);
-            const imageElement = document.getElementById("preview-selected-image")
-            imageElement.src = imageUrl
-        }
-    }
-    <div class="upload-box mb-3">
-        <label for="imagens" class="w-100 text-center">
-            <i class="bi bi-upload fs-2 d-block"></i>
-            Adicionar imagens
-            <input type="file" id="imagens" name="imagens[]" multiple hidden>
-        </label>
-    </div>
-
-</script>
