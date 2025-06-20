@@ -197,6 +197,7 @@ unset($_SESSION['tipo_mensagem']);
         const quantidadeInput = document.getElementById('quantidade');
         const quantidade = parseFloat(quantidadeInput.value);
         const id_anuncio = <?= $id_anuncio ?>;
+        const preco = <?= $preco ?>;
 
         if (!quantidade || quantidade <= 0) {
             const quantidadeInvalidaModal = new bootstrap.Modal(document.getElementById('quantidadeInvalidaModal'));
@@ -209,7 +210,7 @@ unset($_SESSION['tipo_mensagem']);
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: `id_anuncio=${encodeURIComponent(id_anuncio)}&quantidade=${encodeURIComponent(quantidade)}`
+            body: `id_anuncio=${encodeURIComponent(id_anuncio)}&quantidade=${encodeURIComponent(quantidade)}&preco=${encodeURIComponent(preco)}`
         })
             .then(response => {
                 if (response.status === 401) {
