@@ -23,8 +23,8 @@ while (mysqli_stmt_fetch($stmt)) {
     $location = array(
         "id" => $id_localizacao,
         "description" => $descricao,
-        "lng" => $latitude,
-        "lat" => $longitude,
+        "lng" => $longitude,
+        "lat" => $latitude,
     );
     $response[] = $location;
 }
