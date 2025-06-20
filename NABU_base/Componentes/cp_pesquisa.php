@@ -1,7 +1,12 @@
 <?php
-// Conexão à base de dados
+
 require_once '../Connections/connection.php';
+
 $link = new_db_connection();
+
+// Pega o ID do utilizador logado, ou 0 se não estiver logado
+$id_user = $_SESSION['id_user'] ?? 0;
+
 ?>
 
 <main class="body_index">
@@ -17,23 +22,38 @@ $link = new_db_connection();
         <div class="row g-3">
             <?php
             $stmt = mysqli_stmt_init($link);
-            $query = "SELECT id_anuncio, nome_produto, preco, abreviatura , capa
-                      FROM anuncios
-                      INNER JOIN medidas ON anuncios.ref_medida = medidas.id_medida";
+
+            $query = "SELECT a.id_anuncio, a.nome_produto, a.preco, m.abreviatura, a.capa,
+                             EXISTS (
+                                 SELECT 1 FROM favoritos f 
+                                 WHERE f.users_id_user = ? AND f.anuncios_id_anuncio = a.id_anuncio
+                             ) AS favorito
+                      FROM anuncios a
+                      INNER JOIN medidas m ON a.ref_medida = m.id_medida";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
+                mysqli_stmt_bind_param($stmt, 'i', $id_user);
                 mysqli_stmt_execute($stmt);
-                mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $medida, $capa);
+                mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $medida, $capa, $favorito);
 
                 while (mysqli_stmt_fetch($stmt)) {
+                    $icon_class = ($favorito == 1) ? "material-symbols-filled" : "material-symbols-outlined";
                     ?>
                     <div class="col-6">
                         <div class="card rounded-4 shadow-sm border-0 position-relative card_pesquisa">
 
                             <!-- Ícone de favorito -->
-                            <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
-                                <span class="material-symbols-outlined verde_escuro">favorite</span>
-                            </div>
+                                    <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
+                                        <span
+                                                class="<?= $icon_class ?> verde_escuro btn-favorito"
+                                                data-id="<?= $id_anuncio ?>"
+                                                role="button"
+                                                style="cursor:pointer;"
+                                                aria-label="Favoritar produto"
+                                        >
+                                            favorite
+                                        </span>
+                                    </div>
 
                             <!-- Link do produto -->
                             <a href="../Paginas/produto.php?id=<?= $id_anuncio ?>" style="text-decoration: none">
@@ -74,3 +94,45 @@ $link = new_db_connection();
         </div>
     </div>
 </main>
+
+<script>
+    document.querySelectorAll(".btn-favorito").forEach(btn => {
+        const toggleFavorito = function(event) {
+            event.preventDefault(); // evita ação padrão se existir
+
+            const idAnuncio = this.getAttribute("data-id");
+
+            fetch("../Functions/ajax_favorito.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: `id_anuncio_favorito=${idAnuncio}`
+            })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    if (data.includes("⚠️")) {
+                        alert(data);  // Mensagem de erro, tipo "Necessita estar logado"
+                        return;
+                    }
+
+                    // Alterna o ícone só se não houve erro
+                    if (this.classList.contains("material-symbols-outlined")) {
+                        this.classList.remove("material-symbols-outlined");
+                        this.classList.add("material-symbols-filled");
+                    } else {
+                        this.classList.remove("material-symbols-filled");
+                        this.classList.add("material-symbols-outlined");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro no AJAX:", error);
+                    alert("Erro ao tentar alterar favoritos. Tenta novamente.");
+                });
+        };
+
+        btn.addEventListener("click", toggleFavorito);
+        btn.addEventListener("touchstart", toggleFavorito);
+    });
+</script>

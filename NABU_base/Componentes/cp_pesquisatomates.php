@@ -32,7 +32,7 @@ if (isset($_POST['pesquisa'])) {
                             <a href="../Paginas/produto.php?id=<?= $id_anuncio ?>" style="text-decoration: none">
                                 <div class="card rounded-4 shadow-sm border-0 position-relative card_pesquisa">
                                     <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
-                                        <span class="material-symbols-outlined verde_escuro">favorite</span>
+                                        <span class="material-symbols-filled verde_escuro">favorite</span>
                                     </div>
 
                                     <div class="imagem_card_pesquisa">
