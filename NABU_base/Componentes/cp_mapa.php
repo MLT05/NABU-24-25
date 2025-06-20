@@ -23,6 +23,12 @@
             zoom: 10 // starting zoom
         });
 
+        // Marcador do utilizador
+        new mapboxgl.Marker({ color: 'blue' })
+            .setLngLat([lng, lat])
+            .setPopup(new mapboxgl.Popup().setText("Estás aqui"))
+            .addTo(map);
+
         const url = "../api/localizacao.php";
         fetch(url).then(function (res) {
             return res.json();
@@ -45,7 +51,7 @@
     }
 
     function error() {
-        alert("Sorry, no position available.");
+        alert("Localização nao disponível, ligue a sua localização");
     }
     getLocation();
 
