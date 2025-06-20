@@ -25,11 +25,11 @@
 
 
 
-        const url = "/api/localizacao.php";
+        const url = "../api/localizacao.php";
         fetch(url).then(function (res) {
             return res.json();
         }).then(function (data) {
-            console.log(data);
+            console.log("Marcadores da base de dados:", data);
             for (var i = 0; i < data.length; i++) {
                 const marker = new mapboxgl.Marker({})
                     .setLngLat([data[i]["lng"], data[i]["lat"]])
@@ -39,7 +39,7 @@
         }).catch(function (error) {
             console.log(error);
         });
-        console.log(lng);
+        console.log("Tua localização:", { lng, lat });
         const marker = new mapboxgl.Marker({})
             .setLngLat([lng, lat])
             .addTo(map);

@@ -7,8 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_favorito'])) {
 }
 
 if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
-    echo "produto not found";
-    exit;
+    echo "<p class='body_index'>produto not found</p>\n";
+    include_once "../Componentes/cp_footer.php";
+    exit();
 }
 
 $id_anuncio = (int)$_GET['id'];
@@ -139,7 +140,7 @@ if (isset($_SESSION['mensagem_sistema'])) {
         </p>
         <button id="toggleDescricao" class="ver-mais-btn d-none verde_escuro text-decoration-underline">Ver mais</button>
 
-        <?php if ($id_user != ($_SESSION['id_user'] ?? 0)): ?>
+        <?php if ($id_user != (isset($_SESSION['id_user']) ? $_SESSION['id_user'] : 0)): ?>
             <div>
                 <div>
                     <h3 class="verde_escuro fw-bold my-3 fs-4">Quantidade desejada</h3>

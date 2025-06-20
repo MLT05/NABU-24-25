@@ -70,16 +70,12 @@ if (!isset($_SESSION['id_user'])) {
 
             <?php } ?>
 
-            <a href="../Paginas/definicoes.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
-                <img src="../Imagens/icons/settings_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3">
-                Definições
-            </a>
 
             <?php if (isset($_SESSION['id_user'])): ?>
                 <a href="../Paginas/notificacoes.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg position-relative">
-                    <div class="me-3 text-dark">
-                        <span class="material-symbols-outlined">
-                            notifications
+                    <div class="me-3">
+                        <span class="material-symbols-outlined text-dark">
+                            Notifications
                         </span>
                     </div>
                     Notificações

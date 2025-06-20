@@ -1,5 +1,5 @@
 <?php
-require_once '../connections/connection.php';
+require_once '../Connections/connection.php';
 
 if (!isset($_SESSION['id_user'])) {
     header("Location: ../paginas/login.php");
