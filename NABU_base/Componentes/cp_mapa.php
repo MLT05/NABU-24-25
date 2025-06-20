@@ -16,24 +16,20 @@
         lng = position.coords.longitude;
         lat = position.coords.latitude;
 
-        mapboxgl.accessToken = 'pk.eyJ1IjoiY2FybG9zc2FudG9zLXVhIiwiYSI6ImNtYzBld3BpMTAxMzAybHNiZzZ4N2dnZGsifQ.4Bygpadn95ne2kXU_-3IDA';
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWFyaWFsZW9ub3JmcmlhcyIsImEiOiJjbWM1MnJ3eTgwN3U3Mm1zOXdweDJzenY4In0.no4s5Sct2PZJSJBqtKnpnA';
         const map = new mapboxgl.Map({
             container: 'map', // container ID
             center: [lng, lat], // starting position [lng, lat]. Note that lat must be set between -90 and 90
             zoom: 10 // starting zoom
         });
 
-        // Marcador do utilizador
-        new mapboxgl.Marker({ color: 'blue' })
-            .setLngLat([lng, lat])
-            .setPopup(new mapboxgl.Popup().setText("Estás aqui"))
-            .addTo(map);
+
 
         const url = "../api/localizacao.php";
         fetch(url).then(function (res) {
             return res.json();
         }).then(function (data) {
-            console.log(data);
+            console.log("Marcadores da base de dados:", data);
             for (var i = 0; i < data.length; i++) {
                 const marker = new mapboxgl.Marker({})
                     .setLngLat([data[i]["lng"], data[i]["lat"]])
@@ -43,7 +39,7 @@
         }).catch(function (error) {
             console.log(error);
         });
-        console.log(lng);
+        console.log("Tua localização:", { lng, lat });
         const marker = new mapboxgl.Marker({})
             .setLngLat([lng, lat])
             .addTo(map);
