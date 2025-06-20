@@ -25,7 +25,7 @@
         rel="stylesheet">
 
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../CSS/meus_estilos.css?v=1.6" rel="stylesheet" />
+    <link href="../CSS/meus_estilos.css?v=1.7" rel="stylesheet" />
 
     <!-- Favicon -->
     <link rel="icon" href="../LOGO_ICO/favicon-32x32.png" type="image/x-icon">
@@ -41,6 +41,13 @@
             console.warn("Não foi possível aplicar o tema salvo:", e);
         }
     </script>
+
+
+
+    <!-- Mapbox CSS & JS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.js"></script>
+
 </head>
 <?php
 $bodyClass = isset($bodyClass) ? $bodyClass : 'container';

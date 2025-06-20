@@ -99,10 +99,11 @@ unset($_SESSION['tipo_mensagem']);
         </div>
 
         <h2 class="verde_escuro fw-bold my-3 fs-4">Descrição do Produto</h2>
-        <div>
-            <p class="descricao" id="descricao"><?= nl2br(htmlspecialchars($descricao)) ?></p>
-            <button id="toggleDescricao" class="ver-mais-btn d-none">Ver mais</button>
-        </div>
+
+        <p id="descricao" class="descricao">
+            <?= htmlspecialchars($descricao) ?>       </p>
+        <button id="toggleDescricao" class="ver-mais-btn d-none verde_escuro text-decoration-underline">Ver mais</button>
+
 
         <?php if ($id_user != $_SESSION['id_user']): ?>
             <div>
@@ -136,8 +137,8 @@ unset($_SESSION['tipo_mensagem']);
                 </button>
             </div>
             <div class="d-flex gap-2 mt-3">
-                <form method="POST" action="cp_editar_produto.php" class="w-100">
-                    <input type="hidden" name="id_anuncio" value="<?= htmlspecialchars($id_anuncio) ?>">
+                <form method="POST" action="../Paginas/editar_produto.php" class="w-100">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($id_anuncio) ?>">
                     <button type="submit" class="btn btn-success w-100 py-3 fs-6 rounded">Editar anúncio</button>
                 </form>
                 <form method="POST" action="../scripts/sc_eliminar_anuncio.php" onsubmit="return confirm('Tens a certeza que queres eliminar este anúncio?')" class="w-100">
@@ -209,21 +210,35 @@ unset($_SESSION['tipo_mensagem']);
 </main>
 
 <script>
-    const botao = document.getElementById('toggleDescricao');
-    const descricao = document.getElementById('descricao');
 
-    // Mostrar o botão só se o conteúdo estiver cortado
     window.addEventListener('DOMContentLoaded', () => {
-        const isOverflowing = descricao.scrollHeight > descricao.clientHeight;
+        const descricao = document.getElementById('descricao');
+        const botao = document.getElementById('toggleDescricao');
 
-        if (isOverflowing) {
+        if (!descricao || !botao) {
+            console.warn('Elemento descricao ou botao não encontrado');
+            return;
+        }
+
+        // Inicialmente botão escondido
+        botao.classList.add('d-none');
+
+        const lineHeight = parseFloat(window.getComputedStyle(descricao).lineHeight);
+        const maxLinesHeight = lineHeight * 2;
+
+        if (descricao.scrollHeight > maxLinesHeight + 1) {  // +1 para evitar falha por float
             botao.classList.remove('d-none');
         }
-    });
 
-    botao.addEventListener('click', () => {
-        descricao.classList.toggle('expandida');
-        botao.textContent = descricao.classList.contains('expandida') ? 'Ver menos' : 'Ver mais';
+        botao.addEventListener('click', () => {
+            if (descricao.classList.contains('expandida')) {
+                descricao.classList.remove('expandida');
+                botao.textContent = 'Ver mais';
+            } else {
+                descricao.classList.add('expandida');
+                botao.textContent = 'Ver menos';
+            }
+        });
     });
 
     document.getElementById('open-cart-modal').addEventListener('click', function (event) {
