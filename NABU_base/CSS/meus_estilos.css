@@ -663,8 +663,12 @@ input:checked + .slider:before {
 }
 
 #map {
-  position: absolute;
+  position: fixed;          /* Fixa o mapa à viewport */
   top: 0;
-  bottom: 0;
-  width: 100%;
+  left: 0;
+  width: 100vw;             /* Garante largura total da viewport */
+  height: 100vh;            /* Garante altura total da viewport */
+  margin: 0;
+  padding: 0;
+  z-index: 0;
 }
