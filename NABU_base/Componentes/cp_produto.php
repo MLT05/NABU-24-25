@@ -52,11 +52,26 @@ mysqli_close($link);
 
 
 <div class="w-100 caixa-imagem">
-    <!-- <img src="../Imagens/produtos/<?= htmlspecialchars($capa) ?>" alt="<?= htmlspecialchars($nome_produto) ?>" class="img-fluid w-100" /> -->
-    <img src="../Imagens/produtos/alface.jpg" alt="<?= htmlspecialchars($nome_produto) ?>" class="w-100"
+
+    <img src="../uploads/capas/<?= htmlspecialchars($capa) ?>" alt="<?= htmlspecialchars($nome_produto) ?>" class="w-100"
          style="max-height: 100vh; object-fit: cover;" />
 </div>
+<?php
+if (isset($_SESSION['mensagem_sistema'])) {
+$mensagem = $_SESSION['mensagem_sistema'];
+$tipo_mensagem = $_SESSION['tipo_mensagem'];
 
+echo '<div class="container mt-3">
+    <div class="alert alert-' . ($tipo_mensagem === 'sucesso' ? 'success' : 'danger') . ' alert-dismissible fade show" role="alert">'
+        . htmlspecialchars($mensagem) . '
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+</div>';
+
+unset($_SESSION['mensagem_sistema']);
+unset($_SESSION['tipo_mensagem']);
+}
+?>
 <main class="container mb-13">
     <div class="mx-2">
         <h3 class="verde_escuro fw-bold my-3 fs-1"><?= htmlspecialchars($nome_produto) ?></h3>
@@ -182,6 +197,7 @@ mysqli_close($link);
         const quantidadeInput = document.getElementById('quantidade');
         const quantidade = parseFloat(quantidadeInput.value);
         const id_anuncio = <?= $id_anuncio ?>;
+        const preco = <?= $preco ?>;
 
         if (!quantidade || quantidade <= 0) {
             const quantidadeInvalidaModal = new bootstrap.Modal(document.getElementById('quantidadeInvalidaModal'));
@@ -194,7 +210,7 @@ mysqli_close($link);
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: `id_anuncio=${encodeURIComponent(id_anuncio)}&quantidade=${encodeURIComponent(quantidade)}`
+            body: `id_anuncio=${encodeURIComponent(id_anuncio)}&quantidade=${encodeURIComponent(quantidade)}&preco=${encodeURIComponent(preco)}`
         })
             .then(response => {
                 if (response.status === 401) {

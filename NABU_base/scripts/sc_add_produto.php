@@ -34,11 +34,7 @@ function validarMoradaOSM($morada) {
 
 // Verifica localização
 if (!validarMoradaOSM($localizacao)) {
-    echo "<script>
-        alert('Morada inválida. Por favor, introduza uma morada real.');
-        window.location.href = '../Paginas/add_produto.php';
-    </script>";
-    exit();
+    die("<p style='color:red;'>Morada inválida. Por favor, introduza uma morada real.</p>");
 }
 
 // Upload da imagem
@@ -50,16 +46,7 @@ if (!is_dir($upload_dir)) {
     mkdir($upload_dir, 0755, true);
 }
 
-$id_anuncio = (int) $_POST['id_anuncio'];
 
-// Buscar imagem antiga
-$query_capa = "SELECT capa FROM anuncios WHERE id_anuncio = ? AND ref_user = ?";
-$stmt_capa = mysqli_prepare($link, $query_capa);
-mysqli_stmt_bind_param($stmt_capa, "ii", $id_anuncio, $ref_user);
-mysqli_stmt_execute($stmt_capa);
-mysqli_stmt_bind_result($stmt_capa, $capa_atual);
-mysqli_stmt_fetch($stmt_capa);
-mysqli_stmt_close($stmt_capa);
 
 if (isset($_FILES['pfp']) && $_FILES['pfp']['error'] === UPLOAD_ERR_OK) {
     $file_tmp = $_FILES['pfp']['tmp_name'];
@@ -170,10 +157,19 @@ if ($stmt) {
     );
 
     if (mysqli_stmt_execute($stmt)) {
-        header("Location: ../Paginas/meus_anuncios.php");
-        echo "Anúncio inserido com sucesso!";
+        $novo_id = mysqli_insert_id($link); // <- Este é o ID do novo anúncio
+
+        $_SESSION['mensagem_sistema'] = "Anúncio criado com sucesso!";
+        $_SESSION['tipo_mensagem'] = "sucesso";
+
+        header("Location: ../Paginas/produto.php?id=" . $novo_id); // <- Redireciona com ID
+        exit();
     } else {
-        echo "Erro ao inserir anúncio: " . mysqli_stmt_error($stmt);
+        $_SESSION['mensagem_sistema'] = "Erro ao inserir anúncio: " . mysqli_stmt_error($stmt);
+        $_SESSION['tipo_mensagem'] = "erro";
+
+        header("Location: ../Paginas/produto.php"); // opcionalmente, redireciona para outra página
+        exit();
     }
 
     mysqli_stmt_close($stmt);

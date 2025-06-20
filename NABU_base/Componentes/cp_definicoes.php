@@ -14,7 +14,7 @@
                 Detalhes do Perfil e da Conta
             </a>
 
-            <a href="#"
+            <a href="../Paginas/detalhes_Pagamento.php"
                 class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
 
                 Pagamentos
