@@ -679,3 +679,10 @@ input:checked + .slider:before {
   margin: auto;
   border-radius: 50%;
 }
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}

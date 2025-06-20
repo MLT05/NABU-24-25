@@ -41,6 +41,13 @@
             console.warn("Não foi possível aplicar o tema salvo:", e);
         }
     </script>
+
+
+
+    <!-- Mapbox CSS & JS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.js"></script>
+
 </head>
 <?php
 $bodyClass = isset($bodyClass) ? $bodyClass : 'container';
