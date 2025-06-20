@@ -680,3 +680,87 @@ input:checked + .slider:before {
   padding: 0;
   z-index: 0;
 }
+.order-tracker {
+  max-width: 800px;
+  margin: 30px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 40px 0;
+  counter-reset: step;
+}
+
+.step {
+  text-align: center;
+  flex: 1;
+  position: relative;
+}
+
+.step .icon {
+  background-color: #ccc;
+  color: white;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  line-height: 40px;
+  font-size: 20px;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.step.active .icon {
+  background-color: #4c773e;
+}
+
+.step::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: #ccc;
+  top: 20px;
+  left: -50%;
+  z-index: -1;
+  transition: background-color 0.3s;
+}
+
+.step:first-child::before {
+  content: none;
+}
+
+.step.active::before {
+  background-color: #4c773e;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #4c773e;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3e5f31;
+}
+
+span {
+  font-size: 0.8rem;
+  color: #777;
+  display: block;
+  margin-top: 5px;
+}
