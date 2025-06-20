@@ -2,12 +2,6 @@
 
 <main class="body_index">
 
-
-    <?php require_once "cp_intro_index.php" ?>
-
-
-
-
     <!-- FAVORITOS -->
     <section class="mb-5">
         <h1 class="verde_escuro">Favoritos</h1>
