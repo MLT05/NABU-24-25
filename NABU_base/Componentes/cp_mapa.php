@@ -25,7 +25,7 @@
 
 
 
-        const url = "/api/localizacao.php";
+        const url = "../api/localizacao.php";
         fetch(url).then(function (res) {
             return res.json();
         }).then(function (data) {
