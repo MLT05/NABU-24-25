@@ -1,5 +1,4 @@
 <?php
-
 require_once '../Connections/connection.php';
 require_once '../Functions/function_favorito.php';
 
@@ -7,9 +6,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_favorito'])) {
     $mensagem_favorito = toggle_favorito_post();
 }
 
-
 if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
     echo "produto not found";
+    exit;
 }
 
 $id_anuncio = (int)$_GET['id'];
@@ -32,11 +31,10 @@ if (!mysqli_stmt_prepare($stmt, $query)) {
 mysqli_stmt_bind_param($stmt, "i", $id_anuncio);
 mysqli_stmt_execute($stmt);
 
-// Atualiza bind_result incluindo o novo campo u.id_user
 mysqli_stmt_bind_result($stmt, $nome_produto, $descricao, $preco, $nome_categoria, $nome_user, $id_user, $localizacao, $capa, $data_insercao, $medida_desc, $medida_abr);
 $existe = mysqli_stmt_fetch($stmt);
 
-if($medida_abr == "UN") {
+if ($medida_abr == "UN") {
     $min_medida = 1;
 } else {
     $min_medida = 0.05;
@@ -49,35 +47,77 @@ if (!$existe) {
     include_once "cp_footer.php";
     exit;
 }
+
 mysqli_stmt_close($stmt);
 mysqli_close($link);
+
+// Definir classe do ícone favorito
+if (isset($_SESSION['id_user'])) {
+    $id_user_session = $_SESSION['id_user'];
+    $link_check = new_db_connection();
+
+    $query_check = "SELECT 1 FROM favoritos WHERE users_id_user = ? AND anuncios_id_anuncio = ?";
+    $stmt_check = mysqli_stmt_init($link_check);
+    mysqli_stmt_prepare($stmt_check, $query_check);
+    mysqli_stmt_bind_param($stmt_check, "ii", $id_user_session, $id_anuncio);
+    mysqli_stmt_execute($stmt_check);
+    mysqli_stmt_store_result($stmt_check);
+
+    if (mysqli_stmt_num_rows($stmt_check) > 0) {
+        $icon_class = "material-symbols-filled"; // favorito
+    } else {
+        $icon_class = "material-symbols-outlined"; // não favorito
+    }
+    mysqli_stmt_close($stmt_check);
+    mysqli_close($link_check);
+} else {
+    $icon_class = "material-symbols-outlined"; // não logado = não favorito
+}
 ?>
 
-
 <div class="w-100 caixa-imagem">
-
     <img src="../uploads/capas/<?= htmlspecialchars($capa) ?>" alt="<?= htmlspecialchars($nome_produto) ?>" class="w-100"
          style="max-height: 100vh; object-fit: cover;" />
 </div>
+
 <?php
 if (isset($_SESSION['mensagem_sistema'])) {
-$mensagem = $_SESSION['mensagem_sistema'];
-$tipo_mensagem = $_SESSION['tipo_mensagem'];
+    $mensagem = $_SESSION['mensagem_sistema'];
+    $tipo_mensagem = $_SESSION['tipo_mensagem'];
 
-echo '<div class="container mt-3">
-    <div class="alert alert-' . ($tipo_mensagem === 'sucesso' ? 'success' : 'danger') . ' alert-dismissible fade show" role="alert">'
+    echo '<div class="container mt-3">
+        <div class="alert alert-' . ($tipo_mensagem === 'sucesso' ? 'success' : 'danger') . ' alert-dismissible fade show" role="alert">'
         . htmlspecialchars($mensagem) . '
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-    </div>
-</div>';
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+        </div>
+    </div>';
 
-unset($_SESSION['mensagem_sistema']);
-unset($_SESSION['tipo_mensagem']);
+    unset($_SESSION['mensagem_sistema']);
+    unset($_SESSION['tipo_mensagem']);
 }
 ?>
+
 <main class="container mb-13">
     <div class="mx-2">
-        <h3 class="verde_escuro fw-bold my-3 fs-1"><?= htmlspecialchars($nome_produto) ?></h3>
+        <div class="d-flex align-items-center justify-content-between position-relative">
+            <h3 class="verde_escuro fw-bold my-3 fs-1 mb-0"><?= htmlspecialchars($nome_produto) ?></h3>
+            <div class="pt-3">
+                <div class="position-relative d-flex justify-content-center align-items-center" style="width: 48px; height: 48px;">
+                    <!-- Círculo de fundo -->
+                    <div class="position-absolute top-0 start-0 w-100 h-100 rounded-circle favorite-circle verde_claro_bg"></div>
+
+                    <!-- Ícone de favorito -->
+                    <span
+                            class="<?= $icon_class ?> verde_escuro btn-favorito"
+                            data-id="<?= htmlspecialchars($id_anuncio) ?>"
+                            role="button"
+                            style="cursor:pointer; font-size: 2rem; z-index: 1;"
+                            aria-label="Favoritar produto">
+                        favorite
+                    </span>
+                </div>
+            </div>
+        </div>
         <p class="verde"><?= htmlspecialchars($nome_user) ?></p>
 
         <div>
@@ -85,12 +125,6 @@ unset($_SESSION['tipo_mensagem']);
                 <div class="col-6">
                     <span class="etiqueta"><?= htmlspecialchars($nome_categoria) ?></span>
                     <p class="text-warning">⭐ 4,9 <span class="verde_claro">(229)</span></p>
-                    <form method="post" action="" style="display:inline;">
-                        <input type="hidden" name="id_anuncio_favorito" value="<?= htmlspecialchars($id_anuncio) ?>">
-                        <button type="submit" name="toggle_favorito" style="border: none; background: none; cursor: pointer;">
-                            ❤️ <!-- ou ícone -->
-                        </button>
-                    </form>
                 </div>
                 <div class="col-6 text-end">
                     <p class="fs-2 fw-bold verde_escuro"><?= number_format($preco, 2, ',', '.') ?>€ <span>/<?= htmlspecialchars($medida_abr) ?></span></p>
@@ -101,11 +135,11 @@ unset($_SESSION['tipo_mensagem']);
         <h2 class="verde_escuro fw-bold my-3 fs-4">Descrição do Produto</h2>
 
         <p id="descricao" class="descricao">
-            <?= htmlspecialchars($descricao) ?>       </p>
+            <?= htmlspecialchars($descricao) ?>
+        </p>
         <button id="toggleDescricao" class="ver-mais-btn d-none verde_escuro text-decoration-underline">Ver mais</button>
 
-
-        <?php if ($id_user != $_SESSION['id_user']): ?>
+        <?php if ($id_user != ($_SESSION['id_user'] ?? 0)): ?>
             <div>
                 <div>
                     <h3 class="verde_escuro fw-bold my-3 fs-4">Quantidade desejada</h3>
@@ -148,7 +182,6 @@ unset($_SESSION['tipo_mensagem']);
             </div>
         <?php endif; ?>
     </div>
-
 
     <!-- Modal Bootstrap -->
     <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
@@ -194,7 +227,7 @@ unset($_SESSION['tipo_mensagem']);
             <div class="modal-content text-center">
                 <div class="modal-header">
                     <h5 class="modal-title" id="quantidadeInvalidaModalLabel">Quantidade Inválida</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body">
                     Por favor, insira uma quantidade válida.
@@ -206,11 +239,9 @@ unset($_SESSION['tipo_mensagem']);
         </div>
     </div>
 
-
 </main>
 
 <script>
-
     window.addEventListener('DOMContentLoaded', () => {
         const descricao = document.getElementById('descricao');
         const botao = document.getElementById('toggleDescricao');
@@ -220,13 +251,12 @@ unset($_SESSION['tipo_mensagem']);
             return;
         }
 
-        // Inicialmente botão escondido
         botao.classList.add('d-none');
 
         const lineHeight = parseFloat(window.getComputedStyle(descricao).lineHeight);
         const maxLinesHeight = lineHeight * 2;
 
-        if (descricao.scrollHeight > maxLinesHeight + 1) {  // +1 para evitar falha por float
+        if (descricao.scrollHeight > maxLinesHeight + 1) {
             botao.classList.remove('d-none');
         }
 
@@ -241,54 +271,93 @@ unset($_SESSION['tipo_mensagem']);
         });
     });
 
-    document.getElementById('open-cart-modal').addEventListener('click', function (event) {
-        event.preventDefault();
+    const openCartModalBtn = document.getElementById('open-cart-modal');
+    if (openCartModalBtn) {
+        openCartModalBtn.addEventListener('click', function(event) {
+            event.preventDefault();
 
-        const quantidadeInput = document.getElementById('quantidade');
-        const quantidade = parseFloat(quantidadeInput.value);
-        const id_anuncio = <?= $id_anuncio ?>;
-        const preco = <?= $preco ?>;
+            const quantidadeInput = document.getElementById('quantidade');
+            const quantidade = parseFloat(quantidadeInput.value);
+            const id_anuncio = <?= $id_anuncio ?>;
 
-        if (!quantidade || quantidade <= 0) {
-            const quantidadeInvalidaModal = new bootstrap.Modal(document.getElementById('quantidadeInvalidaModal'));
-            quantidadeInvalidaModal.show();
-            return;
-        }
+            if (!quantidade || quantidade <= 0) {
+                const quantidadeInvalidaModal = new bootstrap.Modal(document.getElementById('quantidadeInvalidaModal'));
+                quantidadeInvalidaModal.show();
+                return;
+            }
 
-        fetch('../Scripts/adicionar_ao_carrinho.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: `id_anuncio=${encodeURIComponent(id_anuncio)}&quantidade=${encodeURIComponent(quantidade)}&preco=${encodeURIComponent(preco)}`
-        })
-            .then(response => {
-                if (response.status === 401) {
-                    // Não autenticado - redirecionar para login
-                    window.location.href = '../Paginas/login.php';
-                    throw new Error('Redirecionando para login...');
-                }
-                return response.text();
+            fetch('../Scripts/adicionar_ao_carrinho.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `id_anuncio=${encodeURIComponent(id_anuncio)}&quantidade=${encodeURIComponent(quantidade)}`
             })
-            .then(data => {
-                data = data.trim();
+                .then(response => {
+                    if (response.status === 401) {
+                        window.location.href = '../Paginas/login.php';
+                        throw new Error('Redirecionando para login...');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    data = data.trim();
+                    if (data === 'ok') {
+                        const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
+                        cartModal.show();
+                    } else if (data === 'produto_existente') {
+                        const alreadyModal = new bootstrap.Modal(document.getElementById('alreadyInCartModal'));
+                        alreadyModal.show();
+                    } else {
+                        alert("Erro: " + data);
+                    }
+                })
+                .catch(error => {
+                    if (error.message !== 'Redirecionando para login...') {
+                        alert("Erro inesperado: " + error);
+                    }
+                });
+        });
+    }
 
-                if (data === 'ok') {
-                    const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
-                    cartModal.show();
-                } else if (data === 'produto_existente') {
-                    const alreadyModal = new bootstrap.Modal(document.getElementById('alreadyInCartModal'));
-                    alreadyModal.show();
-                } else {
-                    alert("Erro: " + data);
-                }
+    // Script para alternar favorito com AJAX
+    document.querySelectorAll(".btn-favorito").forEach(btn => {
+        const toggleFavorito = function(event) {
+            event.preventDefault(); // evita ação padrão se existir
+
+            const idAnuncio = this.getAttribute("data-id");
+
+            fetch("../Functions/ajax_favorito.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: `id_anuncio_favorito=${idAnuncio}`
             })
-            .catch(error => {
-                if (error.message !== 'Redirecionando para login...') {
-                    alert("Erro inesperado: " + error);
-                }
-            });
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    if (data.includes("⚠️")) {
+                        alert(data);  // Mensagem de erro, tipo "Necessita estar logado"
+                        return;
+                    }
+
+                    // Alterna o ícone só se não houve erro
+                    if (this.classList.contains("material-symbols-outlined")) {
+                        this.classList.remove("material-symbols-outlined");
+                        this.classList.add("material-symbols-filled");
+                    } else {
+                        this.classList.remove("material-symbols-filled");
+                        this.classList.add("material-symbols-outlined");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro no AJAX:", error);
+                    alert("Erro ao tentar alterar favoritos. Tenta novamente.");
+                });
+        };
+
+        btn.addEventListener("click", toggleFavorito);
+        btn.addEventListener("touchstart", toggleFavorito);
     });
 </script>
-
-
