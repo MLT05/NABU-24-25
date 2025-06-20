@@ -12,7 +12,7 @@ include_once ("cp_intro_carrinho.php");
     <?php
 
     require_once '../Connections/connection.php';
-
+    $valor_total = 0;
     if (!isset($_SESSION['id_user'])) {
         // Se não estiver logado, redireciona pro login
         header("../Paginas/login.php");
@@ -28,11 +28,11 @@ include_once ("cp_intro_carrinho.php");
         $query = "
 SELECT 
     anuncios.id_anuncio, 
-    anuncios.nome_produto, 
+    anuncios.nome_produto,
+    anuncios.preco, 
     medidas.abreviatura, 
     anuncios.capa, 
-    carrinho.quantidade, 
-    carrinho.valor,
+    carrinho.quantidade,
     users.nome AS nome_vendedor
 FROM anuncios 
 INNER JOIN medidas ON anuncios.ref_medida = medidas.id_medida 
@@ -54,17 +54,18 @@ WHERE carrinho.ref_user = ?
         if (mysqli_stmt_prepare($stmt, $query)) {
             mysqli_stmt_bind_param($stmt, 'i', $id_user);
             mysqli_stmt_execute($stmt);
-            mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $medida, $capa , $quantidade, $valor, $nome_vendedor);
+            mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $medida, $capa , $quantidade, $nome_vendedor);
+
 
 
             while(mysqli_stmt_fetch($stmt)) {
-
+                $valor = $preco * $quantidade;
 
                 ?>
 
         <!-- Card 1 -->
 
-        <div class="card mb-3 cards_homepage overflow-hidden" style="height: 15vh;">
+        <div class="card mb-3 cards_homepage overflow-hidden" style="height: 15vh;"  id="card-<?php echo $id_anuncio; ?>">
             <div class="row g-0 h-100">
 
                 <div class="col-4">
@@ -75,23 +76,44 @@ WHERE carrinho.ref_user = ?
                     </div>
                 </div>
 
-                <div class="col-7 d-flex align-items-center">
-                    <div class="card-body py-2">
-                        <h2 class="verde_escuro fw-bold mb-1"><?php echo htmlspecialchars($nome_produto); ?></h2>
-                        <p class="card-text verde mb-0"><small><?php echo htmlspecialchars($nome_vendedor); ?></small></p>
+                <div class="col-7 d-flex align-items-stretch">
+                    <div class="card-body d-flex flex-column justify-content-between w-100 py-2">
+                        <div>
+                            <h2 class="verde_escuro fw-bold mb-1 text-truncate"><?php echo htmlspecialchars($nome_produto); ?></h2>
+                            <p class="card-text verde mb-0 text-truncate"><small><?php echo htmlspecialchars($nome_vendedor); ?></small></p>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <h3 class="verde_escuro  mb-1"><?php echo htmlspecialchars($preco); ?>€/<?php echo htmlspecialchars($medida); ?></h3>
+
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-1 d-flex align-items-start justify-content-end pe-2 pt-2">
+
+                <div class="col-1 position-relative pe-2 pt-2">
+                    <!-- Ícone no topo -->
                     <img src="../Imagens/img_cp/close_24dp_004D40_FILL0_wght400_GRAD0_opsz24.svg"
                          alt="Remover"
-                         class="icone-x">
+                         class="icone-x btn-remover"
+                         data-id="<?php echo $id_anuncio; ?>"
+                         style="cursor: pointer;">
+
+                    <!-- Preço fixado embaixo -->
+                    <h2 class="verde_escuro fw-bold mb-2 px-2 position-absolute bottom-0 end-0">
+                        <?php echo htmlspecialchars($valor); ?>€
+                    </h2>
                 </div>
+
+
+
 
             </div>
         </div>
 
         <?php
+
+                $valor_total = $valor_total + $valor;
         }
 
 
@@ -102,7 +124,13 @@ WHERE carrinho.ref_user = ?
 
     mysqli_close($link);
 }
+
+
 ?>
+        <?php if ($valor_total > 0): ?>
+            <div class="d-flex justify-content-end mb-3">
+                <h3 class="verde_escuro fw-bold">Total: <span id="valor-total"><?php echo number_format($valor_total, 2, ',', '.'); ?>€</span></h3>
+            </div>
 
 
         <!-- Botão Finalizar -->
@@ -111,7 +139,7 @@ WHERE carrinho.ref_user = ?
                 Finalizar Pedido
             </button>
         </div>
-
+        <?php endif; ?>
     </section>
 
 
@@ -136,5 +164,56 @@ WHERE carrinho.ref_user = ?
 
 
 </main>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".btn-remover").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                const idAnuncio = this.getAttribute("data-id");
+                const card = document.getElementById("card-" + idAnuncio);
+
+                // Encontrar o preço do produto no próprio card
+                const valorTexto = card.querySelector("h2.fw-bold.px-2").innerText.replace('€', '').replace(',', '.');
+                const valor = parseFloat(valorTexto);
+
+                fetch("../scripts/sc_remover_carrinho.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: "id_anuncio=" + encodeURIComponent(idAnuncio)
+                })
+                    .then(response => {
+                        if (!response.ok) throw new Error("Erro ao remover.");
+                        return response.text();
+                    })
+                    .then(data => {
+                        card.remove(); // Remove o card
+
+                        // Atualiza o total
+                        const totalSpan = document.getElementById("valor-total");
+                        let totalAtual = parseFloat(totalSpan.innerText.replace('€', '').replace('.', '').replace(',', '.'));
+                        let novoTotal = totalAtual - valor;
+
+                        // Formata para "0,00€"
+                        if (novoTotal <= 0) {
+                            // Remove o total
+                            const totalContainer = totalSpan.closest(".d-flex");
+                            if (totalContainer) totalContainer.remove();
+
+                            // Remove o botão de finalizar
+                            const botaoFinalizar = document.querySelector(".top-buttons");
+                            if (botaoFinalizar) botaoFinalizar.remove();
+                        } else {
+                            totalSpan.innerText = novoTotal.toFixed(2).replace('.', ',') + "€";
+                        }
+                    })
+                    .catch(err => {
+                        alert("Erro ao remover o produto.");
+                        console.error(err);
+                    });
+            });
+        });
+    });
+</script>
 
 
