@@ -34,7 +34,7 @@
                 const marker = new mapboxgl.Marker({})
                     .setLngLat([data[i]["lng"], data[i]["lat"]])
                     .addTo(map);
-
+            }
             // add comments
         }).catch(function (error) {
             console.log(error);
@@ -42,9 +42,6 @@
         console.log("Tua localização:", { lng, lat });
         const marker = new mapboxgl.Marker({})
             .setLngLat([lng, lat])
-            .setPopup(
-                new mapboxgl.Popup({ offset: 25 }) // popup com pequeno offset
-                    .setHTML(`<strong>${data[i]["description"]}</strong>`)
             .addTo(map);
 
     }
