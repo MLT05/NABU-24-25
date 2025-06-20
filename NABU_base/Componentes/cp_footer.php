@@ -19,7 +19,8 @@
             <img src="../Imagens/icons/chat_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Mensagens" class="menu-icon">
             <p class="menu-label">Mensagens</p>
         </a>
-        <a class="menu-item flex-fill text-center text-white text-decoration-none" href="../Paginas/perfil.php">
+        <a class="menu-item flex-fill text-center text-white text-decoration-none position-relative" href="../Paginas/perfil.php">
+            <div class="position-relative">
             <?php
 
 
@@ -53,11 +54,104 @@
                 echo '<img src="../Imagens/icons/person_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Perfil" class="menu-icon">';
             }
             ?>
+                <span id="noti-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    0
+                </span>
+            </div>
             <p class="menu-label">Perfil</p>
         </a>
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Mostrar notificação desktop + toast na página
+    function showNotification(title, body) {
+        if ("Notification" in window && Notification.permission === "granted" && document.visibilityState !== 'visible') {
+            new Notification(title, {
+                body,
+                icon: "../Imagens/icons/notifications_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
+            });
+        }
+        showInPageToast(title, body);
+    }
+
+    function showInPageToast(title, body) {
+        const toast = document.createElement("div");
+        toast.className = "toast align-items-center text-bg-primary border-0 show";
+        toast.style.position = "fixed";
+        toast.style.bottom = "1rem";
+        toast.style.right = "1rem";
+        toast.style.zIndex = "9999";
+
+        toast.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body"><strong>${title}</strong><br>${body}</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" onclick="this.parentElement.parentElement.remove()"></button>
+        </div>`;
+
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 5000);
+    }
+
+    // Pedir permissão para notificações push (se ainda não tiver)
+    if ("Notification" in window && Notification.permission !== "granted") {
+        Notification.requestPermission();
+    }
+
+    // Buscar notificações novas e mostrar (via AJAX, sem marcar como lidas)
+    function buscarNotificacoes() {
+        fetch('../Functions/ajax_buscar_notificacoes.php')
+            .then(r => r.json())
+            .then(notificacoes => {
+                // Obter da sessão os IDs já mostrados
+                let mostradas = sessionStorage.getItem('notificacoesMostradas');
+                mostradas = mostradas ? JSON.parse(mostradas) : [];
+
+                notificacoes.forEach(n => {
+                    if (!mostradas.includes(n.id_notificacao)) {
+                        // Mostrar notificação e guardar o ID
+                        showNotification("Nova Notificação", n.conteudo);
+                        mostradas.push(n.id_notificacao);
+                    }
+                });
+
+                // Guardar de volta no sessionStorage
+                sessionStorage.setItem('notificacoesMostradas', JSON.stringify(mostradas));
+            })
+            .catch(console.error);
+    }
+
+    // Atualizar o badge das notificações não lidas
+    function atualizarBadge() {
+        fetch('../Functions/ajax_contar_notificacoes.php')
+            .then(r => r.json())
+            .then(data => {
+                if (data.status === 'sucesso') {
+                    const badge = document.getElementById('noti-badge');
+                    if (badge) {
+                        badge.textContent = data.quantidade;
+                        if (data.quantidade > 0) {
+                            badge.classList.remove('d-none');
+                        } else {
+                            badge.classList.add('d-none');
+                        }
+                    }
+                }
+            })
+            .catch(e => console.error("Erro ao buscar badge:", e));
+    }
+
+    // Executar buscar notificações e atualizar badge imediatamente e depois a cada 15s
+    document.addEventListener('DOMContentLoaded', () => {
+        buscarNotificacoes();
+        atualizarBadge();
+        setInterval(() => {
+            buscarNotificacoes();
+            atualizarBadge();
+        }, 15000);
+    });
+</script>
+
 
 </body>
 </html>
