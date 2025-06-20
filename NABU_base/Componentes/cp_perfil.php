@@ -77,8 +77,8 @@ if (!isset($_SESSION['id_user'])) {
 
             <?php if (isset($_SESSION['id_user'])): ?>
                 <a href="../Paginas/notificacoes.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg position-relative">
-                    <div class="me-3 text-dark">
-                        <span class="material-symbols-outlined">
+                    <div class="me-3">
+                        <span class="material-symbols-outlined text-dark">
                             notifications
                         </span>
                     </div>

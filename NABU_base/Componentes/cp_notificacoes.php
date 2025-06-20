@@ -1,7 +1,5 @@
 <?php
 require_once '../Connections/connection.php';
-session_start();
-
 
 // Redirecionar se não estiver logado
 if (!isset($_SESSION['id_user'])) {
@@ -43,17 +41,19 @@ mysqli_close($link);
 <?php include "../Componentes/cp_head.php"; ?>
 <?php include "../Componentes/cp_header.php"; ?>
 
-<main class="container mt-5 pt-5">
-    <h3 class="mb-3">Notificações</h3>
+<main class="body_index">
+    <h3 class="mb-3 me-3 text-end">Notificações</h3>
+    <div class="d-none">
+        <button id="btnTestNoti" class="btn btn-primary mb-4">Testar Notificação Push</button>
+        <a href="index.php" id="btnAjaxNoti" class="btn btn-success mb-3">Criar notificação via AJAX</a>
+        <button id="btnLimparNotificacoes" class="btn btn-danger mb-3">Eliminar notificações lidas</button>
+    </div>
+    <hr class="mb-2">
+    <ul class="list-group mt-2">
 
-    <button id="btnTestNoti" class="btn btn-primary mb-4">Testar Notificação Push</button>
-    <a href="index.php" id="btnAjaxNoti" class="btn btn-success mb-3">Criar notificação via AJAX</a>
-    <button id="btnLimparNotificacoes" class="btn btn-danger mb-3">Eliminar notificações lidas</button>
-
-    <ul class="list-group">
         <?php foreach ($notificacoes as $noti): ?>
-            <li
-                class="list-group-item <?= (!empty($noti['lida']) && $noti['lida'] == 1) ? '' : 'list-group-item-warning' ?>">
+
+            <li class="my-1 py-2 px-3 border rounded <?= (!empty($noti['lida']) && $noti['lida'] == 1) ? '' : 'list-group-item-warning' ?> verde_claro_bg">
                 <div class="d-flex justify-content-between">
                     <span><?= htmlspecialchars($noti['conteudo']) ?></span>
                     <small class="text-muted"><?= date('d/m/Y H:i', strtotime($noti['data'])) ?></small>
