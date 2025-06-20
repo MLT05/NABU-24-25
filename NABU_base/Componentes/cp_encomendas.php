@@ -1,7 +1,7 @@
 <main class="body_index">
 
     <div class="container my-4">
-        <h3 class="fw-bold verde_escuro">Meus pedidos</h3>
+        <h3 class="fw-bold verde_escuro">Os meus pedidos</h3>
         <p class="text-muted">Acompanhe o estado dos seus pedidos</p>
 
         <!-- Lista de pedidos -->
