@@ -31,14 +31,22 @@
         }).then(function (data) {
             console.log("Marcadores da base de dados:", data);
             for (var i = 0; i < data.length; i++) {
-                const marker = new mapboxgl.Marker({})
+                const popup = new mapboxgl.Popup({ offset: 25 })
+                    .setHTML(`<strong>${data[i]["description"]}</strong>`);
+
+                const el = document.createElement('div');
+                el.className = 'custom-marker';
+
+                const marker = new mapboxgl.Marker(el)
                     .setLngLat([data[i]["lng"], data[i]["lat"]])
+                    .setPopup(popup)
                     .addTo(map);
+
             }
-            // add comments
         }).catch(function (error) {
             console.log(error);
         });
+
         console.log("Tua localização:", { lng, lat });
         const marker = new mapboxgl.Marker({})
             .setLngLat([lng, lat])
