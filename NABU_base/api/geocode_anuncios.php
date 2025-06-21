@@ -6,7 +6,7 @@ header('Content-Type: text/plain');
 $link = new_db_connection();
 
 // Buscar anúncios sem coordenadas
-$query = "SELECT id_anuncio, morada FROM anuncios 
+$query = "SELECT id_anuncio, localizacao FROM anuncios 
 WHERE latitude IS NULL OR longitude IS NULL 
    OR latitude = 0 OR longitude = 0;";
 
