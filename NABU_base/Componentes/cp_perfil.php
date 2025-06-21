@@ -35,10 +35,7 @@ if (!isset($_SESSION['id_user'])) {
 ?>
 
 <main class="body_index">
-    <a href="javascript:history.back()" class=" text-decoration-none d-inline-flex " >
-        <span class="material-icons verde_escuro" style="font-size: 2.5rem">arrow_back</span>
 
-    </a>
 
     <div class="text-center mb-4">
         <img src="../uploads/pfp/<?php echo htmlspecialchars($capa); ?>" alt="Foto de perfil" class="rounded-circle border border-success imagempfp" style="object-fit: cover;">

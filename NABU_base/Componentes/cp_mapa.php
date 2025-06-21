@@ -1,9 +1,6 @@
 
 <div id="map"></div>
-<a href="javascript:history.back()" class="btn text-decoration-none position-absolute start-0 mt-4 ms-3 d-flex align-items-center" style="top: 8vh;">
-    <span class="material-icons me-2 " style="font-size: 2.5rem; color: white">arrow_back</span>
 
-</a>
 <script>
     let lng = -8.25;
     let lat = 40.11;
@@ -44,7 +41,7 @@
             <h3 style="margin: 0 0 5px 0;">${anuncio.nome_produto}</h3>
             <p style="margin: 0;"> ${anuncio.localizacao}</p>
             <p style="margin: 0;"> <strong>${anuncio.preco} € / ${anuncio.ref_medida}</strong></p>
-            <a href="../produto.php?id=${anuncio.id}" target="_blank"> Ver mais</a>
+            <a href="./produto.php?id=${anuncio.id}" target="_blank"> Ver mais</a>
         </div>`;
 
                 const popup = new mapboxgl.Popup({ offset: 25 })

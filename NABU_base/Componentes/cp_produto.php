@@ -2,6 +2,7 @@
 require_once '../Connections/connection.php';
 require_once '../Functions/function_favorito.php';
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_favorito'])) {
     $mensagem_favorito = toggle_favorito_post();
 }
@@ -100,10 +101,7 @@ if (isset($_SESSION['mensagem_sistema'])) {
 
 <main class="container mb-13">
 
-    <a href="javascript:history.back()" class="btn text-decoration-none position-absolute start-0 mt-4 ms-3 d-flex align-items-center" style="top: 8vh;">
-        <span class="material-icons me-2 " style="font-size: 2.5rem; color: white">arrow_back</span>
 
-    </a>
     <div class="mx-2">
         <div class="d-flex align-items-center justify-content-between position-relative">
             <h3 class="verde_escuro fw-bold my-3 fs-1 mb-0"><?= htmlspecialchars($nome_produto) ?></h3>

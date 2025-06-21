@@ -1,5 +1,5 @@
 <?php
-require_once '../Connections/connection.php';
+include_once '../api/geocode_anuncios.php';
 
 header('Content-Type: text/plain');
 

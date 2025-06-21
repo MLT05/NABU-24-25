@@ -26,10 +26,7 @@ mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $capa, $nome_
 ?>
 
 <main class="body_index">
-    <a href="javascript:history.back()" class=" text-decoration-none d-inline-flex " >
-        <span class="material-icons verde_escuro" style="font-size: 2.5rem">arrow_back</span>
 
-    </a>
     <section class="sec-favoritos">
         <div class="px-lg-5">
             <h1 class="mb-4 text-center verde_escuro">Meus Favoritos</h1>
