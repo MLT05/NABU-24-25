@@ -40,6 +40,9 @@
 .cinza_bg {
   background-color: #d9d9d9;
 }
+.amarelo_bg {
+  background-color: #FFC008;
+}
 
 .cabecalho {
   height: 12vh;
@@ -770,10 +773,3 @@ span {
   margin-top: 5px;
 }
 
-.custom-marker {
-  background-color: green;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid white;
-}

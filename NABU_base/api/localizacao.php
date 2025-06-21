@@ -10,23 +10,45 @@ $link = new_db_connection();
 $stmt = mysqli_stmt_init($link);
 
 // Mostrar localização do produto
-$query = "SELECT id_localizacao, latitude, longitude, descricao FROM localizacao";
+$query = "SELECT id_anuncio, localizacao, latitude, longitude, nome_produto, preco, ref_medida FROM anuncios WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
 
-mysqli_stmt_prepare($stmt, $query);
+if (mysqli_stmt_prepare($stmt, $query)) {
 
-/* execute the prepared statement */
-mysqli_stmt_execute($stmt);
+    /* execute the prepared statement */
+    mysqli_stmt_execute($stmt);
 
-mysqli_stmt_bind_result($stmt, $id_localizacao, $latitude, $longitude, $descricao);
-$response = array();
-while (mysqli_stmt_fetch($stmt)) {
-    $location = array(
-        "id" => $id_localizacao,
-        "description" => $descricao,
-        "lng" => $longitude, // longitude vai para lng
-        "lat" => $latitude,  // latitude vai para lat
+    // Bind the result variables
+    mysqli_stmt_bind_result(
+        $stmt,
+        $id_anuncio,
+        $localizacao,
+        $latitude,
+        $longitude,
+        $nome_produto,
+        $preco,
+        $ref_medida
     );
-    $response[] = $location;
+
+    $response = array();
+
+    while (mysqli_stmt_fetch($stmt)) {
+        $location = array(
+            "localizacao" => $localizacao,
+            "lng" => $longitude, // longitude vai para lng
+            "lat" => $latitude,  // latitude vai para lat
+            "nome_produto" => $nome_produto,
+            "preco" => $preco,
+            "ref_medida" => $ref_medida,
+            "id" => $id_anuncio,
+
+        );
+        $response[] = $location;
+    }
+
+    echo json_encode($response);
+} else {
+    echo json_encode(["error" => "Erro na preparação da query."]);
 }
 
-echo json_encode($response);
+mysqli_stmt_close($stmt);
+mysqli_close($link);

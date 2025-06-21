@@ -1,4 +1,8 @@
 <main class="body_index">
+    <a href="javascript:history.back()" class=" text-decoration-none d-inline-flex " >
+        <span class="material-icons verde_escuro" style="font-size: 2.5rem">arrow_back</span>
+
+    </a>
 
     <div class="container my-4">
         <h3 class="fw-bold verde_escuro">Os meus pedidos</h3>
@@ -43,10 +47,10 @@ WHERE
             <!-- Lista de pedidos -->
             <div class="row gy-3 mb-3">
                 <div class="col-12">
-                    <div class="card shadow-sm position-relative overflow-hidden verde_claro_bg" style="height: 11vh;">
+                    <div class="card shadow-sm position-relative overflow-hidden verde_claro_bg h-100">
                         <a href="../Paginas/detalhes_encomendas.php?id=<?php echo htmlspecialchars($id_encomenda); ?>" class="stretched-link text-decoration-none"></a>
-                        <div class="row g-0" style="height: 12vh;">
-                            <!-- Imagem (mantida como estava) -->
+                        <div class="row g-0 align-items-stretch">
+                            <!-- Imagem -->
                             <div class="col-3">
                                 <div class="h-100">
                                     <img src="../uploads/capas/<?php echo htmlspecialchars($capa); ?>" class="img-fluid w-100 h-100 rounded-start object-fit-cover" alt="Imagem do produto">
@@ -81,6 +85,7 @@ WHERE
                     </div>
                 </div>
             </div>
+
 
 
             <?php
