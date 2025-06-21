@@ -63,7 +63,7 @@
                                         <h2 class="verde_escuro fw-bold mb-1"><?= htmlspecialchars($nome_produto); ?></h2>
                                         <p class="text-muted mb-2"> <strong><?= htmlspecialchars($localizacao); ?></strong> </p>
                                         <br>
-                                        <p class="text-muted mb-2"> <?= date('d/m/Y', strtotime($data_inserecao)); ?></p>
+                                        <p class="text-muted mb-2"> <? date('d/m/Y', strtotime($data_inserecao)); ?></p>
                                         <hr>
                                         <div class="d-flex justify-content-end">
                                             <h3 class="verde_escuro fw-semibold mb-0"><?= number_format($preco, 2, ',', ' '); ?> €</h3>
