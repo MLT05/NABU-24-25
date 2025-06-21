@@ -91,14 +91,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_anuncio']) && is_n
                          alt="Foto perfil"
                          class="rounded-circle me-2 align-self-end"
                          style="width: 30px; height: 30px; object-fit: cover;">
-                    <div class="verde_claro_bg p-2 rounded-3 verde_escuro" style="max-width: 75%;">
+                    <div class="verde_claro_bg p-3 rounded-3 verde_escuro" style="max-width: 75%;">
                         Fica combinado amanhã na sua morada às 10h00.
                     </div>
                 </div>
 
                 <!-- Mensagem do user logado (sessão) -->
                 <div class="d-flex justify-content-end mb-2">
-                    <div class="verde_escuro_bg verde_claro p-2 rounded-3" style="max-width: 75%;">
+                    <div class="verde_escuro_bg text-white p-3 rounded-3" style="max-width: 75%;">
                         Bom dia! Estou interessado nos tomates. Podemos combinar a entrega amanhã?
                     </div>
                     <div class="ms-2 align-self-end">
