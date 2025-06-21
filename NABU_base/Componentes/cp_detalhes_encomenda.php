@@ -56,7 +56,8 @@ $query = "SELECT
     estados.estado, 
     encomendas.quantidade, 
     encomendas.preco,
-    estados.descricao
+    estados.descricao,
+    anuncios.ref_user
 FROM 
     anuncios 
 INNER JOIN 
@@ -71,7 +72,8 @@ WHERE
 if (mysqli_stmt_prepare($stmt, $query)) {
     mysqli_stmt_bind_param($stmt, "i", $id_encomenda);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $id_encomenda, $id_anuncio, $nome_produto, $abreviatura, $capa, $estado, $quantidade, $preco,$descricao_estado);
+    mysqli_stmt_bind_result($stmt, $id_encomenda, $id_anuncio, $nome_produto, $abreviatura, $capa, $estado, $quantidade, $preco, $descricao_estado, $ref_user_vendedor);
+
 
     if (!mysqli_stmt_fetch($stmt)) {
         die("Encomenda não encontrada.");
@@ -95,8 +97,95 @@ if (mysqli_stmt_prepare($stmt, $query_user)) {
     die("Erro na query do usuário: " . mysqli_error($link));
 }
 
+if ($_SESSION['id_user'] == $ref_user_vendedor) {
+    // O usuário logado é o vendedor → Mostrar informações do comprador
+    $stmt = mysqli_stmt_init($link);
+    $query_user = "SELECT u.nome, u.email, u.contacto 
+                   FROM users u 
+                   INNER JOIN encomendas e ON e.ref_comprador = u.id_user 
+                   WHERE e.id_encomenda = ?";
+
+    if (mysqli_stmt_prepare($stmt, $query_user)) {
+        mysqli_stmt_bind_param($stmt, "i", $id_encomenda);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $nome, $email, $contacto);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+
+        $info_label = "Informações do comprador";
+    } else {
+        die("Erro ao buscar comprador: " . mysqli_error($link));
+    }
+
+} else {
+    // O usuário logado é o comprador → Mostrar informações do vendedor
+    $stmt = mysqli_stmt_init($link);
+    $query_user = "SELECT nome, email, contacto FROM users WHERE id_user = ?";
+
+    if (mysqli_stmt_prepare($stmt, $query_user)) {
+        mysqli_stmt_bind_param($stmt, "i", $ref_user_vendedor);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $nome, $email, $contacto);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+
+        $info_label = "Informações do vendedor";
+    } else {
+        die("Erro ao buscar vendedor: " . mysqli_error($link));
+    }
+}
+
 mysqli_close($link);
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['avaliar'])) {
+    $classificacao = intval($_POST['classificacao']);
+    $comentario = trim($_POST['comentario']);
+    $ref_user = $ref_user_vendedor;
+    $ref_avaliador = $_SESSION['id_user'];
+    $data_feedback = date('Y-m-d H:i:s');
+
+    if ($classificacao < 0 || $classificacao > 10) {
+        die("A classificação deve estar entre 0 e 10.");
+    }
+
+    $link = new_db_connection();
+    $stmt = mysqli_stmt_init($link);
+
+    $query = "INSERT INTO feedback (ref_user, ref_avaliador, comentario, classificacao, data_feedback) VALUES (?, ?, ?, ?, ?)";
+
+    if (mysqli_stmt_prepare($stmt, $query)) {
+        mysqli_stmt_bind_param($stmt, "iisis", $ref_user, $ref_avaliador, $comentario, $classificacao, $data_feedback);
+
+        mysqli_stmt_execute($stmt);
+
+
+        mysqli_stmt_close($stmt);
+    } else {
+        die("Erro ao preparar statement: " . mysqli_error($link));
+    }
+
+    // Eliminar a encomenda após avaliação
+    $stmt = mysqli_stmt_init($link);
+    $query_delete = "DELETE FROM encomendas WHERE id_encomenda = ?";
+
+    if (mysqli_stmt_prepare($stmt, $query_delete)) {
+        mysqli_stmt_bind_param($stmt, "i", $id_encomenda);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    } else {
+        die("Erro ao eliminar encomenda: " . mysqli_error($link));
+    }
+
+
+    mysqli_close($link);
+
+    header("Location: ../Paginas/index.php");
+    exit;
+}
+
 ?>
+
+
 <main class="body_index">
 
 <div class="order-tracker mt-5">
@@ -107,10 +196,30 @@ mysqli_close($link);
     <p class="verde_escuro mb-0 text-center"> <strong><?= htmlspecialchars($descricao_estado) ?></strong></p>
     </div>
 </div>
+    <div class="order-tracker mt-5 " id="avaliacoes">
+        <h5 class="fw-bold fs-3 verde_escuro mb-2">Deixar avaliação</h5>
+        <?php if ($_SESSION['id_user'] != $ref_user_vendedor): ?>
+            <form method="post" action="">
+                <div class="mb-3">
+                    <label for="classificacao" class="form-label verde_escuro fw-semibold">Classificação (0 a 10)*</label>
+                    <input type="number" id="classificacao" name="classificacao" class="form-control" min="0" max="10" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="comentario" class="form-label verde_escuro fw-semibold">Comentário*</label>
+                    <textarea id="comentario" name="comentario" class="form-control" rows="4" required></textarea>
+                </div>
+
+                <button type="submit" name="avaliar" class="btn btn-success verde_escuro_bg">Enviar Avaliação</button>
+            </form>
+        <?php endif; ?>
+
+    </div>
 
     <div class="order-tracker">
     <div class="mb-13">
         <h5 class="fw-bold fs-3 verde_escuro mb-0">Detalhes do Produto</h5>
+
 
         <!-- Imagem -->
         <label class="form-label verde_escuro fw-semibold">Imagem*</label>
@@ -138,7 +247,7 @@ mysqli_close($link);
 
 <hr class="verde_escuro">
         <!-- Contactos do vendedor -->
-        <h6 class="fw-bold mt-4 verde_escuro fs-4">Contactos do vendedor</h6>
+        <h6 class="fw-bold mt-4 verde_escuro fs-4"><?= htmlspecialchars($info_label) ?></h6>
 
         <div class="mb-3">
             <label class="form-label fw-bold verde_escuro"><strong>Nome*</strong></label>
@@ -157,7 +266,10 @@ mysqli_close($link);
     </div>
 </main>
 
+
 <script>
+
+
     let currentStep = 1;
     const steps = document.querySelectorAll(".step");
 
