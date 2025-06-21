@@ -333,9 +333,8 @@ footer a {
   border: none;
   font-size: 1.2rem;
   font-weight: 600;
-  color: #2d2d2d;
-  background-color: #e0e0e0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ✅ Sombra */
+  color:  #004d26;
+  background-color: #5d7d46;
   text-decoration: none;
   display: inline-block;
   text-align: center;
