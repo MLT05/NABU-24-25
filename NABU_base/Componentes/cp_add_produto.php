@@ -60,7 +60,7 @@ if (!isset($_SESSION['id_user'])) {
         <form method="post" enctype="multipart/form-data" action="../scripts/sc_add_produto.php">
             <div>
                 <h5 class="fw-bold fs-3 verde_escuro mb-0">Criar novo anúncio</h5>
-                <p class="verde_escuro">Insere todos os detalhes sobre o teu produto</p>
+                <p class="verde_escuro">Insira todos os detalhes sobre o seu produto</p>
 
                 <!-- Upload Imagem -->
                 <label for="pfp" class="form-label verde_escuro fw-semibold">Imagem*</label>

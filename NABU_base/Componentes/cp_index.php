@@ -31,6 +31,7 @@
     <!-- RECOMENDAÇÕES -->
     <section class="mb-5">
         <h1 class="verde_escuro">Recomendações</h1>
+        <p class="verde">Recomendacões com base nas suas preferências</p>
         <div id="carouselrecomendacoes" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
 
@@ -99,6 +100,7 @@
     <!-- NOVIDADES -->
     <section class="mb-5">
         <h1 class="verde_escuro">Novidades</h1>
+        <p class="verde">Descubra as novidades adicionadas recentemente</p>
         <div id="carouselnovidades" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <?php
