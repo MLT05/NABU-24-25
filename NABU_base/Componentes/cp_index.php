@@ -165,7 +165,7 @@
     <!-- FAVORITOS -->
     <section class="mb-5">
         <h1 class="verde_escuro">Favoritos</h1>
-        <p class="verde_claro">Recomendacões com base nas suas preferências</p>
+        <p class="verde_claro">Os seus favoritos</p>
         <div class="row g-3">
             <?php
             if (isset($_SESSION['id_user'])) {
