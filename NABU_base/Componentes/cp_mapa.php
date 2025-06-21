@@ -1,9 +1,6 @@
 
 <div id="map"></div>
-<a href="javascript:history.back()" class="btn text-decoration-none position-absolute start-0 mt-4 ms-3 d-flex align-items-center" style="top: 8vh;">
-    <span class="material-icons me-2 " style="font-size: 2.5rem; color: white">arrow_back</span>
 
-</a>
 <script>
     let lng = -8.25;
     let lat = 40.11;

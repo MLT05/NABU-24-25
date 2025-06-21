@@ -10,10 +10,7 @@ $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : 0;
 ?>
 
 <main class="body_index">
-    <a href="javascript:history.back()" class=" text-decoration-none d-inline-flex " >
-        <span class="material-icons verde_escuro" style="font-size: 2.5rem">arrow_back</span>
 
-    </a>
     <div class="mt-3">
 
         <!-- 🔍 Pesquisa -->
