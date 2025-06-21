@@ -129,10 +129,9 @@ if (!isset($_SESSION['id_user'])) {
                 </div>
 
                 <!-- Localização -->
+                <label for="descricao" class="form-label fw-semibold verde_escuro">Localização*</label>
+                <p class="verde_claro"> Insira a sua morada</p>
                 <div class="mb-3 d-flex align-items-center">
-                    <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
-                        <i class="bi bi-geo-alt-fill verde_escuro"></i>
-                    </span>
                     <input type="text" class="form-control bg-success bg-opacity-25" id="localizacao" name="localizacao" placeholder="Localização" required>
                 </div>
 

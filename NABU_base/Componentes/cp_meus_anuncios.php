@@ -2,9 +2,11 @@
 <main class="body_index">
 
 <?php
-include_once '../api/geocode_anuncios.php';
 
 require_once '../Connections/connection.php';
+include_once '../api/geocode_anuncios.php';
+
+
 if (isset($_GET['msg'])) {
     switch ($_GET['msg']) {
         case 'anuncio_eliminado':
@@ -109,3 +111,9 @@ $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
     </section>
 
 </main>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        // Apenas dispara a execução do script, sem esperar resposta
+        fetch('../api/geocode_anuncios.php').catch(() => {});
+    });
+</script>
