@@ -35,14 +35,13 @@
             for (var i = 0; i < data.length; i++) {
                 const anuncio = data[i];
 
-                const popupHTML = `
-        <div style="min-width: 220px;">
+                const popupHTML =
+                    ` <div style="min-width: 220px;">
             <h3 style="margin: 0 0 5px 0;">${anuncio.nome_produto}</h3>
             <p style="margin: 0;"> ${anuncio.localizacao}</p>
             <p style="margin: 0;"> <strong>${anuncio.preco} € / ${anuncio.ref_medida}</strong></p>
-            <a href="detalhe_anuncio.php?id=${anuncio.id}" target="_blank"> Ver mais</a>
-        </div>
-    `;
+            <a href="../produto.php?id=${anuncio.id}" target="_blank"> Ver mais</a>
+        </div>`;
 
                 const popup = new mapboxgl.Popup({ offset: 25 })
                     .setHTML(popupHTML);
