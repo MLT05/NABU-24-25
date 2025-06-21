@@ -42,13 +42,11 @@
                 $query = "SELECT anuncios.id_anuncio,anuncios.nome_produto, anuncios.preco, anuncios.capa,anuncios.localizacao, users.nome,categorias.nome_categoria,anuncios.data_insercao
                     FROM anuncios
                     INNER JOIN users ON anuncios.ref_user = users.id_user
-                    INNER JOIN categorias ON anuncios.ref_categoria = categorias.id_categoria
-                    ORDER BY data_insercao DESC
-                    LIMIT 3";
+                    INNER JOIN categorias ON anuncios.ref_categoria = categorias.id_categoria";
 
                 if (mysqli_stmt_prepare($stmt, $query)) {
                     mysqli_stmt_execute($stmt);
-                    mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $capa, $localizacao, $nome_user,$nome_categoria,$data_inserecao);
+                    mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $capa, $localizacao, $nome_user,$nome_categoria,$data_insercao);
 
                     $first = true;
                     while (mysqli_stmt_fetch($stmt)) {
@@ -63,7 +61,7 @@
                                         <h2 class="verde_escuro fw-bold mb-1"><?= htmlspecialchars($nome_produto); ?></h2>
                                         <p class="text-muted mb-2"> <strong><?= htmlspecialchars($localizacao); ?></strong> </p>
                                         <br>
-                                        <p class="text-muted mb-2"> <? date('d/m/Y', strtotime($data_inserecao)); ?></p>
+                                        <p class="text-muted mb-2"><?= date('d/m/Y', strtotime($data_insercao)); ?></p>
                                         <hr>
                                         <div class="d-flex justify-content-end">
                                             <h3 class="verde_escuro fw-semibold mb-0"><?= number_format($preco, 2, ',', ' '); ?> €</h3>
@@ -88,6 +86,69 @@
                 <span class="visually-hidden">Anterior</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselrecomendacoes" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Seguinte</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- NOVIDADES -->
+    <section class="mb-5">
+        <h1 class="verde_escuro">Novidades</h1>
+        <div id="carouselnovidades" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <?php
+                require_once '../Connections/connection.php';
+                $link = new_db_connection();
+
+                $stmt = mysqli_stmt_init($link);
+                $query = "SELECT anuncios.id_anuncio, anuncios.nome_produto, anuncios.preco, anuncios.capa, anuncios.localizacao, users.nome, categorias.nome_categoria, anuncios.data_insercao
+                FROM anuncios
+                INNER JOIN users ON anuncios.ref_user = users.id_user
+                INNER JOIN categorias ON anuncios.ref_categoria = categorias.id_categoria
+                ORDER BY data_insercao DESC
+                LIMIT 6"; // Mostra os 6 mais recentes
+
+                if (mysqli_stmt_prepare($stmt, $query)) {
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $capa, $localizacao, $nome_user, $nome_categoria, $data_insercao);
+
+                    $first = true;
+                    while (mysqli_stmt_fetch($stmt)) {
+                        ?>
+                        <div class="carousel-item <?= $first ? 'active' : '' ?>">
+                            <a href="../Paginas/produto.php?id=<?= $id_anuncio ?>" class="text-decoration-none text-dark">
+                                <div class="cards_homepage card-body rounded-4 shadow-sm bg-light-green">
+                                    <div class="imagem_card_homepage">
+                                        <img class="img_hp_card rounded-4" src="../uploads/capas/<?= htmlspecialchars($capa) ?>">
+                                    </div>
+                                    <div class="p-3">
+                                        <h2 class="verde_escuro fw-bold mb-1"><?= htmlspecialchars($nome_produto); ?></h2>
+                                        <p class="text-muted mb-2"><strong><?= htmlspecialchars($localizacao); ?></strong></p>
+                                        <br>
+                                        <p class="text-muted mb-2"><?= date('d/m/Y', strtotime($data_insercao)); ?></p>
+                                        <hr>
+                                        <div class="d-flex justify-content-end">
+                                            <h3 class="verde_escuro fw-semibold mb-0"><?= number_format($preco, 2, ',', ' '); ?> €</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <?php
+                        $first = false;
+                    }
+                    mysqli_stmt_close($stmt);
+                }
+                ?>
+            </div>
+
+            <!-- Controles -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselnovidades" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselnovidades" data-bs-slide="next">
                 <span class="carousel-control-next-icon"></span>
                 <span class="visually-hidden">Seguinte</span>
             </button>
