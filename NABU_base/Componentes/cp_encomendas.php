@@ -64,7 +64,7 @@ WHERE
                                         <?php echo htmlspecialchars($quantidade); ?> <?php echo htmlspecialchars($medida); ?>
                                     </p>
                                     <p class="mb-0 mt-auto">
-                                        <small class="text-muted">Estado: <?php echo htmlspecialchars($estado); ?></small>
+                                        <small class="text-muted ">Estado: <?php echo htmlspecialchars($estado); ?></small>
                                     </p>
                                 </div>
                             </div>

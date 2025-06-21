@@ -104,7 +104,7 @@ mysqli_close($link);
     <p class="verde_escuro"> <strong> Pedido:</strong> #<?= htmlspecialchars($id_encomenda) ?></p>
     <p class="verde_escuro"> <strong>Estado da Encomenda:</strong> <?= htmlspecialchars($estado) ?></p>
     <div class="verde_claro_bg border">
-    <p class="verde_escuro text-center"> <strong><?= htmlspecialchars($descricao_estado) ?></strong></p>
+    <p class="verde_escuro mb-0 text-center"> <strong><?= htmlspecialchars($descricao_estado) ?></strong></p>
     </div>
 </div>
 
