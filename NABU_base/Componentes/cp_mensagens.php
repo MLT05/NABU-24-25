@@ -1,78 +1,86 @@
 <?php
+require_once '../Connections/connection.php';
 
+
+if (!isset($_SESSION['id_user'])) {
+    header("Location: ../Paginas/login.php");
+    exit();
+}
+
+$id_user = $_SESSION['id_user'];
+
+$link = new_db_connection();
+$stmt = mysqli_stmt_init($link);
+
+$query = "
+SELECT 
+    m1.ref_produto,
+    a.nome_produto,
+    a.capa,
+    u.id_user AS id_outro_user,
+    u.nome AS nome_outro_user,
+    u.pfp AS pfp_outro_user,
+    m1.mensagem,
+    m1.data_envio
+FROM mensagens m1
+JOIN (
+    SELECT 
+        MAX(id_mensagem) AS ultima_msg_id
+    FROM mensagens
+    WHERE ref_remetente = ? OR ref_destinatario = ?
+    GROUP BY ref_produto,
+             CASE 
+                 WHEN ref_remetente = ? THEN ref_destinatario
+                 ELSE ref_remetente
+             END
+) ultimas ON m1.id_mensagem = ultimas.ultima_msg_id
+JOIN anuncios a ON a.id_anuncio = m1.ref_produto
+JOIN users u ON u.id_user = 
+    CASE 
+        WHEN m1.ref_remetente = ? THEN m1.ref_destinatario
+        ELSE m1.ref_remetente
+    END
+ORDER BY m1.data_envio DESC";
+
+if (mysqli_stmt_prepare($stmt, $query)) {
+    // Bind 4x o mesmo ID (para os ? da query)
+    mysqli_stmt_bind_param($stmt, 'iiii', $id_user, $id_user, $id_user, $id_user);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $id_produto, $nome_produto, $capa,
+        $id_outro_user, $nome_outro_user, $pfp_outro_user,
+        $mensagem, $data_envio);
 ?>
-<div class="body_index">
+    <main>
+    <?php
+    while (mysqli_stmt_fetch($stmt)) {
+        ?>
 
-    <h2 class="mb-4">Mensagens</h2>
+        <a href="cp_mensagensdetails.php?id_anuncio=<?= htmlspecialchars($id_produto) ?>" class="text-decoration-none text-reset">
+            <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+                <div class="d-flex align-items-center">
+                    <img src="../uploads/pfp/<?= htmlspecialchars($pfp_outro_user) ?>"
+                         class="rounded-circle me-3"
+                         style="width: 50px; height: 50px; object-fit: cover;"
+                         alt="Foto perfil">
+                    <div>
+                        <h6 class="mb-1 fw-bold"><?= htmlspecialchars($nome_outro_user) ?></h6>
+                        <div class="text-muted"><?= htmlspecialchars($nome_produto) ?></div>
+                        <small class="text-dark"><?= htmlspecialchars($mensagem) ?></small>
+                    </div>
+                </div>
+                <small class="text-muted"><?= date("d/m/Y H:i", strtotime($data_envio)) ?></small>
+            </div>
+        </a>
 
-    <div class="mb-4">
-        <textarea id="mensagem" class="form-control mb-2" placeholder="Digite sua mensagem..."></textarea>
-        <input type="number" id="ref_produto" class="form-control mb-2" placeholder="ID do produto">
-        <input type="number" id="destinatario" class="form-control mb-2" placeholder="ID do destinatário">
-        <button class="btn btn-primary" onclick="enviarMensagem()">Enviar</button>
-    </div>
-
-    <h4>Mensagens Recebidas</h4>
-    <ul id="mensagens" class="list-group">
-        <!-- mensagens via AJAX -->
-    </ul>
-</div>
-
-<script>
-    function carregarMensagens() {
-        const ref_produto = document.getElementById('ref_produto').value;
-        const destinatario = document.getElementById('destinatario').value;
-
-        if (!ref_produto || !destinatario) {
-            document.getElementById('mensagens').innerHTML = '<li class="list-group-item text-muted">Informe o produto e o destinatário para carregar as mensagens.</li>';
-            return;
-        }
-
-        fetch(`../scripts/obter_mensagens.php?ref_produto=${ref_produto}&outro_usuario=${destinatario}`)
-            .then(res => res.json())
-            .then(data => {
-                const lista = document.getElementById('mensagens');
-                lista.innerHTML = '';
-                data.forEach(msg => {
-                    const li = document.createElement('li');
-                    li.className = `list-group-item ${msg.is_read == 0 ? 'list-group-item-warning' : ''}`;
-                    li.innerHTML = `<strong>De:</strong> ${msg.remetente_nome}<br>${msg.mensagem}<br><small>${msg.data_envio}</small>`;
-                    li.onclick = () => marcarComoLida(msg.id_mensagem);
-                    lista.appendChild(li);
-                });
-            });
+        <?php
     }
+    ?>
+    </main>
+    <?php
+    mysqli_stmt_close($stmt);
+    mysqli_close($link);
 
-    function enviarMensagem() {
-        const mensagem = document.getElementById('mensagem').value;
-        const destinatario = document.getElementById('destinatario').value;
-        const ref_produto = document.getElementById('ref_produto').value;
-
-        if (!mensagem || !destinatario || !ref_produto) {
-            alert('Por favor, preencha mensagem, destinatário e produto.');
-            return;
-        }
-
-        fetch('../scripts/enviar_mensagens.php', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({mensagem, destinatario, ref_produto})
-        }).then(() => {
-            document.getElementById('mensagem').value = '';
-            carregarMensagens();
-        });
-    }
-
-    function marcarComoLida(id) {
-        fetch('../scripts/marcar_lida.php', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({id})
-        }).then(() => carregarMensagens());
-    }
-
-    carregarMensagens();
-    setInterval(carregarMensagens, 5000);
-</script>
-</body>
-</html>
+} else {
+    echo "Erro ao preparar statement.";
+}
+?>
