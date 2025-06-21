@@ -135,7 +135,7 @@ mysqli_close($link);
             <p class="verde_escuro"><?= htmlspecialchars(number_format($preco, 2, ',', '.')) ?> €</p>
         </div>
 
-
+<hr class="verde_escuro">
         <!-- Contactos do vendedor -->
         <h6 class="fw-bold mt-4 verde_escuro fs-4">Contactos do vendedor</h6>
 
