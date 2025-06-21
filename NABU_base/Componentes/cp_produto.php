@@ -157,7 +157,7 @@ if (isset($_SESSION['mensagem_sistema'])) {
 
                 <div class="d-flex">
                     <button id="open-cart-modal" class="contactar me-1 fs-6 p-2 bg-white rounded">Adicionar ao carrinho</button>
-                    <form method="POST" action="../Componentes/cp_mensagensdetails.php" class="contactar ms-1 fs-6 p-2 bg-white rounded">
+                    <form method="POST" action="../Paginas/mensagens_details.php" class="contactar ms-1 fs-6 p-2 bg-white rounded">
                         <input type="hidden" name="id_anuncio" value="<?= htmlspecialchars($id_anuncio) ?>">
                         <button type="submit" class="bg-white verde_escuro">Contactar</button>
                     </form>

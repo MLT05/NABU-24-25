@@ -1,7 +1,7 @@
 <?php
 require_once '../Connections/connection.php';
 
-//if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_anuncio']) && is_numeric($_POST['id_anuncio'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_anuncio']) && is_numeric($_POST['id_anuncio'])) {
 
     $id_user = $_SESSION['id_user'];
     $id_anuncio = $_POST['id_anuncio'];
@@ -31,9 +31,39 @@ require_once '../Connections/connection.php';
     } else {
         $min_medida = 0.05;
     }
+    mysqli_stmt_fetch($stmt)
+    ?>
+    <div class="w-100 verde_claro_bg anuncio_mensagens p-3 d-flex justify-content-between rounded-3 shadow-sm">
 
+        <!-- Imagem + Nome + Produto -->
+        <div class="d-flex align-items-center">
+            <img src="../uploads/capas/<?php echo htmlspecialchars($capa); ?>"
+                 alt="<?php echo htmlspecialchars($capa); ?>"
+                 class="rounded-circle me-3"
+                 style="width: 50px; height: 50px; object-fit: cover;">
 
-//} else {
-   // header("Location: ../Paginas/mensagens.php");
- //   exit();
-//}
+            <div>
+                <h6 class="mb-0 fw-bold text-dark fs-2"><?php echo htmlspecialchars($nome_user); ?></h6>
+                <small class="fs-4 pt-2"><?php echo htmlspecialchars($nome_produto); ?></small>
+            </div>
+        </div>
+
+        <!-- Preço + Ícone (ícone no topo) -->
+        <div class="d-flex flex-column align-items-end justify-content-between">
+            <i class="bi bi-info-circle-fill text-secondary mb-2"></i>
+            <div class="fw-semibold text-dark pe-4">
+                <?php echo htmlspecialchars($preco); ?>€ /<?php echo htmlspecialchars($medida_abr); ?>
+            </div>
+        </div>
+
+    </div>
+
+    <main class="body_index container">
+
+    </main>
+
+<?php
+} else {
+    header("Location: ../Paginas/mensagens.php");
+    exit();
+}
