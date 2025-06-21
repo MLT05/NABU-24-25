@@ -43,7 +43,7 @@ mysqli_close($link);
 
 <main class="body_index">
 
-    <h3 class="mb-3 me-3 text-end">Notificações</h3>
+    <h3 class="mb-3 me-3">Notificações</h3>
     <div class="d-none">
         <button id="btnTestNoti" class="btn btn-primary mb-4">Testar Notificação Push</button>
         <a href="index.php" id="btnAjaxNoti" class="btn btn-success mb-3">Criar notificação via AJAX</a>

@@ -46,7 +46,7 @@ $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : 0;
                             <!-- Ícone de favorito -->
                                     <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
                                         <span
-                                                class="<?= $icon_class ?> verde_escuro btn-favorito"
+                                                class="<?= $icon_class ?> verde_escuro btn-favorito mt-0 fs-4"
                                                 data-id="<?= $id_anuncio ?>"
                                                 role="button"
                                                 style="cursor:pointer;"

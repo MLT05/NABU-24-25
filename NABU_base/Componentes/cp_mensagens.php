@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once '../Connections/connection.php';
-
+include_once '../Functions/function_tempo.php';
 
 if (!isset($_SESSION['id_user'])) {
     header("Location: ../Paginas/login.php");
@@ -54,26 +54,28 @@ if (mysqli_stmt_prepare($stmt, $query)) {
         $mensagem, $data_envio);
 ?>
     <main class="body_index">
+        <h3 class="mb-3 me-3">Mensagens</h3>
+        <hr>
         <?php
         while (mysqli_stmt_fetch($stmt)) {
             ?>
-            <form action="mensagens_details.php" method="POST" class="mb-0">
+            <form action="mensagens_details.php" method="POST" class="mb-3">
                 <input type="hidden" name="id_anuncio" value="<?= htmlspecialchars($id_produto) ?>">
 
-                <button type="submit" class="w-100 text-decoration-none text-reset border-0 bg-transparent p-0">
-                    <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+                <button type="submit" class="w-100 text-decoration-none text-reset border-0 verde_claro_bg p-0">
+                    <div class="d-flex justify-content-between align-items-center p-3">
                         <div class="d-flex align-items-center">
                             <img src="../uploads/pfp/<?= htmlspecialchars($pfp_outro_user) ?>"
                                  class="rounded-circle me-3"
                                  style="width: 50px; height: 50px; object-fit: cover;"
                                  alt="Foto perfil">
                             <div>
-                                <h6 class="mb-1 fw-bold text-start"><?= htmlspecialchars($nome_outro_user) ?></h6>
-                                <div class="text-muted text-start"><?= htmlspecialchars($nome_produto) ?></div>
-                                <small class="text-dark"><?= htmlspecialchars($mensagem) ?></small>
+                                <h6 class="mb-0 fw-bold text-start verde_escuro opacity-75"><?= htmlspecialchars($nome_outro_user) ?></h6>
+                                <div class="text-start"><?= htmlspecialchars($nome_produto) ?></div>
                             </div>
                         </div>
-                        <small class="text-muted"><?= date("d/m/Y H:i", strtotime($data_envio)) ?></small>
+                            <small class="text-muted"><?= tempoDecorrido($data_envio) ?></small>
+
                     </div>
                 </button>
             </form>
