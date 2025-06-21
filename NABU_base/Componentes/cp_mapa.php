@@ -47,7 +47,7 @@
                 const popup = new mapboxgl.Popup({ offset: 25 })
                     .setHTML(popupHTML);
 
-                new mapboxgl.Marker()
+                new mapboxgl.Marker({ color: 'green' })
                     .setLngLat([anuncio.lng, anuncio.lat])
                     .setPopup(popup)
                     .addTo(map);
