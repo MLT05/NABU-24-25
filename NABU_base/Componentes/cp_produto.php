@@ -122,7 +122,7 @@ if (isset($_SESSION['mensagem_sistema'])) {
                 </div>
             </div>
         </div>
-        <p class="verde"><?= htmlspecialchars($nome_user) ?></p>
+        <a href="../Paginas/perfil_outro.php?id_user=<?= htmlspecialchars($id_user) ?>" style="text-decoration: none"><p class="verde"><?= htmlspecialchars($nome_user) ?></p></a>
 
         <div>
             <div class="row">
