@@ -47,7 +47,7 @@
                                     ${anuncio.nome_produto}
                                 </h3>
                                 <p style="margin: 0 0 6px 0; font-size: 14px;">📍 ${anuncio.localizacao}</p>
-                                <p style="margin: 0 0 6px 0; font-weight: bold; color: #27ae60; font-size: 15px;">
+                                <p style="margin: 0 0 6px 0; font-weight: bold; color: #198754; font-size: 15px;">
                                     ${anuncio.preco} € / ${anuncio.ref_medida}
                                 </p>
                                 <div style="text-align: right;">
