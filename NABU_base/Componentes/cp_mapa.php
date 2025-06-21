@@ -32,7 +32,7 @@
             console.log("Marcadores da base de dados:", data);
             for (var i = 0; i < data.length; i++) {
                 const popup = new mapboxgl.Popup({ offset: 25 })
-                    .setHTML(`<strong>${data[i]["morada"]}</strong>`);
+                    .setHTML(`<strong>${data[i]["localizacao"]}</strong>`);
 
                 const marker = new mapboxgl.Marker()
                     .setLngLat([data[i]["lng"], data[i]["lat"]])
