@@ -164,7 +164,7 @@
 
     <!-- FAVORITOS -->
     <section class="mb-5">
-        <h1 class="verde_escuro">Favoritos</h1>
+        <h1 class="verde_escuro mb-0">Favoritos</h1>
         <p class="verde_claro">Os seus favoritos</p>
         <div class="row g-3">
             <?php
@@ -209,7 +209,7 @@
                                 </div>
 
                                 <!-- Link do produto -->
-                                <a href="../paginas/produto.php?id=<?= htmlspecialchars($id_anuncio) ?>" style="text-decoration: none">
+                                <a href="../Paginas/produto.php?id=<?= htmlspecialchars($id_anuncio) ?>" style="text-decoration: none">
 
                                     <!-- Imagem -->
                                     <div class="imagem_card_pesquisa">
