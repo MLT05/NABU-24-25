@@ -100,6 +100,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_anuncio']) && is_n
                 </button>
             </form>
         </main>
+        <a href="javascript:history.back()" class=" text-decoration-none d-inline-flex " >
+            <span class="material-icons verde_escuro" style="font-size: 2.5rem">arrow_back</span>
+
+        </a>
         <?php
     } else {
         echo "Anúncio não encontrado.";
