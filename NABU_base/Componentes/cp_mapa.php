@@ -36,13 +36,14 @@
             for (var i = 0; i < data.length; i++) {
                 const anuncio = data[i];
 
-                const popupHTML =
-                    ` <div style="min-width: 220px;">
-            <h3 style="margin: 0 0 5px 0;">${anuncio.nome_produto}</h3>
-            <p style="margin: 0;"> ${anuncio.localizacao}</p>
-            <p style="margin: 0;"> <strong>${anuncio.preco} € / ${anuncio.ref_medida}</strong></p>
-            <a href="./produto.php?id=${anuncio.id}" target="_blank"> Ver mais</a>
-        </div>`;
+                const popupHTML = `
+  <div style="min-width: 220px; font-family: sans-serif; font-size: 14px; color: #333;">
+    <h3 style="margin: 0 0 5px 0; font-size: 16px; color: #2c3e50;">${anuncio.nome_produto}</h3>
+    <p style="margin: 0;">📍 ${anuncio.localizacao}</p>
+    <p style="margin: 5px 0;"><strong style="color: #27ae60;">${anuncio.preco} € / ${anuncio.ref_medida}</strong></p>
+    <a href="./produto.php?id=${anuncio.id}" target="_blank" style="color: #2980b9; text-decoration: underline;">Ver mais</a>
+  </div>`;
+
 
                 const popup = new mapboxgl.Popup({ offset: 25 })
                     .setHTML(popupHTML);
