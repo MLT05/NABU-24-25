@@ -44,7 +44,7 @@
       <strong style="color: #27ae60;">${anuncio.preco} € / ${anuncio.ref_medida}</strong>
     </p>
     <div style="text-align: right; margin-top: 5px;">
-      <a href="./produto.php?id=${anuncio.id}" target="_blank" style="color: #27ae60; text-decoration: none;">
+      <a href="./produto.php?id=${anuncio.id}" target="_blank" style="color: #14532d; text-decoration: underline;">
         Ver mais
       </a>
     </div>
