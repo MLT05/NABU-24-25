@@ -152,11 +152,13 @@ if (isset($_SESSION['mensagem_sistema'])) {
 
                 <h3 class="verde_escuro fw-bold my-3 fs-4">Localização</h3>
                 <div class="d-flex">
-                    <button class="nome_localizacao rounded fs-5 p-3 verde_escuro">
-                        <img src="../Imagens/localizacao_simbolo.svg" alt="Localização" class="icone-localizacao" />
-                        <?= htmlspecialchars($localizacao) ?>
+                    <a href="../Paginas/mapa.php?id=<?= $id_anuncio ?>" class="text-decoration-none">
+                        <button class="nome_localizacao rounded fs-5 p-3 verde_escuro">
+                            <img src="../Imagens/localizacao_simbolo.svg" alt="Localização" class="icone-localizacao" />
+                            <?= htmlspecialchars($localizacao) ?>
+                        </button>
+                    </a>
 
-                    </button>
                 </div>
 
                 <div class="d-flex">
