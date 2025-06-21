@@ -5,7 +5,7 @@ require_once '../Connections/connection.php';
 $link = new_db_connection();
 
 // Pega o ID do utilizador logado, ou 0 se não estiver logado
-$id_user = $_SESSION['id_user'] ?? 0;
+$id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : 0;
 
 ?>
 

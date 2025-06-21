@@ -719,7 +719,7 @@ input:checked + .slider:before {
 }
 
 .step.active .icon {
-  background-color: #4c773e;
+  background-color: #004d40;
 }
 
 .step::before {
@@ -739,14 +739,14 @@ input:checked + .slider:before {
 }
 
 .step.active::before {
-  background-color: #4c773e;
+  background-color: #004d40;
 }
 
 button {
   display: block;
   margin: 0 auto;
   padding: 10px 20px;
-  background-color: #4c773e;
+  background-color: #004d40;
   color: white;
   border: none;
   border-radius: 10px;
@@ -755,12 +755,20 @@ button {
 }
 
 button:hover {
-  background-color: #3e5f31;
+  background-color: #004d40;
 }
 
 span {
   font-size: 0.8rem;
-  color: #777;
+  color: #aac0aa;
   display: block;
   margin-top: 5px;
+}
+
+.custom-marker {
+  background-color: green;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid white;
 }

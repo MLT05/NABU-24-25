@@ -54,7 +54,7 @@ if (mysqli_stmt_prepare($stmt_user, $query_user)) {
 
         <label for="pfp" class="form-label verde_escuro fw-semibold">Imagem*</label>
 <div>
-    <img s src="../uploads/capas/<?= htmlspecialchars($capa)?>" class="w-100" style="max-height: 100vh; object-fit: cover;" >
+    <img  src="../uploads/capas/<?= htmlspecialchars($capa)?>" class="w-100" style="max-height: 100vh; object-fit: cover;" >
 </div>
 
         <div class="text-center mb-4">
