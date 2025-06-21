@@ -118,7 +118,7 @@ var_dump($nome);
                     <!-- Título -->
                     <div class="mb-3">
                         <label for="titulo" class="form-label verde_escuro fw-semibold">Título do Anúncio*</label>
-                        <p><?= htmlspecialchars($titulo)?></p>
+                        <p> <strong> <?= htmlspecialchars($titulo)?></strong></p>
                     </div>
 
                     <!-- Preço -->
