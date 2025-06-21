@@ -2,6 +2,7 @@
 <main class="body_index">
 
 <?php
+include_once '../api/geocode_anuncios.php';
 
 require_once '../Connections/connection.php';
 if (isset($_GET['msg'])) {
