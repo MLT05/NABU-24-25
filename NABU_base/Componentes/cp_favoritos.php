@@ -29,8 +29,8 @@ mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $capa, $nome_
 
     <section class="sec-favoritos">
         <div class="px-lg-5">
-            <h3 class="fw-bold verde_escuro">Os meus favoritos</h3>
-            <p class="verde_claro">Guarda e revê os conteúdos que mais te interessam</p>
+            <h3 class="fw-bold verde_escuro mb-0 ">Os meus favoritos</h3>
+            <p class="verde_claro">Conteúdos que mais lhe interessam</p>
 
             <div class="row g-3">
                 <?php

@@ -31,7 +31,7 @@
     <!-- RECOMENDAÇÕES -->
     <section class="mb-5">
         <h1 class="verde_escuro mb-0">Recomendações</h1>
-        <p class="verde_claro">Recomendacões com base nas suas preferências</p>
+        <p class="verde_claro">Com base na melhor classificação</p>
         <div id="carouselrecomendacoes" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
 
@@ -101,7 +101,7 @@
     <!-- NOVIDADES -->
     <section class="mb-5">
         <h1 class="verde_escuro mb-0">Novidades</h1>
-        <p class="verde_claro">Descubra as novidades adicionadas recentemente</p>
+        <p class="verde_claro">Adicionadas recentemente</p>
         <div id="carouselnovidades" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <?php
@@ -253,7 +253,7 @@
                 }
                 mysqli_close($link);
             } else {
-                echo "<p class='text-muted'>Inicie sessão para ver os seus favoritos<a href='../Paginas/login.php'>Login/a> </p>";
+                echo "<p class='text-muted'>Faça <a href='../Paginas/login.php' class='verde_escuro'><strong>Login</strong></a> para visualizar os seus favoritos.</p>";
             }
             ?>
         </div>

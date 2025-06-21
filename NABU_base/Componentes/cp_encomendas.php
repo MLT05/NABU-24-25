@@ -2,7 +2,7 @@
 
 
     <div class="container my-4">
-        <h1 class="verde_escuro">Os meus pedidos: </h1>
+        <h3 class="fw-bold verde_escuro mb-0">Os meus pedidos</h3>
         <p class="verde_claro">Acompanhe o estado dos seus pedidos</p>
         <?php
 
