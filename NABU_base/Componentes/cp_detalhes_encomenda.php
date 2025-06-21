@@ -56,7 +56,8 @@ $query = "SELECT
     estados.estado, 
     encomendas.quantidade, 
     encomendas.preco,
-    estados.descricao
+    estados.descricao,
+    anuncios.ref_user
 FROM 
     anuncios 
 INNER JOIN 
@@ -71,7 +72,8 @@ WHERE
 if (mysqli_stmt_prepare($stmt, $query)) {
     mysqli_stmt_bind_param($stmt, "i", $id_encomenda);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $id_encomenda, $id_anuncio, $nome_produto, $abreviatura, $capa, $estado, $quantidade, $preco,$descricao_estado);
+    mysqli_stmt_bind_result($stmt, $id_encomenda, $id_anuncio, $nome_produto, $abreviatura, $capa, $estado, $quantidade, $preco, $descricao_estado, $ref_user_vendedor);
+
 
     if (!mysqli_stmt_fetch($stmt)) {
         die("Encomenda não encontrada.");
@@ -95,8 +97,48 @@ if (mysqli_stmt_prepare($stmt, $query_user)) {
     die("Erro na query do usuário: " . mysqli_error($link));
 }
 
+if ($_SESSION['id_user'] == $ref_user_vendedor) {
+    // O usuário logado é o vendedor → Mostrar informações do comprador
+    $stmt = mysqli_stmt_init($link);
+    $query_user = "SELECT u.nome, u.email, u.contacto 
+                   FROM users u 
+                   INNER JOIN encomendas e ON e.ref_comprador = u.id_user 
+                   WHERE e.id_encomenda = ?";
+
+    if (mysqli_stmt_prepare($stmt, $query_user)) {
+        mysqli_stmt_bind_param($stmt, "i", $id_encomenda);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $nome, $email, $contacto);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+
+        $info_label = "Informações do comprador";
+    } else {
+        die("Erro ao buscar comprador: " . mysqli_error($link));
+    }
+
+} else {
+    // O usuário logado é o comprador → Mostrar informações do vendedor
+    $stmt = mysqli_stmt_init($link);
+    $query_user = "SELECT nome, email, contacto FROM users WHERE id_user = ?";
+
+    if (mysqli_stmt_prepare($stmt, $query_user)) {
+        mysqli_stmt_bind_param($stmt, "i", $ref_user_vendedor);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $nome, $email, $contacto);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+
+        $info_label = "Informações do vendedor";
+    } else {
+        die("Erro ao buscar vendedor: " . mysqli_error($link));
+    }
+}
+
 mysqli_close($link);
 ?>
+
+
 <main class="body_index">
 
 <div class="order-tracker mt-5">
@@ -107,6 +149,10 @@ mysqli_close($link);
     <p class="verde_escuro text-center"> <strong><?= htmlspecialchars($descricao_estado) ?></strong></p>
     </div>
 </div>
+    <div class="order-tracker mt-5" id="avaliacoes">
+        <h5 class="fw-bold fs-3 verde_escuro mb-0">Deixar avaliação</h5>
+
+    </div>
 
     <div class="order-tracker">
     <div class="mb-13">
@@ -138,7 +184,7 @@ mysqli_close($link);
 
 <hr class="verde_escuro">
         <!-- Contactos do vendedor -->
-        <h6 class="fw-bold mt-4 verde_escuro fs-4">Contactos do vendedor</h6>
+        <h6 class="fw-bold mt-4 verde_escuro fs-4"><?= htmlspecialchars($info_label) ?></h6>
 
         <div class="mb-3">
             <label class="form-label fw-bold verde_escuro"><strong>Nome*</strong></label>
