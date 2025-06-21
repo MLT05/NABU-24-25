@@ -13,6 +13,7 @@
         $stmt = mysqli_stmt_init($link);
 
         $query = "SELECT 
+    encomendas.id_encomenda,
     anuncios.id_anuncio, 
     anuncios.nome_produto, 
     medidas.abreviatura, 
@@ -36,14 +37,14 @@ WHERE
         if (mysqli_stmt_prepare($stmt, $query)) {
         mysqli_stmt_bind_param($stmt, 'i', $id_user);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $medida, $capa, $estado, $quantidade, $preco);
+        mysqli_stmt_bind_result($stmt,$id_encomenda, $id_anuncio, $nome_produto, $medida, $capa, $estado, $quantidade, $preco);
 
         while(mysqli_stmt_fetch($stmt)) { ?>
             <!-- Lista de pedidos -->
             <div class="row gy-3 mb-3">
                 <div class="col-12">
                     <div class="card shadow-sm position-relative overflow-hidden verde_claro_bg" style="height: 11vh;">
-                        <a href="../Paginas/detalhes_processo.php" class="stretched-link text-decoration-none"></a>
+                        <a href="../Paginas/detalhes_encomendas.php?id=<?php echo htmlspecialchars($id_encomenda); ?>" class="stretched-link text-decoration-none"></a>
                         <div class="row g-0" style="height: 12vh;">
                             <!-- Imagem (mantida como estava) -->
                             <div class="col-3">
