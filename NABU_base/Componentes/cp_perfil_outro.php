@@ -3,14 +3,14 @@
 require_once '../Connections/connection.php';
 
 
-if (!isset($_SESSION['id_user'])) {
+if (!isset($_GET['id_user'])) {
     // Se não estiver logado, redireciona pro login
     header("../Paginas/login.php");
 
 } else {
 
 
-    $id_user = $_SESSION['id_user'];
+    $id_user = $_GET['id_user'];
 
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
