@@ -155,6 +155,11 @@ if (isset($_SESSION['mensagem_sistema'])) {
                     <button class="nome_localizacao rounded fs-5 p-3 verde_escuro">
                         <img src="../Imagens/localizacao_simbolo.svg" alt="Localização" class="icone-localizacao" />
                         <?= htmlspecialchars($localizacao) ?>
+                        <p>
+                            📍 <a href="mapa.php?id=<?= $id_anuncio['id'] ?>" style="color: green; text-decoration: underline;">
+                                <?= $id_anuncio['localizacao'] ?>
+                            </a>
+                        </p>
                     </button>
                 </div>
 
