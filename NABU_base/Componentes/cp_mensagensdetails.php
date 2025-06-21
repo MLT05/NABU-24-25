@@ -114,7 +114,7 @@ if (isset($_GET['id_anuncio'], $_GET['id_outro_user']) && is_numeric($_GET['id_a
 
     <main class="container flex-grow-1 d-flex flex-column" style="padding-bottom: 11vh; height: 70vh;">
 
-        <div class="flex-grow-1 overflow-auto d-flex flex-column-reverse">
+        <div id="chat-mensagens" class="flex-grow-1 overflow-auto d-flex flex-column">
 
             <?php
             // Mostrar mensagens
@@ -181,16 +181,76 @@ if (isset($_GET['id_anuncio'], $_GET['id_outro_user']) && is_numeric($_GET['id_a
             </button>
         </form>
     </main>
-    <?php if (isset($_GET['nova']) && $_GET['nova'] == '1'): ?>
-        <script>
-            window.addEventListener('DOMContentLoaded', () => {
-                const container = document.querySelector('main.container');
-                if (container) {
-                    container.scrollTop = container.scrollHeight;
-                }
-            });
-        </script>
-    <?php endif; ?>
+    <script>
+        console.log("🧪 Script de mensagens_details carregado!");
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('main.container');
+            if (container) {
+                container.scrollTop = container.scrollHeight;
+            }
+        });
+
+        const id_anuncio = <?= json_encode($id_anuncio) ?>;
+        const id_outro_user = <?= json_encode($id_outro_user) ?>;
+        const user_id = <?= json_encode($id_user) ?>;
+        const outro_pfp = <?= json_encode($outro_pfp) ?>;
+        const user_pfp = <?= json_encode($user_pfp) ?>;
+
+        function carregarMensagens() {
+            console.log("⏳ A verificar mensagens novas...");
+
+            fetch(`../Functions/carregar_mensagens.php?id_anuncio=${id_anuncio}&id_outro_user=${id_outro_user}`)
+                .then(response => {
+                    if (!response.ok) {
+                        console.error("❌ Erro ao carregar mensagens.");
+                        return [];
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("✅ Mensagens carregadas com sucesso:", data);
+
+                    const container = document.getElementById("chat-mensagens");
+                    container.innerHTML = ""; // Limpa tudo antes de reinserir
+
+                    data.forEach(msg => {
+                        const isRemetenteOutro = msg.remetente == id_outro_user;
+                        const div = document.createElement("div");
+                        div.className = "d-flex mb-2 " + (isRemetenteOutro ? "justify-content-start" : "justify-content-end");
+
+                        const msgDiv = document.createElement("div");
+                        msgDiv.className = (isRemetenteOutro ? "verde_claro_bg verde_escuro" : "verde_escuro_bg text-white") + " p-3 rounded-3";
+                        msgDiv.style.maxWidth = "75%";
+                        msgDiv.textContent = msg.mensagem;
+
+                        const img = document.createElement("img");
+                        img.src = "../uploads/pfp/" + (isRemetenteOutro ? outro_pfp : user_pfp);
+                        img.className = "rounded-circle " + (isRemetenteOutro ? "me-2 align-self-end" : "ms-2 align-self-end");
+                        img.style.width = "30px";
+                        img.style.height = "30px";
+                        img.style.objectFit = "cover";
+
+                        if (isRemetenteOutro) {
+                            div.appendChild(img);
+                            div.appendChild(msgDiv);
+                        } else {
+                            div.appendChild(msgDiv);
+                            div.appendChild(img);
+                        }
+
+                        container.appendChild(div);
+                    });
+                })
+                .catch(error => console.error("🚨 Erro AJAX:", error));
+        }
+
+        // Atualiza já ao carregar a página
+        carregarMensagens();
+
+        // Atualiza automaticamente a cada 5 segundos
+        setInterval(carregarMensagens, 5000);
+    </script>
 
     <?php
 
