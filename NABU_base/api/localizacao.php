@@ -10,7 +10,7 @@ $link = new_db_connection();
 $stmt = mysqli_stmt_init($link);
 
 // Mostrar localização do produto
-$query = "SELECT id_anuncio, localizacao, latitude, longitude FROM anuncios WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
+$query = "SELECT id_anuncio, localizacao, latitude, longitude, nome_produto, preco, ref_medida FROM anuncios WHERE latitude IS NOT NULL AND longitude IS NOT NULL";
 
 if (mysqli_stmt_prepare($stmt, $query)) {
 
@@ -18,7 +18,16 @@ if (mysqli_stmt_prepare($stmt, $query)) {
     mysqli_stmt_execute($stmt);
 
     // Bind the result variables
-    mysqli_stmt_bind_result($stmt, $id_anuncio, $localizacao, $latitude, $longitude);
+    mysqli_stmt_bind_result(
+        $stmt,
+        $id_anuncio,
+        $localizacao,
+        $latitude,
+        $longitude,
+        $nome_produto,
+        $preco,
+        $ref_medida
+    );
 
     $response = array();
 
@@ -27,6 +36,11 @@ if (mysqli_stmt_prepare($stmt, $query)) {
             "localizacao" => $localizacao,
             "lng" => $longitude, // longitude vai para lng
             "lat" => $latitude,  // latitude vai para lat
+            "nome_produto" => $nome_produto,
+            "preco" => $preco,
+            "ref_medida" => $ref_medida,
+            "id" => $id_anuncio,
+
         );
         $response[] = $location;
     }
