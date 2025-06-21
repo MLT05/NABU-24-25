@@ -253,7 +253,7 @@
                 }
                 mysqli_close($link);
             } else {
-                echo "<p class='text-muted'>Tens de estar <a href='../Paginas/login.php'>logado</a> para veres os teus favoritos.</p>";
+                echo "<p class='text-muted'>É necessário fazer <a href='../Paginas/login.php' class='verde_escuro'><strong>Login</strong></a> para visualizar os seus favoritos.</p>";
             }
             ?>
         </div>
