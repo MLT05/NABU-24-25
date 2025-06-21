@@ -187,7 +187,7 @@
                     mysqli_stmt_bind_param($stmt, "i", $_SESSION['id_user']);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $capa, $nome_categoria); // ✅ certo
-
+                    $tem_favoritos = false;
                     while (mysqli_stmt_fetch($stmt)) {
                         $tem_favoritos = true;
                         $icon_class = "material-symbols-filled";
