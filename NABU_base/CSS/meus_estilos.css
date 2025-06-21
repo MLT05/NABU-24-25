@@ -62,7 +62,7 @@
   width: 5vh;
 }
 
-.mensagens {
+.mensagens_details {
   background-image: url("../Imagens/app/msgsimg.png");
 }
 
@@ -465,6 +465,11 @@ footer a {
   overflow: hidden;
   border-radius: 1rem;
   display: block;
+}
+
+.anuncio_mensagens {
+  margin-top: 9vh;
+  width: 100%;
 }
 /* fim carlos */
 
