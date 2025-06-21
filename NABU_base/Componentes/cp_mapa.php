@@ -58,7 +58,7 @@
         });
 
         console.log("Tua localização:", { lng, lat });
-        const marker = new mapboxgl.Marker({})
+        const marker = new mapboxgl.Marker({ color: 'red' })
             .setLngLat([lng, lat])
             .addTo(map);
 
