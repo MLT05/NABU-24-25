@@ -1,8 +1,8 @@
 <main class="body_index">
 
     <div class="container my-4">
-        <h3 class="fw-bold verde_escuro">Encomendas Recebidas</h3>
-        <p class="text-muted">Confirme as suas encomendas recebidas</p>
+        <h1 class="verde_escuro">Encomendas Recebidas</h1>
+        <p class="verde_claro">Confirme as suas encomendas recebidas</p>
 
         <?php
         require_once '../Connections/connection.php';

@@ -60,7 +60,7 @@ if (!isset($_SESSION['id_user'])) {
 
                 <a href="../Paginas/encomendas.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
                     <img src="../Imagens/icons/orders_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
-                    Meus pedidos
+                    Os meus pedidos
                 </a>
 
                 <a href="../Paginas/encomendas_recebidas.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
