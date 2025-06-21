@@ -82,9 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_anuncio']) && is_n
         </a>
 
         <main class="container flex-grow-1 d-flex flex-column" style="padding-bottom: 11vh;">
-            <a href="javascript:history.back()" class="text-decoration-none d-inline-flex mb-2">
-                <span class="material-icons verde_escuro" style="font-size: 2.5rem">arrow_back</span>
-            </a>
 
             <div class="flex-grow-1 overflow-auto d-flex flex-column-reverse">
 
@@ -107,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_anuncio']) && is_n
                     <div class="ms-2 align-self-end">
                         <img src="../uploads/pfp/<?php echo htmlspecialchars($user_pfp); ?>"
                              alt="Foto perfil"
-                             class="rounded-circle me-2"
+                             class="rounded-circle"
                              style="width: 30px; height: 30px; object-fit: cover;">
                     </div>
                 </div>
