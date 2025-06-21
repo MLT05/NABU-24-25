@@ -689,7 +689,7 @@ input:checked + .slider:before {
   z-index: 0;
 }
 
-.mapboxgl-popup-content.custom-popup {
+.mapboxgl-popup-content{
   background: none !important;
   box-shadow: none !important;
   padding: 0 !important;
