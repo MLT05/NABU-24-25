@@ -46,13 +46,12 @@ JOIN users u ON u.id_user =
 ORDER BY m1.data_envio DESC";
 
 if (mysqli_stmt_prepare($stmt, $query)) {
-    // Bind 4x o mesmo ID (para os ? da query)
     mysqli_stmt_bind_param($stmt, 'iiii', $id_user, $id_user, $id_user, $id_user);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_bind_result($stmt, $id_produto, $nome_produto, $capa,
         $id_outro_user, $nome_outro_user, $pfp_outro_user,
         $mensagem, $data_envio);
-?>
+    ?>
     <main class="body_index">
         <h3 class="mb-3 me-3">Mensagens</h3>
         <hr>
@@ -61,6 +60,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
             ?>
             <form action="mensagens_details.php" method="POST" class="mb-3">
                 <input type="hidden" name="id_anuncio" value="<?= htmlspecialchars($id_produto) ?>">
+                <input type="hidden" name="id_outro_user" value="<?= htmlspecialchars($id_outro_user) ?>">
 
                 <button type="submit" class="w-100 text-decoration-none text-reset border-0 verde_claro_bg p-0">
                     <div class="d-flex justify-content-between align-items-center p-3">
@@ -74,8 +74,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                                 <div class="text-start"><?= htmlspecialchars($nome_produto) ?></div>
                             </div>
                         </div>
-                            <small class="text-muted"><?= tempoDecorrido($data_envio) ?></small>
-
+                        <small class="text-muted"><?= tempoDecorrido($data_envio) ?></small>
                     </div>
                 </button>
             </form>
@@ -86,7 +85,6 @@ if (mysqli_stmt_prepare($stmt, $query)) {
     <?php
     mysqli_stmt_close($stmt);
     mysqli_close($link);
-
 } else {
     echo "Erro ao preparar statement.";
 }
