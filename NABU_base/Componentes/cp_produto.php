@@ -2,6 +2,7 @@
 require_once '../Connections/connection.php';
 require_once '../Functions/function_favorito.php';
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_favorito'])) {
     $mensagem_favorito = toggle_favorito_post();
 }
