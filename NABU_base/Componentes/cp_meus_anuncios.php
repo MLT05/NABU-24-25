@@ -45,7 +45,7 @@ $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
 ?>
     <section class="mb-5">
         <h1 class="verde_escuro">Os meus anúncios:</h1>
-        <p class="verde_claro">Consulta, edita ou remove os teus anúncios ativos</p>
+        <p class="verde_claro">Consulte, edite ou remova os seus anúncios ativos</p>
 
         <div class="row g-3">
 
