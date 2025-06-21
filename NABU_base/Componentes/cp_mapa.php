@@ -21,7 +21,7 @@
         const map = new mapboxgl.Map({
             container: 'map', // container ID
             center: [lng, lat], // starting position [lng, lat]. Note that lat must be set between -90 and 90
-            zoom: 10 // starting zoom
+            zoom: 7 // starting zoom
         });
 
 
@@ -37,18 +37,60 @@
                 const anuncio = data[i];
 
                 const popupHTML = `
-  <div style="min-width: 220px; font-family: sans-serif; font-size: 14px; color: #333;">
-    <h3 style="margin: 0 0 5px 0;">${anuncio.nome_produto}</h3>
-    <p style="margin: 0;">📍 ${anuncio.localizacao}</p>
-    <p style="margin: 5px 0;">
-      <strong style="color: #27ae60;">${anuncio.preco} € / ${anuncio.ref_medida}</strong>
-    </p>
-    <div style="text-align: right; margin-top: 5px;">
-      <a href="./produto.php?id=${anuncio.id}" target="_blank" style="color: #27ae60; text-decoration: none; font-weight: bold;">
-        Ver mais
-      </a>
+  <div style="
+    min-width: 230px;
+    max-width: 250px;
+    background-color: #f8f9fa;
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #333;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    position: relative;
+  ">
+    <!-- Ícone de favorito -->
+    <div style="
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: white;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+      z-index: 2;
+    ">
+      <span style="color: #14532d; font-size: 18px;" class="material-icons">favorite</span>
+    </div>
+
+    <!-- Imagem -->
+    <div style="height: 120px; overflow: hidden;">
+      <img src="../uploads/capas/${anuncio.capa}" alt="${anuncio.nome_produto}"
+           style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+
+    <!-- Conteúdo -->
+    <div style="padding: 10px;">
+      <h3 style="margin: 0 0 4px 0; font-size: 16px; color: #14532d; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+        ${anuncio.nome_produto}
+      </h3>
+      <p style="margin: 0 0 6px 0; font-size: 14px;">📍 ${anuncio.localizacao}</p>
+      <p style="margin: 0 0 6px 0; font-weight: bold; color: #27ae60; font-size: 15px;">
+        ${anuncio.preco} € / ${anuncio.ref_medida}
+      </p>
+      <div style="text-align: right;">
+        <a href="./produto.php?id=${anuncio.id}" target="_blank"
+           style="color: #14532d; text-decoration: underline; font-weight: 500;">
+          Ver mais
+        </a>
+      </div>
     </div>
   </div>`;
+
 
 
 
