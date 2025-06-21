@@ -7,7 +7,7 @@ include_once ("cp_intro_carrinho.php");
     <section class="mb-4">
     <div>
         <h1 class="verde_escuro">A sua cestinha</h1>
-        <p class="verde">Finalize a sua compra</p>
+        <p class="verde">Finalize a sua compra aqui! Adicione produtos à cestinha </p>
     </div>
     <?php
 
