@@ -1,7 +1,7 @@
 <?php
-include_once '../api/geocode_anuncios.php';
 
-header('Content-Type: text/plain');
+
+
 
 $link = new_db_connection();
 
@@ -38,18 +38,18 @@ if ($result = mysqli_query($link, $query)) {
             if (mysqli_stmt_prepare($stmt, $update)) {
                 mysqli_stmt_bind_param($stmt, 'ddi', $lat, $lng, $id_anuncio);
                 if (mysqli_stmt_execute($stmt)) {
-                    echo "Coordenadas atualizadas para anúncio $id_anuncio: $lat, $lng\n";
+
                 } else {
-                    echo "Erro ao atualizar anúncio $id_anuncio\n";
+
                 }
                 mysqli_stmt_close($stmt);
             }
         } else {
-            echo "Morada não encontrada para anúncio $id_anuncio: $address\n";
+
         }
     }
 } else {
-    echo "Erro na consulta SQL: " . mysqli_error($link);
+
 }
 
 mysqli_close($link);
