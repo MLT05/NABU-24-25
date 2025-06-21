@@ -47,7 +47,26 @@
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    position: relative;
   ">
+    <!-- Ícone de favorito -->
+    <div style="
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: white;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+      z-index: 2;
+    ">
+      <span style="color: #14532d; font-size: 18px;" class="material-icons">favorite</span>
+    </div>
+
     <!-- Imagem -->
     <div style="height: 120px; overflow: hidden;">
       <img src="../uploads/capas/${anuncio.capa}" alt="${anuncio.nome_produto}"
@@ -71,6 +90,7 @@
       </div>
     </div>
   </div>`;
+
 
 
 
