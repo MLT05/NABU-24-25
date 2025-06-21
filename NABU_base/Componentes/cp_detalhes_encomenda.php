@@ -106,52 +106,50 @@ var_dump($nome);
 <div class="order-tracker">
      <form method="post" enctype="multipart/form-data" action="../scripts/sc_add_produto.php">
                 <div>
-                    <h5 class="fw-bold fs-3 verde_escuro mb-0">Produto</h5>
-                    <p class="verde_escuro">Detalhes do produto</p>
+                    <h5 class="fw-bold fs-3 verde_escuro mb-0">Detalhes do Produto</h5>
 
                     <!-- Upload Imagem -->
                     <label for="pfp" class="form-label verde_escuro fw-semibold">Imagem*</label>
-                    <div class="text-center mb-4">
-                        <p><?= htmlspecialchars($capa) ?></p>
+                    <div>
+                        <img  src="../uploads/capas/<?= htmlspecialchars($capa)?>" class="w-100" style="max-height: 100vh; object-fit: cover;" >
                     </div>
+
 
                     <!-- Título -->
                     <div class="mb-3">
-                        <label for="titulo" class="form-label verde_escuro fw-semibold">Título do Anúncio*</label>
-                        <p> <strong> <?= htmlspecialchars($titulo)?></strong></p>
+                        <label for="titulo" class="form-label verde_escuro fw-semibold"> <strong>Título do Anúncio* </strong></label>
+                        <p class="verde_escuro"><?= htmlspecialchars($titulo)?></p>
                     </div>
 
                     <!-- Preço -->
                     <div class="mb-3">
-                        <label for="preco" class="form-label fw-semibold verde_escuro">Preço*</label>
-                        <p><?= htmlspecialchars($preco)?></p>
+                        <label for="preco" class="form-label fw-semibold verde_escuro"> <strong>Preço*</strong></label>
+                        <p  class="verde_escuro"><?= htmlspecialchars($preco)?></p>
                     </div>
 
                     <!-- Medida -->
                     <div class="mb-3">
-                        <label for="medida" class="form-label fw-semibold verde_escuro">Unidade de medida*</label>
-                        <p><?= htmlspecialchars($ref_medida)?></p>
+                        <label for="medida" class="form-label fw-semibold verde_escuro"> <strong>Unidade de medida* </strong></label>
+                        <p  class="verde_escuro"><?= htmlspecialchars($ref_medida)?></p>
                     </div>
 
                     <!-- Categoria -->
                     <div class="mb-3">
-                        <label for="categoria" class="form-label fw-semibold verde_escuro">Categoria*</label>
-                        <p><?= htmlspecialchars($ref_categoria)?></p>
+                        <label for="categoria" class="form-label fw-semibold verde_escuro"><strong>Categoria*</strong></label>
+                        <p  class="verde_escuro"><?= htmlspecialchars($ref_categoria)?></p>
 
                     </div>
 
                     <!-- Descrição -->
                     <div class="mb-3">
-                        <label for="descricao" class="form-label fw-semibold verde_escuro">Descrição*</label>
-                        <p><?= htmlspecialchars($descricao)?></p>
+                        <label for="descricao" class="form-label fw-semibold verde_escuro"> <strong>Descrição*</strong></label>
+                        <p class="verde_escuro"><?= htmlspecialchars($descricao)?></p>
                     </div>
 
                     <!-- Localização -->
+                    <label for="categoria" class="form-label fw-semibold verde_escuro"><strong>Localização*</strong></label>
                     <div class="mb-3 d-flex align-items-center">
-                    <span class="bg-success bg-opacity-25 border-0 p-2 me-2">
-                        <i class="bi bi-geo-alt-fill verde_escuro"></i>
-                    </span>
-                        <p><?= htmlspecialchars($localizacao)?></p>
+                        <p class="verde_escuro"><?= htmlspecialchars($localizacao)?></p>
                     </div>
 
                     <!-- Contactos -->
@@ -159,20 +157,20 @@ var_dump($nome);
 
                     <!-- Nome -->
                     <div class="mb-3">
-                        <label class="form-label fw-bold verde_escuro">Nome*</label>
-                        <p><?= htmlspecialchars($nome) ?></p>
+                        <label class="form-label fw-bold verde_escuro"> <strong> Nome* </strong></label>
+                        <p class="verde_escuro"><?= htmlspecialchars($nome) ?></p>
                     </div>
 
                     <!-- Email -->
                     <div class="mb-3">
-                        <label class="form-label fw-bold verde_escuro">Email*</label>
-                        <p><?= htmlspecialchars($email) ?></p>
+                        <label class="form-label fw-bold verde_escuro"> <strong> Email*</strong></label>
+                        <p class="verde_escuro"><?= htmlspecialchars($email) ?></p>
                     </div>
 
                     <!-- Contacto -->
                     <div class="mb-4">
-                        <label class="form-label fw-bold verde_escuro">Contacto telefónico*</label>
-                        <p><?= htmlspecialchars($contacto) ?></p>
+                        <label class="form-label fw-bold verde_escuro"> <strong> Contacto telefónico* </strong></label>
+                        <p class="verde_escuro"><?= htmlspecialchars($contacto) ?></p>
                     </div>
 
             </form>
