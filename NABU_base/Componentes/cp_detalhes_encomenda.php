@@ -193,7 +193,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['avaliar'])) {
     <p class="verde_escuro"> <strong> Pedido:</strong> #<?= htmlspecialchars($id_encomenda) ?></p>
     <p class="verde_escuro"> <strong>Estado da Encomenda:</strong> <?= htmlspecialchars($estado) ?></p>
     <div class="verde_claro_bg border">
-    <p class="verde_escuro text-center"> <strong><?= htmlspecialchars($descricao_estado) ?></strong></p>
+    <p class="verde_escuro mb-0 text-center"> <strong><?= htmlspecialchars($descricao_estado) ?></strong></p>
     </div>
 </div>
     <div class="order-tracker mt-5 " id="avaliacoes">
