@@ -181,8 +181,19 @@ if (isset($_GET['id_anuncio'], $_GET['id_outro_user']) && is_numeric($_GET['id_a
             </button>
         </form>
     </main>
+    <?php if (isset($_GET['nova']) && $_GET['nova'] == '1'): ?>
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                const container = document.querySelector('main.container');
+                if (container) {
+                    container.scrollTop = container.scrollHeight;
+                }
+            });
+        </script>
+    <?php endif; ?>
 
     <?php
+
 } else {
     header("Location: ../Paginas/mensagens.php");
     exit();

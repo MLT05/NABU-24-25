@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_bind_param($stmt, "iiis", $ref_remetente, $ref_destinatario, $ref_produto, $mensagem);
             if (mysqli_stmt_execute($stmt)) {
                 // Redirecionar de volta para a página de detalhes da conversa
-                header("Location: ../Paginas/mensagens_details.php?id_anuncio=$ref_produto&id_outro_user=$ref_destinatario");
+                header("Location: ../Paginas/mensagens_details.php?id_anuncio=$ref_produto&id_outro_user=$ref_destinatario&nova=1");
                 exit();
             } else {
                 echo "Erro ao enviar mensagem.";
