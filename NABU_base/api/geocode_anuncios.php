@@ -13,7 +13,7 @@ WHERE latitude IS NULL OR longitude IS NULL
 if ($result = mysqli_query($link, $query)) {
     while ($row = mysqli_fetch_assoc($result)) {
         $id_anuncio = $row['id_anuncio'];
-        $address = $row['morada'];
+        $address = $row['localizacao'];
 
         $url = "https://nominatim.openstreetmap.org/search?" . http_build_query([
                 'q' => $address,
