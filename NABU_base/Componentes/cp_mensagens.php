@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once '../Connections/connection.php';
 
 
@@ -50,31 +53,33 @@ if (mysqli_stmt_prepare($stmt, $query)) {
         $id_outro_user, $nome_outro_user, $pfp_outro_user,
         $mensagem, $data_envio);
 ?>
-    <main>
-    <?php
-    while (mysqli_stmt_fetch($stmt)) {
-        ?>
-
-        <a href="cp_mensagensdetails.php?id_anuncio=<?= htmlspecialchars($id_produto) ?>" class="text-decoration-none text-reset">
-            <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
-                <div class="d-flex align-items-center">
-                    <img src="../uploads/pfp/<?= htmlspecialchars($pfp_outro_user) ?>"
-                         class="rounded-circle me-3"
-                         style="width: 50px; height: 50px; object-fit: cover;"
-                         alt="Foto perfil">
-                    <div>
-                        <h6 class="mb-1 fw-bold"><?= htmlspecialchars($nome_outro_user) ?></h6>
-                        <div class="text-muted"><?= htmlspecialchars($nome_produto) ?></div>
-                        <small class="text-dark"><?= htmlspecialchars($mensagem) ?></small>
-                    </div>
-                </div>
-                <small class="text-muted"><?= date("d/m/Y H:i", strtotime($data_envio)) ?></small>
-            </div>
-        </a>
-
+    <main class="body_index">
         <?php
-    }
-    ?>
+        while (mysqli_stmt_fetch($stmt)) {
+            ?>
+            <form action="mensagens_details.php" method="POST" class="mb-0">
+                <input type="hidden" name="id_anuncio" value="<?= htmlspecialchars($id_produto) ?>">
+
+                <button type="submit" class="w-100 text-decoration-none text-reset border-0 bg-transparent p-0">
+                    <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+                        <div class="d-flex align-items-center">
+                            <img src="../uploads/pfp/<?= htmlspecialchars($pfp_outro_user) ?>"
+                                 class="rounded-circle me-3"
+                                 style="width: 50px; height: 50px; object-fit: cover;"
+                                 alt="Foto perfil">
+                            <div>
+                                <h6 class="mb-1 fw-bold text-start"><?= htmlspecialchars($nome_outro_user) ?></h6>
+                                <div class="text-muted text-start"><?= htmlspecialchars($nome_produto) ?></div>
+                                <small class="text-dark"><?= htmlspecialchars($mensagem) ?></small>
+                            </div>
+                        </div>
+                        <small class="text-muted"><?= date("d/m/Y H:i", strtotime($data_envio)) ?></small>
+                    </div>
+                </button>
+            </form>
+            <?php
+        }
+        ?>
     </main>
     <?php
     mysqli_stmt_close($stmt);
