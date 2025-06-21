@@ -20,6 +20,7 @@
     medidas.abreviatura, 
     anuncios.capa, 
     estados.estado, 
+    estados.id_estado,
     encomendas.quantidade, 
     encomendas.preco 
 FROM 
@@ -38,7 +39,7 @@ WHERE
         if (mysqli_stmt_prepare($stmt, $query)) {
         mysqli_stmt_bind_param($stmt, 'i', $id_user);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt,$id_encomenda, $id_anuncio, $nome_produto, $medida, $capa, $estado, $quantidade, $preco);
+        mysqli_stmt_bind_result($stmt,$id_encomenda, $id_anuncio, $nome_produto, $medida, $capa, $estado,$id_estado, $quantidade, $preco);
 
         while(mysqli_stmt_fetch($stmt)) { ?>
             <!-- Lista de pedidos -->
@@ -64,7 +65,7 @@ WHERE
                                         <?php echo htmlspecialchars($quantidade); ?> <?php echo htmlspecialchars($medida); ?>
                                     </p>
                                     <p class="mb-0 mt-auto">
-                                        <small class="text-muted">Estado: <?php echo htmlspecialchars($estado); ?></small>
+                                        <small class="text-muted ">Estado: <?php echo htmlspecialchars($estado); ?></small>
                                     </p>
                                 </div>
                             </div>
@@ -78,6 +79,16 @@ WHERE
                                     <h4 class="fw-bold verde_escuro m-0"><?php echo htmlspecialchars($preco); ?>€</h4>
                                 </div>
                             </div>
+                            <!-- Botão Avaliar Vendedor se estado = 3 -->
+                            <?php if ($id_estado == 3): ?>
+                                <div class="d-flex" style="height: 2.5rem;">
+                                    <button class="btn btn-success w-100 rounded-0 rounded-bottom"
+                                            data-id="<?php echo $id_encomenda; ?>"
+                                            onclick="avaliarVendedor(this)">
+                                        Avaliar Vendedor
+                                    </button>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

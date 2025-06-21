@@ -31,6 +31,7 @@
     <!-- RECOMENDAÇÕES -->
     <section class="mb-5">
         <h1 class="verde_escuro">Recomendações</h1>
+        <p class="verde">Recomendacões com base nas suas preferências</p>
         <div id="carouselrecomendacoes" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
 
@@ -43,7 +44,11 @@
                 $query = "SELECT anuncios.id_anuncio,anuncios.nome_produto, anuncios.preco, anuncios.capa,anuncios.localizacao, users.nome,categorias.nome_categoria,anuncios.data_insercao
                     FROM anuncios
                     INNER JOIN users ON anuncios.ref_user = users.id_user
-                    INNER JOIN categorias ON anuncios.ref_categoria = categorias.id_categoria";
+                    INNER JOIN categorias ON anuncios.ref_categoria = categorias.id_categoria
+                    ORDER BY data_insercao ASC
+                    LIMIT 6";
+
+
 
                 if (mysqli_stmt_prepare($stmt, $query)) {
                     mysqli_stmt_execute($stmt);
@@ -96,6 +101,7 @@
     <!-- NOVIDADES -->
     <section class="mb-5">
         <h1 class="verde_escuro">Novidades</h1>
+        <p class="verde">Descubra as novidades adicionadas recentemente</p>
         <div id="carouselnovidades" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <?php
