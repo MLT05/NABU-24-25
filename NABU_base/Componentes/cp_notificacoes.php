@@ -42,6 +42,10 @@ mysqli_close($link);
 <?php include "../Componentes/cp_header.php"; ?>
 
 <main class="body_index">
+    <a href="javascript:history.back()" class=" text-decoration-none d-inline-flex " >
+        <span class="material-icons verde_escuro" style="font-size: 2.5rem">arrow_back</span>
+
+    </a>
     <h3 class="mb-3 me-3 text-end">Notificações</h3>
     <div class="d-none">
         <button id="btnTestNoti" class="btn btn-primary mb-4">Testar Notificação Push</button>

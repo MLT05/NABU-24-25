@@ -43,6 +43,10 @@ if (mysqli_stmt_prepare($stmt_user, $query_user)) {
 
 
 <main class="body_index">
+    <a href="javascript:history.back()" class=" text-decoration-none d-inline-flex " >
+        <span class="material-icons verde_escuro" style="font-size: 2.5rem">arrow_back</span>
+
+    </a>
     <form method="post" enctype="multipart/form-data" action="../scripts/sc_editar_produto.php" class="needs-validation" novalidate>
         <!-- Aqui mudou o name para id_anuncio, que é o correto -->
         <input type="hidden" name="id_anuncio" value="<?= htmlspecialchars($id_anuncio) ?>">

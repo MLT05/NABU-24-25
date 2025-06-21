@@ -1,4 +1,8 @@
 <main class="body_index">
+ <a href="javascript:history.back()" class=" text-decoration-none d-inline-flex " >
+            <span class="material-icons verde_escuro" style="font-size: 2.5rem">arrow_back</span>
+
+        </a>
     <div class="mt-5">
         <div class="card shadow-lg">
             <div class="card-header verde_claro_bg text-white text-center">

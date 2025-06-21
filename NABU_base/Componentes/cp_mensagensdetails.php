@@ -33,6 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_anuncio']) && is_n
     }
     mysqli_stmt_fetch($stmt)
     ?>
+    <a href="javascript:history.back()" class=" text-decoration-none d-inline-flex " >
+        <span class="material-icons verde_escuro" style="font-size: 2.5rem">arrow_back</span>
+
+    </a>
     <div class="w-100 verde_claro_bg anuncio_mensagens p-3 d-flex justify-content-between rounded-3 shadow-sm">
 
         <!-- Imagem + Nome + Produto -->

@@ -3,7 +3,10 @@ include_once ("cp_intro_carrinho.php");
 ?>
 
 <main class="body_index">
+    <a href="javascript:history.back()" class=" text-decoration-none d-inline-flex " >
+        <span class="material-icons verde_escuro" style="font-size: 2.5rem">arrow_back</span>
 
+    </a>
     <section class="mb-4">
     <div>
         <h1 class="verde_escuro">A sua cestinha</h1>
