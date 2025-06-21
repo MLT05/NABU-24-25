@@ -4,6 +4,7 @@ require_once '../Connections/connection.php';
 
 if (!isset($_SESSION['id_user'])) {
     ?>
+
     <!-- Modal de login obrigatório -->
     <div class="modal fade show" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-modal="true" role="dialog" style="display: block;">
         <div class="modal-dialog modal-dialog-centered">
@@ -63,7 +64,7 @@ if (mysqli_stmt_prepare($stmt, $query_user)) {
 
 mysqli_close($link);
 ?>
-
+<main class="body_index">
 
 
 <div class="order-tracker mt-5">
@@ -213,7 +214,7 @@ mysqli_close($link);
     ?>
 
 </div>
-
+        </main>
 <script>
     let currentStep = 1;
     const steps = document.querySelectorAll(".step");

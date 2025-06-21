@@ -43,10 +43,12 @@ WHERE
                 <!-- Lista de pedidos -->
                 <div class="row gy-3 mb-3">
                     <div class="col-12">
-                        <div class="card shadow-sm position-relative overflow-hidden verde_claro_bg" style="height: 11vh;">
+                        <div class="card shadow-sm position-relative overflow-hidden verde_claro_bg h-100 d-flex flex-column">
                             <a href="../Paginas/detalhes_encomendas.php?id=<?php echo htmlspecialchars($id_encomenda); ?>" class="stretched-link text-decoration-none"></a>
-                            <div class="row g-0" style="height: 12vh;">
-                                <!-- Imagem (mantida como estava) -->
+
+                            <!-- Conteúdo principal -->
+                            <div class="row g-0 flex-grow-1 align-items-stretch">
+                                <!-- Imagem -->
                                 <div class="col-3">
                                     <div class="h-100">
                                         <img src="../uploads/capas/<?php echo htmlspecialchars($capa); ?>" class="img-fluid w-100 h-100 rounded-start object-fit-cover" alt="Imagem do produto">
@@ -78,9 +80,16 @@ WHERE
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Botões inferiores -->
+                            <div class="d-flex" style="height: 2.5rem;">
+                                <button class="btn btn-success w-50 rounded-0 rounded-bottom-start">Aceitar</button>
+                                <button class="btn btn-danger w-50 rounded-0 rounded-bottom-end">Rejeitar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
 
 
                 <?php
