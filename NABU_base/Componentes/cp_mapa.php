@@ -21,7 +21,7 @@
         const map = new mapboxgl.Map({
             container: 'map', // container ID
             center: [lng, lat], // starting position [lng, lat]. Note that lat must be set between -90 and 90
-            zoom: 10 // starting zoom
+            zoom: 7 // starting zoom
         });
 
 
@@ -36,18 +36,26 @@
             for (var i = 0; i < data.length; i++) {
                 const anuncio = data[i];
 
-                const popupHTML =
-                    ` <div style="min-width: 220px;">
-            <h3 style="margin: 0 0 5px 0;">${anuncio.nome_produto}</h3>
-            <p style="margin: 0;"> ${anuncio.localizacao}</p>
-            <p style="margin: 0;"> <strong>${anuncio.preco} € / ${anuncio.ref_medida}</strong></p>
-            <a href="./produto.php?id=${anuncio.id}" target="_blank"> Ver mais</a>
-        </div>`;
+                const popupHTML = `
+  <div style="min-width: 220px; font-family: sans-serif; font-size: 14px; color: #333;">
+    <h3 style="margin: 0 0 5px 0;">${anuncio.nome_produto}</h3>
+    <p style="margin: 0;">📍 ${anuncio.localizacao}</p>
+    <p style="margin: 5px 0;">
+      <strong style="color: #27ae60;">${anuncio.preco} € / ${anuncio.ref_medida}</strong>
+    </p>
+    <div style="text-align: right; margin-top: 5px;">
+      <a href="./produto.php?id=${anuncio.id}" target="_blank" style="color: #14532d; text-decoration: underline;">
+        Ver mais
+      </a>
+    </div>
+  </div>`;
+
+
 
                 const popup = new mapboxgl.Popup({ offset: 25 })
                     .setHTML(popupHTML);
 
-                new mapboxgl.Marker()
+                new mapboxgl.Marker({ color: 'green' })
                     .setLngLat([anuncio.lng, anuncio.lat])
                     .setPopup(popup)
                     .addTo(map);
@@ -58,7 +66,7 @@
         });
 
         console.log("Tua localização:", { lng, lat });
-        const marker = new mapboxgl.Marker({})
+        const marker = new mapboxgl.Marker({ color: 'red' })
             .setLngLat([lng, lat])
             .addTo(map);
 

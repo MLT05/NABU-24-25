@@ -12,7 +12,7 @@ $stmt = mysqli_stmt_init($link);
 // Mostrar localização do produto
 $query = "SELECT a.id_anuncio, a.localizacao, a.latitude, a.longitude, a.nome_produto, a.preco, m.abreviatura 
           FROM anuncios a 
-          JOIN medidas ON a.ref_medida = m.id_medida 
+          JOIN medidas m ON a.ref_medida = m.id_medida 
           WHERE a.latitude IS NOT NULL AND a.longitude IS NOT NULL";
 
 if (mysqli_stmt_prepare($stmt, $query)) {
@@ -29,9 +29,8 @@ if (mysqli_stmt_prepare($stmt, $query)) {
         $longitude,
         $nome_produto,
         $preco,
-        $abreviatura
+        $ref_medida
     );
-
 
     $response = array();
 
@@ -42,7 +41,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
             "lat" => $latitude,  // latitude vai para lat
             "nome_produto" => $nome_produto,
             "preco" => $preco,
-            "medida" => $abreviatura,
+            "ref_medida" => $ref_medida,
             "id" => $id_anuncio,
 
         );
