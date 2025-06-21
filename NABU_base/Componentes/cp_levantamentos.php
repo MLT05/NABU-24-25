@@ -13,7 +13,7 @@
             <div class="col-10">
                 <img src="/NABU_base/Imagens/USER_ex.jpeg" alt="Produto" width="10 rem" class>
                 <span class="badge text-bg-secondary">!</span>
-                <h2 class="text-center">Levante a sua emcomenda <?= {$num_ecomend}?> </h2>
+                <h2 class="text-center">Levante a sua encomenda <?= {$num_ecomend}?> </h2>
                 <p>A morada ou ponto de entrega é o seguinte: <?= {$local}?> </p>
                 <p>O levantamento só pode ser feito até: <?= {$dia_hora_entg}?> </p>
             </div>
