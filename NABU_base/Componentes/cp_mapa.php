@@ -41,7 +41,7 @@
             <h3 style="margin: 0 0 5px 0;">${anuncio.nome_produto}</h3>
             <p style="margin: 0;"> ${anuncio.localizacao}</p>
             <p style="margin: 0;"> <strong>${anuncio.preco} € / ${anuncio.ref_medida}</strong></p>
-            <a href="../produto.php?id=${anuncio.id}" target="_blank"> Ver mais</a>
+            <a href="./produto.php?id=${anuncio.id}" target="_blank"> Ver mais</a>
         </div>`;
 
                 const popup = new mapboxgl.Popup({ offset: 25 })
