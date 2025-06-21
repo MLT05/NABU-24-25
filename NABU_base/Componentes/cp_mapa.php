@@ -37,23 +37,14 @@
                 const anuncio = data[i];
 
                 const popupHTML = `
-  <div style="
-    min-width: 220px;
-    font-family: sans-serif;
-    font-size: 15px;
-    color: #333;
-    padding: 8px;
-    box-shadow: none;
-    border: none;
-  ">
-    <h3 style="margin: 0 0 6px 0; font-size: 17px; color: #2c3e50;">${anuncio.nome_produto}</h3>
+  <div style="min-width: 220px; font-family: sans-serif; font-size: 14px; color: #333;">
+    <h3 style="margin: 0 0 5px 0;">${anuncio.nome_produto}</h3>
     <p style="margin: 0;">📍 ${anuncio.localizacao}</p>
-    <p style="margin: 6px 0;">
+    <p style="margin: 5px 0;">
       <strong style="color: #27ae60;">${anuncio.preco} € / ${anuncio.ref_medida}</strong>
     </p>
-    <div style="text-align: right; margin-top: 6px;">
-      <a href="./produto.php?id=${anuncio.id}" target="_blank"
-         style="color: #14532d; text-decoration: underline;">
+    <div style="text-align: right; margin-top: 5px;">
+      <a href="./produto.php?id=${anuncio.id}" target="_blank" style="color: #14532d; text-decoration: underline;">
         Ver mais
       </a>
     </div>
