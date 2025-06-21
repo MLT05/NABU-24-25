@@ -57,7 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_anuncio']) && is_n
             </div>
         </a>
         <main class="body_index container d-flex flex-column justify-content-end">
+            <a href="javascript:history.back()" class=" text-decoration-none d-inline-flex " >
+                <span class="material-icons verde_escuro" style="font-size: 2.5rem">arrow_back</span>
 
+            </a>
             <!-- Área de mensagens (ocupa o espaço restante acima da caixa de texto) -->
             <div class="flex-grow-1 overflow-auto mb-3" id="chat-area">
                 <!-- Mensagens aqui -->
@@ -100,10 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_anuncio']) && is_n
                 </button>
             </form>
         </main>
-        <a href="javascript:history.back()" class=" text-decoration-none d-inline-flex " >
-            <span class="material-icons verde_escuro" style="font-size: 2.5rem">arrow_back</span>
 
-        </a>
         <?php
     } else {
         echo "Anúncio não encontrado.";
