@@ -80,7 +80,7 @@
 
 
 
-                const popup = new mapboxgl.Popup({ offset: 25 })
+                const popup = new mapboxgl.Popup({ offset: 25, className: "custom-popup" })
                     .setHTML(popupHTML);
 
                 new mapboxgl.Marker({ color: 'green' })
