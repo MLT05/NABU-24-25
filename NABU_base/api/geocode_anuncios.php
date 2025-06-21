@@ -6,12 +6,14 @@ header('Content-Type: text/plain');
 $link = new_db_connection();
 
 // Buscar anúncios sem coordenadas
-$query = "SELECT id_anuncio, morada FROM anuncios WHERE latitude IS NULL OR longitude IS NULL";
+$query = "SELECT id_anuncio, localizacao FROM anuncios 
+WHERE latitude IS NULL OR longitude IS NULL 
+   OR latitude = 0 OR longitude = 0;";
 
 if ($result = mysqli_query($link, $query)) {
     while ($row = mysqli_fetch_assoc($result)) {
         $id_anuncio = $row['id_anuncio'];
-        $address = $row['morada'];
+        $address = $row['localizacao'];
 
         $url = "https://nominatim.openstreetmap.org/search?" . http_build_query([
                 'q' => $address,
