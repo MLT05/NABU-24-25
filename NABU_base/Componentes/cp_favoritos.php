@@ -43,7 +43,7 @@ mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $capa, $nome_
 
                             <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
                             <span
-                                    class="<?= $icon_class ?> verde_escuro btn-favorito"
+                                    class="<?= $icon_class ?> verde_escuro btn-favorito mt-0 fs-4"
                                     data-id="<?= htmlspecialchars($id_anuncio) ?>"
                                     role="button"
                                     style="cursor:pointer;"

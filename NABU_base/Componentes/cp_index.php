@@ -37,6 +37,7 @@
 
                 <?php
                 require_once '../Connections/connection.php';
+                require_once '../Functions/function_favorito.php';
                 $link = new_db_connection();
 
                 $stmt = mysqli_stmt_init($link);
@@ -165,103 +166,72 @@
     <section class="mb-5">
         <h1 class="verde_escuro">Favoritos</h1>
         <div class="row g-3">
+            <?php
+            if (isset($_SESSION['id_user'])) {
+                require_once '../Connections/connection.php';
+                $link = new_db_connection();
+                $stmt = mysqli_stmt_init($link);
 
-            <!-- Produto 1 -->
-            <div class="col-6">
-                <div class="card rounded-4 shadow-sm border-0 position-relative card_pesquisa">
-                    <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
-                        <span class="material-symbols-outlined verde_escuro">favorite</span>
-                    </div>
-                    <a href="../Paginas/produto.php" style="text-decoration: none; color: inherit;">
-                        <div class="imagem_card_pesquisa">
-                            <img src="../Imagens/produtos/tomates.svg" class="card-img-top rounded-4 img_hp_card" alt="Tomates">
-                        </div>
-                        <div class="card-body m-2 pt-2 px-2 pb-0">
-                            <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Tomates/kg</h6>
-                        </div>
-                        <hr class="linha-card verde_escuro">
-                        <div class="card-body m-2 pt-0 pb-2 px-2">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="verde_escuro fw-bolder fs-5"><i class="bi bi-star-fill"></i> 4,9</small>
-                                <small class="fw-bolder verde_escuro fs-5">1 €</small>
+                $query = "
+                    SELECT a.id_anuncio, a.nome_produto, a.preco, a.capa, c.nome_categoria
+                    FROM favoritos f
+                    INNER JOIN anuncios a ON f.anuncios_id_anuncio = a.id_anuncio
+                    LEFT JOIN categorias c ON a.ref_categoria = c.id_categoria
+                    WHERE f.users_id_user = ?
+                    ORDER BY f.data_insercao DESC
+                    LIMIT 4
+                ";
+
+                if (mysqli_stmt_prepare($stmt, $query)) {
+                    mysqli_stmt_bind_param($stmt, "i", $_SESSION['id_user']);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $capa, $nome_categoria); // ✅ certo
+
+                    while (mysqli_stmt_fetch($stmt)) {
+                        $tem_favoritos = true;
+                        $icon_class = "material-symbols-filled";
+                        ?>
+                        <div class="col-6">
+                            <div class="card rounded-4 shadow-sm border-0 position-relative card_pesquisa">
+                                <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
+                                        <span
+                                                class="<?= $icon_class ?> verde_escuro btn-favorito mt-0 fs-4"
+                                                data-id="<?= $id_anuncio ?>"
+                                                role="button"
+                                                style="cursor:pointer;"
+                                                aria-label="Favoritar produto"
+                                        >
+                                            favorite
+                                        </span>
+                                </div>
+                                <a href="../Paginas/produto.php?id=<?= $id_anuncio ?>" style="text-decoration: none; color: inherit;">
+                                    <div class="imagem_card_pesquisa">
+                                        <img src="../uploads/capas/<?= htmlspecialchars($capa) ?>" class="card-img-top rounded-4 img_hp_card" alt="<?= htmlspecialchars($nome_produto) ?>">
+                                    </div>
+                                    <div class="card-body m-2 pt-2 px-2 pb-0">
+                                        <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3"><?= htmlspecialchars($nome_produto) ?></h6>
+                                    </div>
+                                    <hr class="linha-card verde_escuro">
+                                    <div class="card-body m-2 pt-0 pb-2 px-2">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <small class="verde_escuro fw-bolder fs-5"><i class="bi bi-star-fill"></i> 4,9</small>
+                                            <small class="fw-bolder verde_escuro fs-5"><?= number_format($preco, 2, ',', ' ') ?> €</small>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Produto 2 -->
-            <div class="col-6">
-                <div class="card rounded-4 shadow-sm border-0 position-relative card_pesquisa">
-                    <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
-                        <span class="material-symbols-outlined verde_escuro">favorite</span>
-                    </div>
-                    <a href="#" style="text-decoration: none; color: inherit;">
-                        <div class="imagem_card_pesquisa">
-                            <img src="../Imagens/produtos/ovos.jpg" class="card-img-top rounded-4 img_hp_card" alt="Cesta de ovos">
-                        </div>
-                        <div class="card-body m-2 pt-2 px-2 pb-0">
-                            <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Ovos/uni</h6>
-                        </div>
-                        <hr class="linha-card verde_escuro">
-                        <div class="card-body m-2 pt-0 pb-2 px-2">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="verde_escuro fw-bolder fs-5"><i class="bi bi-star-fill"></i> 5,0</small>
-                                <small class="fw-bolder verde_escuro fs-5">0,20 €</small>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Produto 3 -->
-            <div class="col-6">
-                <div class="card rounded-4 shadow-sm border-0 position-relative card_pesquisa">
-                    <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
-                        <span class="material-symbols-outlined verde_escuro">favorite</span>
-                    </div>
-                    <a href="#" style="text-decoration: none; color: inherit;">
-                        <div class="imagem_card_pesquisa">
-                            <img src="../Imagens/produtos/alface.jpg" class="card-img-top rounded-4 img_hp_card" alt="Alface">
-                        </div>
-                        <div class="card-body m-2 pt-2 px-2 pb-0">
-                            <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Alface/un</h6>
-                        </div>
-                        <hr class="linha-card verde_escuro">
-                        <div class="card-body m-2 pt-0 pb-2 px-2">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="verde_escuro fw-bolder fs-5"><i class="bi bi-star-fill"></i> 3,2</small>
-                                <small class="fw-bolder verde_escuro fs-5">5,39 €</small>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Produto 4 -->
-            <div class="col-6">
-                <div class="card rounded-4 shadow-sm border-0 position-relative card_pesquisa">
-                    <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
-                        <span class="material-symbols-outlined verde_escuro">favorite</span>
-                    </div>
-                    <a href="#" style="text-decoration: none; color: inherit;">
-                        <div class="imagem_card_pesquisa">
-                            <img src="../Imagens/produtos/laranjas.jpg" class="card-img-top rounded-4 img_hp_card" alt="Laranjas">
-                        </div>
-                        <div class="card-body m-2 pt-2 px-2 pb-0">
-                            <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">Laranjas/kg</h6>
-                        </div>
-                        <hr class="linha-card verde_escuro">
-                        <div class="card-body m-2 pt-0 pb-2 px-2">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="verde_escuro fw-bolder fs-5"><i class="bi bi-star-fill"></i> 4,5</small>
-                                <small class="fw-bolder verde_escuro fs-5">2,00 €</small>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
+                        <?php
+                    } if (!$tem_favoritos) {
+                        echo '<p class="text-center verde_escuro fs-4">Ainda não tem favoritos adicionados.</p>';
+                    }
+                    mysqli_stmt_close($stmt);
+                }
+                mysqli_close($link);
+            } else {
+                echo "<p class='text-muted'>Tens de estar <a href='../Paginas/login.php'>logado</a> para veres os teus favoritos.</p>";
+            }
+            ?>
         </div>
     </section>
 
@@ -289,5 +259,45 @@
                 loader.style.display = 'none';
             }
         }
+    });
+    // Script para alternar favorito com AJAX
+    document.querySelectorAll(".btn-favorito").forEach(btn => {
+        const toggleFavorito = function(event) {
+            event.preventDefault(); // evita ação padrão se existir
+
+            const idAnuncio = this.getAttribute("data-id");
+
+            fetch("../Functions/ajax_favorito.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: `id_anuncio_favorito=${idAnuncio}`
+            })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    if (data.includes("⚠️")) {
+                        alert(data);  // Mensagem de erro, tipo "Necessita estar logado"
+                        return;
+                    }
+
+                    // Alterna o ícone só se não houve erro
+                    if (this.classList.contains("material-symbols-outlined")) {
+                        this.classList.remove("material-symbols-outlined");
+                        this.classList.add("material-symbols-filled");
+                    } else {
+                        this.classList.remove("material-symbols-filled");
+                        this.classList.add("material-symbols-outlined");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro no AJAX:", error);
+                    alert("Erro ao tentar alterar favoritos. Tenta novamente.");
+                });
+        };
+
+        btn.addEventListener("click", toggleFavorito);
+        btn.addEventListener("touchstart", toggleFavorito);
     });
 </script>

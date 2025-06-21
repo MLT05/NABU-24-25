@@ -112,7 +112,7 @@ if (isset($_SESSION['mensagem_sistema'])) {
 
                     <!-- Ícone de favorito -->
                     <span
-                            class="<?= $icon_class ?> verde_escuro btn-favorito"
+                            class="<?= $icon_class ?> verde_escuro btn-favorito mt-0 fs-4"
                             data-id="<?= htmlspecialchars($id_anuncio) ?>"
                             role="button"
                             style="cursor:pointer; font-size: 2rem; z-index: 1;"
