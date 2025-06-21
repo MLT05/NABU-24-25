@@ -10,23 +10,31 @@ $link = new_db_connection();
 $stmt = mysqli_stmt_init($link);
 
 // Mostrar localização do produto
-$query = "SELECT id_localizacao, latitude, longitude, descricao FROM localizacao";
+$query = "SELECT latitude, longitude, localizacao FROM anuncios";
 
-mysqli_stmt_prepare($stmt, $query);
+if (mysqli_stmt_prepare($stmt, $query)) {
 
-/* execute the prepared statement */
-mysqli_stmt_execute($stmt);
+    /* execute the prepared statement */
+    mysqli_stmt_execute($stmt);
 
-mysqli_stmt_bind_result($stmt, $id_localizacao, $latitude, $longitude, $descricao);
-$response = array();
-while (mysqli_stmt_fetch($stmt)) {
-    $location = array(
-        "id" => $id_localizacao,
-        "description" => $descricao,
-        "lng" => $longitude, // longitude vai para lng
-        "lat" => $latitude,  // latitude vai para lat
-    );
-    $response[] = $location;
+    // Bind the result variables
+    mysqli_stmt_bind_result($stmt, $latitude, $longitude, $morada);
+
+    $response = array();
+
+    while (mysqli_stmt_fetch($stmt)) {
+        $location = array(
+            "morada" => $morada,
+            "lng" => $longitude, // longitude vai para lng
+            "lat" => $latitude,  // latitude vai para lat
+        );
+        $response[] = $location;
+    }
+
+    echo json_encode($response);
+} else {
+    echo json_encode(["error" => "Erro na preparação da query."]);
 }
 
-echo json_encode($response);
+mysqli_stmt_close($stmt);
+mysqli_close($link);
