@@ -10,9 +10,9 @@ $link = new_db_connection();
 $stmt = mysqli_stmt_init($link);
 
 // Mostrar localização do produto
-$query = "SELECT anuncios.id_anuncio, anuncios.localizacao, anuncios.latitude, anuncios.longitude, anuncios.nome_produto, anuncios.preco, medidas.abreviatura 
-          FROM anuncios  
-          JOIN medidas ON anuncios.ref_medida = medidas.id_medida 
+$query = "SELECT a.id_anuncio, a.localizacao, a.latitude, a.longitude, a.nome_produto, a.preco, m.abreviatura 
+          FROM anuncios a 
+          JOIN medidas ON a.ref_medida = m.id_medida 
           WHERE a.latitude IS NOT NULL AND a.longitude IS NOT NULL";
 
 if (mysqli_stmt_prepare($stmt, $query)) {
