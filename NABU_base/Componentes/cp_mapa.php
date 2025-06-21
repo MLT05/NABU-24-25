@@ -34,14 +34,10 @@
                 const popup = new mapboxgl.Popup({ offset: 25 })
                     .setHTML(`<strong>${data[i]["description"]}</strong>`);
 
-                const el = document.createElement('div');
-                el.className = 'custom-marker';
-
-                const marker = new mapboxgl.Marker(el)
+                const marker = new mapboxgl.Marker()
                     .setLngLat([data[i]["lng"], data[i]["lat"]])
-                    .setPopup(popup)
+                    .setPopup(popup) // associa o popup ao marcador
                     .addTo(map);
-
             }
         }).catch(function (error) {
             console.log(error);
