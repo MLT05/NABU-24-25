@@ -31,18 +31,18 @@
         }).then(function (data) {
             console.log("Marcadores da base de dados:", data);
             for (var i = 0; i < data.length; i++) {
+                const popup = new mapboxgl.Popup({ offset: 25 })
+                    .setHTML(`<strong>${data[i]["description"]}</strong>`);
+
                 const marker = new mapboxgl.Marker()
                     .setLngLat([data[i]["lng"], data[i]["lat"]])
-                    .setPopup(
-                        new mapboxgl.Popup({ offset: 25 }) // popup com pequeno offset
-                            .setHTML(`<strong>${data[i]["description"]}</strong>`)
-                    )
+                    .setPopup(popup) // associa o popup ao marcador
                     .addTo(map);
             }
-            // add comments
         }).catch(function (error) {
             console.log(error);
         });
+
         console.log("Tua localização:", { lng, lat });
         const marker = new mapboxgl.Marker({})
             .setLngLat([lng, lat])
