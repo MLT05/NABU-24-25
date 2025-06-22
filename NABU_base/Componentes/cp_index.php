@@ -287,7 +287,7 @@
     // Script para alternar favorito com AJAX
     document.querySelectorAll(".btn-favorito").forEach(btn => {
         const toggleFavorito = function(event) {
-            event.preventDefault(); // evita ação padrão se existir
+            event.preventDefault();
 
             const idAnuncio = this.getAttribute("data-id");
 
@@ -302,7 +302,7 @@
                 .then(data => {
                     console.log(data);
                     if (data.includes("⚠️")) {
-                        alert(data);  // Mensagem de erro, tipo "Necessita estar logado"
+                        alert(data);
                         return;
                     }
 
