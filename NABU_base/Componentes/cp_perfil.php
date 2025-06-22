@@ -4,7 +4,7 @@ require_once '../Connections/connection.php';
 if (!isset($_SESSION['id_user'])) {
     // Se não estiver logado, usar dados padrão
     $nome = "Convidado";
-    $capa = "default4.png";
+    $capa = "default3.png";
     $noti_nao_lidas = 0; // Garantir variável definida para o badge
 } else {
     $id_user = $_SESSION['id_user'];
@@ -13,7 +13,7 @@ if (!isset($_SESSION['id_user'])) {
 
     $query = "SELECT nome, pfp FROM users WHERE id_user = ?";
 
-    $capa = "default4.png"; // imagem padrão caso não tenha capa
+    $capa = "default3.png"; // imagem padrão caso não tenha capa
 
 
     if (mysqli_stmt_prepare($stmt, $query)) {
