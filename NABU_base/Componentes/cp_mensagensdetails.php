@@ -167,7 +167,7 @@ if (isset($_GET['id_anuncio'], $_GET['id_outro_user']) && is_numeric($_GET['id_a
 
         </div>
 
-        <form action="../scripts/enviar_mensagem.php" method="post" class="d-flex align-items-center border rounded-3 p-2 bg-white mt-2">
+        <form class="d-flex align-items-center border rounded-3 p-2 bg-white mt-2">
             <input type="hidden" name="ref_remetente" value="<?= htmlspecialchars($id_user) ?>">
             <input type="hidden" name="ref_destinatario" value="<?= htmlspecialchars($id_outro_user) ?>">
             <input type="hidden" name="ref_produto" value="<?= htmlspecialchars($id_anuncio) ?>">
@@ -185,7 +185,7 @@ if (isset($_GET['id_anuncio'], $_GET['id_outro_user']) && is_numeric($_GET['id_a
         console.log("🧪 Script de mensagens_details carregado!");
 
         window.addEventListener('DOMContentLoaded', () => {
-            const container = document.querySelector('main.container');
+            const container = document.getElementById('chat-mensagens');
             if (container) {
                 container.scrollTop = container.scrollHeight;
             }
@@ -200,7 +200,7 @@ if (isset($_GET['id_anuncio'], $_GET['id_outro_user']) && is_numeric($_GET['id_a
         function carregarMensagens() {
             console.log("⏳ A verificar mensagens novas...");
 
-            fetch(`../Functions/carregar_mensagens.php?id_anuncio=${id_anuncio}&id_outro_user=${id_outro_user}`)
+            return fetch(`../Functions/carregar_mensagens.php?id_anuncio=${id_anuncio}&id_outro_user=${id_outro_user}`)
                 .then(response => {
                     if (!response.ok) {
                         console.error("❌ Erro ao carregar mensagens.");
@@ -214,29 +214,52 @@ if (isset($_GET['id_anuncio'], $_GET['id_outro_user']) && is_numeric($_GET['id_a
                     const container = document.getElementById("chat-mensagens");
                     container.innerHTML = ""; // Limpa tudo antes de reinserir
 
-                    data.forEach(msg => {
+                    data.forEach((msg, index) => {
                         const isRemetenteOutro = msg.remetente == id_outro_user;
+
+                        const nextMsg = data[index + 1];
+                        const isNextSameSender = nextMsg && nextMsg.remetente == msg.remetente;
+
                         const div = document.createElement("div");
                         div.className = "d-flex mb-2 " + (isRemetenteOutro ? "justify-content-start" : "justify-content-end");
+                        div.style.alignItems = "flex-end"; // garante alinhamento vertical
 
                         const msgDiv = document.createElement("div");
                         msgDiv.className = (isRemetenteOutro ? "verde_claro_bg verde_escuro" : "verde_escuro_bg text-white") + " p-3 rounded-3";
                         msgDiv.style.maxWidth = "75%";
                         msgDiv.textContent = msg.mensagem;
 
-                        const img = document.createElement("img");
-                        img.src = "../uploads/pfp/" + (isRemetenteOutro ? outro_pfp : user_pfp);
-                        img.className = "rounded-circle " + (isRemetenteOutro ? "me-2 align-self-end" : "ms-2 align-self-end");
-                        img.style.width = "30px";
-                        img.style.height = "30px";
-                        img.style.objectFit = "cover";
+                        if (!isNextSameSender) {
+                            const img = document.createElement("img");
+                            img.src = "../uploads/pfp/" + (isRemetenteOutro ? outro_pfp : user_pfp);
+                            img.className = "rounded-circle";
+                            img.style.width = "30px";
+                            img.style.height = "30px";
+                            img.style.objectFit = "cover";
 
-                        if (isRemetenteOutro) {
-                            div.appendChild(img);
-                            div.appendChild(msgDiv);
+                            if (isRemetenteOutro) {
+                                img.classList.add("me-2", "align-self-end");
+                                div.appendChild(img);
+                                div.appendChild(msgDiv);
+                            } else {
+                                img.classList.add("ms-2", "align-self-end");
+                                div.appendChild(msgDiv);
+                                div.appendChild(img);
+                            }
                         } else {
-                            div.appendChild(msgDiv);
-                            div.appendChild(img);
+                            const placeholder = document.createElement("div");
+                            placeholder.style.width = "30px";
+                            placeholder.style.height = "30px";
+
+                            if (isRemetenteOutro) {
+                                placeholder.classList.add("me-2");
+                                div.appendChild(placeholder);
+                                div.appendChild(msgDiv);
+                            } else {
+                                placeholder.classList.add("ms-2");
+                                div.appendChild(msgDiv);
+                                div.appendChild(placeholder);
+                            }
                         }
 
                         container.appendChild(div);
@@ -250,6 +273,38 @@ if (isset($_GET['id_anuncio'], $_GET['id_outro_user']) && is_numeric($_GET['id_a
 
         // Atualiza automaticamente a cada 5 segundos
         setInterval(carregarMensagens, 5000);
+
+        document.querySelector("form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const formData = new FormData(form);
+            const container = document.getElementById('chat-mensagens');
+
+            fetch("../scripts/enviar_mensagem.php", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erro ao enviar a mensagem");
+                    }
+                    console.log("📨 Mensagem enviada com sucesso");
+
+                    form.querySelector("input[name='mensagem']").value = "";
+
+                    // Aqui esperamos o carregarMensagens terminar antes de fazer scroll
+                    return carregarMensagens();
+                })
+                .then(() => {
+                    if (container) {
+                        container.scrollTop = container.scrollHeight;
+                    }
+                })
+                .catch(error => {
+                    console.error("🚨 Erro ao enviar mensagem:", error);
+                });
+        });
     </script>
 
     <?php

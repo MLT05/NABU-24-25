@@ -1,3 +1,8 @@
+.d-flex.justify-content-start,
+.d-flex.justify-content-end {
+  align-items: flex-end;
+}
+
 .material-symbols-outlined {
   font-variation-settings:
           'FILL' 0,
