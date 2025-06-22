@@ -33,6 +33,24 @@ if ($capa && $capa !== $default_image && file_exists($upload_dir . $capa)) {
 unlink($upload_dir . $capa);
 }
 
+// Apagar do carrinho
+    $stmt_carrinho = mysqli_prepare($link, "DELETE FROM carrinho WHERE anuncios_id_anuncio = ?");
+    mysqli_stmt_bind_param($stmt_carrinho, 'i', $id_anuncio);
+    mysqli_stmt_execute($stmt_carrinho);
+    mysqli_stmt_close($stmt_carrinho);
+
+// Apagar dos favoritos
+    $stmt_favoritos = mysqli_prepare($link, "DELETE FROM favoritos WHERE anuncios_id_anuncio = ?");
+    mysqli_stmt_bind_param($stmt_favoritos, 'i', $id_anuncio);
+    mysqli_stmt_execute($stmt_favoritos);
+    mysqli_stmt_close($stmt_favoritos);
+
+// Apagar das encomendas
+    $stmt_encomendas = mysqli_prepare($link, "DELETE FROM encomendas WHERE ref_anuncio = ?");
+    mysqli_stmt_bind_param($stmt_encomendas, 'i', $id_anuncio);
+    mysqli_stmt_execute($stmt_encomendas);
+    mysqli_stmt_close($stmt_encomendas);
+
 // Agora apagar o anúncio
 $query = "DELETE FROM anuncios WHERE id_anuncio = ? AND ref_user = ?";
 $stmt = mysqli_prepare($link, $query);

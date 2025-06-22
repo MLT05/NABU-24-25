@@ -184,9 +184,11 @@ if (isset($_SESSION['mensagem_sistema'])) {
                     <input type="hidden" name="id" value="<?= htmlspecialchars($id_anuncio) ?>">
                     <button type="submit" class="btn btn-success w-100 py-3 fs-6 rounded">Editar anúncio</button>
                 </form>
-                <form method="POST" action="../scripts/sc_eliminar_anuncio.php" onsubmit="return confirm('Tens a certeza que queres eliminar este anúncio?')" class="w-100">
+                <form method="POST" action="../scripts/sc_eliminar_anuncio.php" class="w-100 eliminar-anuncio-form">
                     <input type="hidden" name="id_anuncio" value="<?= htmlspecialchars($id_anuncio) ?>">
-                    <button type="submit" class="btn btn-danger w-100 py-3 fs-6 rounded">Eliminar anúncio</button>
+                    <button type="button" class="btn btn-danger w-100 py-3 fs-6 rounded" data-bs-toggle="modal" data-bs-target="#modalConfirmarEliminar" data-anuncio="<?= $id_anuncio ?>">
+                        Eliminar anúncio
+                    </button>
                 </form>
             </div>
         <?php endif; ?>
@@ -266,6 +268,25 @@ if (isset($_SESSION['mensagem_sistema'])) {
     </div>
 
 </main>
+<!-- Modal de Confirmação -->
+<div class="modal fade" id="modalConfirmarEliminar" tabindex="-1" aria-labelledby="modalConfirmarEliminarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalConfirmarEliminarLabel">Confirmar Eliminação</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                Tens a certeza que queres eliminar este anúncio? Esta ação é irreversível.
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" id="btnConfirmarEliminar" class="btn btn-danger">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     window.addEventListener('DOMContentLoaded', () => {
         // Apenas dispara a execução do script, sem esperar resposta
@@ -274,7 +295,28 @@ if (isset($_SESSION['mensagem_sistema'])) {
 </script>
 
 <script>
-    document.querySelector(".comprar")?.addEventListener("click", function () {
+
+        let formASubmeter = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('modalConfirmarEliminar');
+        const btnConfirmar = document.getElementById('btnConfirmarEliminar');
+
+        // Quando abre o modal, identificar o formulário do botão clicado
+        modal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        formASubmeter = button.closest('form');
+    });
+
+        // Submeter o formulário ao clicar em "Eliminar"
+        btnConfirmar.addEventListener('click', () => {
+        if (formASubmeter) {
+        formASubmeter.submit();
+    }
+    });
+    });
+
+document.querySelector(".comprar")?.addEventListener("click", function () {
         const quantidadeInput = document.getElementById("quantidade");
         const quantidade = parseFloat(quantidadeInput.value);
         const id_anuncio = <?= $id_anuncio ?>;

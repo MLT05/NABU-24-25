@@ -36,7 +36,10 @@ endif;
 if (isset($_GET['msg'])) {
     switch ($_GET['msg']) {
         case 'anuncio_eliminado':
-            echo "<div class='alert alert-success'>✅ Anúncio eliminado com sucesso.</div>";
+            echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+    ✅ Anúncio eliminado com sucesso.
+    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Fechar'></button>
+</div>";
             break;
         // Podes adicionar mais mensagens aqui no futuro
     }
@@ -45,10 +48,18 @@ if (isset($_GET['msg'])) {
 if (isset($_GET['erro'])) {
     switch ($_GET['erro']) {
         case 'nao_foi_possivel_eliminar':
-            echo "<div class='alert alert-danger'>❌ Não foi possível eliminar o anúncio. Tenta novamente.</div>";
+            echo "
+            <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                ❌ Não foi possível eliminar o anúncio. Tenta novamente.
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Fechar'></button>
+            </div>";
             break;
         case 'dados_invalidos':
-            echo "<div class='alert alert-warning'>⚠️ Ação inválida ou dados em falta.</div>";
+            echo "
+            <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                ⚠️ Ação inválida ou dados em falta.
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Fechar'></button>
+            </div>";
             break;
         // Outros erros futuros podem ir aqui
     }
