@@ -253,7 +253,8 @@
                 }
                 mysqli_close($link);
             } else {
-                echo "<p class='text-center verde_escuro fs-4'>Faça <a href='../Paginas/login.php' class='verde_escuro'><strong>Login</strong></a> para visualizar os seus favoritos.</p>";}
+                echo "<p class='text-muted'>Faça <a href='../Paginas/login.php' class='verde_escuro'><strong>Login</strong></a> para visualizar os seus favoritos.</p>";
+            }
             ?>
         </div>
     </section>
