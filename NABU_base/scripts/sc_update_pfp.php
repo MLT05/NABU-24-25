@@ -165,7 +165,7 @@ if (mysqli_stmt_prepare($stmt, $query_select)) {
     mysqli_stmt_fetch($stmt);
     mysqli_stmt_close($stmt);
 
-    if (!empty($pfp_atual) && $pfp_atual !== 'defaultpfp.png') {
+    if (!empty($pfp_atual) && $pfp_atual !== 'default4.png') {
         $arquivo_antigo = __DIR__ . '/../uploads/pfp/' . $pfp_atual;
         if (file_exists($arquivo_antigo)) {
             unlink($arquivo_antigo);

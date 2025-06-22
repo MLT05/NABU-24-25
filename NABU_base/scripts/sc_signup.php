@@ -29,7 +29,7 @@ if (
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     // Escolher imagem de perfil aleatória
-    $default_pfps = ['default1.png', 'default2.png', 'default3.png'];
+    $default_pfps = ['default2.png', 'default3.png', 'default4.png'];
     $pfp_aleatoria = $default_pfps[array_rand($default_pfps)];
 
     $link = new_db_connection();
