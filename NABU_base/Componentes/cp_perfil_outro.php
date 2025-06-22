@@ -31,6 +31,30 @@ if (!isset($_GET['id_user'])) {
                 $capa = $capa_db;
             }
         }
+
+    }
+    $feedbacks = [];
+
+    $query_feedback = "SELECT f.comentario, f.classificacao, f.data_feedback, u.nome 
+                   FROM feedback f 
+                   JOIN users u ON f.ref_avaliador = u.id_user 
+                   WHERE f.ref_user = ?
+                   ORDER BY f.data_feedback DESC";
+
+    if (mysqli_stmt_prepare($stmt, $query_feedback)) {
+        mysqli_stmt_bind_param($stmt, 'i', $id_user);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $comentario, $classificacao, $data_feedback, $nome_avaliador);
+
+        while (mysqli_stmt_fetch($stmt)) {
+            $feedbacks[] = [
+                'comentario' => $comentario,
+                'classificacao' => $classificacao,
+                'data' => $data_feedback,
+                'avaliador' => $nome_avaliador
+            ];
+        }
+
         mysqli_stmt_close($stmt);
     }
 
@@ -63,9 +87,25 @@ if (!isset($_GET['id_user'])) {
 
     <div class="mb-3">
         <label class="form-label verde_escuro fw-semibold"><strong>Classificações:</strong></label>
-        <p class="verde_escuro"> Classificação aqui</p>
-    </div>
 
+    </div>
+    <?php if (!empty($feedbacks)): ?>
+        <div class="row">
+            <?php foreach ($feedbacks as $feedback): ?>
+                <div class="col-md-6 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Avaliação: <?= htmlspecialchars($feedback['classificacao']) ?>/10</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Por: <?= htmlspecialchars($feedback['avaliador']) ?> em <?= date("d/m/Y", strtotime($feedback['data'])) ?></h6>
+                            <p class="card-text"><?= nl2br(htmlspecialchars($feedback['comentario'])) ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <p class="text-muted">Este utilizador ainda não recebeu avaliações.</p>
+    <?php endif; ?>
 
 </main>
 
