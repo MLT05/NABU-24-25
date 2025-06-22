@@ -63,6 +63,7 @@
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Mostrar notificação desktop + toast na página
     function showNotification(title, body, mostrarToast = true) {

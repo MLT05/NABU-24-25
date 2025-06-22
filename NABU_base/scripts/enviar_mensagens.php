@@ -2,12 +2,10 @@
 session_start();
 require_once '../Connections/connection.php';
 $conn = new_db_connection();
-$data = json_decode(file_get_contents("php://input"), true);
-
-$mensagem = isset($data['mensagem']) ? $data['mensagem'] : '';
-$destinatario = (int) (isset($data['destinatario']) ? $data['destinatario'] : 0);
-$ref_produto = (int) (isset($data['ref_produto']) ? $data['ref_produto'] : 0);
-$remetente = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 1;
+$mensagem = isset($_POST['mensagem']) ? $_POST['mensagem'] : '';
+$destinatario = (int) (isset($_POST['ref_destinatario']) ? $_POST['ref_destinatario'] : 0);
+$ref_produto = (int) (isset($_POST['ref_produto']) ? $_POST['ref_produto'] : 0);
+$remetente = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : 1;
 $data_envio = date("Y-m-d H:i:s");
 
 $stmt = $conn->prepare("INSERT INTO mensagens (mensagem, data_envio, ref_remetente, ref_destinatario, is_read, message_type, ref_produto) VALUES (?, ?, ?, ?, 0, 'text', ?)");
