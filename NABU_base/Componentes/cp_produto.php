@@ -200,11 +200,11 @@ if (isset($_SESSION['mensagem_sistema'])) {
                     <h5 class="modal-title" id="cartModalLabel">Produto Adicionado</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body border-0">
                     Produto adicionado ao carrinho com sucesso!
                 </div>
-                <div class="modal-footer justify-content-center">
-                    <a href="../Paginas/carrinho.php" class="btn btn-success">Ver Carrinho</a>
+                <div class="modal-footer border-0justify-content-center">
+                    <a href="../Paginas/carrinho.php" class="btn btn-success verde_escuro_bg">Ver Carrinho</a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continuar a Comprar</button>
                 </div>
             </div>
@@ -219,11 +219,11 @@ if (isset($_SESSION['mensagem_sistema'])) {
                     <h5 class="modal-title" id="alreadyInCartLabel">Produto Já no Carrinho</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body border-0">
                     Este produto já está no seu carrinho.
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <a href="../Paginas/carrinho.php" class="btn btn-primary">Ver Carrinho</a>
+                    <a href="../Paginas/carrinho.php" class="btn btn-primary verde_escuro_bg">Ver Carrinho</a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continuar Comprando</button>
                 </div>
             </div>
@@ -234,14 +234,13 @@ if (isset($_SESSION['mensagem_sistema'])) {
     <div class="modal fade" id="quantidadeInvalidaModal" tabindex="-1" aria-labelledby="quantidadeInvalidaModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center">
-                <div class="modal-header">
+                <div class="modal-header border-0">
                     <h5 class="modal-title" id="quantidadeInvalidaModalLabel">Quantidade Inválida</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body">
                     Por favor, insira uma quantidade válida.
                 </div>
-                <div class="modal-footer justify-content-center">
+                <div class="modal-footer border-0 justify-content-center">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                 </div>
             </div>
