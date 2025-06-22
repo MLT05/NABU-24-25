@@ -1,17 +1,14 @@
 <?php
 require_once '../Connections/connection.php';
 
-// Redirecionar se não estiver logado
 if (!isset($_SESSION['id_user'])) {
     header("Location: login.php");
     exit();
 }
 
-
 $id_user = $_SESSION['id_user'];
 
-
-// Criar ligação
+// Buscar notificações
 $link = new_db_connection();
 $stmt = mysqli_stmt_init($link);
 
@@ -39,7 +36,6 @@ mysqli_close($link);
 ?>
 
 <main class="body_index">
-
     <div class="d-flex justify-content-between align-items-center mb-3 me-3">
         <h3 class="mb-0">Notificações</h3>
         <button id="btnLimparNotificacoes" class="border-0 bg-transparent p-0 m-0" title="Eliminar notificações lidas">
@@ -47,22 +43,21 @@ mysqli_close($link);
         </button>
     </div>
 
-    <div class="d-none">
-        <button id="btnTestNoti" class="btn btn-primary mb-4">Testar Notificação Push</button>
-        <a href="index.php" id="btnAjaxNoti" class="btn btn-success mb-3">Criar notificação via AJAX</a>
-    </div>
-
     <hr class="mb-2">
-    <ul class="list-group mt-2">
+    <div id="notificacoes-container" class="d-flex flex-column gap-2 mt-2">
         <?php foreach ($notificacoes as $noti): ?>
-            <li class="my-1 py-2 px-3 border rounded <?= (!empty($noti['lida']) && $noti['lida'] == 1) ? '' : 'list-group-item-warning' ?> verde_claro_bg">
+            <div
+                    class="notificacao p-3 border rounded verde_claro_bg <?= ($noti['lida'] == 0 ? 'bg-warning-subtle' : '') ?>"
+                    data-id="<?= $noti['id'] ?>"
+                    style="cursor: pointer"
+            >
                 <div class="d-flex justify-content-between">
                     <div class="noti-conteudo text-truncate-custom"><?= htmlspecialchars($noti['conteudo']) ?></div>
-                    <small class="text-muted text-end"><?= date('d/m/Y H:i', strtotime($noti['data'])) ?></small>
+                    <small class="text-muted"><?= date('d/m/Y H:i', strtotime($noti['data'])) ?></small>
                 </div>
-            </li>
+            </div>
         <?php endforeach; ?>
-    </ul>
+    </div>
 </main>
 <!-- Modal de Confirmação -->
 <div class="modal fade" id="confirmarEliminarModal" tabindex="-1" aria-labelledby="confirmarEliminarModalLabel" aria-hidden="true">
@@ -101,33 +96,105 @@ mysqli_close($link);
     </div>
 </div>
 
-
-
 <script>
-        document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('ul.list-group > li').forEach(item => {
+    // Função para ativar clique que expande/colapsa o conteúdo da notificação
+    // e marca a notificação como lida ao clicar
+    function ativarCliqueNasNotificacoes() {
+        document.querySelectorAll('.notificacao').forEach(item => {
             const conteudo = item.querySelector('.noti-conteudo');
             if (!conteudo) return;
 
-            item.style.cursor = 'pointer';
-
             item.addEventListener('click', () => {
                 conteudo.classList.toggle('expandido');
+
+                const idNotificacao = item.getAttribute('data-id');
+                if (!idNotificacao) return;
+
+                if (!item.classList.contains('bg-warning-subtle')) return;
+
+                fetch('../Functions/ajax_marcar_notificacoes_lidas.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id_notificacao: idNotificacao })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status === 'sucesso') {
+                            item.classList.remove('bg-warning-subtle');
+                            atualizarBadge();
+                        }
+                    })
+                    .catch(console.error);
             });
         });
-    });
+    }
 
-    // Marcar notificações como lidas ao entrar na página
-    document.addEventListener('DOMContentLoaded', () => {
-        fetch('../Functions/ajax_marcar_notificacoes_lidas.php', { method: 'POST' })
-            .then(response => response.json())
+    // Atualizar badge das notificações não lidas
+    function atualizarBadge() {
+        fetch('../Functions/ajax_contar_notificacoes.php')
+            .then(r => r.json())
             .then(data => {
                 if (data.status === 'sucesso') {
-                    atualizarBadge(); // já definida no footer
+                    const badgeFooter = document.getElementById('noti-badge-footer');
+                    const badgePerfil = document.getElementById('noti-badge-perfil');
+
+                    [badgeFooter, badgePerfil].forEach(badge => {
+                        if (badge) {
+                            badge.textContent = data.quantidade;
+                            if (data.quantidade > 0) {
+                                badge.classList.remove('d-none');
+                            } else {
+                                badge.classList.add('d-none');
+                            }
+                        }
+                    });
                 }
             })
+            .catch(e => console.error("Erro ao buscar badge:", e));
+    }
+
+    // Função para atualizar a lista via AJAX (sem marcar todas como lidas)
+    function atualizarListaNotificacoes() {
+        fetch('../Functions/ajax_buscar_notificacoes.php')
+            .then(res => res.json())
+            .then(notificacoes => {
+                const lista = document.querySelector('ul.list-group');
+                lista.innerHTML = ''; // limpa lista
+
+                if (notificacoes.length === 0) {
+                    lista.innerHTML = '<li class="list-group-item text-center text-muted">Sem notificações novas</li>';
+                    atualizarBadge();
+                    return;
+                }
+
+                notificacoes.forEach(noti => {
+                    const li = document.createElement('li');
+                    // Adiciona o data-id para identificar a notificação
+                    // Aplica a classe 'list-group-item-warning' só se a notificação não estiver lida (lida === 0)
+                    li.className = `my-1 py-2 px-3 border rounded verde_claro_bg ${noti.lida == 0 ? 'list-group-item-warning' : ''}`;
+                    li.setAttribute('data-id', noti.id_notificacao || noti.id);
+                    li.innerHTML = `
+                        <div class="d-flex justify-content-between">
+                            <span class="noti-conteudo">${noti.conteudo}</span>
+                            <small class="text-muted">${new Date(noti.data).toLocaleString('pt-PT')}</small>
+                        </div>
+                    `;
+                    lista.appendChild(li);
+                });
+
+                ativarCliqueNasNotificacoes();
+                atualizarBadge();
+            })
             .catch(console.error);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        ativarCliqueNasNotificacoes();
+        atualizarListaNotificacoes();
     });
+
+    // Atualiza a lista e o badge a cada 15 segundos
+    setInterval(atualizarListaNotificacoes, 15000);
 
     // Botão: Eliminar notificações lidas
     document.getElementById('btnLimparNotificacoes').addEventListener('click', () => {
@@ -136,7 +203,6 @@ mysqli_close($link);
 
         const confirmarBtn = document.getElementById('confirmarEliminarBtn');
 
-        // Remove event listeners anteriores para evitar múltiplas chamadas
         confirmarBtn.replaceWith(confirmarBtn.cloneNode(true));
         document.getElementById('confirmarEliminarBtn').addEventListener('click', () => {
             fetch('../Functions/ajax_eliminar_notificacoes_lidas.php', { method: 'POST' })
@@ -148,14 +214,17 @@ mysqli_close($link);
                             ? `${data.mensagem} Total eliminadas: ${data.apagadas}`
                             : `Erro: ${data.mensagem || "Erro desconhecido"}`;
                     sucessoModal.show();
+
+                    atualizarListaNotificacoes();
                 })
                 .catch(err => {
                     console.error("Erro AJAX:", err);
                     alert("Erro na comunicação com o servidor.");
                 });
 
-            // Fecha o modal de confirmação
             confirmarModal.hide();
         });
     });
 </script>
+
+
