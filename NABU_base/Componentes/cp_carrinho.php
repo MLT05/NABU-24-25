@@ -5,27 +5,27 @@ include_once ("cp_intro_carrinho.php");
 <main class="body_index">
 
     <section class="mb-4">
-    <div>
-        <h1 class="verde_escuro">A sua cestinha</h1>
-        <p class="verde">Finalize a sua compra aqui! Adicione produtos à cestinha </p>
-    </div>
-    <?php
+        <div>
+            <h1 class="verde_escuro">A sua cestinha</h1>
+            <p class="verde">Finalize a sua compra aqui! Adicione produtos à cestinha </p>
+        </div>
+        <?php
 
-    require_once '../Connections/connection.php';
-    $valor_total = 0;
-    if (!isset($_SESSION['id_user'])) {
-        // Se não estiver logado, redireciona pro login
-        header("../Paginas/login.php");
+        require_once '../Connections/connection.php';
+        $valor_total = 0;
+        if (!isset($_SESSION['id_user'])) {
+            // Se não estiver logado, redireciona pro login
+            header("../Paginas/login.php");
 
-    } else {
+        } else {
 
 
-    $id_user = $_SESSION['id_user'];
+            $id_user = $_SESSION['id_user'];
 
-    $link = new_db_connection();
-    $stmt = mysqli_stmt_init($link);
+            $link = new_db_connection();
+            $stmt = mysqli_stmt_init($link);
 
-        $query = "
+            $query = "
 SELECT 
     anuncios.id_anuncio, 
     anuncios.nome_produto,
@@ -43,112 +43,102 @@ WHERE carrinho.ref_user = ?
 
 
 
-    $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
-        $tem_produtos = false; // flag para saber se há produtos
-
-        ?>
+            $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
+            ?>
 
 
 
-        <?php
+            <?php
 
 
-        if (mysqli_stmt_prepare($stmt, $query)) {
-            mysqli_stmt_bind_param($stmt, 'i', $id_user);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $medida, $capa , $quantidade, $nome_vendedor);
+            if (mysqli_stmt_prepare($stmt, $query)) {
+                mysqli_stmt_bind_param($stmt, 'i', $id_user);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $medida, $capa , $quantidade, $nome_vendedor);
 
 
 
-            while(mysqli_stmt_fetch($stmt)) {
-                $tem_produtos = true;
-                $valor = $preco * $quantidade;
+                while(mysqli_stmt_fetch($stmt)) {
+                    $valor = $preco * $quantidade;
 
-                ?>
+                    ?>
 
-        <!-- Card 1 -->
+                    <!-- Card 1 -->
 
-        <div class="card mb-3 cards_homepage overflow-hidden" style="height: 15vh;"  id="card-<?php echo $id_anuncio; ?>">
-            <div class="row g-0 h-100">
+                    <div class="card mb-3 cards_homepage overflow-hidden" style="height: 15vh;"  id="card-<?php echo $id_anuncio; ?>">
+                        <div class="row g-0 h-100">
 
-                <div class="col-4">
-                    <div class="h-100 w-100">
-                        <img src="../uploads/capas/<?php echo htmlspecialchars($capa); ?>"
-                             alt="<?php echo htmlspecialchars($capa); ?>"
-                             class="img-fluid h-100 w-100 object-fit-cover rounded-start">
-                    </div>
-                </div>
+                            <div class="col-4">
+                                <div class="h-100 w-100">
+                                    <img src="../uploads/capas/<?php echo htmlspecialchars($capa); ?>"
+                                         alt="<?php echo htmlspecialchars($capa); ?>"
+                                         class="img-fluid h-100 w-100 object-fit-cover rounded-start">
+                                </div>
+                            </div>
 
-                <div class="col-7 d-flex align-items-stretch">
-                    <div class="card-body d-flex flex-column justify-content-between w-100 py-2">
-                        <div>
-                            <h2 class="verde_escuro fw-bold mb-1 text-truncate"><?php echo htmlspecialchars($nome_produto); ?></h2>
-                            <p class="card-text verde mb-0 text-truncate"><small><?php echo htmlspecialchars($nome_vendedor); ?></small></p>
+                            <div class="col-7 d-flex align-items-stretch">
+                                <div class="card-body d-flex flex-column justify-content-between w-100 py-2">
+                                    <div>
+                                        <h2 class="verde_escuro fw-bold mb-1 text-truncate"><?php echo htmlspecialchars($nome_produto); ?></h2>
+                                        <p class="card-text verde mb-0 text-truncate"><small><?php echo htmlspecialchars($nome_vendedor); ?></small></p>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <h3 class="verde_escuro  mb-1"><?php echo htmlspecialchars($preco); ?>€/<?php echo htmlspecialchars($medida); ?></h3>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-1 position-relative pe-2 pt-2">
+                                <!-- Ícone no topo -->
+                                <img src="../Imagens/img_cp/close_24dp_004D40_FILL0_wght400_GRAD0_opsz24.svg"
+                                     alt="Remover"
+                                     class="icone-x btn-remover"
+                                     data-id="<?php echo $id_anuncio; ?>"
+                                     style="cursor: pointer;">
+
+                                <!-- Preço fixado embaixo -->
+                                <h2 class="verde_escuro fw-bold mb-2 px-2 position-absolute bottom-0 end-0">
+                                    <?php echo htmlspecialchars($valor); ?>€
+                                </h2>
+                            </div>
+
+
+
+
                         </div>
-
-                        <div class="d-flex justify-content-between">
-                            <h3 class="verde_escuro  mb-1"><?php echo htmlspecialchars($preco); ?>€/<?php echo htmlspecialchars($medida); ?></h3>
-
-                        </div>
                     </div>
-                </div>
 
+                    <?php
 
-                <div class="col-1 position-relative pe-2 pt-2">
-                    <!-- Ícone no topo -->
-                    <img src="../Imagens/img_cp/close_24dp_004D40_FILL0_wght400_GRAD0_opsz24.svg"
-                         alt="Remover"
-                         class="icone-x btn-remover"
-                         data-id="<?php echo $id_anuncio; ?>"
-                         style="cursor: pointer;">
-
-                    <!-- Preço fixado embaixo -->
-                    <h2 class="verde_escuro fw-bold mb-2 px-2 position-absolute bottom-0 end-0">
-                        <?php echo htmlspecialchars($valor); ?>€
-                    </h2>
-                </div>
+                    $valor_total = $valor_total + $valor;
+                }
 
 
 
-
-            </div>
-        </div>
-
-        <?php
-
-                $valor_total = $valor_total + $valor;
-        }
-            // Se não houver produtos, mostrar mensagem
-            if (!$tem_produtos) {
-                echo '<div class="text-center mt-5">';
-                echo '<h2 class="verde_escuro">A sua cestinha está vazia</h2>';
-                echo "<p class='text-muted'>Explore os nossos produtos disponíveis <a href='../Paginas/pesquisa.php' class='verde_escuro'><strong>aqui</strong></a> </p>";
-                echo '</div>';
+                mysqli_stmt_close($stmt);
             }
 
 
-
-        mysqli_stmt_close($stmt);
-    }
-
-
-    mysqli_close($link);
-}
+            mysqli_close($link);
+        }
 
 
-?>
+        ?>
         <?php if ($valor_total > 0): ?>
             <div class="d-flex justify-content-end mb-3">
                 <h3 class="verde_escuro fw-bold">Total: <?php echo number_format($valor_total, 2, ',', '.'); ?>€</h3>
             </div>
 
 
-        <!-- Botão Finalizar -->
-        <div class="top-buttons">
+            <!-- Botão Finalizar -->
+            <div class="top-buttons">
                 <button type="button" class="btn botao_carrinho">
                     Finalizar Pedido
                 </button>
-        </div>
+            </div>
         <?php endif; ?>
     </section>
 
@@ -250,5 +240,3 @@ WHERE carrinho.ref_user = ?
         });
     });
 </script>
-
-
