@@ -77,21 +77,30 @@
 
     function showInPageToast(title, body) {
         const toast = document.createElement("div");
-        toast.className = "toast align-items-center text-bg-primary border-0 show";
+        toast.className = "custom-toast show mt-5";
         toast.style.position = "fixed";
-        toast.style.bottom = "1rem";
+        toast.style.top = "1rem";
         toast.style.right = "1rem";
         toast.style.zIndex = "9999";
 
         toast.innerHTML = `
-            <div class="d-flex">
-                <div class="toast-body"><strong>${title}</strong><br>${body}</div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" onclick="this.parentElement.parentElement.remove()"></button>
+        <div class="d-flex align-items-center p-3 rounded shadow verde_claro_bg">
+            <img src="../Imagens/app/NABU-LOGO.png" style="width: 24px; margin-right: 10px;">
+            <div class="toast-body">
+                <strong>${title}</strong><br>${body}
             </div>
-        `;
+            <button type="button" class="btn-close btn-close-white ms-3" onclick="this.parentElement.parentElement.remove()"></button>
+        </div>
+    `;
+
+        toast.addEventListener("click", (e) => {
+            if (!e.target.classList.contains("btn-close")) {
+                window.location.href = "../Paginas/notificacoes.php";
+            }
+        });
 
         document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 5000);
+        //setTimeout(() => toast.remove(), 6000);
     }
 
     // Pedir permissão para notificações push (se ainda não tiver)

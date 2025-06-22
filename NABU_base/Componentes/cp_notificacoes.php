@@ -1,6 +1,6 @@
 <?php
 require_once '../Connections/connection.php';
-include_once '../Functions/function_tempo.php';
+
 // Redirecionar se não estiver logado
 if (!isset($_SESSION['id_user'])) {
     header("Location: login.php");
@@ -22,13 +22,13 @@ $query = "SELECT id_notificacao, conteudo, data, lida FROM notificacoes WHERE us
 if (mysqli_stmt_prepare($stmt, $query)) {
     mysqli_stmt_bind_param($stmt, "i", $id_user);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $id, $conteudo, $data_envio, $lida);
+    mysqli_stmt_bind_result($stmt, $id, $conteudo, $data, $lida);
 
     while (mysqli_stmt_fetch($stmt)) {
         $notificacoes[] = [
             'id' => $id,
             'conteudo' => $conteudo,
-            'data' => $data_envio,
+            'data' => $data,
             'lida' => $lida
         ];
     }
@@ -104,16 +104,6 @@ mysqli_close($link);
 
 
 <script>
-    function tempoDecorrido(dataEnvio) {
-        const data = new Date(dataEnvio);
-        const agora = new Date();
-        const diff = Math.floor((agora - data) / 1000); // em segundos
-
-        if (diff < 60) return 'agora mesmo';
-        if (diff < 3600) return `${Math.floor(diff / 60)} min`;
-        if (diff < 86400) return `${Math.floor(diff / 3600)} h`;
-        return data.toLocaleDateString();
-    }
     // Marcar notificações como lidas ao entrar na página
     document.addEventListener('DOMContentLoaded', () => {
         fetch('../Functions/ajax_marcar_notificacoes_lidas.php', { method: 'POST' })
@@ -125,41 +115,6 @@ mysqli_close($link);
             })
             .catch(console.error);
     });
-    function atualizarListaNotificacoes() {
-        fetch('../Functions/ajax_buscar_notificacoes.php')
-            .then(res => res.json())
-            .then(notificacoes => {
-                const lista = document.querySelector('ul.list-group');
-                lista.innerHTML = ''; // limpa lista
-
-                // Se quiser mostrar todas, inclusive lidas, teria que alterar o AJAX para buscar todas as notificações.
-                // Aqui mostra só as não lidas, como o ajax_buscar_notificacoes.php faz
-
-                if (notificacoes.length === 0) {
-                    lista.innerHTML = '<li class="list-group-item text-center text-muted">Sem notificações novas</li>';
-                    return;
-                }
-
-                notificacoes.forEach(noti => {
-                    const li = document.createElement('li');
-                    li.className = 'my-1 py-2 px-3 border rounded list-group-item-warning verde_claro_bg';
-                    li.innerHTML = `
-                    <div class="d-flex justify-content-between">
-                        <span>${noti.conteudo}</span>
-                        <small class="text-muted">${new Date(noti.data).toLocaleString('pt-PT')}</small>
-                    </div>
-                `;
-                    lista.appendChild(li);
-                });
-            })
-            .catch(console.error);
-    }
-
-    // Atualiza a lista a cada 15 segundos (ou outro intervalo desejado)
-    setInterval(atualizarListaNotificacoes, 15000);
-
-    // Também executa quando carrega a página para mostrar já as notificações atuais
-    document.addEventListener('DOMContentLoaded', atualizarListaNotificacoes);
 
     // Botão: Eliminar notificações lidas
     document.getElementById('btnLimparNotificacoes').addEventListener('click', () => {
