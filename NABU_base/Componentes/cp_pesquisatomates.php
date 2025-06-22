@@ -37,7 +37,7 @@ if (isset($_POST['pesquisa'])) {
                                     </div>
 
                                     <div class="imagem_card_pesquisa">
-                                        <img src="../Imagens/produtos/<?php echo htmlspecialchars($capa); ?>" class="card-img-top rounded-4 img_hp_card" alt="<?= htmlspecialchars($nome) ?>">
+                                        <img src="../uploads/capas/<?php echo htmlspecialchars($capa); ?>" class="card-img-top rounded-4 img_hp_card" alt="<?= htmlspecialchars($nome_produto) ?>">
                                     </div>
 
                                     <div class="card-body m-2 pt-2 px-2 pb-0">
@@ -47,8 +47,8 @@ if (isset($_POST['pesquisa'])) {
                                     <hr class="linha-card verde_escuro">
 
                                     <div class="card-body m-2 pt-0 pb-2 px-2">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <small class="verde_escuro fw-bolder fs-5"><i class="bi bi-star-fill"></i> - </small>
+                                        <div class=" text-end align-items-center">
+
                                             <small class="fw-bolder verde_escuro fs-5"><?= number_format($preco, 2) ?> €</small>
                                         </div>
                                     </div>
