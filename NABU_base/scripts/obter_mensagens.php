@@ -2,7 +2,7 @@
 session_start();
 require_once '../Connections/connection.php';
 $conn = new_db_connection();
-$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 1;
+$user_id = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : 1;
 $ref_produto = (int) (isset($_GET['ref_produto']) ? $_GET['ref_produto'] : 0);
 $outro_usuario = (int) (isset($_GET['outro_usuario']) ? $_GET['outro_usuario'] : 0);
 

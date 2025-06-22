@@ -6,7 +6,7 @@ require_once '../Connections/connection.php';
 header('Content-Type: application/json');
 
 if (!isset($_SESSION['id_user'])) {
-    http_response_code(401);
+
     echo json_encode(['status' => 'erro', 'mensagem' => 'Utilizador não autenticado']);
     exit();
 }

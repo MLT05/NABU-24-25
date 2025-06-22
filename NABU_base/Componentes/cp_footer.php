@@ -1,6 +1,3 @@
-
-
-
 <footer class="footer-menu fixed-bottom verde_bg ">
     <div class="d-flex w-100 h-100">
         <a class="menu-item flex-fill text-center text-white text-decoration-none" href="../Paginas/index.php">
@@ -21,73 +18,63 @@
         </a>
         <a class="menu-item flex-fill text-center text-white text-decoration-none position-relative" href="../Paginas/perfil.php">
             <div class="position-relative">
-            <?php
+                <?php
 
 
-            if (isset($_SESSION['id_user'])) {
-                require_once '../Connections/connection.php';
-                $link = new_db_connection();
-                $stmt = mysqli_stmt_init($link);
-                $query = "SELECT pfp FROM users WHERE id_user = ?";
-                if (mysqli_stmt_prepare($stmt, $query)) {
-                    mysqli_stmt_bind_param($stmt, "i", $_SESSION['id_user']);
-                    mysqli_stmt_execute($stmt);
-                    mysqli_stmt_bind_result($stmt, $pfp_db);
-                    mysqli_stmt_fetch($stmt);
-                    mysqli_stmt_close($stmt);
-                    mysqli_close($link);
+                if (isset($_SESSION['id_user'])) {
+                    require_once '../Connections/connection.php';
+                    $link = new_db_connection();
+                    $stmt = mysqli_stmt_init($link);
+                    $query = "SELECT pfp FROM users WHERE id_user = ?";
+                    if (mysqli_stmt_prepare($stmt, $query)) {
+                        mysqli_stmt_bind_param($stmt, "i", $_SESSION['id_user']);
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_bind_result($stmt, $pfp_db);
+                        mysqli_stmt_fetch($stmt);
+                        mysqli_stmt_close($stmt);
+                        mysqli_close($link);
 
-                    if (!empty($pfp_db)) {
-                        $pfp_path = '../uploads/pfp/' . $pfp_db;
-                        echo '<img src="' . htmlspecialchars($pfp_path) . '" alt="Perfil" class="menu-icon rounded-circle" style=" object-fit:cover;">';
+                        if (!empty($pfp_db)) {
+                            $pfp_path = '../uploads/pfp/' . $pfp_db;
+                            echo '<img src="' . htmlspecialchars($pfp_path) . '" alt="Perfil" class="menu-icon rounded-circle" style=" object-fit:cover;">';
+                        } else {
+                            // Se não tem foto, mostrar o icon padrão
+                            echo '<img src="../Imagens/icons/person_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Perfil" class="menu-icon">';
+                        }
+                        ?>  <span id="noti-badge-footer" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    0
+                </span> <?php
                     } else {
-                        // Se não tem foto, mostrar o icon padrão
+                        mysqli_close($link);
+                        // Em caso de erro, mostrar icon padrão
                         echo '<img src="../Imagens/icons/person_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Perfil" class="menu-icon">';
                     }
                 } else {
-                    mysqli_close($link);
-                    // Em caso de erro, mostrar icon padrão
+                    // Se não está logado, mostrar icon padrão
                     echo '<img src="../Imagens/icons/person_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Perfil" class="menu-icon">';
+
                 }
-            } else {
-                // Se não está logado, mostrar icon padrão
-                echo '<img src="../Imagens/icons/person_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="Perfil" class="menu-icon">';
-            }
-            ?>
-                <span id="noti-badge-footer" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    0
-                </span>
+                ?>
+
             </div>
             <p class="menu-label">Perfil</p>
         </a>
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Mostrar notificação desktop + toast na página
-    function showNotification(title, body, mostrarToast = true) {
-        console.log('showNotification chamada:', title);
+    function showNotification(title, body) {
         if ("Notification" in window && Notification.permission === "granted" && document.visibilityState !== 'visible') {
-            console.log('Mostrando notificação desktop.');
             new Notification(title, {
-                body: body,
-                badge: "../Imagens/app/NABU-LOGO.png",
-                vibrate: [200, 100, 200],
-                tag: "notificacao-1",
-                renotify: true,
-                timestamp: Date.now()
+                body,
+                icon: "../Imagens/icons/notifications_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
             });
-        } else {
-            console.log('Permissão para notificações desktop não concedida ou página visível.');
         }
-        if (mostrarToast) {
-            showInPageToast(title, body);
-        }
+        showInPageToast(title, body);
     }
 
     function showInPageToast(title, body) {
-        console.log('showInPageToast chamada:', title);
         const toast = document.createElement("div");
         toast.className = "custom-toast show mt-5";
         toast.style.position = "fixed";
@@ -115,140 +102,39 @@
         setTimeout(() => toast.remove(), 6000);
     }
 
+    // Pedir permissão para notificações push (se ainda não tiver)
     if ("Notification" in window && Notification.permission !== "granted") {
-        Notification.requestPermission().then(() => {
-            console.log('Permissão para notificações solicitada');
-        });
+        Notification.requestPermission();
     }
 
-    let mensagensNotificadas = new Set(
-        JSON.parse(sessionStorage.getItem('mensagensNotificadas') || '[]')
-    );
-
-    // Função para criar a notificação na BD via ajax_adicionar_notificacao.php
-    function criarNotificacaoBD(mensagem) {
-        console.log('Criando notificação na BD com mensagem:', mensagem);
-        return fetch('../Functions/ajax_adicionar_notificacao.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({ mensagem })
-        })
-            .then(r => {
-                console.log('Resposta recebida do servidor para criação da notificação:', r.status);
-                return r.json();
-            })
-            .then(res => {
-                console.log('Resposta JSON da criação da notificação:', res);
-                if (res.status === 'sucesso') {
-                    console.log('Notificação criada na BD com sucesso.');
-                    return true;
-                } else {
-                    console.error('Erro ao criar notificação na BD:', res.mensagem);
-                    return false;
-                }
-            })
-            .catch(e => {
-                console.error('Erro fetch notificação:', e);
-                return false;
-            });
-    }
-
-    async function buscarMensagensNaoLidas() {
-        console.log('Buscando mensagens não lidas...');
-        try {
-            const response = await fetch('../scripts/verificar_mensagens_nao_lidas.php');
-            console.log('Resposta do fetch mensagens:', response.status);
-            const mensagens = await response.json();
-
-            if (!Array.isArray(mensagens)) {
-                console.warn('Resposta inesperada para mensagens:', mensagens);
-                return 0;
-            }
-
-            let novasMensagens = 0;
-
-            for (const msg of mensagens) {
-                console.log('Mensagem atual:', msg);
-                if (!mensagensNotificadas.has(msg.id_mensagem)) {
-                    console.log('Nova mensagem não lida detectada:', msg);
-
-                    // Texto da notificação conforme solicitado
-                    const textoNotificacao = "Recebeste uma mensagem!";
-                    const corpoNotificacao = "De " + msg.remetente_nome + ", produto: " + msg.nome_produto;
-
-                    // Cria a notificação na BD para o user
-                    console.log('Tentando criar notificação na BD com texto:', textoNotificacao);
-                    const criada = await criarNotificacaoBD(textoNotificacao);
-
-                    if (criada) {
-                        console.log('Mostrando notificação para o utilizador.');
-                        // Mostrar toast e notificação desktop com texto customizado
-                        showNotification(textoNotificacao, corpoNotificacao);
-                        mensagensNotificadas.add(msg.id_mensagem);
-                        novasMensagens++;
-                    } else {
-                        console.warn('Notificação na BD não foi criada, não mostraremos o alerta.');
-                    }
-                } else {
-                    console.log('Mensagem já notificada:', msg.id_mensagem);
-                }
-            }
-
-            sessionStorage.setItem('mensagensNotificadas', JSON.stringify(Array.from(mensagensNotificadas)));
-
-            console.log('Total de novas mensagens notificadas:', novasMensagens);
-            return novasMensagens;
-        } catch (e) {
-            console.error('Erro ao buscar mensagens não lidas:', e);
-            return 0;
-        }
-    }
-
+    // Buscar notificações novas e mostrar (via AJAX, sem marcar como lidas)
     function buscarNotificacoes() {
-        console.log('Buscando notificações...');
-        return fetch('../Functions/ajax_buscar_notificacoes.php')
-            .then(r => {
-                console.log('Resposta do fetch notificações:', r.status);
-                return r.json();
-            })
+        fetch('../Functions/ajax_buscar_notificacoes.php')
+            .then(r => r.json())
             .then(notificacoes => {
                 let mostradas = sessionStorage.getItem('notificacoesMostradas');
                 mostradas = mostradas ? JSON.parse(mostradas) : [];
 
+                let novas = 0;
+
                 notificacoes.forEach(n => {
                     if (!mostradas.includes(n.id_notificacao)) {
-                        console.log('Nova notificação detectada:', n);
-                        // Mostra só notificação desktop (sem toast) para notificações gerais
-                        if ("Notification" in window && Notification.permission === "granted" && document.visibilityState !== 'visible') {
-                            new Notification("Nova Notificação", {
-                                body: n.conteudo,
-                                badge: "../Imagens/app/NABU-LOGO.png",
-                                vibrate: [200, 100, 200],
-                                tag: `notificacao-${n.id_notificacao}`,
-                                renotify: true,
-                                timestamp: Date.now()
-                            });
-                        } else {
-                            console.log('Permissão para notificações desktop não concedida ou página visível.');
-                        }
+                        showNotification("Nova Notificação", n.conteudo);
                         mostradas.push(n.id_notificacao);
-                    } else {
-                        console.log('Notificação já mostrada:', n.id_notificacao);
+                        novas++;
                     }
                 });
 
                 sessionStorage.setItem('notificacoesMostradas', JSON.stringify(mostradas));
 
-                return buscarMensagensNaoLidas();
-            })
-            .then(() => {
+                // Atualizar badge com o total no servidor, mesmo que novas = 0
                 atualizarBadgeServidor();
             })
-            .catch(e => {
-                console.error('Erro ao buscar notificações:', e);
-            });
+            .catch(console.error);
     }
 
+
+    // Atualizar o badge das notificações não lidas
     function atualizarBadge() {
         fetch('../Functions/ajax_contar_notificacoes.php')
             .then(r => r.json())
@@ -271,19 +157,16 @@
             })
             .catch(e => console.error("Erro ao buscar badge:", e));
     }
-
     function atualizarBadgeServidor() {
         fetch('../Functions/ajax_contar_notificacoes.php')
             .then(r => r.json())
             .then(data => {
                 if (data.status === 'sucesso') {
                     atualizarBadgesValor(data.quantidade);
-                    console.log('Badge atualizado com quantidade:', data.quantidade);
                 }
             })
             .catch(e => console.error("Erro ao contar notificações:", e));
     }
-
     function atualizarBadgesValor(quantidade) {
         const badgeFooter = document.getElementById('noti-badge-footer');
         const badgePerfil = document.getElementById('noti-badge-perfil');
@@ -300,22 +183,14 @@
         });
     }
 
+
+
+    // Executar buscar notificações e atualizar badge imediatamente e depois a cada 15s
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('Documento carregado. Iniciando busca de notificações e mensagens.');
-        buscarNotificacoes();
-        setInterval(() => {
-            console.log('Intervalo de 5 segundos: buscando notificações e mensagens...');
-            buscarNotificacoes();
-        }, 5000); // 5 segundos
+        buscarNotificacoes(); // mostra novas e atualiza badge com todas
+        setInterval(buscarNotificacoes, 15000); // repetir de 15 em 15 seg.
     });
 </script>
-
-
-
-
-
-
-
 
 
 </body>
