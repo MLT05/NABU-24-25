@@ -19,7 +19,7 @@ $pagina_atual = basename($_SERVER['PHP_SELF']);
 
         <!-- Título NABU -->
         <div class="col text-center">
-            <a href="../Paginas/index.php" class="text-decoration-none text-white">
+            <a href="../Paginas/index.php" class="text-decoration-none text-center text-white">
                 <img src="../Imagens/app/NABU-LOGO.png" style="height: 5vh">
             </a>
         </div>
