@@ -112,7 +112,7 @@ if (!isset($_GET['id_user'])) {
         <div class="row">
             <?php foreach (array_slice($feedbacks, 0, 5) as $feedback): ?>
                 <div class="col-md-6 mb-3">
-                    <div class="card shadow-sm">
+                    <div class="card verde_claro_bg shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">Avaliação: <?= htmlspecialchars($feedback['classificacao']) ?>/10</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Por: <?= htmlspecialchars($feedback['avaliador']) ?> em <?= date("d/m/Y", strtotime($feedback['data'])) ?></h6>
