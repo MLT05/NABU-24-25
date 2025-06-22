@@ -77,7 +77,7 @@ if (!isset($_SESSION['id_user'])) {
                 <!-- Preço -->
                 <div class="mb-3">
                     <label for="preco" class="form-label fw-semibold verde_escuro">Preço*</label>
-                    <input type="number" step="0.01" min="0" class="form-control bg-success bg-opacity-25" id="preco" name="preco" required>
+                    <input type="number" step="0.01" min="0" class="form-control bg-success bg-opacity-25" id="preco" name="preco" max="999.99" required>
                 </div>
 
                 <!-- Medida -->
@@ -165,16 +165,7 @@ if (!isset($_SESSION['id_user'])) {
         </form>
     </main>
 
-    <script>
-        const previewImage = (event) => {
-            const files = event.target.files;
-            if (files.length > 0) {
-                const imageUrl = URL.createObjectURL(files[0]);
-                const imageElement = document.getElementById("preview-selected-image");
-                imageElement.src = imageUrl;
-            }
-        };
-    </script>
+
 
     <?php
 }

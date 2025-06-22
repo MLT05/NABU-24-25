@@ -147,7 +147,7 @@ if (isset($_SESSION['mensagem_sistema'])) {
             <div>
                 <div>
                     <h3 class="verde_escuro fw-bold my-3 fs-4">Quantidade desejada</h3>
-                    <input type="number" id="quantidade" name="quantidade" class="input-quantidade rounded-3 p-3" placeholder="Ex: 1 kilo, 1 unidade..." min="<?= htmlspecialchars($min_medida) ?>" required />
+                    <input type="number" id="quantidade" name="quantidade" class="input-quantidade rounded-3 p-3" placeholder="Ex: 1 kilo, 1 unidade..." min="<?= htmlspecialchars($min_medida) ?> " max="99.99" required />
                 </div>
 
                 <h3 class="verde_escuro fw-bold my-3 fs-4">Localização</h3>
@@ -167,7 +167,7 @@ if (isset($_SESSION['mensagem_sistema'])) {
                     </a>
                 </div>
                 <div class="d-flex">
-                    <button class="comprar p-3 fs-6 rounded " onclick="window.location.href='../Paginas/carrinho.php'">Comprar</button>
+                    <button class="comprar p-3 fs-6 rounded" ">Comprar</button>
                 </div>
             </div>
         <?php else: ?>
@@ -275,29 +275,40 @@ if (isset($_SESSION['mensagem_sistema'])) {
 
 <script>
     document.querySelector(".comprar")?.addEventListener("click", function () {
-        fetch("../scripts/sc_add_encomenda.php", {
-            method: "POST"
-        })
-            .then(async res => {
-                const data = await res.json();
-                if (res.ok && data.success) {
-                    // Só entra aqui se o servidor respondeu com 200 e sucesso
-                    const modal = new bootstrap.Modal(document.getElementById('pedidoModal'));
-                    modal.show();
+        const quantidadeInput = document.getElementById("quantidade");
+        const quantidade = parseFloat(quantidadeInput.value);
+        const id_anuncio = <?= $id_anuncio ?>;
 
-                    // Limpar interface
-                    document.querySelectorAll(".cards_homepage").forEach(card => card.remove());
-                    document.querySelector(".d-flex.justify-content-end")?.remove();
-                    document.querySelector(".top-buttons")?.remove();
+        // Verifica se a quantidade é um número válido maior que 0
+        if (isNaN(quantidade) || quantidade <= 0) {
+            const modalInvalido = new bootstrap.Modal(document.getElementById('quantidadeInvalidaModal'));
+            modalInvalido.show();
+            return;
+        }
+
+        // Envia os dados via POST
+        fetch("../scripts/sc_comprar_produto.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `id_anuncio=${encodeURIComponent(id_anuncio)}&quantidade=${encodeURIComponent(quantidade)}`
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const modalPedido = new bootstrap.Modal(document.getElementById('pedidoModal'));
+                    modalPedido.show();
                 } else {
                     alert("Erro: " + (data.mensagem || "Erro desconhecido."));
                 }
             })
-            .catch(err => {
-                alert("Erro de rede ao finalizar o pedido.");
-                console.error(err);
+            .catch(error => {
+                console.error("Erro na requisição:", error);
+                alert("Erro na requisição.");
             });
     });
+
 
 
     window.addEventListener('DOMContentLoaded', () => {
