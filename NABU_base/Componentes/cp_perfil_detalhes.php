@@ -17,7 +17,7 @@ if (!isset($_SESSION['id_user'])) {
     $query = "SELECT nome, pfp , login, email, contacto FROM users WHERE id_user = ?";
 
 
-    $capa = "defaultpfp.png"; // imagem padrão caso não tenha capa
+    $capa = "default3.png"; // imagem padrão caso não tenha capa
 
     if (mysqli_stmt_prepare($stmt, $query)) {
         mysqli_stmt_bind_param($stmt, 'i', $id_user);

@@ -247,7 +247,7 @@
                         </div>
                         <?php
                     } if (!$tem_favoritos) {
-                        echo '<p class="text-center verde_escuro fs-4">Ainda não tem favoritos adicionados.</p>';
+                        echo '<p class="text-muted verde_escuro ">Ainda não tem favoritos adicionados.</p>';
                     }
                     mysqli_stmt_close($stmt);
                 }
