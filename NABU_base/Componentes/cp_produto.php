@@ -173,11 +173,12 @@ if (isset($_SESSION['mensagem_sistema'])) {
         <?php else: ?>
             <h3 class="verde_escuro fw-bold my-3 fs-4">Localização</h3>
             <div class="d-flex">
-                <button class="nome_localizacao rounded fs-5 p-3 verde_escuro">
-                    <img src="../Imagens/localizacao_simbolo.svg" alt="Localização" class="icone-localizacao" />
+                <a href="../Paginas/mapa.php?id=<?= $id_anuncio ?>" class="nome_localizacao rounded fs-5 p-3 verde_escuro d-inline-flex align-items-center text-decoration-none">
+                    <img src="../Imagens/localizacao_simbolo.svg" alt="Localização" class="icone-localizacao me-2" />
                     <?= htmlspecialchars($localizacao) ?>
-                </button>
+                </a>
             </div>
+
             <div class="d-flex gap-2 mt-3">
                 <form method="POST" action="../Paginas/editar_produto.php" class="w-100">
                     <input type="hidden" name="id" value="<?= htmlspecialchars($id_anuncio) ?>">
