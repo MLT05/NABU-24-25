@@ -57,8 +57,8 @@ mysqli_close($link);
         <?php foreach ($notificacoes as $noti): ?>
             <li class="my-1 py-2 px-3 border rounded <?= (!empty($noti['lida']) && $noti['lida'] == 1) ? '' : 'list-group-item-warning' ?> verde_claro_bg">
                 <div class="d-flex justify-content-between">
-                    <span><?= htmlspecialchars($noti['conteudo']) ?></span>
-                    <small class="text-muted"><?= date('d/m/Y H:i', strtotime($noti['data'])) ?></small>
+                    <div class="noti-conteudo text-truncate-custom"><?= htmlspecialchars($noti['conteudo']) ?></div>
+                    <small class="text-muted text-end"><?= date('d/m/Y H:i', strtotime($noti['data'])) ?></small>
                 </div>
             </li>
         <?php endforeach; ?>
@@ -104,6 +104,19 @@ mysqli_close($link);
 
 
 <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('ul.list-group > li').forEach(item => {
+            const conteudo = item.querySelector('.noti-conteudo');
+            if (!conteudo) return;
+
+            item.style.cursor = 'pointer';
+
+            item.addEventListener('click', () => {
+                conteudo.classList.toggle('expandido');
+            });
+        });
+    });
+
     // Marcar notificações como lidas ao entrar na página
     document.addEventListener('DOMContentLoaded', () => {
         fetch('../Functions/ajax_marcar_notificacoes_lidas.php', { method: 'POST' })

@@ -84,14 +84,14 @@
         toast.style.zIndex = "9999";
 
         toast.innerHTML = `
-        <div class="d-flex align-items-center p-3 rounded shadow verde_claro_bg">
+          <div class="d-flex align-items-center p-3 rounded shadow verde_claro_bg" style="max-width: 90vw;">
             <img src="../Imagens/app/NABU-LOGO.png" style="width: 24px; margin-right: 10px;">
-            <div class="toast-body">
-                <strong>${title}</strong><br>${body}
+            <div class="toast-body" style="word-break: break-word; overflow-wrap: break-word; white-space: normal; max-width: 100%;">
+              <strong>${title}</strong><br>${body}
             </div>
             <button type="button" class="btn-close btn-close-white ms-3" onclick="this.parentElement.parentElement.remove()"></button>
-        </div>
-    `;
+          </div>
+        `;
 
         toast.addEventListener("click", (e) => {
             if (!e.target.classList.contains("btn-close")) {
@@ -100,7 +100,7 @@
         });
 
         document.body.appendChild(toast);
-        //setTimeout(() => toast.remove(), 6000);
+        setTimeout(() => toast.remove(), 6000);
     }
 
     // Pedir permissão para notificações push (se ainda não tiver)
