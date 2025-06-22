@@ -129,7 +129,7 @@ WHERE carrinho.ref_user = ?
 ?>
         <?php if ($valor_total > 0): ?>
             <div class="d-flex justify-content-end mb-3">
-                <h3 class="verde_escuro fw-bold">Total: <?php echo number_format($valor_total, 2, ',', '.'); ?>€</h3>
+                <h3 class="verde_escuro fw-bold">Total: <span id="valor-total"><?php echo number_format($valor_total, 2, ',', '.'); ?>€</span></h3>
             </div>
 
 

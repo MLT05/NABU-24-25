@@ -67,9 +67,10 @@ foreach ($itens_carrinho as $item) {
             $item['id_anuncio'],
             $item['quantidade'],
             $preco_total,
-            $ref_medida,
+            $item['ref_medida'],
             $ref_estado
         );
+
 
         if (mysqli_stmt_execute($insert_stmt)) {
             $encomendas_criadas++;
