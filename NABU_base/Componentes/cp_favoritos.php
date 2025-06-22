@@ -81,10 +81,8 @@ mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $capa, $nome_
 
                             <!-- Rodapé com avaliação e preço -->
                             <div class="card-body m-2 pt-0 pb-2 px-2">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <small class="verde_escuro fw-bolder fs-5">
-                                        <i class="bi bi-star-fill"></i> 4,9
-                                    </small>
+                                <div class=" align-items-center text-end">
+
                                     <small class="fw-bolder verde_escuro fs-5">
                                         <?= number_format($preco, 2, ',', ' ') ?> €
                                     </small>

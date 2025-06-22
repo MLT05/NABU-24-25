@@ -75,10 +75,8 @@ $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : 0;
 
                             <!-- Rodapé -->
                             <div class="card-body m-2 pt-0 pb-2 px-2">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <small class="verde_escuro fw-bolder fs-5">
-                                        <i class="bi bi-star-fill"></i>
-                                    </small>
+                                <div class=" text-end align-items-center">
+
                                     <small class="fw-bolder verde_escuro fs-5">
                                         <?= number_format($preco, 2) ?> € / <?= htmlspecialchars($medida) ?>
                                     </small>
