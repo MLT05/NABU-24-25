@@ -44,7 +44,9 @@ WHERE carrinho.ref_user = ?
 
 
     $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
-    ?>
+        $tem_produtos = false; // flag para saber se há produtos
+
+        ?>
 
 
 
@@ -59,6 +61,7 @@ WHERE carrinho.ref_user = ?
 
 
             while(mysqli_stmt_fetch($stmt)) {
+                $tem_produtos = true;
                 $valor = $preco * $quantidade;
 
                 ?>
@@ -115,6 +118,13 @@ WHERE carrinho.ref_user = ?
 
                 $valor_total = $valor_total + $valor;
         }
+            // Se não houver produtos, mostrar mensagem
+            if (!$tem_produtos) {
+                echo '<div class="text-center mt-5">';
+                echo '<h2 class="verde_escuro">A sua cestinha está vazia</h2>';
+                echo "<p class='text-muted'>Explore os nossos produtos disponíveis <a href='../Paginas/pesquisa.php' class='verde_escuro'><strong>aqui</strong></a> </p>";
+                echo '</div>';
+            }
 
 
 
