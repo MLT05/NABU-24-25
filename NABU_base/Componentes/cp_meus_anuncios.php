@@ -70,7 +70,9 @@ if (!isset($_SESSION['id_user'])) {
 $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
 ?>
     <section class="mb-5">
-        <h1 class="verde_escuro">Meus anúncios:</h1>
+        <h1 class="verde_escuro mb-0">Os meus anúncios:</h1>
+        <p class="verde_claro">Consulte, edite ou remova os seus anúncios ativos</p>
+
         <div class="row g-3">
 
 <?php

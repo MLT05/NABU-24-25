@@ -4,7 +4,7 @@ require_once '../Connections/connection.php';
 if (!isset($_SESSION['id_user'])) {
     // Se não estiver logado, usar dados padrão
     $nome = "Convidado";
-    $capa = "defaultpfp.png";
+    $capa = "default3.png";
     $noti_nao_lidas = 0; // Garantir variável definida para o badge
 } else {
     $id_user = $_SESSION['id_user'];
@@ -13,7 +13,8 @@ if (!isset($_SESSION['id_user'])) {
 
     $query = "SELECT nome, pfp FROM users WHERE id_user = ?";
 
-    $capa = "defaultpfp.png"; // imagem padrão caso não tenha capa
+    $capa = "default3.png"; // imagem padrão caso não tenha capa
+
 
     if (mysqli_stmt_prepare($stmt, $query)) {
         mysqli_stmt_bind_param($stmt, 'i', $id_user);
@@ -60,7 +61,7 @@ if (!isset($_SESSION['id_user'])) {
 
                 <a href="../Paginas/encomendas.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">
                     <img src="../Imagens/icons/orders_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
-                    Meus pedidos
+                    Os meus pedidos
                 </a>
 
                 <a href="../Paginas/encomendas_recebidas.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center verde_claro_bg">

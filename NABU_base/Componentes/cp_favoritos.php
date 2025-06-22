@@ -29,7 +29,9 @@ mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $capa, $nome_
 
     <section class="sec-favoritos">
         <div class="px-lg-5">
-            <h1 class="mb-4 text-center verde_escuro">Meus Favoritos</h1>
+            <h3 class="fw-bold verde_escuro mb-0 ">Os meus favoritos</h3>
+            <p class="verde_claro">Conteúdos que mais lhe interessam</p>
+
             <div class="row g-3">
                 <?php
                 $tem_favoritos = false;
@@ -41,41 +43,57 @@ mysqli_stmt_bind_result($stmt, $id_anuncio, $nome_produto, $preco, $capa, $nome_
                     <div class="col-6 col-md-4 col-lg-3">
                         <div class="card rounded-4 shadow-sm border-0 position-relative card_pesquisa">
 
+                            <!-- Ícone de favorito -->
                             <div class="position-absolute top-0 end-0 m-2 d-flex justify-content-center align-items-center rounded-circle shadow favorite-circle">
-                            <span
-                                    class="<?= $icon_class ?> verde_escuro btn-favorito mt-0 fs-4"
-                                    data-id="<?= htmlspecialchars($id_anuncio) ?>"
-                                    role="button"
-                                    style="cursor:pointer;"
-                                    aria-label="Favoritar produto"
-                            >
-                                favorite
-                            </span>
+            <span
+                    class="<?= $icon_class ?> verde_escuro btn-favorito mt-0 fs-4"
+                    data-id="<?= htmlspecialchars($id_anuncio) ?>"
+                    role="button"
+                    style="cursor:pointer;"
+                    aria-label="Favoritar produto"
+            >
+                favorite
+            </span>
                             </div>
 
+                            <!-- Link do produto -->
                             <a href="../paginas/produto.php?id=<?= htmlspecialchars($id_anuncio) ?>" style="text-decoration: none">
+
+                                <!-- Imagem -->
                                 <div class="imagem_card_pesquisa">
-                                    <img src="../uploads/capas/<?= htmlspecialchars($capa) ?>" alt="<?= htmlspecialchars($nome_produto) ?>" class="img-fluid w-100" />
+                                    <img
+                                            src="../uploads/capas/<?= htmlspecialchars($capa) ?>"
+                                            alt="<?= htmlspecialchars($nome_produto) ?>"
+                                            class="card-img-top rounded-4 img_hp_card"
+                                    >
                                 </div>
+
+                                <!-- Título e categoria -->
                                 <div class="card-body m-2 pt-2 px-2 pb-0">
-                                    <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3">
+                                    <h6 class="card-title mb-1 fw-semibold verde_escuro align-middle fs-3 text-truncate">
                                         <?= htmlspecialchars($nome_produto) ?>
                                     </h6>
                                     <small class="text-muted"><?= htmlspecialchars($nome_categoria) ?></small>
                                 </div>
-                                <hr class="linha-card verde_escuro">
-                                <div class="card-body m-2 pt-0 pb-2 px-2">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <small class="verde_escuro fw-bolder fs-5">
-                                            <i class="bi bi-star-fill"></i> 4,9
-                                        </small>
-                                        <small class="fw-bolder verde_escuro fs-5"><?= number_format($preco, 2, ',', ' ') ?> €</small>
-                                    </div>
-                                </div>
                             </a>
+
+                            <hr class="linha-card verde_escuro">
+
+                            <!-- Rodapé com avaliação e preço -->
+                            <div class="card-body m-2 pt-0 pb-2 px-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="verde_escuro fw-bolder fs-5">
+                                        <i class="bi bi-star-fill"></i> 4,9
+                                    </small>
+                                    <small class="fw-bolder verde_escuro fs-5">
+                                        <?= number_format($preco, 2, ',', ' ') ?> €
+                                    </small>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
+
                     <?php
                 }
                 if (!$tem_favoritos) {

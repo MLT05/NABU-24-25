@@ -43,11 +43,11 @@
                                 <img src="../uploads/capas/${anuncio.capa}" alt="${anuncio.nome_produto}" style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
                             <div style="padding: 10px;">
-                                <h3 style="margin: 0 0 4px 0; font-size: 16px; color: #14532d; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                                <h3 style="margin: 0 0 4px 0; font-size: 16px; color: #004d40; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
                                     ${anuncio.nome_produto}
                                 </h3>
                                 <p style="margin: 0 0 6px 0; font-size: 14px;">📍 ${anuncio.localizacao}</p>
-                                <p style="margin: 0 0 6px 0; font-weight: bold; color: #198754; font-size: 15px;">
+                                <p style="margin: 0 0 6px 0; font-weight: bold; color: #004d40; font-size: 15px;">
                                     ${anuncio.preco} € / ${anuncio.ref_medida}
                                 </p>
                                 <div style="text-align: right;">

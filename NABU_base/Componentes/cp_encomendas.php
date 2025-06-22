@@ -2,8 +2,8 @@
 
 
     <div class="container my-4">
-        <h3 class="fw-bold verde_escuro">Os meus pedidos</h3>
-        <p class="text-muted">Acompanhe o estado dos seus pedidos</p>
+        <h3 class="fw-bold verde_escuro mb-0">Os meus pedidos</h3>
+        <p class="verde_claro">Acompanhe o estado dos seus pedidos</p>
         <?php
 
         require_once '../Connections/connection.php';
