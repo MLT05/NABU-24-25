@@ -26,7 +26,7 @@
         rel="stylesheet">
 
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../CSS/meus_estilos.css?v=1.9" rel="stylesheet" />
+    <link href="../CSS/meus_estilos.css?v=2.0" rel="stylesheet" />
 
     <!-- Favicon -->
     <link rel="icon" href="../LOGO_ICO/favicon-32x32.png" type="image/x-icon">

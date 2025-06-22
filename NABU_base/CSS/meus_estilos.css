@@ -1,3 +1,18 @@
+@keyframes slideFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.custom-toast {
+  animation: slideFadeIn 0.5s ease forwards;
+}
+
 .d-flex.justify-content-start,
 .d-flex.justify-content-end {
   align-items: flex-end;

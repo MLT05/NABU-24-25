@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../Connections/connection.php';
-
+include_once '../Functions/function_tempo.php';
 if (!isset($_SESSION['id_user'])) {
     echo json_encode([]);
     exit;
