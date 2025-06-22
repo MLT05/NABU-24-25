@@ -1,6 +1,6 @@
 <?php
 require_once '../Connections/connection.php';
-
+session_start();
 
 header('Content-Type: application/json');
 
