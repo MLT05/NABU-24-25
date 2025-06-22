@@ -11,7 +11,8 @@ if (!isset($_SESSION['id_user'])) {
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
 
-    $query = "SELECT nome, pfp FROM users WHERE id_user = ?";
+    $query = "SELECT nome, pfp, ref_role FROM users WHERE id_user = ?";
+
 
     $capa = "default3.png"; // imagem padrão caso não tenha capa
 
@@ -19,8 +20,10 @@ if (!isset($_SESSION['id_user'])) {
     if (mysqli_stmt_prepare($stmt, $query)) {
         mysqli_stmt_bind_param($stmt, 'i', $id_user);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $nome_db, $capa_db);
+        mysqli_stmt_bind_result($stmt, $nome_db, $capa_db, $ref_role);
 
+
+        $role_admin = 0; // padrão
         if (mysqli_stmt_fetch($stmt)) {
             if (!empty($nome_db)) {
                 $nome = $nome_db;
@@ -28,7 +31,9 @@ if (!isset($_SESSION['id_user'])) {
             if (!empty($capa_db)) {
                 $capa = $capa_db;
             }
+            $role_admin = $ref_role;
         }
+
         mysqli_stmt_close($stmt);
     }
 
@@ -99,6 +104,12 @@ if (!isset($_SESSION['id_user'])) {
                 <a href="../scripts/sc_logout.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center text-danger verde_claro_bg">
                     <img src="../Imagens/icons/logout_24dp_DC4C64_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
                     Logout
+                </a>
+            <?php endif; ?>
+            <?php if (isset($_SESSION['id_user']) && isset($role_admin) && $role_admin == 1): ?>
+                <a href="../Paginas/admin_dashboard.php" class="verde_escuro list-group-item list-group-item-action d-flex align-items-center bg-warning-subtle">
+                    <img src="../Imagens/icons/shield_person_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Ícone" class="me-3" >
+                    Painel de Administrador
                 </a>
             <?php endif; ?>
         </div>
