@@ -167,7 +167,7 @@ if (isset($_SESSION['mensagem_sistema'])) {
                     </a>
                 </div>
                 <div class="d-flex">
-                    <button class="comprar p-3 fs-6 rounded" onclick="window.location.href='../Paginas/carrinho.php'">Comprar</button>
+                    <button class="comprar p-3 fs-6 rounded " onclick="window.location.href='../Paginas/carrinho.php'">Comprar</button>
                 </div>
             </div>
         <?php else: ?>
@@ -200,11 +200,11 @@ if (isset($_SESSION['mensagem_sistema'])) {
                     <h5 class="modal-title" id="cartModalLabel">Produto Adicionado</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body border-0">
                     Produto adicionado ao carrinho com sucesso!
                 </div>
-                <div class="modal-footer justify-content-center">
-                    <a href="../Paginas/carrinho.php" class="btn btn-success">Ver Carrinho</a>
+                <div class="modal-footer border-0justify-content-center">
+                    <a href="../Paginas/carrinho.php" class="btn btn-success verde_escuro_bg">Ver Carrinho</a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continuar a Comprar</button>
                 </div>
             </div>
@@ -219,11 +219,11 @@ if (isset($_SESSION['mensagem_sistema'])) {
                     <h5 class="modal-title" id="alreadyInCartLabel">Produto Já no Carrinho</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body border-0">
                     Este produto já está no seu carrinho.
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <a href="../Paginas/carrinho.php" class="btn btn-primary">Ver Carrinho</a>
+                    <a href="../Paginas/carrinho.php" class="btn btn-primary verde_escuro_bg">Ver Carrinho</a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continuar Comprando</button>
                 </div>
             </div>
@@ -234,15 +234,32 @@ if (isset($_SESSION['mensagem_sistema'])) {
     <div class="modal fade" id="quantidadeInvalidaModal" tabindex="-1" aria-labelledby="quantidadeInvalidaModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center">
-                <div class="modal-header">
+                <div class="modal-header border-0">
                     <h5 class="modal-title" id="quantidadeInvalidaModalLabel">Quantidade Inválida</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body">
                     Por favor, insira uma quantidade válida.
                 </div>
-                <div class="modal-footer justify-content-center">
+                <div class="modal-footer border-0 justify-content-center">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal fade" id="pedidoModal" tabindex="-1" aria-labelledby="pedidoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content text-center">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title w-100" id="pedidoModalLabel">Pedido realizado com sucesso!</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Aguarde confirmação do vendedor.</p>
+                </div>
+                <div class="modal-footer justify-content-center border-0">
+                    <a href="../Paginas/encomendas.php" class="btn btn-success">Ver Pedidos</a>
+                    <a href="../Paginas/index.php" class="btn btn-outline-secondary">Continuar a comprar</a>
                 </div>
             </div>
         </div>
@@ -257,6 +274,30 @@ if (isset($_SESSION['mensagem_sistema'])) {
 </script>
 
 <script>
+    document.querySelector(".comprar")?.addEventListener("click", function () {
+        fetch("../scripts/sc_add_encomenda.php", {
+            method: "POST"
+        })
+            .then(async res => {
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    // Só entra aqui se o servidor respondeu com 200 e sucesso
+                    const modal = new bootstrap.Modal(document.getElementById('pedidoModal'));
+                    modal.show();
+
+                    // Limpar interface
+                    document.querySelectorAll(".cards_homepage").forEach(card => card.remove());
+                    document.querySelector(".d-flex.justify-content-end")?.remove();
+                    document.querySelector(".top-buttons")?.remove();
+                } else {
+                    alert("Erro: " + (data.mensagem || "Erro desconhecido."));
+                }
+            })
+            .catch(err => {
+                alert("Erro de rede ao finalizar o pedido.");
+                console.error(err);
+            });
+    });
 
 
     window.addEventListener('DOMContentLoaded', () => {

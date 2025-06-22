@@ -77,6 +77,12 @@
                                             data-id="<?php echo $id_encomenda; ?>"
                                             onclick="rejeitarEncomenda(this)">Rejeitar</button>
                                 </div>
+                            <?php elseif (isset($id_estado) && $id_estado == 2): ?>
+                            <div class="d-flex" style="height: 2.5rem;">
+                                <button class="btn btn-success w-100 rounded-0 rounded-bottom"
+                                        data-id="<?php echo $id_encomenda; ?>"
+                                        onclick="marcarComoEntregue(this)">Marcar como entregue</button>
+                            </div>
                             <?php endif; ?>
 
                         </div>
@@ -95,6 +101,37 @@
 
 <!-- JavaScript AJAX -->
 <script>
+    function marcarComoEntregue(btn) {
+        const id = btn.getAttribute('data-id');
+
+        fetch('../scripts/sc_marcar_entregue.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `id_encomenda=${id}`
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const card = document.getElementById(`encomenda_${id}`);
+
+                    // Atualiza o texto do estado
+                    const estadoEl = card.querySelector("small.text-muted");
+                    if (estadoEl && data.novo_estado) {
+                        estadoEl.textContent = "Estado: " + data.novo_estado;
+                    }
+
+                    // Remove o botão
+                    const botoes = card.querySelector(".d-flex[style*='2.5rem']");
+                    if (botoes) botoes.remove();
+                } else {
+                    console.error("Erro ao marcar como entregue:", data.error || "Erro desconhecido");
+                }
+            })
+            .catch(err => {
+                console.error("Erro na resposta AJAX:", err);
+            });
+    }
+
     function aceitarEncomenda(btn) {
         const id = btn.getAttribute('data-id');
 
