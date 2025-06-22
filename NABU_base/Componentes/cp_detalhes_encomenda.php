@@ -57,7 +57,8 @@ $query = "SELECT
     encomendas.quantidade, 
     encomendas.preco,
     estados.descricao,
-    anuncios.ref_user
+    anuncios.ref_user,
+    encomendas.ref_estado
 FROM 
     anuncios 
 INNER JOIN 
@@ -69,10 +70,24 @@ INNER JOIN
 WHERE 
     encomendas.id_encomenda = ?";
 
+
 if (mysqli_stmt_prepare($stmt, $query)) {
     mysqli_stmt_bind_param($stmt, "i", $id_encomenda);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $id_encomenda, $id_anuncio, $nome_produto, $abreviatura, $capa, $estado, $quantidade, $preco, $descricao_estado, $ref_user_vendedor);
+    mysqli_stmt_bind_result(
+        $stmt,
+        $id_encomenda,
+        $id_anuncio,
+        $nome_produto,
+        $abreviatura,
+        $capa,
+        $estado,
+        $quantidade,
+        $preco,
+        $descricao_estado,
+        $ref_user_vendedor,
+        $ref_estado
+    );
 
 
     if (!mysqli_stmt_fetch($stmt)) {
@@ -196,9 +211,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['avaliar'])) {
     <p class="verde_escuro mb-0 text-center"> <strong><?= htmlspecialchars($descricao_estado) ?></strong></p>
     </div>
 </div>
+    <?php if ($_SESSION['id_user'] != $ref_user_vendedor && $ref_estado == 3): ?>
     <div class="order-tracker mt-5 " id="avaliacoes">
         <h5 class="fw-bold fs-3 verde_escuro mb-2">Deixar avaliação</h5>
-        <?php if ($_SESSION['id_user'] != $ref_user_vendedor): ?>
+
             <form method="post" action="">
                 <div class="mb-3">
                     <label for="classificacao" class="form-label verde_escuro fw-semibold">Classificação (0 a 10)*</label>
