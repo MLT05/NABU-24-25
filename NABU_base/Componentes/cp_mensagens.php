@@ -63,13 +63,15 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                     <input type="hidden" name="id_anuncio" value="<?= htmlspecialchars($id_produto) ?>">
                     <input type="hidden" name="id_outro_user" value="<?= htmlspecialchars($id_outro_user) ?>">
 
-                    <button type="submit" class="w-100 text-decoration-none text-reset border-0 verde_claro_bg p-0">
+                    <div onclick="this.closest('form').submit()" class="w-100 text-decoration-none text-reset verde_claro_bg p-0" style="cursor: pointer;">
                         <div class="d-flex justify-content-between align-items-center p-3">
                             <div class="d-flex align-items-center">
-                                <img src="../uploads/pfp/<?= htmlspecialchars($pfp_outro_user) ?>"
-                                     class="rounded-circle me-3"
-                                     style="width: 50px; height: 50px; object-fit: cover;"
-                                     alt="Foto perfil">
+                                <a href="../Paginas/perfil_outro.php?id_user=<?= htmlspecialchars($id_outro_user) ?>" onclick="event.stopPropagation();">
+                                    <img src="../uploads/pfp/<?= htmlspecialchars($pfp_outro_user) ?>"
+                                         class="rounded-circle me-3"
+                                         style="width: 50px; height: 50px; object-fit: cover;"
+                                         alt="Foto perfil">
+                                </a>
                                 <div>
                                     <h6 class="mb-0 fw-bold text-start verde_escuro opacity-75"><?= htmlspecialchars($nome_outro_user) ?></h6>
                                     <div class="text-start"><?= htmlspecialchars($nome_produto) ?></div>
@@ -77,7 +79,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                             </div>
                             <small class="text-muted"><?= tempoDecorrido($data_envio) ?></small>
                         </div>
-                    </button>
+                    </div>
                 </form>
                 <?php
             }
@@ -120,25 +122,27 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                         form.className = "mb-3";
 
                         form.innerHTML = `
-                    <input type="hidden" name="id_anuncio" value="${conv.id_produto}">
-                    <input type="hidden" name="id_outro_user" value="${conv.id_outro_user}">
+                            <input type="hidden" name="id_anuncio" value="${conv.id_produto}">
+                            <input type="hidden" name="id_outro_user" value="${conv.id_outro_user}">
 
-                    <button type="submit" class="w-100 text-decoration-none text-reset border-0 verde_claro_bg p-0">
-                        <div class="d-flex justify-content-between align-items-center p-3">
-                            <div class="d-flex align-items-center">
-                                <img src="../uploads/pfp/${conv.pfp_outro_user}"
-                                     class="rounded-circle me-3"
-                                     style="width: 50px; height: 50px; object-fit: cover;"
-                                     alt="Foto perfil">
-                                <div>
-                                    <h6 class="mb-0 fw-bold text-start verde_escuro opacity-75">${conv.nome_outro_user}</h6>
-                                    <div class="text-start">${conv.nome_produto}</div>
+                            <div onclick="this.closest('form').submit()" class="w-100 text-decoration-none text-reset border-0 verde_claro_bg p-0 rounded-3" style="cursor: pointer;">
+                                <div class="d-flex justify-content-between align-items-center p-3">
+                                    <div class="d-flex align-items-center">
+                                        <a href="../Paginas/perfil_outro.php?id_user=${conv.id_outro_user}" onclick="event.stopPropagation();">
+                                            <img src="../uploads/pfp/${conv.pfp_outro_user}"
+                                                 class="rounded-circle me-3"
+                                                 style="width: 50px; height: 50px; object-fit: cover;"
+                                                 alt="Foto perfil">
+                                        </a>
+                                        <div>
+                                            <h6 class="mb-0 fw-bold text-start verde_escuro opacity-75">${conv.nome_outro_user}</h6>
+                                            <div class="text-start">${conv.nome_produto}</div>
+                                        </div>
+                                    </div>
+                                    <small class="text-muted">${tempoDecorrido(conv.data_envio)}</small>
                                 </div>
                             </div>
-                            <small class="text-muted">${tempoDecorrido(conv.data_envio)}</small>
-                        </div>
-                    </button>
-                `;
+                        `;
                         container.appendChild(form);
                     });
 

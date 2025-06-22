@@ -91,26 +91,34 @@ if (isset($_GET['id_anuncio'], $_GET['id_outro_user']) && is_numeric($_GET['id_a
     mysqli_stmt_bind_result($stmt, $ref_remetente_msg, $mensagem_texto, $data_envio_msg);
     ?>
 
-    <a href="../Paginas/produto.php?id=<?= htmlspecialchars($id_anuncio) ?>" class="text-decoration-none text-reset">
-        <div class="w-100 verde_claro_bg anuncio_mensagens p-3 d-flex justify-content-between rounded-3 shadow-sm mb-3">
-            <div class="d-flex align-items-center">
+    <div onclick="window.location.href='../Paginas/produto.php?id=<?= htmlspecialchars($id_anuncio) ?>';"
+         class="text-decoration-none text-reset w-100 verde_claro_bg anuncio_mensagens p-3 d-flex justify-content-between align-items-center rounded-3 shadow-sm mb-1"
+         style="cursor: pointer;">
+
+        <div class="d-flex align-items-center flex-grow-1 overflow-hidden" style="min-width: 0;">
+            <a href="../Paginas/perfil_outro.php?id_user=<?= htmlspecialchars($id_outro_user) ?>" onclick="event.stopPropagation();">
                 <img src="../uploads/pfp/<?= htmlspecialchars($outro_pfp) ?>"
-                     alt="profile pic do destinatário"
-                     class="rounded-circle me-3"
+                     alt="Foto de perfil"
+                     class="rounded-circle me-3 flex-shrink-0"
                      style="width: 6vh; height: 6vh; object-fit: cover;">
-                <div>
-                    <h6 class="mb-0 fw-bold verde_escuro fs-2"><?= htmlspecialchars($outro_nome) ?></h6>
-                    <small class="fs-4 verde_escuro fw-normal pt-2"><?= htmlspecialchars($nome_produto) ?></small>
-                </div>
-            </div>
-            <div class="d-flex flex-column align-items-end justify-content-between">
-                <i class="bi bi-info-circle-fill text-secondary mb-2"></i>
-                <div class="fw-semibold text-dark pe-4">
-                    <?= htmlspecialchars($preco) ?>€ /<?= htmlspecialchars($medida_abr) ?>
-                </div>
+            </a>
+            <div class="overflow-hidden">
+                <h6 class="mb-0 fw-bold verde_escuro fs-2 text-truncate" style="max-width: 40vw;">
+                    <?= htmlspecialchars($outro_nome) ?>
+                </h6>
+                <small class="fs-4 verde_escuro fw-normal pt-2 text-truncate" style="max-width: 40vw;" title="<?= htmlspecialchars($nome_produto) ?>">
+                    <?= htmlspecialchars($nome_produto) ?>
+                </small>
             </div>
         </div>
-    </a>
+
+        <div class="d-flex flex-column align-items-end justify-content-between text-nowrap ms-3">
+            <i class="bi bi-info-circle-fill text-secondary mb-2"></i>
+            <div class="fw-semibold text-dark pe-4">
+                <?= htmlspecialchars($preco) ?>€ /<?= htmlspecialchars($medida_abr) ?>
+            </div>
+        </div>
+    </div>
 
     <main class="container flex-grow-1 d-flex flex-column" style="padding-bottom: 11vh; height: 70vh;">
 
