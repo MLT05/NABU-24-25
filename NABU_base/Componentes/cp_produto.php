@@ -75,6 +75,26 @@ if (isset($_SESSION['id_user'])) {
 } else {
     $icon_class = "material-symbols-outlined"; // não logado = não favorito
 }
+
+$link_feedback = new_db_connection();
+$stmt_feedback = mysqli_stmt_init($link_feedback);
+
+$query_feedback = "SELECT AVG(classificacao), COUNT(*) FROM feedback WHERE ref_user = ?";
+if (mysqli_stmt_prepare($stmt_feedback, $query_feedback)) {
+    mysqli_stmt_bind_param($stmt_feedback, "i", $id_user);
+    mysqli_stmt_execute($stmt_feedback);
+    mysqli_stmt_bind_result($stmt_feedback, $media_classificacao, $total_classificacoes);
+    mysqli_stmt_fetch($stmt_feedback);
+    mysqli_stmt_close($stmt_feedback);
+    mysqli_close($link_feedback);
+
+    // Arredonda para 1 casa decimal
+    $media_classificacao = round($media_classificacao, 1);
+} else {
+    $media_classificacao = null;
+    $total_classificacoes = 0;
+}
+
 ?>
 
 <div class="w-100 caixa-imagem">
@@ -128,7 +148,14 @@ if (isset($_SESSION['mensagem_sistema'])) {
             <div class="row">
                 <div class="col-6">
                     <span class="etiqueta"><?= htmlspecialchars($nome_categoria) ?></span>
-                    <p class="text-warning">⭐ 4,9 <span class="verde_claro">(229)</span></p>
+                    <h4 id="avalia" class="d-flex align-items-center gap-1 verde_escuro">
+    <span class="material-symbols-filled verde_escuro" style="font-size: 1.5rem;">
+        star
+    </span>
+                        <?= $media_classificacao !== null ? htmlspecialchars($media_classificacao) : 'N/A' ?>
+                        <span class="verde_claro ms-1">(<?= htmlspecialchars($total_classificacoes) ?>)</span>
+                    </h4>
+
                 </div>
                 <div class="col-6 text-end">
                     <p class="fs-2 fw-bold verde_escuro"><?= number_format($preco, 2, ',', '.') ?>€ <span>/<?= htmlspecialchars($medida_abr) ?></span></p>

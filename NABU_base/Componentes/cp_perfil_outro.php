@@ -5,7 +5,7 @@ require_once '../Connections/connection.php';
 
 if (!isset($_GET['id_user'])) {
     // Se não estiver logado, redireciona pro login
-    header("../Paginas/login.php");
+    header("Location: ../Paginas/login.php");
 
 } else {
 
