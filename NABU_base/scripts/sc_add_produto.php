@@ -5,7 +5,7 @@ session_start();
 $link = new_db_connection();
 
 if (!isset($_SESSION['id_user'])) {
-    die("Erro: Utilizador não autenticado.");
+   header("../Paginas/login.php");
 }
 
 $ref_user = $_SESSION['id_user'];
@@ -33,7 +33,10 @@ function validarMoradaOSM($morada) {
 }
 
 if (!validarMoradaOSM($localizacao)) {
-    die("<p style='color:red;'>Morada inválida. Por favor, introduza uma morada real.</p>");
+    $_SESSION['mensagem_sistema'] = "Morada inválida. Por favor, introduza uma morada real.";
+    $_SESSION['tipo_mensagem'] = "erro";
+    header("Location: ../Paginas/meus_anuncios.php");
+    exit();
 }
 
 // Upload imagem
@@ -63,7 +66,12 @@ if (isset($_FILES['pfp']) && $_FILES['pfp']['error'] === UPLOAD_ERR_OK) {
             case 'gif':
                 $orig_img = imagecreatefromgif($file_tmp); break;
             default:
-                die("Formato de imagem inválido.");
+
+                $_SESSION['mensagem_sistema'] = "Erro ao processar a imagem.";
+                $_SESSION['tipo_mensagem'] = "erro";
+                header("Location: ../Paginas/meus_anuncios.php");
+                exit();
+
         }
 
         if (!$orig_img) die("Erro ao processar a imagem.");
@@ -113,7 +121,10 @@ if (isset($_FILES['pfp']) && $_FILES['pfp']['error'] === UPLOAD_ERR_OK) {
 
         $capa = $new_name;
     } else {
-        die("Formato de imagem inválido. Apenas JPG, JPEG, PNG e GIF são permitidos.");
+        $_SESSION['mensagem_sistema'] = "Formato de imagem inválido. Apenas JPG, JPEG, PNG e GIF são permitidos.";
+        $_SESSION['tipo_mensagem'] = "erro";
+        header("Location: ../Paginas/meus_anuncios.php");
+        exit();
     }
 }
 
@@ -148,7 +159,10 @@ if ($stmt) {
 
     mysqli_stmt_close($stmt);
 } else {
-    echo "Erro na preparação da query: " . mysqli_error($link);
+    $_SESSION['mensagem_sistema'] = "Erro na preparação da query: " . mysqli_error($link);
+    $_SESSION['tipo_mensagem'] = "erro";
+    header("Location: ../Paginas/meus_anuncios.php");
+    exit();
 }
 
 mysqli_close($link);

@@ -6,6 +6,32 @@
 require_once '../Connections/connection.php';
 include_once '../api/geocode_anuncios.php';
 
+if (isset($_SESSION['mensagem_sistema'])):
+?>
+    <!-- Modal Bootstrap -->
+    <div class="modal fade show" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" style="display: block;" aria-modal="true" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header <?= ($_SESSION['tipo_mensagem'] === 'erro') ? 'bg-danger text-white' : 'bg-success text-white' ?>">
+                    <h5 class="modal-title" id="feedbackModalLabel">
+                        <?= ($_SESSION['tipo_mensagem'] === 'erro') ? 'Erro' : 'Sucesso' ?>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <?= $_SESSION['mensagem_sistema'] ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="fecharModal()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Backdrop -->
+    <div class="modal-backdrop fade show"></div> <?php
+    unset($_SESSION['mensagem_sistema'], $_SESSION['tipo_mensagem']);
+endif;
 
 if (isset($_GET['msg'])) {
     switch ($_GET['msg']) {
@@ -118,4 +144,10 @@ $capa = "default-image.jpg"; // imagem padrão caso não tenha capa
         // Apenas dispara a execução do script, sem esperar resposta
         fetch('../api/geocode_anuncios.php').catch(() => {});
     });
+</script>
+<script>
+    function fecharModal() {
+        document.getElementById('feedbackModal').style.display = 'none';
+        document.querySelector('.modal-backdrop').remove();
+    }
 </script>
